@@ -16,6 +16,17 @@ body {
 	font-weight: bold;
 }
 
+#title {
+  margin: 15px 0px;
+  padding-left: 10px;
+  border-bottom: 1px black solid;
+}
+
+#title a {
+  text-decoration: none;
+  color: black;
+}
+
 #review-details {
 	padding: 10px;
 	width: 100%;

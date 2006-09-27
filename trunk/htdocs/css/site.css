@@ -1,0 +1,95 @@
+body {
+	font-family: Verdana, Arial, Helvetica, Sans-Serif;
+	font-size: 8pt;
+	background-color: #FAFAFA;
+	color: black
+}
+
+.label {
+	text-align: right;
+	font-weight: bold;
+	white-space: nowrap;
+	vertical-align: top;
+}
+
+.vertlabel {
+	font-weight: bold;
+}
+
+#review-details {
+	padding: 10px;
+	width: 100%;
+	border: 1px black outset;
+	background: #fce9bf;
+}
+
+#review-details td {
+	padding: 4px;
+}
+
+#review-details .label {
+	width: 10%;
+}
+
+#review-details .value {
+	color: #333333;
+	width: 60%;
+}
+
+#review-details .vertlabel {
+	/* border-top: 1px #999999 solid; */
+	padding-top: 12px;
+}
+
+#review-details #summary {
+	font-size: 120%;
+	font-weight: bold;
+	width: 60%;
+}
+
+#review-details #updated_time {
+	text-align: right;
+	font-size: 120%;
+	color: #666666;
+	width: 30%;
+}
+
+#review-details #viewdiff {
+	text-align: right;
+}
+
+#review-details #status {
+	text-align: right;
+	color: #666666;
+}
+
+#review-details #description, #review-details #testingdone {
+	padding-left: 20px;
+	background-color: #FAFAFA;
+	border: 1px #cfb01a solid;
+}
+
+table.list {
+	border: 1px black outset;
+	width: 100%;
+	border-collapse: collapse;
+}
+
+table.list th {
+	text-align: left;
+	border-bottom: 1px black solid;
+	background-color: #D0D0D0;
+	padding: 4px;
+}
+
+table.list td {
+	padding: 4px;
+}
+
+table.list td.even {
+	background: white;
+}
+
+table.list td.odd {
+	background: #E0E0E0
+}

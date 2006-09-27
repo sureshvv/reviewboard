@@ -5,6 +5,10 @@ body {
 	color: black
 }
 
+h1 {
+  font-size: 10pt;
+}
+
 .label {
 	text-align: right;
 	font-weight: bold;
@@ -16,10 +20,35 @@ body {
 	font-weight: bold;
 }
 
-#title {
+#headbar {
   margin: 15px 0px;
   padding-left: 10px;
   border-bottom: 1px black solid;
+}
+
+#headbar h1 {
+  font-size: 14pt;
+}
+
+#headbar ul {
+  display: inline;
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+}
+
+#headbar li {
+  display: inline;
+  margin-left: 15px;
+}
+
+#headbar li a {
+  text-decoration: none;
+  color: blue;
+}
+
+#title {
+  display: inline;
 }
 
 #title a {

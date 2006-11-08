@@ -133,3 +133,20 @@ table.list td.even {
 table.list td.odd {
 	background: #E0E0E0
 }
+
+.section .title {
+  background: #D00000;
+  color: white;
+  padding: 4px 8px;
+  border-top: 1px black solid;
+  border-bottom: 1px black solid;
+}
+
+.section .body {
+  margin-left: 20px;
+  padding: 10px;
+}
+
+.section {
+  margin-bottom: 20px;
+}

@@ -1,8 +1,8 @@
 body {
-	font-family: Verdana, Arial, Helvetica, Sans-Serif;
-	font-size: 8pt;
-	background-color: #FAFAFA;
-	color: black
+  color: black
+  background-color: #FAFAFA;
+  font-family: Verdana, Arial, Helvetica, Sans-Serif;
+  font-size: 8pt;
 }
 
 h1 {
@@ -10,136 +10,159 @@ h1 {
 }
 
 .label {
-	text-align: right;
-	font-weight: bold;
-	white-space: nowrap;
-	vertical-align: top;
+  font-weight: bold;
+  text-align: right;
+  vertical-align: top;
+  white-space: nowrap;
 }
 
 .vertlabel {
-	font-weight: bold;
+  font-weight: bold;
 }
 
 #headbar {
-  margin: 15px 0px;
-  padding-left: 10px;
-  border-bottom: 1px black solid;
-}
-
-#headbar h1 {
-  font-size: 14pt;
-}
-
-#headbar ul {
-  display: inline;
-  list-style: none;
-  padding: 0px;
-  margin: 0px;
-}
-
-#headbar li {
-  display: inline;
-  margin-left: 15px;
-}
-
-#headbar li a {
-  text-decoration: none;
-  color: blue;
+  margin-bottom: 8px;
 }
 
 #title {
   display: inline;
+  font-size: 24pt;
+  font-weight: normal;
 }
 
 #title a {
-  text-decoration: none;
   color: black;
+  text-decoration: none;
+}
+
+#beta {
+  color: #808080;
+  display: inline;
+  font-size: 12pt;
+  font-weight: normal;
+}
+
+#navbar {
+  background-color: #C6DCF3;
+  border: 1px #3465A4 solid;
+  padding: 2px 6px;
+  width: 100%;
+}
+
+#navbar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#navbar ul li {
+  display: inline;
+  height: 30px;
+  margin-right: 14px;
+}
+
+#navbar a {
+  color: #0000AA;
+  text-decoration: none;
+  font-size: 110%;
+  font-weight: bold;
+}
+
+#navbar #changenumform {
+  text-align: right;
+}
+
+#navbar form {
+  color: #0000AA;
+  margin: 0px;
+  padding: 0px;
+  text-align: right;
 }
 
 #review-details {
-	padding: 10px;
-	width: 100%;
-	border: 1px black outset;
-	background: #fce9bf;
+  background: #fce9bf;
+  border: 1px black outset;
+  padding: 10px;
+  width: 100%;
 }
 
 #review-details td {
-	padding: 4px;
+  padding: 4px;
 }
 
 #review-details .label {
-	width: 10%;
+  width: 10%;
 }
 
 #review-details .value {
-	color: #333333;
-	width: 60%;
+  color: #333333;
+  width: 60%;
 }
 
 #review-details .vertlabel {
-	/* border-top: 1px #999999 solid; */
-	padding-top: 12px;
+  /* border-top: 1px #999999 solid; */
+  padding-top: 12px;
 }
 
 #review-details #summary {
-	font-size: 120%;
-	font-weight: bold;
-	width: 60%;
+  font-size: 120%;
+  font-weight: bold;
+  width: 60%;
 }
 
 #review-details #updated_time {
-	text-align: right;
-	font-size: 120%;
-	color: #666666;
-	width: 30%;
+  color: #666666;
+  font-size: 120%;
+  text-align: right;
+  width: 30%;
 }
 
 #review-details #viewdiff {
-	text-align: right;
+  text-align: right;
 }
 
 #review-details #status {
-	text-align: right;
-	color: #666666;
+  color: #666666;
+  text-align: right;
 }
 
 #review-details #description, #review-details #testingdone {
-	padding-left: 20px;
-	background-color: #FAFAFA;
-	border: 1px #cfb01a solid;
+  background-color: #FAFAFA;
+  border: 1px #cfb01a solid;
+  padding-left: 20px;
 }
 
 table.list {
-	border: 1px black outset;
-	width: 100%;
-	border-collapse: collapse;
+  border: 1px black outset;
+  border-collapse: collapse;
+  width: 100%;
 }
 
 table.list th {
-	text-align: left;
-	border-bottom: 1px black solid;
-	background-color: #D0D0D0;
-	padding: 4px;
+  background-color: #D0D0D0;
+  border-bottom: 1px black solid;
+  padding: 4px;
+  text-align: left;
 }
 
 table.list td {
-	padding: 4px;
+  padding: 4px;
 }
 
 table.list td.even {
-	background: white;
+  background: white;
 }
 
 table.list td.odd {
-	background: #E0E0E0
+  background: #E0E0E0
 }
 
 .section .title {
   background: #D00000;
+  border-bottom: 1px black solid;
+  border-top: 1px black solid;
   color: white;
   padding: 4px 8px;
-  border-top: 1px black solid;
-  border-bottom: 1px black solid;
 }
 
 .section .body {

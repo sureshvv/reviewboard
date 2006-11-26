@@ -167,12 +167,8 @@ table.list td.odd {
   background: #E0E0E0
 }
 
-table.list td.submitter {
-  width: 15em;
-}
-
-table.list td.updated {
-  width: 20em;
+table.list td.summary {
+  cursor: pointer;
 }
 
 table.list td a {

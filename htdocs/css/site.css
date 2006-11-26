@@ -47,6 +47,7 @@ h1 {
   border: 1px #3465A4 solid;
   padding: 2px 6px;
   width: 100%;
+  margin: 0;
 }
 
 #navbar ul {
@@ -133,16 +134,25 @@ h1 {
 }
 
 table.list {
-  border: 1px black outset;
+  margin-left: 1px;
+  margin-top: 12px;
   border-collapse: collapse;
   width: 100%;
 }
 
 table.list th {
-  background-color: #D0D0D0;
-  border-bottom: 1px black solid;
+  background-color: #EEEEEE;
   padding: 4px;
   text-align: left;
+}
+
+table.list tr {
+  background-color: #F8F8F8;
+  border: 1px #D3D7CF solid;
+}
+
+table.list tr.headers {
+  border: 1px #888888 solid;
 }
 
 table.list td {
@@ -155,6 +165,18 @@ table.list td.even {
 
 table.list td.odd {
   background: #E0E0E0
+}
+
+table.list td.submitter {
+  width: 15em;
+}
+
+table.list td.updated {
+  width: 20em;
+}
+
+table.list td a {
+  color: #003582;
 }
 
 .section .title {

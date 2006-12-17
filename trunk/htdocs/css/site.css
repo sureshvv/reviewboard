@@ -158,20 +158,76 @@ table.list tr {
   border: 1px #D3D7CF solid;
 }
 
+table.list tr:hover {
+  background-color: #E8E8E8;
+}
+
 table.list tr.headers {
   border: 1px #888888 solid;
 }
 
+table.list .age1 {
+  background: #beedbc;
+  border-left: 1px #8bbd5c solid;
+  border-right: 1px #8bbd5c solid;
+  border-top: 1px #707070 solid;
+  border-bottom: 1px #707070 solid;
+}
+
+table.list tr:hover .age1 {
+  background: #abd5a9;
+}
+
+table.list .age2 {
+  background: #ddfa8e;
+  border-left: 1px #a3e266 solid;
+  border-right: 1px #a3e266 solid;
+  border-top: 1px #707070 solid;
+  border-bottom: 1px #707070 solid;
+}
+
+table.list tr:hover .age2 {
+  background: #c6e07f;
+}
+
+table.list .age3 {
+  background: #fdf18c;
+  border-left: 1px #d8c158 solid;
+  border-right: 1px #d8c158 solid;
+  border-top: 1px #707070 solid;
+  border-bottom: 1px #707070 solid;
+}
+
+table.list tr:hover .age3 {
+  background: #e3d87e;
+}
+
+table.list .age4 {
+  background: #fed3a9;
+  border-left: 1px #d49659 solid;
+  border-right: 1px #d49659 solid;
+  border-top: 1px #707070 solid;
+  border-bottom: 1px #707070 solid;
+}
+
+table.list tr:hover .age4 {
+  background: #e4bd98;
+}
+
+table.list .age5 {
+  background: #fab6b6;
+  border-left: 1px #f56363 solid;
+  border-right: 1px #f56363 solid;
+  border-top: 1px #707070 solid;
+  border-bottom: 1px #707070 solid;
+}
+
+table.list tr:hover .age5 {
+  background: #e0a3a3;
+}
+
 table.list td {
   padding: 4px;
-}
-
-table.list td.even {
-  background: white;
-}
-
-table.list td.odd {
-  background: #E0E0E0
 }
 
 table.list td.summary {
@@ -179,7 +235,8 @@ table.list td.summary {
 }
 
 table.list td a {
-  color: #003582;
+  color: black;
+  text-decoration: none;
 }
 
 .section .title {

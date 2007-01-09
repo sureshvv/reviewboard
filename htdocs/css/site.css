@@ -14,10 +14,11 @@ pre {
 }
 
 form th {
-    text-align: right;
+  text-align: right;
+  vertical-align: top;
 }
 
-label {
+.label {
   font-weight: bold;
   text-align: right;
   vertical-align: top;
@@ -298,4 +299,12 @@ table.list td a {
 
 #diffs table.sidebyside tr.new_chunk {
   border-top: 1px #303030 solid;
+}
+
+#review_request_form input[type='text'] {
+    width: 400px;
+}
+
+#review_request_form textarea {
+    width: 400px;
 }

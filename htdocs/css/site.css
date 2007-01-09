@@ -13,7 +13,11 @@ pre {
   font-size: 10pt;
 }
 
-.label {
+form th {
+    text-align: right;
+}
+
+label {
   font-weight: bold;
   text-align: right;
   vertical-align: top;
@@ -252,4 +256,46 @@ table.list td a {
 
 .section {
   margin-bottom: 20px;
+}
+
+#diffs {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#diffs table {
+  border: 1px #C0C0C0 solid;
+  margin: 2px;
+  padding: 2px;
+  background: white;
+  border-collapse: collapse;
+}
+
+#diffs table thead td {
+  font-size: 120%;
+  background: #F0F0F0;
+  padding: 4px 8px;
+  font-weight: bold;
+  border-bottom: 1px #C0C0C0 solid;
+}
+
+#diffs table.sidebyside col.left {
+  border-right: 1px #C0C0C0 solid;
+}
+
+#diffs table.sidebyside tr.changed {
+  background: #fffe88;
+}
+
+#diffs table.sidebyside tr.removed {
+  background: #fcc8c8;
+}
+
+#diffs table.sidebyside tr.added {
+  background: #aeffac;
+}
+
+#diffs table.sidebyside tr.new_chunk {
+  border-top: 1px #303030 solid;
 }

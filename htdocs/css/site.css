@@ -265,10 +265,15 @@ table.list td a {
   padding: 0;
 }
 
+#diffs .index {
+  margin-bottom: 20px;
+  padding-left: 30px;
+}
+
 #diffs pre {
-   font-size: 8pt;
-   margin: 0;
-   line-height: 140%;
+  font-size: 8pt;
+  margin: 0;
+  line-height: 140%;
 }
 
 #diffs table {
@@ -279,12 +284,26 @@ table.list td a {
   border-collapse: collapse;
 }
 
-#diffs table thead td {
-  font-size: 120%;
+#diffs table thead th {
   background: #F0F0F0;
-  padding: 4px 8px;
-  font-weight: bold;
   border-bottom: 1px #C0C0C0 solid;
+  font-size: 120%;
+  font-weight: bold;
+  padding: 4px 8px;
+  text-align: left;
+}
+
+#diffs table tbody td {
+  vertical-align: top;
+}
+
+#diffs table.sidebyside col.controls {
+  border-right: 1px #C0C0C0 solid;
+}
+
+#diffs table.sidebyside a {
+  color: black;
+  text-decoration: none;
 }
 
 #diffs table.sidebyside col.left {

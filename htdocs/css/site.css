@@ -293,18 +293,20 @@ table.list td a {
 
 #diffs table.sidebyside tr.changed {
   background: #fffe88;
+  border-top: 1px #303030 solid;
+  border-bottom: 1px #303030 solid;
 }
 
 #diffs table.sidebyside tr.removed {
   background: #fcc8c8;
+  border-top: 1px #303030 solid;
+  border-bottom: 1px #303030 solid;
 }
 
 #diffs table.sidebyside tr.added {
   background: #aeffac;
-}
-
-#diffs table.sidebyside tr.new_chunk {
   border-top: 1px #303030 solid;
+  border-bottom: 1px #303030 solid;
 }
 
 #review_request_form input[type='text'] {

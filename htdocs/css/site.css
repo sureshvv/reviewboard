@@ -1,6 +1,6 @@
 body {
-  color: black
-  background-color: #FAFAFA;
+  color: black;
+  background-color: white;
   font-family: Verdana, Arial, Helvetica, Sans-Serif;
   font-size: 8pt;
 }
@@ -265,7 +265,7 @@ table.list td a {
   padding: 0;
 }
 
-#diffs .index {
+#diffs div.index ol {
   margin-bottom: 20px;
   padding-left: 30px;
 }
@@ -291,6 +291,14 @@ table.list td a {
   font-weight: bold;
   padding: 4px 8px;
   text-align: left;
+}
+
+#diffs table thead th.controls,
+#diffs table.sidebyside td.controls {
+  padding: 2px;
+  font-size: 100%;
+  font-weight: normal;
+  text-align: center;
 }
 
 #diffs table tbody td {

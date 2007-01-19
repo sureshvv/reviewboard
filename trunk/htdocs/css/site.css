@@ -18,6 +18,24 @@ form th {
   vertical-align: top;
 }
 
+form.inplaceeditor-form {
+  margin: 0;
+  padding: 0;
+}
+
+form.inplaceeditor-form input[type="text"],
+form.inplaceeditor-form textarea {
+  border: 1px #808080 solid;
+}
+
+form.inplaceeditor-form input[type="submit"] {
+  margin-left: 0.5em;
+}
+
+form.inplaceeditor-form a {
+  margin-left: 0.5em;
+}
+
 .label {
   font-weight: bold;
   text-align: right;
@@ -140,10 +158,11 @@ form th {
   text-align: right;
 }
 
-#review-details #description, #review-details #testingdone {
-  background-color: #FAFAFA;
+#review-details pre>#description,
+#review-details pre>#testingdone {
   border: 1px #888888 solid;
-  padding-left: 20px;
+  padding: 10px;
+  background-color: #FAFAFA;
 }
 
 table.list {

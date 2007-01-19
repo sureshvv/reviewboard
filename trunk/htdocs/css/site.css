@@ -136,6 +136,23 @@ form.inplaceeditor-form a {
   padding-top: 12px;
 }
 
+#banner #draft {
+  background: #cdff9c;
+  padding: 8px 10px;
+  border: 1px #4e9a06 solid;
+  margin-bottom: 10px;
+}
+
+#banner #draft h1 {
+  padding: 0;
+  margin: 0;
+  display: inline;
+}
+
+#banner #draft input[type='submit'] {
+  margin-left: 10px;
+}
+
 #review-details #summary {
   font-size: 120%;
   font-weight: bold;
@@ -159,7 +176,7 @@ form.inplaceeditor-form a {
 }
 
 #review-details pre>#description,
-#review-details pre>#testingdone {
+#review-details pre>#testing_done {
   border: 1px #888888 solid;
   padding: 10px;
   background-color: #FAFAFA;

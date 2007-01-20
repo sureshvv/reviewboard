@@ -36,17 +36,6 @@ form.inplaceeditor-form a {
   margin-left: 0.5em;
 }
 
-.label {
-  font-weight: bold;
-  text-align: right;
-  vertical-align: top;
-  white-space: nowrap;
-}
-
-.vertlabel {
-  font-weight: bold;
-}
-
 #headbar {
   margin-bottom: 8px;
 }
@@ -111,31 +100,6 @@ form.inplaceeditor-form a {
   text-align: right;
 }
 
-#review-details {
-  background: #E9E9E9;
-  border: 1px #888888 solid;
-  padding: 10px;
-  width: 100%;
-}
-
-#review-details td {
-  padding: 4px;
-}
-
-#review-details .label {
-  width: 10%;
-}
-
-#review-details .value {
-  color: #333333;
-  width: 60%;
-}
-
-#review-details .vertlabel {
-  /* border-top: 1px #999999 solid; */
-  padding-top: 12px;
-}
-
 #banner #draft {
   background: #cdff9c;
   padding: 8px 10px;
@@ -151,35 +115,6 @@ form.inplaceeditor-form a {
 
 #banner #draft input[type='submit'] {
   margin-left: 10px;
-}
-
-#review-details #summary {
-  font-size: 120%;
-  font-weight: bold;
-  width: 60%;
-}
-
-#review-details #updated_time {
-  color: #666666;
-  font-size: 120%;
-  text-align: right;
-  width: 30%;
-}
-
-#review-details #viewdiff {
-  text-align: right;
-}
-
-#review-details #status {
-  color: #666666;
-  text-align: right;
-}
-
-#review-details pre>#description,
-#review-details pre>#testing_done {
-  border: 1px #888888 solid;
-  padding: 10px;
-  background-color: #FAFAFA;
 }
 
 table.list {
@@ -378,4 +313,83 @@ table.list td a {
 
 #review_request_form textarea {
     width: 400px;
+}
+
+#review-request {
+  background: #fffad3;
+  border: 1px #888a85 solid;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+#review-request label {
+  font-weight: bold;
+  color: #575012;
+}
+
+#review-request #summary {
+  display: inline;
+  font-size: 120%;
+}
+
+#review-request #updated_time {
+  text-align: right;
+}
+
+#review-request #status {
+  text-align: right;
+  font-weight: bold;
+}
+
+#review-request #details {
+  width: 100%;
+  border-spacing: 8px;
+  border-top: 1px #888a85 solid;
+  border-bottom: 1px #888a85 solid;
+  padding: 5px 0px;
+  margin-top: 5px;
+}
+
+#review-request #details td img {
+  vertical-align: bottom;
+}
+
+#review-request #details .label {
+  text-align: right;
+  white-space: nowrap;
+}
+
+#review-request #details .caption {
+  white-space: nowrap;
+  font-weight: bold;
+}
+
+#review-request #details .indented {
+  padding-left: 20px;
+}
+
+#review-request .content {
+  margin: 5px;
+  padding: 0;
+}
+
+#review-request .content label {
+  display: block;
+  margin-top: 20px;
+}
+
+#review-request .content pre {
+  margin: 5px 0 0 0;
+}
+
+#review-request .content pre div {
+  border: 1px #888888 solid;
+  padding: 10px;
+  background-color: #FAFAFA;
+  margin: 0px;
+}
+
+#review-request form.inplaceeditor-form input[type="submit"],
+#review-request form.inplaceeditor-form a {
+  margin-top: 0.5em;
 }

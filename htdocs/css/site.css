@@ -360,8 +360,9 @@ table.list td a {
 }
 
 #review-request #details .caption {
-  white-space: nowrap;
+  color: #39350b;
   font-weight: bold;
+  white-space: nowrap;
 }
 
 #review-request #details .indented {

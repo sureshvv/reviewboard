@@ -1,0 +1,35 @@
+{% extends "base_feeds.html" %}
+{% load htmlutils %}
+{% block title %}{% firstof source "All" %} pending review requests{% endblock %}
+
+{% block content %}
+
+{% if object_list %}
+<table class="list">
+ <colgroup>
+  <col class="summary" />
+  <col class="submitter" width="1*" />
+  <col class="updated" width="1*" />
+ </colgroup>
+ <thead>
+  <tr class="headers">
+   <th>Summary</th>
+   <th>Submitter</th>
+   <th>Last Updated</th>
+  </tr>
+ </thead>
+ <tbody>
+{%  for review in object_list %}
+  <tr>
+   <td class="summary" onclick="javascript:window.location='{{review.get_absolute_url}}';"><a href="{{review.get_absolute_url}}">{{review}}</a></td>
+   <td><a href="{{review.submitter.get_absolute_url}}">{{review.submitter}}</a></td>
+   <td class="{% ageid review.last_updated %}">{{review.last_updated|timesince}} ago</td>
+  </tr>
+{%  endfor %}
+ </tbody>
+</table>
+{% else %}
+<p>No pending reviews.</p>
+{% endif %}
+
+{% endblock %}

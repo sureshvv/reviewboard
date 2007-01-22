@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Groups{% endblock %}
+
+{% block content %}
+<h1>All groups</h1>
+
+{% if object_list %}
+<table class="list">
+ <colgroup>
+  <col class="name" />
+  <col class="reviewcount" width="1*" />
+ </colgroup>
+ <tr>
+  <th>Name</th>
+  <th>Pending Reviews</th>
+ </tr>
+{%  for group in object_list %}
+ <tr class="{% cycle odd,even %}">
+  <td><a href="{{group.get_absolute_url}}">{{group}}</a></td>
+  <td>{{group.count_public_review_requests}}</td>
+ </tr>
+{%  endfor %}
+</ul>
+{% else %}
+<p>No groups.</p>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+ <head>
+  <title>Review Board | {% block title %}{% endblock %}</title>
+  <link rel="stylesheet" type="text/css" href="/css/site.css" />
+{% block extrahead %}{% endblock %}
+ </head>
+{% block bodytag %}
+ <body>
+{% endblock %}
+  <div id="container">
+   <div id="headbar">
+    <h1 id="title"><a href="/">Review Board</a></h1>
+    <h2 id="beta">beta</h2>
+   </div>
+   <table id="navbar">
+    <tr>
+     <td>
+      <ul>
+       <li><a href="/reviews/">All review requests</a></li>
+       <li><a href="/groups/">Groups</a></li>
+       <li><a href="/submitters/">Submitters</a></li>
+      </ul>
+     </td>
+     <td id="addchangenum">
+      <form id="changenumform" method="post" action="/reviews/new/">
+       <label for="changenum">Change #</label>
+       <input type="text" id="changenum" name="changenum" size="8" />
+       <input type="submit" value="Add" />
+      </form>
+     </td>
+    </tr>
+   </table>
+   <div id="content">
+{% block content %}{% endblock %}
+   </div>
+  </div>
+ </body>
+</html>

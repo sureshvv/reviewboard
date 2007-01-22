@@ -1,6 +1,7 @@
 from django import newforms as forms
 from django.contrib.auth.models import User, Group
 from reviewboard.reviews.models import ReviewRequest
+import re
 
 class NewReviewRequestForm(forms.Form):
     summary = forms.CharField(max_length=300)
@@ -15,7 +16,7 @@ class NewReviewRequestForm(forms.Form):
         """Helper function to combine the common bits of clean_target_people
            and clean_target_groups"""
         result = []
-        names = [name.strip() for name in data.split(',')]
+        names = [name for name in map(str.strip, re.split('[, ]+', data)) if name]
         for name in names:
             try:
                 result.append(constructor(name))

@@ -4,6 +4,7 @@ from django.contrib.auth.models import User, Group
 from django.db.models import Q
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import get_object_or_404, render_to_response
+from django.template.context import RequestContext
 from django.views.generic.list_detail import object_list
 from reviewboard.diffviewer.models import DiffSet
 from reviewboard.diffviewer.views import view_diff
@@ -133,9 +134,9 @@ Files:\n\
     else:
         form = NewReviewRequestForm(initial={'submitter': request.user})
 
-    return render_to_response(template_name, {
+    return render_to_response(template_name, RequestContext(request, {
         'form': form,
-    })
+    }))
 
 
 def field(request, review_request_id, field_name):
@@ -230,11 +231,11 @@ def review_detail(request, object_id, template_name):
     except ReviewRequestDraft.DoesNotExist:
         draft = None
 
-    return render_to_response(template_name, {
+    return render_to_response(template_name, RequestContext(request, {
         'draft': draft,
         'object': review_request,
         'details': draft or review_request,
-    })
+    }))
 
 def review_list(request, queryset, template_name, extra_context={}):
     return object_list(request,

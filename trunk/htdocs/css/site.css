@@ -9,6 +9,14 @@ h1 {
   font-size: 10pt;
 }
 
+/*
+input[type="submit"] {
+  border: 1px #808080 solid;
+  background: url("/images/button_bg.png");
+  padding: 2px 6px;
+}
+*/
+
 pre {
   font-size: 10pt;
 }
@@ -318,8 +326,11 @@ table.list td a {
 #review-request {
   background: #fefadd;
   border: 1px #888a85 solid;
-  padding: 5px;
   margin-bottom: 10px;
+}
+
+#review-request .main {
+  padding: 5px;
 }
 
 #review-request label {
@@ -393,4 +404,26 @@ table.list td a {
 #review-request form.inplaceeditor-form input[type="submit"],
 #review-request form.inplaceeditor-form a {
   margin-top: 0.5em;
+}
+
+#review-request noscript form {
+  text-align: right;
+  margin: 10px 5px 5px 5px;
+}
+
+#review-request .controls {
+  background: #ede6b7;
+  border-top: 1px #888a85 solid;
+  padding: 4px 8px;
+  text-align: right;
+}
+
+#review-request .controls img {
+  vertical-align: bottom;
+}
+
+#review-request .controls a {
+  padding-left: 8px;
+  text-decoration: none;
+  color: black;
 }

@@ -31,7 +31,7 @@ class NewReviewRequestForm(forms.Form):
 
     def clean_target_groups(self):
         return create_from_list(self.clean_data['target_groups'],
-                                lambda x: User.objects.get(name=x),
+                                lambda x: Group.objects.get(name=x),
                                 'Group "%s" does not exist')
 
     def clean(self):

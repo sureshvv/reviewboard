@@ -18,21 +18,24 @@ class NewReviewRequestForm(forms.Form):
         result = []
         names = [x for x in map(str.strip, re.split('[, ]+', data)) if x]
         for name in names:
-            try:
-                result.append(constructor(name))
-            except:
-                raise forms.ValidationError(error % name)
+            result.append(constructor(name))
         return set(result)
 
     def clean_target_people(self):
-        return create_from_list(self.clean_data['target_people'],
-                                lambda x: User.objects.get(username=x),
-                                'Reviewer "%s" does not exist')
+        try:
+            return create_from_list(self.clean_data['target_people'],
+                                    lambda x: User.objects.get(username=x))
+        except User.DoesNotExist:
+            # XXX: it'd be nice to have a way of getting the offending name
+            raise forms.ValidationError('Reviewer does not exist')
 
     def clean_target_groups(self):
-        return create_from_list(self.clean_data['target_groups'],
-                                lambda x: Group.objects.get(name=x),
-                                'Group "%s" does not exist')
+        try:
+            return create_from_list(self.clean_data['target_groups'],
+                                    lambda x: Group.objects.get(name=x))
+        except Group.DoesNotExist:
+            # XXX: it'd be nice to have a way of getting the offending name
+            raise forms.ValidationError('Group does not exist')
 
     def clean(self):
         if not self.clean_data['target_people'] and \

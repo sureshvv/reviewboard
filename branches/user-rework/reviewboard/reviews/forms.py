@@ -16,7 +16,7 @@ class NewReviewRequestForm(forms.Form):
         """Helper function to combine the common bits of clean_target_people
            and clean_target_groups"""
         result = []
-        names = [name for name in map(str.strip, re.split('[, ]+', data)) if name]
+        names = [x for x in map(str.strip, re.split('[, ]+', data)) if x]
         for name in names:
             try:
                 result.append(constructor(name))

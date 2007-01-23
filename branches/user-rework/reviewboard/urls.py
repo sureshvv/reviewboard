@@ -77,7 +77,7 @@ urlpatterns = patterns('',
     # Authentication and accounts
     (r'^account/login/$', 'djblets.auth.views.login',
      {'next_page': '/account/'}),
-    (r'^account/logout/$', 'django.contrib.auth.logout',
+    (r'^account/logout/$', 'django.contrib.auth.views.logout',
      {'next_page': settings.LOGIN_URL})
 )
 

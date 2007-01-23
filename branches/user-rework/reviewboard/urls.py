@@ -73,7 +73,18 @@ urlpatterns = patterns('',
      {'feed_dict': rss_feeds}),
     (r'^feeds/atom/(?P<url>.*)/$', 'django.contrib.syndication.views.feed',
      {'feed_dict': atom_feeds}),
+
+    # Authentication and accounts
+    (r'^account/login/$', 'djblets.auth.views.login',
+     {'next_page': '/account/'}),
+    (r'^account/logout/$', 'django.contrib.auth.logout',
+     {'next_page': settings.LOGIN_URL})
 )
+
+if settings.BUILTIN_AUTH:
+    urlpatterns += patterns('',
+        (r'^account/register/$', 'djblets.auth.views.register'),
+    )
 
 # Add static media if running in DEBUG mode
 if settings.DEBUG:

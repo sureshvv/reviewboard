@@ -21,6 +21,14 @@ pre {
   font-size: 10pt;
 }
 
+label {
+  font-weight: bold;
+}
+
+table td.label {
+  text-align: right;
+}
+
 form th {
   text-align: right;
   vertical-align: top;
@@ -376,6 +384,7 @@ table.list td a {
 
 #review-request .editicon {
   vertical-align: bottom;
+  cursor: pointer;
 }
 
 #review-request #details .label {

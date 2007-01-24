@@ -374,7 +374,7 @@ table.list td a {
   margin-top: 5px;
 }
 
-#review-request #details td img {
+#review-request .editicon {
   vertical-align: bottom;
 }
 

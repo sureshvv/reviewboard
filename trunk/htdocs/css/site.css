@@ -52,6 +52,17 @@ form.inplaceeditor-form a {
   margin-left: 0.5em;
 }
 
+ul.errorlist {
+  display: inline;
+  margin: 0 0 0 15px;
+  padding: 0;
+}
+
+ul.errorlist li {
+  display: inline;
+  color: red;
+}
+
 #headbar {
   margin-bottom: 8px;
 }
@@ -458,4 +469,9 @@ table.list td a {
 
 #review-request .controls a:hover {
   color: #0000C0;
+}
+
+span.draftlabel {
+  color: #008000;
+  font-size: x-small;
 }

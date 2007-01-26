@@ -475,3 +475,29 @@ span.draftlabel {
   color: #008000;
   font-size: x-small;
 }
+
+/*****************************************************************
+ * Dashboard
+ *****************************************************************/
+.dashboard {
+  border: 1px black solid;
+  margin-bottom: 20px;
+  padding: 0px;
+}
+
+.dashboard h2 {
+  background: #a2bedc;
+  font-size: 120%;
+  margin: 0;
+  padding: 5px 10px;
+}
+
+.dashboard .content {
+  background: #e2e5e8;
+  margin: 0px;
+  padding: 10px;
+}
+
+.dashboard .content p {
+  margin-top: 0px;
+}

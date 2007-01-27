@@ -329,19 +329,19 @@ table.list td a {
   border-right: 1px #C0C0C0 solid;
 }
 
-#diffs table.sidebyside tr.changed {
+#diffs table.sidebyside tr.replace {
   background: #fffe88;
   border-top: 1px #303030 solid;
   border-bottom: 1px #303030 solid;
 }
 
-#diffs table.sidebyside tr.removed {
+#diffs table.sidebyside tr.delete {
   background: #fcc8c8;
   border-top: 1px #303030 solid;
   border-bottom: 1px #303030 solid;
 }
 
-#diffs table.sidebyside tr.added {
+#diffs table.sidebyside tr.insert {
   background: #aeffac;
   border-top: 1px #303030 solid;
   border-bottom: 1px #303030 solid;

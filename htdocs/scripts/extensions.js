@@ -307,9 +307,9 @@ RB.InlineEditor.prototype = {
     this.oldInnerHTML = null;
     this.onLeaveEditMode();
   },
-  onComplete: function(transport) {
+  onComplete: function(transport, json) {
     this.leaveEditMode();
-    this.options.onComplete.bind(this)(transport, this.element);
+    this.options.onComplete.bind(this)(transport, this.element, json);
   },
   onEnterEditMode: function() {},
   onLeaveEditMode: function() {},
@@ -369,5 +369,16 @@ Object.extend(RB.InlineCommaListEditor.prototype, {
 		}
 
 		this.form.appendChild(this.editField);
+	},
+
+	onComplete: function(transport, json) {
+		this.leaveEditMode();
+		var value = json[0].fields[this.element.id];
+
+		if (typeof(value) == "string") {
+			value = value.split(/,\s*/);
+		}
+
+		this.options.onComplete.bind(this)(transport, this.element, value);
 	}
 });

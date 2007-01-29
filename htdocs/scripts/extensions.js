@@ -335,5 +335,39 @@ Object.extend(RB.InlineCommaListEditor.prototype, {
 	initialize: function(element, url, options) {
 		options.onlyExternalControl = true;
 		this.baseInitialize(element, url, options);
+	},
+
+	stripTags: function(text) {
+		return text.replace(/<\/?a[^>]*>/gi, "");
+	},
+
+	createEditField: function() {
+		var text = this.getText();
+		this.options.textarea = false;
+
+		var textField = document.createElement("input");
+		textField.obj = this;
+		textField.type = "text";
+		textField.name = this.options.paramName;
+		textField.value = this.stripTags(text).replace(/\s{2,}/g, " ").strip();
+		textField.style.backgroundColor = this.options.highlightcolor;
+		textField.className = 'editor_field';
+
+		var size = this.options.size || this.options.cols || 0;
+		if (size != 0) {
+			textField.size = size;
+		}
+
+		if (this.options.submitOnBlur) {
+			textField.onblur = this.onSubmit.bind(this);
+		}
+
+		this.editField = textField;
+
+		if (this.options.loadTextURL) {
+			this.loadExternalText();
+		}
+
+		this.form.appendChild(this.editField);
 	}
 });

@@ -373,12 +373,12 @@ Object.extend(RB.InlineCommaListEditor.prototype, {
 
 	onComplete: function(transport, json) {
 		this.leaveEditMode();
-		var value = json[0].fields[this.element.id];
+		var value = this.element.innerHTML;
 
 		if (typeof(value) == "string") {
 			value = value.split(/,\s*/);
 		}
 
-		this.options.onComplete.bind(this)(transport, this.element, value);
+		this.options.onComplete.bind(this)(transport, this.element, value, json);
 	}
 });

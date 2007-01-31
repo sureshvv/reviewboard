@@ -337,10 +337,6 @@ Object.extend(RB.InlineCommaListEditor.prototype, {
 		this.baseInitialize(element, url, options);
 	},
 
-	stripTags: function(text) {
-		return text.replace(/<\/?a[^>]*>/gi, "");
-	},
-
 	createEditField: function() {
 		var text = this.getText();
 		this.options.textarea = false;
@@ -349,7 +345,7 @@ Object.extend(RB.InlineCommaListEditor.prototype, {
 		textField.obj = this;
 		textField.type = "text";
 		textField.name = this.options.paramName;
-		textField.value = this.stripTags(text).replace(/\s{2,}/g, " ").strip();
+		textField.value = text.stripTags().replace(/\s{2,}/g, " ").strip();
 		textField.style.backgroundColor = this.options.highlightcolor;
 		textField.className = 'editor_field';
 
@@ -373,12 +369,71 @@ Object.extend(RB.InlineCommaListEditor.prototype, {
 
 	onComplete: function(transport, json) {
 		this.leaveEditMode();
-		var value = this.element.innerHTML;
+		var value = this.processValue(this.element.innerHTML);
 
+		this.options.onComplete.bind(this)(transport, this.element, value, json);
+	},
+
+    onLoadedExternalText: function(transport) {
+        Element.removeClassName(this.form, this.options.loadingClassName);
+        this.editField.disabled = false;
+        this.editField.value = transport.responseText.stripTags();
+        Field.scrollFreeActivate(this.editField);
+        this.element.innerHTML = this.processValue(this.element.innerHTML);
+    },
+
+    processValue: function(value) {
 		if (typeof(value) == "string") {
 			value = value.split(/,\s*/);
 		}
 
-		this.options.onComplete.bind(this)(transport, this.element, value, json);
+        return value;
+    }
+});
+
+
+RB.InlineCollectionEditor = Class.create();
+Object.extend(RB.InlineCollectionEditor.prototype, RB.InlineEditor.prototype);
+Object.extend(RB.InlineCollectionEditor.prototype, {
+    createEditField: function() {
+		if (!this.cached_selectTag) {
+			var selectTag = document.createElement("select");
+			var collection = this.options.collection || [];
+			var optionTag;
+
+			collection.each(function(e,i) {
+				optionTag = document.createElement("option");
+				optionTag.value = (e instanceof Array) ? e[0] : e;
+
+				if ((typeof this.options.value == 'undefined') &&
+					((e instanceof Array)
+                     ? this.element.innerHTML == e[1]
+                     : e == optionTag.value)) {
+                    optionTag.selected = true;
+                }
+
+				if (this.options.value==optionTag.value) {
+                    optionTag.selected = true;
+                }
+
+				optionTag.appendChild(
+                    document.createTextNode((e instanceof Array) ? e[1] : e));
+				selectTag.appendChild(optionTag);
+			}.bind(this));
+
+			this.cached_selectTag = selectTag;
+		}
+
+		this.editField = this.cached_selectTag;
+
+		if (this.options.loadTextURL) {
+            this.loadExternalText();
+        }
+
+		this.form.appendChild(this.editField);
+
+		this.options.callback = function(form, value) {
+			return "value=" + encodeURIComponent(value);
+		}
 	}
 });

@@ -375,7 +375,8 @@ table.list td a {
   font-size: 130%;
 }
 
-#review-request #updated_time {
+#review-request #updated_time,
+#review-request #created_time {
   text-align: right;
 }
 

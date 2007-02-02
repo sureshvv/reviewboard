@@ -356,7 +356,7 @@ table.list td a {
 }
 
 #review-request {
-  background: #fefadd;
+  background: #fefadf url('/images/details_top_bg.png') repeat-x top left;
   border: 1px #888a85 solid;
   margin-bottom: 10px;
 }

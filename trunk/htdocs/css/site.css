@@ -381,8 +381,7 @@ table.list td a {
 }
 
 #review-request #status {
-  text-align: right;
-  font-weight: bold;
+  color: #39350b;
 }
 
 #review-request #details {
@@ -435,9 +434,23 @@ table.list td a {
   margin: 0px;
 }
 
-#review-request form.inplaceeditor-form input[type="submit"],
-#review-request form.inplaceeditor-form a {
+#review-request form.inplaceeditor-form {
+  padding: 0;
+  margin: 0;
+}
+
+#review-request form.inplaceeditor-form input[type="submit"] {
   margin-top: 0.5em;
+  padding: 0px 4px;
+  margin: 0 0 0 5px;
+}
+
+#review-request form.inplaceeditor-form input[type="text"] {
+  width: 200px;
+}
+
+#review-request #summary_wrapper form.inplaceeditor-form input[type="text"] {
+  width: 400px;
 }
 
 #review-request noscript form {

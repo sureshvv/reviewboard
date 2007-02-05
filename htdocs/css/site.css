@@ -584,7 +584,7 @@ span.draftlabel {
   text-align: right;
 }
 
-.review pre.body {
+.review .body {
   clear: both;
   border: 1px #888888 solid;
   padding: 10px;
@@ -603,6 +603,21 @@ span.draftlabel {
 
 .review.fromsubmitter ul.controls {
   background: #f3b694;
+}
+
+.review .comments dt {
+  background: #F0F0F0;
+  border: 1px #C0C0C0 solid;
+  padding: 4px 8px;
+}
+
+.review .comments dd {
+  margin-bottom: 20px;
+}
+
+.review .comments .filename a {
+  font-weight: bold;
+  color: black;
 }
 
 

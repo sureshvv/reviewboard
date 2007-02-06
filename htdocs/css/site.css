@@ -308,10 +308,11 @@ table.sidebyside thead th {
 }
 
 table.sidebyside thead th.controls,
-table.sidebyside td.controls {
+table.sidebyside th.controls {
   padding: 2px 0 2px 2px;
   font-size: 100%;
   font-weight: normal;
+  vertical-align: top;
 }
 
 table.sidebyside tbody th {

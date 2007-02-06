@@ -284,13 +284,13 @@ table.list td a {
   padding-left: 30px;
 }
 
-#diffs pre {
+table.sidebyside pre {
   font-size: 8pt;
   margin: 0;
   line-height: 140%;
 }
 
-#diffs table {
+table.sidebyside {
   border: 1px #C0C0C0 solid;
   margin: 2px;
   padding: 2px;
@@ -298,7 +298,7 @@ table.list td a {
   border-collapse: collapse;
 }
 
-#diffs table thead th {
+table.sidebyside thead th {
   background: #F0F0F0;
   border-bottom: 1px #C0C0C0 solid;
   font-size: 120%;
@@ -307,69 +307,74 @@ table.list td a {
   text-align: left;
 }
 
-#diffs table thead th.controls,
-#diffs table.sidebyside td.controls {
+table.sidebyside thead th.controls,
+table.sidebyside td.controls {
   padding: 2px 0 2px 2px;
   font-size: 100%;
   font-weight: normal;
 }
 
-#diffs table tbody th {
+table.sidebyside tbody th {
   text-align: right;
 }
 
-#diffs table tbody td {
+table.sidebyside tbody td {
   vertical-align: top;
 }
 
-#diffs table.sidebyside col.line {
+table.sidebyside col.line {
   border-right: 1px #C0C0C0 solid;
 }
 
-#diffs table.sidebyside a {
+table.sidebyside a {
   color: black;
   text-decoration: none;
 }
 
-#diffs table.sidebyside col.left {
+table.sidebyside col.left {
   border-right: 1px #C0C0C0 solid;
 }
 
-#diffs table.sidebyside tbody th {
+table.sidebyside col.left,
+table.sidebyside col.right {
+  width: 50%;
+}
+
+table.sidebyside tbody th {
   background: #F0F0F0;
 }
 
-#diffs table.sidebyside tbody.replace th {
+table.sidebyside tbody.replace th {
   background: #fffe88;
 }
 
-#diffs table.sidebyside tbody.delete th {
+table.sidebyside tbody.delete th {
   background: #fcc8c8;
 }
 
-#diffs table.sidebyside tbody.insert th {
+table.sidebyside tbody.insert th {
   background: #aeffac;
 }
 
-#diffs table.sidebyside tbody.replace {
+table.sidebyside tbody.replace {
   background: #fffe88;
   border-top: 1px #303030 solid;
   border-bottom: 1px #303030 solid;
 }
 
-#diffs table.sidebyside tbody.delete {
+table.sidebyside tbody.delete {
   background: #fcc8c8;
   border-top: 1px #303030 solid;
   border-bottom: 1px #303030 solid;
 }
 
-#diffs table.sidebyside tbody.insert {
+table.sidebyside tbody.insert {
   background: #aeffac;
   border-top: 1px #303030 solid;
   border-bottom: 1px #303030 solid;
 }
 
-#diffs .commentflag {
+table.sidebyside .commentflag {
   position: absolute;
   left: 2px;
   width: 25px;
@@ -605,19 +610,18 @@ span.draftlabel {
   background: #f3b694;
 }
 
-.review .comments dt {
-  background: #F0F0F0;
-  border: 1px #C0C0C0 solid;
-  padding: 4px 8px;
-}
-
-.review .comments dd {
-  margin-bottom: 20px;
+.review .comments dt thead th {
+  font-weight: normal;
 }
 
 .review .comments .filename a {
   font-weight: bold;
   color: black;
+  text-decoration: underline;
+}
+
+.review .comments dd {
+  margin-bottom: 20px;
 }
 
 

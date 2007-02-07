@@ -284,6 +284,10 @@ table.list td a {
   padding-left: 30px;
 }
 
+#diffs table.sidebyside {
+  margin-bottom: 20px;
+}
+
 table.sidebyside pre {
   font-size: 8pt;
   margin: 0;

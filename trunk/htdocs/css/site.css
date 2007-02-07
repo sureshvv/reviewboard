@@ -292,6 +292,11 @@ table.sidebyside pre {
   font-size: 8pt;
   margin: 0;
   line-height: 140%;
+  white-space: pre-wrap;      /* CSS 3 */
+  white-space: -moz-pre-wrap; /* Mozilla, 1999+ */
+  white-space: -pre-wrap;     /* Opera 4-6 */
+  white-space: -o-pre-wrap;   /* Opera 7 */
+  word-wrap: break-word;      /* IE 5.5+ */
 }
 
 table.sidebyside {

@@ -309,6 +309,11 @@ table.sidebyside thead th {
   font-weight: bold;
   padding: 4px 8px;
   text-align: left;
+  text-overflow: ellipsis;
+}
+
+table.sidebyside thead th.rev {
+  font-size: 100%;
 }
 
 table.sidebyside thead th.controls,

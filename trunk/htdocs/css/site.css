@@ -372,6 +372,21 @@ table.sidebyside tbody.insert th {
   background: #aeffac;
 }
 
+table.sidebyside tbody.collapsed {
+  border-top: 1px #303030 solid;
+  border-bottom: 1px #303030 solid;
+}
+
+table.sidebyside tbody.collapsed th {
+  background: #e4d9cb;
+}
+
+table.sidebyside tbody.collapsed td {
+  background: #e4d9cb;
+  text-align: center;
+  font-size: x-small;
+}
+
 table.sidebyside tbody.replace {
   background: #fffe88;
   border-top: 1px #303030 solid;
@@ -436,10 +451,20 @@ table.sidebyside .commentflag {
   font-size: 130%;
 }
 
+#review-request #summary a {
+  color: black;
+}
+
 #review-request #updated_time,
 #review-request #created_time {
   text-align: right;
   vertical-align: bottom;
+}
+
+#review-request #diff_revision {
+  text-align: right;
+  vertical-align: bottom;
+  font-weight: bold;
 }
 
 #review-request #status {

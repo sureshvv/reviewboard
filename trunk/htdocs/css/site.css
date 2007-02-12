@@ -393,6 +393,11 @@ table.sidebyside tbody.replace {
   border-bottom: 1px #303030 solid;
 }
 
+table.sidebyside tbody.replace .hl {
+  color: blue;
+  border-bottom: 1px blue solid;
+}
+
 table.sidebyside tbody.delete {
   background: #fcc8c8;
   border-top: 1px #303030 solid;
@@ -420,8 +425,6 @@ table.sidebyside .commentflag {
   line-height: 1.9em;
   cursor: pointer;
 }
-
-
 
 #review_request_form input[type='text'] {
     width: 400px;

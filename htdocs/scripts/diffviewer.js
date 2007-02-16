@@ -225,12 +225,3 @@ function SetHighlighted(anchor, highlighted) {
 		controlsNode.nodeValue = "";
 	}
 }
-
-function toggleChunkCollapse(tbody) {
-	for (var i = VISIBLE_CONTEXT_SIZE;
-	     i < tbody.rows.length - VISIBLE_CONTEXT_SIZE;
-		 i++) {
-
-		tbody.rows[i].toggle();
-	}
-}

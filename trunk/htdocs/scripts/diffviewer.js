@@ -89,26 +89,75 @@ function onPageLoaded(evt) {
 	Event.observe(window, 'keypress', onKeyPress, false);
 }
 
+function findLineNumCell(table, linenum) {
+	var cell = null;
+	var found = false;
+	var row_offset = 1; // Get past the headers.
+
+	if (table.rows.length - row_offset > linenum) {
+		var norm_row = row_offset + linenum;
+		var row = table.rows[row_offset + linenum];
+
+		// Account for the "x lines hidden" row.
+		if (row != null && row.cells.length > 3) {
+			cell = (row.cells.length == 4 ? row.cells[1] : row.cells[0]);
+
+			if (cell.innerHTML.strip() == linenum) {
+				return cell;
+			}
+		}
+	}
+
+	/* Binary search for this cell. */
+	var low = 1;
+	var high = table.rows.length;
+
+	if (cell != null) {
+		/*
+		 * We collapsed the rows (unless someone mucked with the DB),
+		 * so the desired row is less than the row number retrieved.
+		 */
+		high = cell.innerHTML;
+	}
+
+	for (var i = Math.round((low + high) / 2);
+	     low < high - 1;
+		 i = Math.round((low + high) / 2)) {
+		var row = table.rows[row_offset + i];
+		cell = (row.cells.length == 4 ? row.cells[1] : row.cells[0]);
+		var value = cell.innerHTML.strip();
+
+		if (value > linenum) {
+			high = i;
+		} else if (value < linenum) {
+			low = i;
+		} else {
+			return cell;
+		}
+	}
+
+	// Well.. damn. Ignore this then.
+	return null;
+}
+
 function addComments(fileid, lines) {
 	var table = $(fileid);
 
-	for (line in lines) {
-		var row = table.rows[line];
-		var cell;
+	for (linenum in lines) {
+		var cell = findLineNumCell(table, parseInt(linenum));
 
-		if (row.cells.length == 4) {
-			cell = row.cells[1];
-		} else {
-			cell = row.cells[0];
+		if (cell == null) {
+			// Ditch it. It's probably an imposter, wanting to fit in.
+			continue;
 		}
 
-        cell.innerHTML = "<a name=\"line" + line + "\">" + line + "</a>";
+		cell.innerHTML = "<a name=\"line" + linenum + "\">" +
+						 linenum + "</a>";
 
-		// TODO: Count the number of comments
 		var commentNode = Builder.node('span',
 			{class: 'commentflag',
 			 style: 'top: ' + GetYPos(cell) + 'px;'},
-			lines[line]);
+			lines[linenum].length);
 		cell.insertBefore(commentNode, cell.firstChild);
 	}
 }

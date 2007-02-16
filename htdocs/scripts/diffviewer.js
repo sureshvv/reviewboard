@@ -181,18 +181,21 @@ function GetYPos(obj) {
 }
 
 function GetNextAnchor(dir) {
-	var newAnchor = gSelectedAnchor + dir;
-	if (newAnchor < 0 || newAnchor >= document.anchors.length) {
-		return INVALID;
+	for (var anchor = gSelectedAnchor + dir; ; anchor = anchor + dir) {
+		if (anchor < 0 || anchor >= document.anchors.length) {
+			return INVALID;
+		}
+
+		var name = document.anchors[anchor].name;
+
+		if (name == "index_header" || name == "index_footer") {
+			return INVALID;
+		} else if (name.substr(0, 4) == "line") {
+			continue;
+		}
+
+		return anchor;
 	}
-
-	var name = document.anchors[newAnchor].name;
-
-	if (name == "index_header" || name == "index_footer") {
-		return INVALID;
-	}
-
-	return newAnchor;
 }
 
 function GetNextFileAnchor(dir) {

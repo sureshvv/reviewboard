@@ -77,7 +77,6 @@ function onPageLoaded(evt) {
 	/* Skip over the change index to the first item */
 	gSelectedAnchor = 1;
 	SetHighlighted(gSelectedAnchor, true)
-	console.debug("onPageLoaded");
 
 	YAHOO.util.Event.on(window, "keypress", onKeyPress);
 }
@@ -173,11 +172,9 @@ function GetNextAnchor(dir) {
 
 		if (name == "index_header" || name == "index_footer") {
 			return INVALID;
-		} else if (name.substr(0, 4) == "file") {
-			continue;
+		} else if (name.substr(0, 4) != "file") {
+			return anchor;
 		}
-
-		return anchor;
 	}
 }
 
@@ -194,20 +191,14 @@ function SetHighlighted(anchor, highlighted) {
 	var controlsNode;
 
 	if (node.tagName == "TD" || node.tagName == "TH") {
-		node = node.parentNode;
-		controlsNode = node.getElementsByTagName('th')[0].firstChild.nextSibling;
+		controlsNode = node.parentNode.getElementsByTagName('th')[0].firstChild.nextSibling;
 	}
 	else if (nextNode.className == "sidebyside") {
-		node = nextNode.getElementsByTagName('tr')[0];
-		controlsNode = node.getElementsByTagName('th')[0].firstChild;
+		controlsNode = nextNode.getElementsByTagName('th')[0].firstChild;
 	}
 	else {
 		return;
 	}
 
-	if (highlighted) {
-		controlsNode.nodeValue = "▶";
-	} else {
-		controlsNode.nodeValue = "";
-	}
+	controlsNode.nodeValue = (highlighted ? "▶" : "");
 }

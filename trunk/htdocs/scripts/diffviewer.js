@@ -46,18 +46,10 @@ var gActions = [
 var gSelectedAnchor = INVALID;
 var gCurrentAnchor = 0;
 
-Event.observe(window, 'load', onPageLoaded, false);
-
-function keyCode(evt) {
-	if (navigator.appName.indexOf("Explorer") != -1) {
-		return evt.keyCode;
-	} else {
-		return evt.which;
-	}
-}
+YAHOO.util.Event.on(window, "load", onPageLoaded);
 
 function onKeyPress(evt) {
-	var keyChar = String.fromCharCode(keyCode(evt));
+	var keyChar = String.fromCharCode(YAHOO.util.Event.getCharCode(evt));
 
 	for (var i = 0; i < gActions.length; i++) {
 		if (gActions[i].keys.indexOf(keyChar) != -1) {
@@ -85,8 +77,9 @@ function onPageLoaded(evt) {
 	/* Skip over the change index to the first item */
 	gSelectedAnchor = 1;
 	SetHighlighted(gSelectedAnchor, true)
+	console.debug("onPageLoaded");
 
-	Event.observe(window, 'keypress', onKeyPress, false);
+	YAHOO.util.Event.on(window, "keypress", onKeyPress);
 }
 
 function findLineNumCell(table, linenum) {
@@ -102,7 +95,7 @@ function findLineNumCell(table, linenum) {
 		if (row != null && row.cells.length > 3) {
 			cell = (row.cells.length == 4 ? row.cells[1] : row.cells[0]);
 
-			if (cell.innerHTML.strip() == linenum) {
+			if (parseInt(cell.innerHTML) == linenum) {
 				return cell;
 			}
 		}
@@ -125,7 +118,7 @@ function findLineNumCell(table, linenum) {
 		 i = Math.round((low + high) / 2)) {
 		var row = table.rows[row_offset + i];
 		cell = (row.cells.length == 4 ? row.cells[1] : row.cells[0]);
-		var value = cell.innerHTML.strip();
+		var value = parseInt(cell.innerHTML);
 
 		if (value > linenum) {
 			high = i;
@@ -141,24 +134,18 @@ function findLineNumCell(table, linenum) {
 }
 
 function addComments(fileid, lines) {
-	var table = $(fileid);
+	var table = document.getElementById(fileid);
 
 	for (linenum in lines) {
 		var cell = findLineNumCell(table, parseInt(linenum));
 
-		if (cell == null) {
-			// Ditch it. It's probably an imposter, wanting to fit in.
-			continue;
+		if (cell != null) {
+			cell.innerHTML = "<span class=\"commentflag\" style=\"top: " +
+							 getEl(cell).getY() + "px;\">" +
+							 lines[linenum].length + "</span>" +
+							 "<a name=\"" + fileid + ".line" + linenum +
+							 "\">" + linenum + "</a>";
 		}
-
-		cell.innerHTML = "<a name=\"line" + linenum + "\">" +
-						 linenum + "</a>";
-
-		var commentNode = Builder.node('span',
-			{class: 'commentflag',
-			 style: 'top: ' + GetYPos(cell) + 'px;'},
-			lines[linenum].length);
-		cell.insertBefore(commentNode, cell.firstChild);
 	}
 }
 
@@ -168,16 +155,12 @@ function scrollToAnchor(anchor) {
 	}
 
 	window.scrollTo(0,
-		GetYPos(document.anchors[anchor]) - DIFF_SCROLLDOWN_AMOUNT);
+		getEl(document.anchors[anchor]).getY() - DIFF_SCROLLDOWN_AMOUNT);
 	SetHighlighted(gSelectedAnchor, false);
 	SetHighlighted(anchor, true);
 	gSelectedAnchor = anchor;
 
 	return true;
-}
-
-function GetYPos(obj) {
-	return obj.offsetTop + (obj.offsetParent ? GetYPos(obj.offsetParent) : 0);
 }
 
 function GetNextAnchor(dir) {
@@ -190,7 +173,7 @@ function GetNextAnchor(dir) {
 
 		if (name == "index_header" || name == "index_footer") {
 			return INVALID;
-		} else if (name.substr(0, 4) == "line") {
+		} else if (name.substr(0, 4) == "file") {
 			continue;
 		}
 

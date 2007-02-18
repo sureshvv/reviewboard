@@ -1,5 +1,9 @@
-RB = {widgets: {}}
+RB.widgets = {}
 
+/**
+ * Class that provides an inline editor field for single-line or multi-line
+ * blocks of text.
+ */
 RB.widgets.InlineEditor = function(config) {
 	YAHOO.ext.util.Config.apply(this, config);
 
@@ -33,8 +37,8 @@ RB.widgets.InlineEditor = function(config) {
 			tag: 'textarea',
 			html: this.value || '',
 			wrap: 'none',
-			rows: this.rows || 10,
-			cols: this.cols || 80,
+			rows: 10,
+			cols: 80,
 		});
 
 		block = this.form.createChild({tag: 'div'});
@@ -82,7 +86,10 @@ RB.widgets.InlineEditor = function(config) {
 		'complete': true,
 	};
 
-	this.el.on('click', this.startEdit, this, true);
+	if (!this.useEditIconOnly) {
+		this.el.on('click', this.startEdit, this, true);
+	}
+
 	this.saveButton.on('click', this.save, this, true);
 	this.cancelButton.on('click', this.cancel, this, true);
 
@@ -116,7 +123,7 @@ YAHOO.extendX(RB.widgets.InlineEditor, YAHOO.ext.util.Observable, {
 	},
 
 	startEdit: function() {
-		var value = this.htmldecode(this.el.dom.innerHTML);
+		var value = this.normalizeText(this.htmldecode(this.el.dom.innerHTML));
 		this.initialValue = value;
 		this.setValue(value);
 		this.editing = true;
@@ -130,7 +137,7 @@ YAHOO.extendX(RB.widgets.InlineEditor, YAHOO.ext.util.Observable, {
 		this.hide();
 		this.editing = false;
 
-		if (this.initialValue != value) {
+		if (this.initialValue != value || this.notifyUnchangedCompletion) {
 			this.fireEvent('complete', this, value, this.initialValue);
 		}
 	},
@@ -154,6 +161,14 @@ YAHOO.extendX(RB.widgets.InlineEditor, YAHOO.ext.util.Observable, {
 		str = str.replace(/&/g, "&amp;");
 		str = str.replace(/</g, "&lt;");
 		str = str.replace(/>/g, "&gt;");
+		return str;
+	},
+
+	normalizeText: function(str) {
+		if (!this.multiline) {
+			return str.replace(/\s{2,}/g, " ");
+		}
+
 		return str;
 	},
 
@@ -182,15 +197,19 @@ YAHOO.extendX(RB.widgets.InlineEditor, YAHOO.ext.util.Observable, {
 		this.saveButton.show();
 		this.cancelButton.show();
 		this.form.show();
-		this.fitWidthToParent();
 
 		if (this.multiline) {
 			var elHeight = this.el.getHeight();
+			this.field.setStyle("overflow", "hidden");
+			this.fitWidthToParent();
 			this.field.setHeight(elHeight);
-			var attrs = { height: {to: elHeight + 100} };
-			var anim = new YAHOO.util.Anim(this.field.dom, attrs, 0.3,
-			                               YAHOO.util.Easing.easeOut);
-			anim.animate();
+			this.field.setHeight(elHeight + 100, true, 0.3,
+				function() {
+					this.field.setStyle("overflow", "auto");
+					this.fitWidthToParent();
+				}.createDelegate(this));
+		} else {
+			this.fitWidthToParent();
 		}
 
 		this.el.hide();
@@ -200,18 +219,18 @@ YAHOO.extendX(RB.widgets.InlineEditor, YAHOO.ext.util.Observable, {
 	hide: function() {
 		this.saveButton.hide();
 		this.cancelButton.hide();
+		this.field.blur();
 
 		if (this.multiline && this.editing) {
+			this.field.setStyle("overflow", "hidden");
 			this.el.beginMeasure();
-			var box = this.el.getBox(true, true);
-			var elHeight = box.height;
+			var elHeight = this.el.getBox(true, true).height;
 			this.el.endMeasure();
 
-			var attrs = { height: {to: elHeight} };
-			var anim = new YAHOO.util.Anim(this.field.dom, attrs, 0.3,
-			                               YAHOO.util.Easing.easeOut);
-			anim.onComplete.subscribe(this.finishHide, this, true);
-			anim.animate();
+			this.field.setHeight(
+				elHeight + this.field.getBorderWidth('tb') +
+				this.field.getPadding('tb'), true, 0.3,
+				this.finishHide.createDelegate(this));
 		} else {
 			this.finishHide();
 		}
@@ -220,7 +239,6 @@ YAHOO.extendX(RB.widgets.InlineEditor, YAHOO.ext.util.Observable, {
 	finishHide: function() {
 		this.el.show();
 		this.form.hide();
-		this.field.blur();
 
 		if (this.editicon) {
 			this.editicon.show();
@@ -268,5 +286,27 @@ YAHOO.extendX(RB.widgets.InlineEditor, YAHOO.ext.util.Observable, {
 		};
 
 		return YAHOO.util.Dom.getElementsBy(method, 'label', document);
+	},
+});
+
+
+/**
+ * Subclass of InlineEditor that is designed for handling comma-separated
+ * lists.
+ */
+RB.widgets.InlineCommaListEditor = function(config) {
+	RB.widgets.InlineCommaListEditor.superclass.constructor.call(this, config);
+};
+
+YAHOO.extendX(RB.widgets.InlineCommaListEditor, RB.widgets.InlineEditor, {
+	normalizeText: function(str) {
+		str = RB.widgets.InlineCommaListEditor.superclass.normalizeText.call(
+			this, str);
+
+		return str.stripTags().strip();
+	},
+
+	getList: function() {
+		return this.getValue().split(/,\s*/);
 	},
 });

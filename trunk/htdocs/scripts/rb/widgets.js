@@ -191,7 +191,7 @@ YAHOO.extendX(RB.widgets.InlineEditor, YAHOO.ext.util.Observable, {
 
 	show: function() {
 		if (this.editicon) {
-			this.editicon.hide();
+			this.editicon.hide(this.multiline);
 		}
 
 		this.saveButton.show();
@@ -207,15 +207,10 @@ YAHOO.extendX(RB.widgets.InlineEditor, YAHOO.ext.util.Observable, {
 			this.field.setStyle("overflow", "hidden");
 			this.fitWidthToParent();
 			this.field.setHeight(elHeight);
-			this.field.setHeight(elHeight + 100, true, 0.3,
-				function() {
-					this.field.setStyle("overflow", "auto");
-					this.fitWidthToParent();
-					this.field.focus();
-				}.createDelegate(this));
+			this.field.setHeight(elHeight + 100, true, 0.35,
+				this.finishShow.createDelegate(this));
 		} else {
-			this.fitWidthToParent();
-			this.field.focus();
+			this.finishShow();
 		}
 	},
 
@@ -223,6 +218,10 @@ YAHOO.extendX(RB.widgets.InlineEditor, YAHOO.ext.util.Observable, {
 		this.saveButton.hide();
 		this.cancelButton.hide();
 		this.field.blur();
+
+		if (this.editicon) {
+			this.editicon.show(this.multiline);
+		}
 
 		if (this.multiline && this.editing) {
 			this.field.setStyle("overflow", "hidden");
@@ -232,24 +231,25 @@ YAHOO.extendX(RB.widgets.InlineEditor, YAHOO.ext.util.Observable, {
 
 			this.field.setHeight(
 				elHeight + this.field.getBorderWidth('tb') +
-				this.field.getPadding('tb'), true, 0.3,
+				this.field.getPadding('tb'), true, 0.35,
 				this.finishHide.createDelegate(this));
 		} else {
 			this.finishHide();
 		}
 	},
 
+	finishShow: function() {
+		if (this.multiline) {
+			this.field.setStyle("overflow", "auto");
+		}
+
+		this.fitWidthToParent();
+		this.field.focus();
+	},
+
 	finishHide: function() {
 		this.el.show();
 		this.form.hide();
-
-		if (this.editicon) {
-			this.editicon.show();
-		}
-	},
-
-	moveTo: function(xy) {
-		this.form.setXY(xy);
 	},
 
 	setValue: function(value) {

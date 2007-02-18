@@ -116,7 +116,7 @@ YAHOO.extendX(RB.widgets.InlineEditor, YAHOO.ext.util.Observable, {
 	},
 
 	startEdit: function() {
-		var value = this.html2text(this.el.dom.innerHTML);
+		var value = this.htmldecode(this.el.dom.innerHTML);
 		this.initialValue = value;
 		this.setValue(value);
 		this.editing = true;
@@ -124,7 +124,7 @@ YAHOO.extendX(RB.widgets.InlineEditor, YAHOO.ext.util.Observable, {
 	},
 
 	completeEdit: function() {
-		var value = this.text2html(this.getValue());
+		var value = this.htmlencode(this.getValue());
 		this.el.dom.innerHTML = value;
 
 		this.hide();
@@ -135,14 +135,22 @@ YAHOO.extendX(RB.widgets.InlineEditor, YAHOO.ext.util.Observable, {
 		}
 	},
 
-	html2text: function(str) {
+	htmldecode: function(str) {
+		if (str == "") {
+			return str;
+		}
+
 		str = str.replace(/&amp;/g, "&");
 		str = str.replace(/&lt;/g, "<");
 		str = str.replace(/&gt;/g, ">");
 		return str;
 	},
 
-	text2html: function(str) {
+	htmlencode: function(str) {
+		if (str == "") {
+			return str;
+		}
+
 		str = str.replace(/&/g, "&amp;");
 		str = str.replace(/</g, "&lt;");
 		str = str.replace(/>/g, "&gt;");

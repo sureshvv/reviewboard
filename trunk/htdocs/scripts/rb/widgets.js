@@ -10,13 +10,13 @@ RB.widgets.InlineEditor = function(config) {
 	var dh = YAHOO.ext.DomHelper;
 
 	this.el = getEl(this.el);
-	this.el.setVisibilityMode(YAHOO.ext.Element.DISPLAY);
+	this.el.enableDisplayMode();
 
 	this.form = dh.insertBefore(this.el.dom, {
 		tag: 'form',
 		cls: 'inline-editor-form ' + (this.cls || ''),
 	}, true);
-	this.form.setVisibilityMode(YAHOO.ext.Element.DISPLAY);
+	this.form.enableDisplayMode();
 
 	var saveButton = {
 		tag: 'input',
@@ -54,8 +54,8 @@ RB.widgets.InlineEditor = function(config) {
 		this.cancelButton = this.form.createChild(cancelButton);
 	}
 
-	this.saveButton.setVisibilityMode(YAHOO.ext.Element.DISPLAY);
-	this.cancelButton.setVisibilityMode(YAHOO.ext.Element.DISPLAY);
+	this.saveButton.enableDisplayMode();
+	this.cancelButton.enableDisplayMode();
 
 	if (this.showEditIcon) {
 		var img = {
@@ -77,7 +77,7 @@ RB.widgets.InlineEditor = function(config) {
 		}
 
 		if (this.editicon) {
-			this.editicon.setVisibilityMode(YAHOO.ext.Element.DISPLAY);
+			this.editicon.enableDisplayMode();
 			this.editicon.on('click', this.startEdit, this, true);
 		}
 	}

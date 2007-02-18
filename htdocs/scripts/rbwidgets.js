@@ -180,7 +180,7 @@ YAHOO.extendX(RB.widgets.InlineEditor, YAHOO.ext.util.Observable, {
 			var elHeight = this.el.getHeight();
 			this.field.setHeight(elHeight);
 			var attrs = { height: {to: elHeight + 100} };
-			var anim = new YAHOO.util.Anim(this.field.dom, attrs, 0.5,
+			var anim = new YAHOO.util.Anim(this.field.dom, attrs, 0.3,
 			                               YAHOO.util.Easing.easeOut);
 			anim.animate();
 		}
@@ -200,7 +200,7 @@ YAHOO.extendX(RB.widgets.InlineEditor, YAHOO.ext.util.Observable, {
 			this.el.endMeasure();
 
 			var attrs = { height: {to: elHeight} };
-			var anim = new YAHOO.util.Anim(this.field.dom, attrs, 0.5,
+			var anim = new YAHOO.util.Anim(this.field.dom, attrs, 0.3,
 			                               YAHOO.util.Easing.easeOut);
 			anim.onComplete.subscribe(this.finishHide, this, true);
 			anim.animate();

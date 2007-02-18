@@ -50,6 +50,9 @@ RB.widgets.InlineEditor = function(config) {
 		this.cancelButton = this.form.createChild(cancelButton);
 	}
 
+	this.saveButton.setVisibilityMode(YAHOO.ext.Element.DISPLAY);
+	this.cancelButton.setVisibilityMode(YAHOO.ext.Element.DISPLAY);
+
 	if (this.showEditIcon) {
 		var img = {
 			tag: 'img',
@@ -96,16 +99,12 @@ RB.widgets.InlineEditor = function(config) {
 		}
 	]);
 
+	YAHOO.ext.EventManager.onWindowResize(this.fitWidthToParent, this, true);
+
 	this.hide();
 }
 
 YAHOO.extendX(RB.widgets.InlineEditor, YAHOO.ext.util.Observable, {
-	onBlur: function(e) {
-		if (this.editing) {
-			this.completeEdit();
-		}
-	},
-
 	onEnter: function(k, e) {
 		if (!this.multiline || e.ctrlKey) {
 			this.save();
@@ -117,7 +116,7 @@ YAHOO.extendX(RB.widgets.InlineEditor, YAHOO.ext.util.Observable, {
 	},
 
 	startEdit: function() {
-		var value = this.el.dom.innerHTML;
+		var value = this.html2text(this.el.dom.innerHTML);
 		this.initialValue = value;
 		this.setValue(value);
 		this.editing = true;
@@ -125,13 +124,29 @@ YAHOO.extendX(RB.widgets.InlineEditor, YAHOO.ext.util.Observable, {
 	},
 
 	completeEdit: function() {
-		var value = this.getValue();
+		var value = this.text2html(this.getValue());
+		this.el.dom.innerHTML = value;
+
 		this.hide();
+		this.editing = false;
 
 		if (this.initialValue != value) {
-			this.el.dom.innerHTML = value;
 			this.fireEvent('complete', this, value, this.initialValue);
 		}
+	},
+
+	html2text: function(str) {
+		str = str.replace(/&amp;/g, "&");
+		str = str.replace(/&lt;/g, "<");
+		str = str.replace(/&gt;/g, ">");
+		return str;
+	},
+
+	text2html: function(str) {
+		str = str.replace(/&/g, "&amp;");
+		str = str.replace(/</g, "&lt;");
+		str = str.replace(/>/g, "&gt;");
+		return str;
 	},
 
 	save: function(e) {
@@ -148,6 +163,7 @@ YAHOO.extendX(RB.widgets.InlineEditor, YAHOO.ext.util.Observable, {
 		}
 		this.el.dom.innerHTML = this.initialValue;
 		this.hide();
+		this.editing = false;
 	},
 
 	show: function() {
@@ -155,18 +171,48 @@ YAHOO.extendX(RB.widgets.InlineEditor, YAHOO.ext.util.Observable, {
 			this.editicon.hide();
 		}
 
+		this.saveButton.show();
+		this.cancelButton.show();
 		this.form.show();
-		this.autoSize();
+		this.fitWidthToParent();
+
+		if (this.multiline) {
+			var elHeight = this.el.getHeight();
+			this.field.setHeight(elHeight);
+			var attrs = { height: {to: elHeight + 100} };
+			var anim = new YAHOO.util.Anim(this.field.dom, attrs, 0.5,
+			                               YAHOO.util.Easing.easeOut);
+			anim.animate();
+		}
+
 		this.el.hide();
 		this.field.focus();
 	},
 
 	hide: function() {
-		this.editing = false;
-		this.form.hide();
-		this.form.setLeftTop(-10000, -10000);
-		this.field.blur();
+		this.saveButton.hide();
+		this.cancelButton.hide();
+
+		if (this.multiline && this.editing) {
+			this.el.beginMeasure();
+			var box = this.el.getBox(true, true);
+			var elHeight = box.height;
+			this.el.endMeasure();
+
+			var attrs = { height: {to: elHeight} };
+			var anim = new YAHOO.util.Anim(this.field.dom, attrs, 0.5,
+			                               YAHOO.util.Easing.easeOut);
+			anim.onComplete.subscribe(this.finishHide, this, true);
+			anim.animate();
+		} else {
+			this.finishHide();
+		}
+	},
+
+	finishHide: function() {
 		this.el.show();
+		this.form.hide();
+		this.field.blur();
 
 		if (this.editicon) {
 			this.editicon.show();
@@ -185,25 +231,26 @@ YAHOO.extendX(RB.widgets.InlineEditor, YAHOO.ext.util.Observable, {
 		return this.field.dom.value;
 	},
 
-	autoSize: function() {
-		var parentNode = getEl(this.el.dom.parentNode, true);
-		var elWidth = this.el.getWidth();
+	fitWidthToParent: function() {
+		if (this.editing) {
+			if (this.multiline) {
+				this.form.setWidth(getEl(this.form.dom.parentNode).getWidth());
+				this.field.setWidth(this.form.getWidth());
+			} else {
+				var parentWidth = getEl(this.el.dom.parentNode).getWidth();
+				var elWidth = this.el.getWidth();
 
-		if (this.multiline) {
-			this.form.setWidth(elWidth);
-			this.field.fitToParent();
-		} else {
-			var parentWidth = parentNode.getWidth();
-			this.form.setHeight(this.el.getHeight());
-			this.form.setWidth(
-				Math.min(elWidth + (parentWidth - elWidth) / 2, parentWidth));
+				this.form.setWidth(
+					Math.min(elWidth + (parentWidth - elWidth) / 2,
+							 parentWidth));
 
-			var buttonsWidth =
-				this.cancelButton.getX() - this.saveButton.getX() +
-				this.cancelButton.getWidth() +
-				this.saveButton.getX() - (this.field.getX() +
-				                          this.field.getWidth());
-			this.field.setWidth(this.form.getWidth() - buttonsWidth);
+				var saveButtonX = this.saveButton.getX();
+				var buttonsWidth =
+					this.cancelButton.getX() - saveButtonX +
+					this.cancelButton.getWidth() +
+					saveButtonX - (this.field.getX() + this.field.getWidth());
+				this.field.setWidth(this.form.getWidth() - buttonsWidth);
+			}
 		}
 	},
 

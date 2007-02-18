@@ -196,10 +196,14 @@ YAHOO.extendX(RB.widgets.InlineEditor, YAHOO.ext.util.Observable, {
 
 		this.saveButton.show();
 		this.cancelButton.show();
+		this.el.hide();
 		this.form.show();
 
 		if (this.multiline) {
+			this.el.beginMeasure();
 			var elHeight = this.el.getHeight();
+			this.el.endMeasure();
+
 			this.field.setStyle("overflow", "hidden");
 			this.fitWidthToParent();
 			this.field.setHeight(elHeight);
@@ -207,13 +211,12 @@ YAHOO.extendX(RB.widgets.InlineEditor, YAHOO.ext.util.Observable, {
 				function() {
 					this.field.setStyle("overflow", "auto");
 					this.fitWidthToParent();
+					this.field.focus();
 				}.createDelegate(this));
 		} else {
 			this.fitWidthToParent();
+			this.field.focus();
 		}
-
-		this.el.hide();
-		this.field.focus();
 	},
 
 	hide: function() {

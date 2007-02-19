@@ -245,6 +245,10 @@ YAHOO.extendX(RB.widgets.InlineEditor, YAHOO.ext.util.Observable, {
 
 		this.fitWidthToParent();
 		this.field.focus();
+
+		if (!this.multiline) {
+			this.field.dom.select();
+		}
 	},
 
 	finishHide: function() {

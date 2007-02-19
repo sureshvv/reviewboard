@@ -34,22 +34,34 @@ form th {
   vertical-align: top;
 }
 
-form.inplaceeditor-form {
+/*
+ * Inline editor forms
+ */
+.inline-editor-form {
+  display: block;
   margin: 0;
   padding: 0;
+  white-space: nowrap;
 }
 
-form.inplaceeditor-form input[type="text"],
-form.inplaceeditor-form textarea {
-  border: 1px #808080 solid;
+.inline-editor-form input[type="submit"] {
+  margin-left: 5px;
 }
 
-form.inplaceeditor-form input[type="submit"] {
-  margin-left: 0.5em;
+.inline-editor-form input[type="text"] {
+  border: 1px #888a85 solid;
+  padding: 1px 2px;
 }
 
-form.inplaceeditor-form a {
-  margin-left: 0.5em;
+.inline-editor-form textarea {
+  margin: 5px 0 0 0;
+  border: 1px #888a85 solid;
+  padding: 10px;
+  font-size: 10pt;
+}
+
+.loading-indicator {
+	display: inline;
 }
 
 ul.errorlist {
@@ -487,6 +499,7 @@ table.sidebyside .commentflag {
 }
 
 #review-request .editicon {
+  margin-left: 4px;
   vertical-align: bottom;
   cursor: pointer;
 }
@@ -518,36 +531,9 @@ table.sidebyside .commentflag {
 
 #review-request .content pre {
   margin: 5px 0 0 0;
-}
-
-#review-request .content pre div {
   border: 1px #888888 solid;
   padding: 10px;
   background-color: #FAFAFA;
-  margin: 0px;
-}
-
-#review-request form.inplaceeditor-form {
-  padding: 0;
-  margin: 0;
-}
-
-#review-request form.inplaceeditor-form input[type="submit"] {
-  margin-top: 0.5em;
-  padding: 0px 4px;
-  margin: 0 0 0 5px;
-}
-
-#review-request form.inplaceeditor-form input[type="text"] {
-  width: 200px;
-}
-
-#review-request form.inplaceeditor-form textarea {
-  width: 100%;
-}
-
-#review-request #summary_wrapper form.inplaceeditor-form input[type="text"] {
-  width: 400px;
 }
 
 #review-request noscript form {
@@ -671,6 +657,76 @@ span.draftlabel {
   margin-bottom: 20px;
 }
 
+
+/*****************************************************************
+ * Review
+ *****************************************************************/
+
+#new-review {
+  background: #fefadf url('/images/details_top_bg.png') repeat-x top left;
+  border: 1px #888a85 solid;
+  margin-bottom: 20px;
+}
+
+#new-review .main {
+  padding: 10px;
+}
+
+#new-review label {
+  font-weight: bold;
+  color: #575012;
+}
+
+#new-review #summary {
+  font-size: 130%;
+  margin: 0px 0px 10px 0px;
+}
+
+.summary-editor input[type="text"] {
+  font-size: 130%;
+  font-weight: bold;
+}
+
+#new-review #summary a {
+  color: black;
+}
+
+#new-review .header {
+  width: 100%;
+  padding: 10px 0px;
+}
+
+#new-review textarea {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+#new-review .controls {
+  background: #ede6b7;
+  border-top: 1px #888a85 solid;
+  padding: 4px 8px;
+  text-align: right;
+  list-style: none;
+  margin: 0;
+}
+
+#new-review .controls li {
+  display: inline;
+  padding-left: 8px;
+}
+
+#new-review .controls img {
+  vertical-align: bottom;
+}
+
+#new-review .controls a {
+  text-decoration: none;
+  color: black;
+}
+
+#new-review .controls a:hover {
+  color: #0000C0;
+}
 
 /*****************************************************************
  * Dashboard

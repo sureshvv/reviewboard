@@ -139,11 +139,13 @@ function addComments(fileid, lines) {
 		var cell = findLineNumCell(table, parseInt(linenum));
 
 		if (cell != null) {
-			cell.innerHTML = "<span class=\"commentflag\" style=\"top: " +
-							 getEl(cell).getY() + "px;\">" +
-							 lines[linenum].length + "</span>" +
-							 "<a name=\"" + fileid + ".line" + linenum +
-							 "\">" + linenum + "</a>";
+			var commentFlag = YAHOO.ext.DomHelper.append(cell, {
+				tag: 'span',
+				cls: 'commentflag',
+				children: [ {html: lines[linenum].length} ]
+			}, true);
+
+			commentFlag.setTop(getEl(cell).getY());
 		}
 	}
 }

@@ -62,8 +62,8 @@ RB.widgets.InlineEditor = function(config) {
 			tag: 'img',
 			cls: 'editicon',
 			src: '/images/edit.png',
-			width: 22,
-			height: 16,
+			width: 20,
+			height: 14,
 		};
 
 		if (this.multiline) {

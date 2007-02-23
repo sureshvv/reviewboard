@@ -2,8 +2,8 @@ var dh = YAHOO.ext.DomHelper;
 
 CommentDialog = function(el) {
 	CommentDialog.superclass.constructor.call(this, el, {
-		width: 500,
-		height: 400,
+		width: 550,
+		height: 450,
 		shadow: true,
 		minWidth: 300,
 		minHeight: 300,
@@ -13,10 +13,14 @@ CommentDialog = function(el) {
 
 	var tabs = this.getTabs();
 
-	this.reviewTab = tabs.getTab("tab-review");
 	this.commentsTab = tabs.getTab("tab-comments");
 	this.commentForm = getEl('commentform');
+	this.commentForm.enableDisplayMode();
+
 	this.localCommentField = getEl('id_comment');
+	this.existingComments = getEl('existing-comments');
+
+	this.inlineEditor = null;
 
 	this.addKeyListener(27, this.closeDlg, this);
 	this.addButton("Close", this.closeDlg, this);
@@ -35,10 +39,15 @@ CommentDialog = function(el) {
 	}, this, true);
 
 	tabs.on('tabchange', function() {
-		this.updatePostButtonVisibility();
+		this.updateButtonVisibility();
 		this.hideMessage();
 	}, this, true);
-	this.updatePostButtonVisibility();
+	this.updateButtonVisibility();
+
+	this.on('beforeshow', function() {
+		/* Load the existing comments */
+		this.updateCommentsList();
+	}, this, true);
 }
 
 YAHOO.extendX(CommentDialog, YAHOO.ext.BasicDialog, {
@@ -59,9 +68,6 @@ YAHOO.extendX(CommentDialog, YAHOO.ext.BasicDialog, {
 		this.commentBlock = commentBlock;
 		this.localCommentField.dom.value = this.commentBlock.localComment;
 		getEl('id_num_lines').dom.value = 1; // XXX
-
-		/* Load the existing comments */
-		this.updateCommentsList();
 	},
 
 	updateCommentsList: function() {
@@ -70,8 +76,7 @@ YAHOO.extendX(CommentDialog, YAHOO.ext.BasicDialog, {
 		YAHOO.util.Connect.asyncRequest("GET", url, {
 			success: function(res) {
 				this.hideMessage();
-				this.commentsTab.bodyEl.dom.innerHTML = res.responseText;
-				this.updateCommentCount();
+				this.populateComments(res.responseText);
 			}.createDelegate(this),
 
 			failure: function(res) {
@@ -80,20 +85,62 @@ YAHOO.extendX(CommentDialog, YAHOO.ext.BasicDialog, {
 		});
 	},
 
+	populateComments: function(html) {
+		this.existingComments.dom.innerHTML = html;
+		this.updateCommentCount();
+
+		var yourcomment = document.getElementById("id_yourcomment");
+		if (yourcomment) {
+			this.postButton.disable();
+			this.deleteButton.disable();
+
+			this.inlineEditor = new RB.widgets.InlineEditor({
+				el: yourcomment,
+				multiline: true,
+				cls: 'inline-comment-editor',
+				showEditIcon: true,
+				stripTags: true,
+				hideButtons: true,
+			});
+
+			this.inlineEditor.on('beginedit', function(editor) {
+				this.postButton.enable();
+				this.deleteButton.enable();
+				getEl(yourcomment).scrollIntoView(
+					this.commentsTab.bodyEl.dom.parentNode);
+			}, this, true);
+
+			this.commentForm.hide();
+		} else {
+			this.postButton.enable();
+			this.deleteButton.disable();
+			this.inlineEditor = null;
+			this.commentForm.show();
+			this.localCommentField.focus();
+		}
+
+		this.scrollToBottom();
+	},
+
+	scrollToBottom: function() {
+		var scrollNode = this.commentsTab.bodyEl.dom.parentNode;
+		scrollNode.scrollTop = scrollNode.scrollHeight;
+	},
+
 	updateCommentCount: function() {
-		var count = this.commentsTab.bodyEl.getChildrenByClassName("comment",
-		                                                           "li").length;
+		var count = this.existingComments.getChildrenByClassName("comment",
+		                                                         "li").length;
 		this.commentBlock.setCount(count);
 		this.commentsTab.setText("Comments (" + count + ")");
 	},
 
-	updatePostButtonVisibility: function() {
+	updateButtonVisibility: function() {
 		var activeTab = this.getTabs().getActiveTab();
 
-		if (activeTab == this.reviewTab) {
+		if (activeTab == this.commentsTab) {
 			this.postButton.show();
 			this.deleteButton.show();
-		} else if (activeTab == this.commentsTab) {
+		} else {
 			this.postButton.hide();
 			this.deleteButton.hide();
 		}
@@ -101,6 +148,10 @@ YAHOO.extendX(CommentDialog, YAHOO.ext.BasicDialog, {
 
 	postComment: function() {
 		var commentEl = getEl("id_comment");
+
+		if (this.inlineEditor) {
+			commentEl.dom.value = this.inlineEditor.getValue();
+		}
 
 		var text = commentEl.dom.value;
 
@@ -117,9 +168,9 @@ YAHOO.extendX(CommentDialog, YAHOO.ext.BasicDialog, {
 		YAHOO.util.Connect.asyncRequest("POST", url, {
 			success: function(res) {
 				this.hideMessage();
-				this.commentBlock.setLocalComment(text);
-				this.commentsTab.bodyEl.dom.innerHTML = res.responseText;
-				this.updateCommentCount();
+				this.commentBlock.localComment = "";
+				this.commentBlock.setHasDraft(true);
+				this.populateComments(res.responseText);
 				this.closeDlg();
 			}.createDelegate(this),
 
@@ -138,9 +189,10 @@ YAHOO.extendX(CommentDialog, YAHOO.ext.BasicDialog, {
 		YAHOO.util.Connect.asyncRequest("POST", url, {
 			success: function(res) {
 				this.hideMessage();
-				this.commentBlock.setLocalComment("");
+				this.commentBlock.localComment = "";
+				this.commentBlock.setHasDraft(false);
 				this.localCommentField.dom.value = "";
-				this.commentsTab.bodyEl.dom.innerHTML = res.responseText;
+				this.existingComments.dom.innerHTML = res.responseText;
 				this.updateCommentCount();
 				this.closeDlg();
 			}.createDelegate(this),
@@ -178,13 +230,11 @@ CommentBlock = function(fileid, lineNumCell, linenum, comments) {
 		this.el.dom.innerHTML = this.count;
 	};
 
-	this.setLocalComment = function(text) {
-		this.localComment = text;
-
-		if (text == "") {
-			this.el.removeClass("draft");
-		} else {
+	this.setHasDraft = function(hasDraft) {
+		if (hasDraft) {
 			this.el.addClass("draft");
+		} else {
+			this.el.removeClass("draft");
 		}
 	};
 
@@ -210,7 +260,8 @@ CommentBlock = function(fileid, lineNumCell, linenum, comments) {
 
 	for (comment in comments) {
 		if (comments[comment].localdraft) {
-			this.setLocalComment(comments[comment].text);
+			this.localComment = comments[comment].text;
+			this.setHasDraft(true);
 			break;
 		}
 	}

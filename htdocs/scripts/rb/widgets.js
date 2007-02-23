@@ -84,6 +84,7 @@ RB.widgets.InlineEditor = function(config) {
 
 	this.events = {
 		'complete': true,
+		'beginedit': true,
 	};
 
 	if (!this.useEditIconOnly) {
@@ -123,11 +124,12 @@ YAHOO.extendX(RB.widgets.InlineEditor, YAHOO.ext.util.Observable, {
 	},
 
 	startEdit: function() {
+		this.initialValue = this.el.dom.innerHTML;
 		var value = this.normalizeText(this.htmldecode(this.el.dom.innerHTML));
-		this.initialValue = value;
 		this.setValue(value);
 		this.editing = true;
 		this.show();
+		this.fireEvent('beginedit', this);
 	},
 
 	completeEdit: function() {
@@ -137,7 +139,8 @@ YAHOO.extendX(RB.widgets.InlineEditor, YAHOO.ext.util.Observable, {
 		this.hide();
 		this.editing = false;
 
-		if (this.initialValue != value || this.notifyUnchangedCompletion) {
+		if (this.normalizeText(this.htmldecode(this.initialValue)) != value ||
+		    this.notifyUnchangedCompletion) {
 			this.fireEvent('complete', this, value, this.initialValue);
 		}
 	},
@@ -165,6 +168,10 @@ YAHOO.extendX(RB.widgets.InlineEditor, YAHOO.ext.util.Observable, {
 	},
 
 	normalizeText: function(str) {
+    if (this.stripTags) {
+      str = str.stripTags().strip();
+    }
+
 		if (!this.multiline) {
 			return str.replace(/\s{2,}/g, " ");
 		}
@@ -194,8 +201,11 @@ YAHOO.extendX(RB.widgets.InlineEditor, YAHOO.ext.util.Observable, {
 			this.editicon.hide(this.multiline);
 		}
 
-		this.saveButton.show();
-		this.cancelButton.show();
+		if (!this.hideButtons) {
+			this.saveButton.show();
+			this.cancelButton.show();
+		}
+
 		this.el.hide();
 		this.form.show();
 
@@ -303,16 +313,11 @@ YAHOO.extendX(RB.widgets.InlineEditor, YAHOO.ext.util.Observable, {
  */
 RB.widgets.InlineCommaListEditor = function(config) {
 	RB.widgets.InlineCommaListEditor.superclass.constructor.call(this, config);
+
+  this.stripTags = true;
 };
 
 YAHOO.extendX(RB.widgets.InlineCommaListEditor, RB.widgets.InlineEditor, {
-	normalizeText: function(str) {
-		str = RB.widgets.InlineCommaListEditor.superclass.normalizeText.call(
-			this, str);
-
-		return str.stripTags().strip();
-	},
-
 	getList: function() {
 		return this.getValue().split(/,\s*/);
 	},

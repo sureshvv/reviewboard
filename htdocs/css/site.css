@@ -464,6 +464,10 @@ table.sidebyside .commentflag.draft {
 #comment-dlg #commentform textarea {
   height: 200px;
   width: 450px;
+  margin: 5px 0 0 0;
+  border: 1px #888a85 solid;
+  padding: 10px;
+  font-size: 10pt;
 }
 
 #comment-dlg #comment-status {
@@ -512,7 +516,7 @@ table.sidebyside .commentflag.draft {
 }
 
 #review_request_form textarea {
-    width: 400px;
+  width: 400px;
 }
 
 #review-request {

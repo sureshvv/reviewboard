@@ -425,6 +425,11 @@ table.sidebyside tbody.insert {
   border-bottom: 1px #303030 solid;
 }
 
+/* Extra whitespace highlight */
+table.sidebyside .ew {
+  background: #ee3434;
+}
+
 table.sidebyside .commentflag {
   position: absolute;
   left: 2px;

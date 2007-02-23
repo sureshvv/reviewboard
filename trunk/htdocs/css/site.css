@@ -441,6 +441,62 @@ table.sidebyside .commentflag {
   cursor: pointer;
 }
 
+#comment-dlg {
+  position: absolute;
+  top: -10000px;
+  left: -10000px;
+}
+
+#comment-dlg #commentform .label {
+  display: block;
+  font-weight: bold;
+}
+
+#comment-dlg #commentform textarea {
+  height: 200px;
+  width: 450px;
+}
+
+#comment-dlg #comment-status {
+  float: left;
+  color: black;
+  margin-top: 5px;
+}
+
+#comment-dlg #comment-status.error {
+  font-weight: bold;
+}
+
+#comment-dlg #comments-list {
+  font-size: 90%;
+  margin: 0px;
+  padding: 0px;
+}
+
+#comment-dlg #comments-list li.comment {
+  border-bottom: 1px #cccccc solid;
+  margin-bottom: 0.4em;
+}
+
+#comment-dlg #comments-list dt {
+  margin-top: 0.5em;
+}
+
+#comment-dlg #comments-list dt a {
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: none;
+  color: #AB5603;
+}
+
+#comment-dlg #comments-list dt span {
+  color: #487858;
+}
+
+#comment-dlg #comments-list dd pre {
+  font-size: 8pt;
+}
+
 #review_request_form input[type='text'] {
     width: 400px;
 }

@@ -1,9 +1,227 @@
+var dh = YAHOO.ext.DomHelper;
+
+CommentDialog = function(el) {
+	CommentDialog.superclass.constructor.call(this, el, {
+		width: 500,
+		height: 400,
+		shadow: true,
+		minWidth: 300,
+		minHeight: 300,
+		autoTabs: true,
+		proxyDrag: true,
+	});
+
+	var tabs = this.getTabs();
+
+	this.reviewTab = tabs.getTab("tab-review");
+	this.commentsTab = tabs.getTab("tab-comments");
+	this.commentForm = getEl('commentform');
+	this.localCommentField = getEl('id_comment');
+
+	this.addKeyListener(27, this.closeDlg, this);
+	this.addButton("Close", this.closeDlg, this);
+	this.postButton = this.addButton("Save Comment", this.postComment, this);
+	this.postButton.hide();
+	this.deleteButton = this.addButton("Delete Comment",
+	                                   this.deleteComment, this);
+	this.deleteButton.hide();
+
+	this.messageDiv = dh.insertBefore(this.deleteButton.getEl().dom,
+		{tag: 'div', id: 'comment-status'}, true);
+
+	/* Prevent navigation keypresses in the comments textarea. */
+	getEl(el).on("keypress", function(e) {
+		YAHOO.util.Event.stopPropagation(e);
+	}, this, true);
+
+	tabs.on('tabchange', function() {
+		this.updatePostButtonVisibility();
+		this.hideMessage();
+	}, this, true);
+	this.updatePostButtonVisibility();
+}
+
+YAHOO.extendX(CommentDialog, YAHOO.ext.BasicDialog, {
+	closeDlg: function() {
+		this.hide(function() {
+			if (this.commentBlock.count == 0) {
+				this.commentBlock.el.remove();
+				this.commentBlock = null;
+			}
+		}.createDelegate(this));
+	},
+
+	setCommentBlock: function(commentBlock) {
+		if (this.commentBlock == commentBlock) {
+			return;
+		}
+
+		this.commentBlock = commentBlock;
+		this.localCommentField.dom.value = this.commentBlock.localComment;
+		getEl('id_num_lines').dom.value = 1; // XXX
+
+		/* Load the existing comments */
+		this.updateCommentsList();
+	},
+
+	updateCommentsList: function() {
+		var url = "comments/" + this.commentBlock.filediffid + "/" +
+		         this.commentBlock.linenum + "/";
+		YAHOO.util.Connect.asyncRequest("GET", url, {
+			success: function(res) {
+				this.hideMessage();
+				this.commentsTab.bodyEl.dom.innerHTML = res.responseText;
+				this.updateCommentCount();
+			}.createDelegate(this),
+
+			failure: function(res) {
+				this.showError(res.statusText);
+			}.createDelegate(this),
+		});
+	},
+
+	updateCommentCount: function() {
+		var count = this.commentsTab.bodyEl.getChildrenByClassName("comment",
+		                                                           "li").length;
+		this.commentBlock.setCount(count);
+		this.commentsTab.setText("Comments (" + count + ")");
+	},
+
+	updatePostButtonVisibility: function() {
+		var activeTab = this.getTabs().getActiveTab();
+
+		if (activeTab == this.reviewTab) {
+			this.postButton.show();
+			this.deleteButton.show();
+		} else if (activeTab == this.commentsTab) {
+			this.postButton.hide();
+			this.deleteButton.hide();
+		}
+	},
+
+	postComment: function() {
+		var commentEl = getEl("id_comment");
+
+		var text = commentEl.dom.value;
+
+		if (text.strip() == "") {
+			this.showError("Please fill out the comment text.");
+			return;
+		}
+
+		getEl('id_action').dom.value = "set";
+
+		var url = "comments/" + this.commentBlock.filediffid + "/" +
+		         this.commentBlock.linenum + "/";
+		YAHOO.util.Connect.setForm(this.commentForm.dom);
+		YAHOO.util.Connect.asyncRequest("POST", url, {
+			success: function(res) {
+				this.hideMessage();
+				this.commentBlock.localComment = text;
+				this.commentsTab.bodyEl.dom.innerHTML = res.responseText;
+				this.updateCommentCount();
+				this.closeDlg();
+			}.createDelegate(this),
+
+			failure: function(res) {
+				this.showError(res.statusText);
+			}.createDelegate(this),
+		});
+	},
+
+	deleteComment: function() {
+		getEl('id_action').dom.value = "delete";
+
+		var url = "comments/" + this.commentBlock.filediffid + "/" +
+		         this.commentBlock.linenum + "/";
+		YAHOO.util.Connect.setForm(this.commentForm.dom);
+		YAHOO.util.Connect.asyncRequest("POST", url, {
+			success: function(res) {
+				this.hideMessage();
+				this.commentBlock.localComment = "";
+				this.localCommentField.dom.value = "";
+				this.commentsTab.bodyEl.dom.innerHTML = res.responseText;
+				this.updateCommentCount();
+				this.closeDlg();
+			}.createDelegate(this),
+
+			failure: function(res) {
+				this.showError(res.statusText);
+			}.createDelegate(this),
+		});
+	},
+
+	showError: function(text) {
+		this.showMessage(text, "error");
+	},
+
+	showMessage: function(message, className) {
+		this.messageDiv.dom.innerHTML = message
+
+		if (className) {
+			this.messageDiv.dom.className = className;
+		}
+
+		this.messageDiv.show();
+	},
+
+	hideMessage: function() {
+		this.messageDiv.dom.className = "";
+		this.messageDiv.hide();
+	},
+});
+
+
+CommentBlock = function(fileid, lineNumCell, linenum, comments) {
+	this.setCount = function(count) {
+		this.count = count;
+		this.el.dom.innerHTML = this.count;
+	};
+
+	this.showCommentDlg = function() {
+		if (gCommentDlg == null) {
+			gCommentDlg = new CommentDialog("comment-dlg");
+		}
+
+		gCommentDlg.setCommentBlock(this);
+		gCommentDlg.show(this.el);
+	};
+
+	this.fileid = fileid;
+	this.filediffid = gFileAnchorToId[fileid];
+	this.comments = comments;
+	this.linenum = linenum;
+	this.localComment = "";
+
+	for (comment in comments) {
+		if (comments[comment].localdraft) {
+			this.localComment = comments[comment].text;
+			break;
+		}
+	}
+
+	this.el = YAHOO.ext.DomHelper.append(lineNumCell, {
+		tag: 'span',
+		cls: 'commentflag',
+	}, true);
+
+	this.el.setTop(getEl(lineNumCell).getY());
+	this.el.on('click', function(e) {
+		YAHOO.util.Event.stopEvent(e);
+		this.showCommentDlg();
+	}, this, true);
+
+	this.setCount(comments.length);
+};
+
+
 // Constants
 var BACKWARD = -1;
 var FORWARD  = 1;
 var INVALID  = -1;
 var DIFF_SCROLLDOWN_AMOUNT = 100;
 var VISIBLE_CONTEXT_SIZE = 5;
+var gCommentDlg = null;
 
 var gActions = [
 	{ // Previous file
@@ -45,6 +263,7 @@ var gActions = [
 // State variables
 var gSelectedAnchor = INVALID;
 var gCurrentAnchor = 0;
+var gFileAnchorToId = {};
 
 YAHOO.util.Event.on(window, "load", onPageLoaded);
 
@@ -77,6 +296,13 @@ function onPageLoaded(evt) {
 	/* Skip over the change index to the first item */
 	gSelectedAnchor = 1;
 	SetHighlighted(gSelectedAnchor, true)
+
+	/*
+	 * We need to hide it here rather than setting the visibility in the CSS
+	 * in order to work around a bug when dragging the dialog when a proxy
+	 * drag is set.
+	 */
+	getEl("comment-dlg").hide();
 
 	YAHOO.util.Event.on(window, "keypress", onKeyPress);
 }
@@ -133,19 +359,34 @@ function findLineNumCell(table, linenum) {
 }
 
 function addComments(fileid, lines) {
-	var table = document.getElementById(fileid);
+	var table = getEl(fileid);
+
+	table.on('click', function(e) {
+		if (e.target.tagName == "TH" && e.target.innerHTML != "...") {
+			var cell = e.target;
+			var row = cell.parentNode;
+
+			if (row.tagName == "TR" &&
+			    ((row.cells.length == 4 && cell == row.cells[1]) ||
+				 (row.cells.length == 3 && cell == row.cells[0]))) {
+				var lineNum = parseInt(cell.innerHTML);
+
+				if (lineNum != NaN) {
+					YAHOO.util.Event.stopEvent(e);
+					var commentBlock = new CommentBlock(fileid, cell,
+					                                    lineNum, []);
+					commentBlock.showCommentDlg();
+				}
+			}
+		}
+	});
 
 	for (linenum in lines) {
-		var cell = findLineNumCell(table, parseInt(linenum));
+		linenum = parseInt(linenum);
+		var cell = findLineNumCell(table.dom, linenum);
 
 		if (cell != null) {
-			var commentFlag = YAHOO.ext.DomHelper.append(cell, {
-				tag: 'span',
-				cls: 'commentflag',
-				children: [ {html: lines[linenum].length} ]
-			}, true);
-
-			commentFlag.setTop(getEl(cell).getY());
+			new CommentBlock(fileid, cell, linenum, lines[linenum]);
 		}
 	}
 }

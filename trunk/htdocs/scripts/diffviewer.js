@@ -412,12 +412,8 @@ function addComments(fileid, lines) {
 	});
 
 	table.on('mouseout', function(e) {
-		if (e.fromElement == gGhostCommentFlag) {
-			return;
-		}
-
-		var node = e.target;
-		if (gGhostCommentFlag && isLineNumCell(node)) {
+		var relTarget = e.relatedTarget || e.toElement;
+		if (gGhostCommentFlag && relTarget != gGhostCommentFlag.dom) {
 			gGhostCommentFlag.hide();
 		}
 	});

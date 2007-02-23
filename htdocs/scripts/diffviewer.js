@@ -117,7 +117,7 @@ YAHOO.extendX(CommentDialog, YAHOO.ext.BasicDialog, {
 		YAHOO.util.Connect.asyncRequest("POST", url, {
 			success: function(res) {
 				this.hideMessage();
-				this.commentBlock.localComment = text;
+				this.commentBlock.setLocalComment(text);
 				this.commentsTab.bodyEl.dom.innerHTML = res.responseText;
 				this.updateCommentCount();
 				this.closeDlg();
@@ -138,7 +138,7 @@ YAHOO.extendX(CommentDialog, YAHOO.ext.BasicDialog, {
 		YAHOO.util.Connect.asyncRequest("POST", url, {
 			success: function(res) {
 				this.hideMessage();
-				this.commentBlock.localComment = "";
+				this.commentBlock.setLocalComment("");
 				this.localCommentField.dom.value = "";
 				this.commentsTab.bodyEl.dom.innerHTML = res.responseText;
 				this.updateCommentCount();
@@ -178,6 +178,16 @@ CommentBlock = function(fileid, lineNumCell, linenum, comments) {
 		this.el.dom.innerHTML = this.count;
 	};
 
+	this.setLocalComment = function(text) {
+		this.localComment = text;
+
+		if (text == "") {
+			this.el.removeClass("draft");
+		} else {
+			this.el.addClass("draft");
+		}
+	};
+
 	this.showCommentDlg = function() {
 		if (gCommentDlg == null) {
 			gCommentDlg = new CommentDialog("comment-dlg");
@@ -193,17 +203,17 @@ CommentBlock = function(fileid, lineNumCell, linenum, comments) {
 	this.linenum = linenum;
 	this.localComment = "";
 
-	for (comment in comments) {
-		if (comments[comment].localdraft) {
-			this.localComment = comments[comment].text;
-			break;
-		}
-	}
-
 	this.el = YAHOO.ext.DomHelper.append(lineNumCell, {
 		tag: 'span',
 		cls: 'commentflag',
 	}, true);
+
+	for (comment in comments) {
+		if (comments[comment].localdraft) {
+			this.setLocalComment(comments[comment].text);
+			break;
+		}
+	}
 
 	this.el.setTop(getEl(lineNumCell).getY());
 	this.el.on('click', function(e) {
@@ -221,7 +231,6 @@ var FORWARD  = 1;
 var INVALID  = -1;
 var DIFF_SCROLLDOWN_AMOUNT = 100;
 var VISIBLE_CONTEXT_SIZE = 5;
-var gCommentDlg = null;
 
 var gActions = [
 	{ // Previous file
@@ -264,6 +273,8 @@ var gActions = [
 var gSelectedAnchor = INVALID;
 var gCurrentAnchor = 0;
 var gFileAnchorToId = {};
+var gCommentDlg = null;
+var gGhostCommentFlag = null;
 
 YAHOO.util.Event.on(window, "load", onPageLoaded);
 
@@ -358,26 +369,56 @@ function findLineNumCell(table, linenum) {
 	return null;
 }
 
+function isLineNumCell(cell) {
+	var content = cell.innerHTML;
+
+	return (cell.tagName == "TH" &&
+	        cell.parentNode.parentNode.tagName == "TBODY" &&
+	        cell.className != "controls" && content != "..." &&
+		    parseInt(content) != NaN);
+}
+
 function addComments(fileid, lines) {
 	var table = getEl(fileid);
 
 	table.on('click', function(e) {
-		if (e.target.tagName == "TH" && e.target.innerHTML != "...") {
-			var cell = e.target;
-			var row = cell.parentNode;
+		var node = e.target;
+		if (isLineNumCell(node)) {
+			YAHOO.util.Event.stopEvent(e);
+			var commentBlock = new CommentBlock(fileid, node,
+			                                    parseInt(node.innerHTML), []);
+			commentBlock.showCommentDlg();
+		}
+	});
 
-			if (row.tagName == "TR" &&
-			    ((row.cells.length == 4 && cell == row.cells[1]) ||
-				 (row.cells.length == 3 && cell == row.cells[0]))) {
-				var lineNum = parseInt(cell.innerHTML);
-
-				if (lineNum != NaN) {
-					YAHOO.util.Event.stopEvent(e);
-					var commentBlock = new CommentBlock(fileid, cell,
-					                                    lineNum, []);
-					commentBlock.showCommentDlg();
-				}
+	table.on('mouseover', function(e) {
+		var node = e.target;
+		if (isLineNumCell(node) && node.childNodes.length == 1) {
+			if (!gGhostCommentFlag) {
+				gGhostCommentFlag = dh.append(document.body, {
+					tag: 'img',
+					src: '/images/comment-ghost.png',
+				}, true);
+				gGhostCommentFlag.enableDisplayMode();
+				gGhostCommentFlag.setAbsolutePositioned();
+				gGhostCommentFlag.setX(2);
 			}
+
+			getEl(node).setStyle("cursor", "pointer");
+
+			gGhostCommentFlag.setTop(getEl(node).getY() - 1);
+			gGhostCommentFlag.show();
+		}
+	});
+
+	table.on('mouseout', function(e) {
+		if (e.fromElement == gGhostCommentFlag) {
+			return;
+		}
+
+		var node = e.target;
+		if (gGhostCommentFlag && isLineNumCell(node)) {
+			gGhostCommentFlag.hide();
 		}
 	});
 

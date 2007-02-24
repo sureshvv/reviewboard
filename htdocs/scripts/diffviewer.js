@@ -5,7 +5,7 @@ CommentDialog = function(el) {
 		width: 550,
 		height: 450,
 		shadow: true,
-		minWidth: 300,
+		minWidth: 400,
 		minHeight: 300,
 		autoTabs: true,
 		proxyDrag: true,
@@ -66,7 +66,7 @@ YAHOO.extendX(CommentDialog, YAHOO.ext.BasicDialog, {
 	resizeCommentField: function(b, w, h) {
 		var newWidth = w - 50;
 		if (this.commentForm.isVisible()) {
-			this.newCommentField.setWidth(newWidth);
+			this.newCommentField.setSize(newWidth, h - 200);
 		} else {
 			this.inlineEditor.el.setWidth(newWidth);
 		}
@@ -127,7 +127,7 @@ YAHOO.extendX(CommentDialog, YAHOO.ext.BasicDialog, {
 			this.commentForm.show();
 		}
 
-		this.resizeCommentField();
+		this.resizeCommentField(null, this.width, this.height);
 
 		// Scroll to the bottom.
 		var scrollNode = this.commentsTab.bodyEl.dom.parentNode;

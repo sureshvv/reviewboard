@@ -412,8 +412,6 @@ function findLineNumCell(table, linenum) {
 		high = parseInt(cell.innerHTML);
 	}
 
-	console.debug("checking for line...");
-
 	for (var i = Math.round((low + high) / 2);
 	     low < high - 1;
 		 i = Math.round((low + high) / 2)) {

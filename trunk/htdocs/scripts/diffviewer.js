@@ -73,7 +73,8 @@ YAHOO.extendX(CommentDialog, YAHOO.ext.BasicDialog, {
 	resizeCommentField: function(b, w, h) {
 		var newWidth = w - 50;
 		if (this.commentForm.isVisible()) {
-			this.newCommentField.setSize(newWidth, h - 200);
+			this.newCommentField.setSize(newWidth,
+				(this.commentBlock.count == 0 ? h - 200 : 100));
 		} else {
 			this.inlineEditor.el.setWidth(newWidth);
 		}

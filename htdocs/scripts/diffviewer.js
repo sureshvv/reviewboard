@@ -2,6 +2,7 @@ var dh = YAHOO.ext.DomHelper;
 
 CommentDialog = function(el) {
 	CommentDialog.superclass.constructor.call(this, el, {
+		modal: true,
 		width: 550,
 		height: 450,
 		shadow: true,
@@ -9,6 +10,7 @@ CommentDialog = function(el) {
 		minHeight: 300,
 		autoTabs: true,
 		proxyDrag: true,
+		constraintoviewport: false,
 	});
 
 	var tabs = this.getTabs();
@@ -47,6 +49,10 @@ CommentDialog = function(el) {
 	this.on('beforeshow', function() {
 		/* Load the existing comments */
 		this.updateCommentsList();
+	}, this, true);
+
+	this.on('show', function() {
+		window.scrollTo(0, this.savedViewportInfo.pageYOffset);
 	}, this, true);
 }
 
@@ -243,7 +249,10 @@ CommentBlock = function(fileid, lineNumCell, linenum, comments) {
 			gCommentDlg = new CommentDialog("comment-dlg");
 		}
 
+		gCommentDlg.savedViewportInfo = getViewportInfo();
 		gCommentDlg.setCommentBlock(this);
+		var c = gCommentDlg.el.getCenterXY(true);
+		gCommentDlg.moveTo(c[0], c[1]);
 		gCommentDlg.show(this.el);
 	};
 
@@ -253,7 +262,7 @@ CommentBlock = function(fileid, lineNumCell, linenum, comments) {
 	this.linenum = linenum;
 	this.localComment = "";
 
-	this.el = YAHOO.ext.DomHelper.append(lineNumCell, {
+	this.el = dh.append(lineNumCell, {
 		tag: 'span',
 		cls: 'commentflag',
 	}, true);
@@ -439,6 +448,20 @@ function addComments(fileid, lines) {
 			var commentBlock = new CommentBlock(fileid, node,
 			                                    parseInt(node.innerHTML), []);
 			commentBlock.showCommentDlg();
+		} else {
+			var tbody = null;
+
+			if (node.tagName == "PRE") {
+				tbody = getEl(node.parentNode.parentNode.parentNode);
+			} else if (node.tagName == "TD") {
+				tbody = getEl(node.parentNode.parentNode);
+			}
+
+			if (tbody &&
+			    (tbody.hasClass("delete") || tbody.hasClass("insert") ||
+				 tbody.hasClass("replace"))) {
+				gotoAnchor(tbody.dom.getElementsByTagName("A")[0].name);
+			}
 		}
 	});
 

@@ -409,8 +409,10 @@ function findLineNumCell(table, linenum) {
 		 * We collapsed the rows (unless someone mucked with the DB),
 		 * so the desired row is less than the row number retrieved.
 		 */
-		high = cell.innerHTML;
+		high = parseInt(cell.innerHTML);
 	}
+
+	console.debug("checking for line...");
 
 	for (var i = Math.round((low + high) / 2);
 	     low < high - 1;
@@ -418,6 +420,14 @@ function findLineNumCell(table, linenum) {
 		var row = table.rows[row_offset + i];
 		cell = (row.cells.length == 4 ? row.cells[1] : row.cells[0]);
 		var value = parseInt(cell.innerHTML);
+
+		if (!value) {
+			// This is a "..." line or some such. Compute with the next highest
+			i++;
+			row = table.rows[row_offset + i];
+			cell = (row.cells.length == 4 ? row.cells[1] : row.cells[0]);
+			value = parseInt(cell.innerHTML);
+		}
 
 		if (value > linenum) {
 			high = i;

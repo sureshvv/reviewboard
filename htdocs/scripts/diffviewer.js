@@ -55,12 +55,19 @@ CommentDialog = function(el) {
 
 YAHOO.extendX(CommentDialog, YAHOO.ext.BasicDialog, {
 	closeDlg: function() {
-		this.hide(function() {
-			if (this.commentBlock.count == 0) {
-				this.commentBlock.el.remove();
-				this.commentBlock = null;
-			}
-		}.createDelegate(this));
+		this.hide(this.checkEmptyCommentBlock.createDelegate(this));
+	},
+
+	checkEmptyCommentBlock: function() {
+		if (this.commentBlock && this.commentBlock.count == 0) {
+			var commentBlock = this.commentBlock;
+			this.commentBlock = null;
+
+			commentBlock.el.hide(true, .35, function() {
+				commentBlock.el.remove();
+				commentBlock = null;
+			});
+		}
 	},
 
 	resizeCommentField: function(b, w, h) {
@@ -73,6 +80,10 @@ YAHOO.extendX(CommentDialog, YAHOO.ext.BasicDialog, {
 	},
 
 	setCommentBlock: function(commentBlock) {
+		if (this.commentBlock != commentBlock) {
+			this.checkEmptyCommentBlock();
+		}
+
 		this.commentBlock = commentBlock;
 		this.updateCommentsList();
 		this.newCommentField.dom.value = this.commentBlock.localComment;

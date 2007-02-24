@@ -19,9 +19,8 @@ CommentDialog = function(el) {
 	this.commentForm = getEl('commentform');
 	this.commentForm.enableDisplayMode();
 
-	this.localCommentField = getEl('id_comment');
+	this.newCommentField = getEl('id_comment');
 	this.existingComments = getEl('existing-comments');
-
 	this.inlineEditor = null;
 
 	this.addKeyListener(27, this.closeDlg, this);
@@ -46,9 +45,10 @@ CommentDialog = function(el) {
 	}, this, true);
 	this.updateButtonVisibility();
 
+	this.on('resize', this.resizeCommentField, this, true);
 	this.on('show', function() {
 		if (this.commentForm.isVisible()) {
-			this.localCommentField.focus();
+			this.newCommentField.focus();
 		}
 	}, this, true);
 }
@@ -63,10 +63,19 @@ YAHOO.extendX(CommentDialog, YAHOO.ext.BasicDialog, {
 		}.createDelegate(this));
 	},
 
+	resizeCommentField: function(b, w, h) {
+		var newWidth = w - 50;
+		if (this.commentForm.isVisible()) {
+			this.newCommentField.setWidth(newWidth);
+		} else {
+			this.inlineEditor.el.setWidth(newWidth);
+		}
+	},
+
 	setCommentBlock: function(commentBlock) {
 		this.commentBlock = commentBlock;
 		this.updateCommentsList();
-		this.localCommentField.dom.value = this.commentBlock.localComment;
+		this.newCommentField.dom.value = this.commentBlock.localComment;
 		getEl('id_num_lines').dom.value = 1; // XXX
 	},
 
@@ -89,13 +98,13 @@ YAHOO.extendX(CommentDialog, YAHOO.ext.BasicDialog, {
 		this.existingComments.dom.innerHTML = html;
 		this.updateCommentCount();
 
-		var yourcomment = document.getElementById("id_yourcomment");
-		if (yourcomment) {
+		var inlineCommentField = getEl('id_yourcomment');
+		if (inlineCommentField) {
 			this.postButton.disable();
 			this.deleteButton.disable();
 
 			this.inlineEditor = new RB.widgets.InlineEditor({
-				el: yourcomment,
+				el: inlineCommentField,
 				multiline: true,
 				cls: 'inline-comment-editor',
 				showEditIcon: true,
@@ -106,7 +115,7 @@ YAHOO.extendX(CommentDialog, YAHOO.ext.BasicDialog, {
 			this.inlineEditor.on('beginedit', function(editor) {
 				this.postButton.enable();
 				this.deleteButton.enable();
-				getEl(yourcomment).scrollIntoView(
+				inlineCommentField.scrollIntoView(
 					this.commentsTab.bodyEl.dom.parentNode);
 			}, this, true);
 
@@ -118,10 +127,9 @@ YAHOO.extendX(CommentDialog, YAHOO.ext.BasicDialog, {
 			this.commentForm.show();
 		}
 
-		this.scrollToBottom();
-	},
+		this.resizeCommentField();
 
-	scrollToBottom: function() {
+		// Scroll to the bottom.
 		var scrollNode = this.commentsTab.bodyEl.dom.parentNode;
 		scrollNode.scrollTop = scrollNode.scrollHeight;
 	},
@@ -191,7 +199,7 @@ YAHOO.extendX(CommentDialog, YAHOO.ext.BasicDialog, {
 				this.hideMessage();
 				this.commentBlock.localComment = "";
 				this.commentBlock.setHasDraft(false);
-				this.localCommentField.dom.value = "";
+				this.newCommentField.dom.value = "";
 				this.existingComments.dom.innerHTML = res.responseText;
 				this.updateCommentCount();
 				this.closeDlg();

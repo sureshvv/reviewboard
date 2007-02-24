@@ -456,7 +456,7 @@ table.sidebyside .commentflag.draft {
 }
 
 #comment-dlg #commentform textarea {
-  height: 200px;
+  height: 100px;
   width: 450px;
   margin: 5px 0 0 0;
   border: 1px #888a85 solid;

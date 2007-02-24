@@ -109,7 +109,7 @@ YAHOO.extendX(CommentDialog, YAHOO.ext.BasicDialog, {
 		this.existingComments.dom.innerHTML = html;
 		this.updateCommentCount();
 
-		var inlineCommentField = getEl('id_yourcomment');
+		var inlineCommentField = document.getElementById('id_yourcomment');
 		if (inlineCommentField) {
 			this.postButton.disable();
 			this.deleteButton.disable();
@@ -126,7 +126,7 @@ YAHOO.extendX(CommentDialog, YAHOO.ext.BasicDialog, {
 			this.inlineEditor.on('beginedit', function(editor) {
 				this.postButton.enable();
 				this.deleteButton.enable();
-				inlineCommentField.scrollIntoView(
+				getEl(inlineCommentField).scrollIntoView(
 					this.commentsTab.bodyEl.dom.parentNode);
 			}, this, true);
 

@@ -2,7 +2,6 @@ var dh = YAHOO.ext.DomHelper;
 
 CommentDialog = function(el) {
 	CommentDialog.superclass.constructor.call(this, el, {
-		modal: true,
 		width: 550,
 		height: 450,
 		shadow: true,

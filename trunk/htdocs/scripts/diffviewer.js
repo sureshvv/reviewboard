@@ -10,6 +10,7 @@ CommentDialog = function(el) {
 		autoTabs: true,
 		proxyDrag: true,
 		constraintoviewport: false,
+		fixedcenter: true,
 	});
 
 	var tabs = this.getTabs();
@@ -24,7 +25,7 @@ CommentDialog = function(el) {
 	this.inlineEditor = null;
 
 	this.addKeyListener(27, this.closeDlg, this);
-	this.addButton("Close", this.closeDlg, this);
+	this.setDefaultButton(this.addButton("Close", this.closeDlg, this));
 	this.postButton = this.addButton("Save Comment", this.postComment, this);
 	this.postButton.hide();
 	this.deleteButton = this.addButton("Delete Comment",
@@ -45,13 +46,10 @@ CommentDialog = function(el) {
 	}, this, true);
 	this.updateButtonVisibility();
 
-	this.on('beforeshow', function() {
-		/* Load the existing comments */
-		this.updateCommentsList();
-	}, this, true);
-
 	this.on('show', function() {
-		window.scrollTo(0, this.savedViewportInfo.pageYOffset);
+		if (this.commentForm.isVisible()) {
+			this.localCommentField.focus();
+		}
 	}, this, true);
 }
 
@@ -66,11 +64,8 @@ YAHOO.extendX(CommentDialog, YAHOO.ext.BasicDialog, {
 	},
 
 	setCommentBlock: function(commentBlock) {
-		if (this.commentBlock == commentBlock) {
-			return;
-		}
-
 		this.commentBlock = commentBlock;
+		this.updateCommentsList();
 		this.localCommentField.dom.value = this.commentBlock.localComment;
 		getEl('id_num_lines').dom.value = 1; // XXX
 	},
@@ -121,7 +116,6 @@ YAHOO.extendX(CommentDialog, YAHOO.ext.BasicDialog, {
 			this.deleteButton.disable();
 			this.inlineEditor = null;
 			this.commentForm.show();
-			this.localCommentField.focus();
 		}
 
 		this.scrollToBottom();
@@ -156,6 +150,7 @@ YAHOO.extendX(CommentDialog, YAHOO.ext.BasicDialog, {
 
 		if (this.inlineEditor) {
 			commentEl.dom.value = this.inlineEditor.getValue();
+			this.inlineEditor.completeEdit();
 		}
 
 		var text = commentEl.dom.value;
@@ -248,10 +243,7 @@ CommentBlock = function(fileid, lineNumCell, linenum, comments) {
 			gCommentDlg = new CommentDialog("comment-dlg");
 		}
 
-		gCommentDlg.savedViewportInfo = getViewportInfo();
 		gCommentDlg.setCommentBlock(this);
-		var c = gCommentDlg.el.getCenterXY(true);
-		gCommentDlg.moveTo(c[0], c[1]);
 		gCommentDlg.show(this.el);
 	};
 
@@ -372,7 +364,7 @@ function onPageLoaded(evt) {
 	 * in order to work around a bug when dragging the dialog when a proxy
 	 * drag is set.
 	 */
-	getEl("comment-dlg").hide();
+	//getEl("comment-dlg").hide();
 
 	YAHOO.util.Event.on(window, "keypress", onKeyPress);
 }

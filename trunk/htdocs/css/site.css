@@ -450,12 +450,6 @@ table.sidebyside .commentflag.draft {
   background: url('/images/comment-draft.png') no-repeat;
 }
 
-#comment-dlg {
-  position: absolute;
-  top: -10000px;
-  left: -10000px;
-}
-
 #comment-dlg #commentform .label {
   display: block;
   font-weight: bold;

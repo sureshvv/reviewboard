@@ -168,9 +168,9 @@ YAHOO.extendX(RB.widgets.InlineEditor, YAHOO.ext.util.Observable, {
 	},
 
 	normalizeText: function(str) {
-    if (this.stripTags) {
-      str = str.stripTags().strip();
-    }
+		if (this.stripTags) {
+		  str = str.stripTags().strip();
+		}
 
 		if (!this.multiline) {
 			return str.replace(/\s{2,}/g, " ");

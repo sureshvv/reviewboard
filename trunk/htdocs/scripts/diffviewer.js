@@ -413,18 +413,14 @@ function findLineNumCell(table, linenum) {
 	}
 
 	for (var i = Math.round((low + high) / 2);
-	     low < high - 1;
-		 i = Math.round((low + high) / 2)) {
+	     low < high - 1;) {
 		var row = table.rows[row_offset + i];
 		cell = (row.cells.length == 4 ? row.cells[1] : row.cells[0]);
 		var value = parseInt(cell.innerHTML);
 
 		if (!value) {
-			// This is a "..." line or some such. Compute with the next highest
 			i++;
-			row = table.rows[row_offset + i];
-			cell = (row.cells.length == 4 ? row.cells[1] : row.cells[0]);
-			value = parseInt(cell.innerHTML);
+			continue;
 		}
 
 		if (value > linenum) {
@@ -434,6 +430,8 @@ function findLineNumCell(table, linenum) {
 		} else {
 			return cell;
 		}
+
+		 i = Math.round((low + high) / 2);
 	}
 
 	// Well.. damn. Ignore this then.

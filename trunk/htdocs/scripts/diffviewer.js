@@ -71,12 +71,11 @@ YAHOO.extendX(CommentDialog, YAHOO.ext.BasicDialog, {
 	},
 
 	resizeCommentField: function(b, w, h) {
-		var newWidth = w - 50;
 		if (this.commentForm.isVisible()) {
-			this.newCommentField.setSize(newWidth,
+			this.newCommentField.setSize(w - 50,
 				(this.commentBlock.count == 0 ? h - 200 : 100));
 		} else {
-			this.inlineEditor.el.setWidth(newWidth);
+			this.inlineEditor.field.setWidth(w - 50);
 		}
 	},
 

@@ -359,13 +359,6 @@ function onPageLoaded(evt) {
 	gSelectedAnchor = 1;
 	SetHighlighted(gSelectedAnchor, true)
 
-	/*
-	 * We need to hide it here rather than setting the visibility in the CSS
-	 * in order to work around a bug when dragging the dialog when a proxy
-	 * drag is set.
-	 */
-	//getEl("comment-dlg").hide();
-
 	YAHOO.util.Event.on(window, "keypress", onKeyPress);
 }
 

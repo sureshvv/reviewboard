@@ -15,42 +15,85 @@ CommentDialog = function(el) {
 
 	var tabs = this.getTabs();
 
-	this.commentsTab = tabs.getTab("tab-comments");
-	this.commentForm = getEl('commentform');
-	this.commentForm.enableDisplayMode();
-
-	this.newCommentField = getEl('id_comment');
-	this.existingComments = getEl('existing-comments');
-	this.inlineEditor = null;
-
+	/*
+	 * Global Dialog
+	 */
 	this.addKeyListener(27, this.closeDlg, this);
 	this.setDefaultButton(this.addButton("Close", this.closeDlg, this));
-	this.postButton = this.addButton("Save Comment", this.postComment, this);
-	this.postButton.hide();
-	this.deleteButton = this.addButton("Delete Comment",
-	                                   this.deleteComment, this);
-	this.deleteButton.hide();
-
-	this.messageDiv = dh.insertBefore(this.deleteButton.getEl().dom,
+	this.messageDiv = dh.insertBefore(this.footer.dom,
 		{tag: 'div', id: 'comment-status'}, true);
 
 	/* Prevent navigation keypresses in the comments textarea. */
-	getEl(el).on("keypress", function(e) {
+	this.el.on("keypress", function(e) {
 		YAHOO.util.Event.stopPropagation(e);
 	}, this, true);
 
-	tabs.on('tabchange', function() {
-		this.updateButtonVisibility();
-		this.hideMessage();
-	}, this, true);
-	this.updateButtonVisibility();
+	tabs.on('tabchange', this.onTabChanged, this, true);
 
-	this.on('resize', this.resizeCommentField, this, true);
+	this.on('resize', this.onDlgResize, this, true);
 	this.on('show', function() {
 		if (this.commentForm.isVisible()) {
 			this.newCommentField.focus();
 		}
 	}, this, true);
+
+
+	/*
+	 * Comments Tab
+	 */
+	this.commentsTab = tabs.getTab("tab-comments");
+	this.commentForm = getEl('commentform');
+	this.commentForm.enableDisplayMode();
+
+	this.newCommentField = getEl('id_comment');
+	this.commentActionField = getEl('id_comment_action');
+	this.existingComments = getEl('existing-comments');
+	this.inlineEditor = null;
+
+	this.commentButtons = [
+		this.addButton("Save Comment", this.postComment, this),
+		this.addButton("Delete Comment", this.deleteComment, this),
+	];
+
+
+	/*
+	 * Review Tab
+	 */
+	this.reviewTab = tabs.getTab("tab-review");
+
+	this.reviewForm = getEl('reviewform');
+
+	this.reviewButtons = [
+		this.addButton("Save Draft", this.saveReview, this),
+		this.addButton("Delete Draft", this.deleteReview, this),
+		this.addButton("Publish", this.publishReview, this),
+	];
+
+	this.bodyTop = new RB.widgets.AutosizeTextArea('id_body_top', {
+		autoGrowVertical: true
+	});
+	this.bodyBottom = new RB.widgets.AutosizeTextArea('id_body_bottom', {
+		autoGrowVertical: true,
+	});
+
+
+	/*
+	 * Set this here instead of in the CSS to work around a visual glitch
+	 * the first time this dialog is shown.
+	 */
+	this.reviewBody = getEl('review-body');
+	this.reviewBody.setStyle('overflow', 'auto');
+	this.reviewBody.on('click', function(e) {
+		if (e.target == this.reviewBody.dom) {
+			this.bodyBottom.el.focus()
+		}
+	}, this, true);
+
+
+	/*
+	 * Set the initial state
+	 */
+	this.onTabChanged();
 }
 
 YAHOO.extendX(CommentDialog, YAHOO.ext.BasicDialog, {
@@ -62,22 +105,68 @@ YAHOO.extendX(CommentDialog, YAHOO.ext.BasicDialog, {
 		if (this.commentBlock && this.commentBlock.count == 0) {
 			var commentBlock = this.commentBlock;
 			this.commentBlock = null;
-
-			commentBlock.el.hide(true, .35, function() {
-				commentBlock.el.remove();
-				commentBlock = null;
-			});
+			commentBlock.discard();
 		}
 	},
 
-	resizeCommentField: function(b, w, h) {
-		if (this.commentForm.isVisible()) {
-			this.newCommentField.setSize(w - 50,
-				(this.commentBlock.count == 0 ? h - 200 : 100));
+	onDlgResize: function() {
+		if (this.inlineEditor) {
+			this.alignFieldToBottomRight(this.commentsTab,
+			                             this.inlineEditor.field, 100);
 		} else {
-			this.inlineEditor.field.setWidth(w - 50);
+			this.alignFieldToBottomRight(
+				this.commentsTab, this.newCommentField,
+				(this.commentBlock && this.commentBlock.count == 0
+				 ? null : 100));
+		}
+
+		this.alignFieldToBottomRight(this.reviewTab, this.reviewBody);
+	},
+
+	onTabChanged: function() {
+		var activeTab = this.getTabs().getActiveTab();
+		var bodyParent = getEl(this.reviewTab.bodyEl.dom.parentNode);
+
+		this.hideMessage();
+
+		if (activeTab == this.commentsTab) {
+			for (b in this.commentButtons) { this.commentButtons[b].show(); }
+			for (b in this.reviewButtons)  { this.reviewButtons[b].hide(); }
+			bodyParent.setStyle("overflow-y", "auto");
+			bodyParent.setStyle("overflow-x", "hidden");
+			//this.scrollToBottom();
+		} else if (activeTab == this.reviewTab) {
+			for (b in this.commentButtons) { this.commentButtons[b].hide(); }
+			for (b in this.reviewButtons)  { this.reviewButtons[b].show(); }
+			this.reviewTab.bodyEl.dom.parentNode.scrollTop = 0;
+			bodyParent.setStyle("overflow", "hidden");
+			//this.bodyTop.el.focus();
+		}
+
+		this.onDlgResize();
+
+		if (activeTab == this.commentsTab) {
+			this.scrollToBottom();
 		}
 	},
+
+	alignFieldToBottomRight: function(tab, el, forcedHeight) {
+		var container = getEl(tab.bodyEl.dom.parentNode);
+		var newHeight;
+
+		if (forcedHeight) {
+			newHeight = forcedHeight;
+		} else {
+			newHeight = container.dom.clientHeight -
+			            (el.getY() - container.getY()) -
+		                tab.bodyEl.getPadding("b");
+		}
+
+		el.setSize(container.dom.clientWidth -
+		           (el.getX() - container.getX()) - tab.bodyEl.getPadding("r"),
+			       newHeight);
+	},
+
 
 	setCommentBlock: function(commentBlock) {
 		if (this.commentBlock != commentBlock) {
@@ -91,9 +180,7 @@ YAHOO.extendX(CommentDialog, YAHOO.ext.BasicDialog, {
 	},
 
 	updateCommentsList: function() {
-		var url = "comments/" + this.commentBlock.filediffid + "/" +
-		         this.commentBlock.linenum + "/";
-		YAHOO.util.Connect.asyncRequest("GET", url, {
+		YAHOO.util.Connect.asyncRequest("GET", this.getCommentActionURL(), {
 			success: function(res) {
 				this.hideMessage();
 				this.populateComments(res.responseText);
@@ -101,6 +188,20 @@ YAHOO.extendX(CommentDialog, YAHOO.ext.BasicDialog, {
 
 			failure: function(res) {
 				this.showError(res.statusText);
+			}.createDelegate(this),
+		});
+
+		YAHOO.util.Connect.asyncRequest(
+			"GET", this.getReviewActionURL() + "comments/", {
+
+			success: function(res) {
+				getEl('all-review-comments').dom.innerHTML = res.responseText;
+			}.createDelegate(this),
+
+			failure: function(res) {
+				getEl('all-review-comments').dom.innerHTML =
+					"<b>Error:</b> Unable to retrieve list of comments: " +
+					res.statusText;
 			}.createDelegate(this),
 		});
 	},
@@ -111,8 +212,9 @@ YAHOO.extendX(CommentDialog, YAHOO.ext.BasicDialog, {
 
 		var inlineCommentField = document.getElementById('id_yourcomment');
 		if (inlineCommentField) {
-			this.postButton.disable();
-			this.deleteButton.disable();
+			for (b in this.commentButtons) {
+				this.commentButtons[b].disable();
+			}
 
 			this.inlineEditor = new RB.widgets.InlineEditor({
 				el: inlineCommentField,
@@ -124,23 +226,28 @@ YAHOO.extendX(CommentDialog, YAHOO.ext.BasicDialog, {
 			});
 
 			this.inlineEditor.on('beginedit', function(editor) {
-				this.postButton.enable();
-				this.deleteButton.enable();
+				for (b in this.commentButtons) {
+					this.commentButtons[b].enable();
+				}
+
 				getEl(inlineCommentField).scrollIntoView(
 					this.commentsTab.bodyEl.dom.parentNode);
 			}, this, true);
 
 			this.commentForm.hide();
 		} else {
-			this.postButton.enable();
-			this.deleteButton.disable();
+			for (b in this.commentButtons) {
+				this.commentButtons[b].enable();
+			}
+
 			this.inlineEditor = null;
 			this.commentForm.show();
 		}
 
-		this.resizeCommentField(null, this.width, this.height);
+		this.onTabChanged();
+	},
 
-		// Scroll to the bottom.
+	scrollToBottom: function() {
 		var scrollNode = this.commentsTab.bodyEl.dom.parentNode;
 		scrollNode.scrollTop = scrollNode.scrollHeight;
 	},
@@ -152,78 +259,119 @@ YAHOO.extendX(CommentDialog, YAHOO.ext.BasicDialog, {
 		this.commentsTab.setText("Comments (" + count + ")");
 	},
 
-	updateButtonVisibility: function() {
-		var activeTab = this.getTabs().getActiveTab();
-
-		if (activeTab == this.commentsTab) {
-			this.postButton.show();
-			this.deleteButton.show();
-		} else {
-			this.postButton.hide();
-			this.deleteButton.hide();
-		}
-	},
-
 	postComment: function() {
-		var commentEl = getEl("id_comment");
-
 		if (this.inlineEditor) {
-			commentEl.dom.value = this.inlineEditor.getValue();
+			this.newCommentField.dom.value = this.inlineEditor.getValue();
 			this.inlineEditor.completeEdit();
 		}
 
-		var text = commentEl.dom.value;
+		var text = this.newCommentField.dom.value;
 
 		if (text.strip() == "") {
 			this.showError("Please fill out the comment text.");
 			return;
 		}
 
-		getEl('id_action').dom.value = "set";
-
-		var url = "comments/" + this.commentBlock.filediffid + "/" +
-		         this.commentBlock.linenum + "/";
-		YAHOO.util.Connect.setForm(this.commentForm.dom);
-		YAHOO.util.Connect.asyncRequest("POST", url, {
-			success: function(res) {
-				this.hideMessage();
-				this.commentBlock.localComment = "";
-				this.commentBlock.setHasDraft(true);
-				this.populateComments(res.responseText);
-				this.closeDlg();
-			}.createDelegate(this),
-
-			failure: function(res) {
-				this.showError(res.statusText);
-			}.createDelegate(this),
-		});
+		this.commentAction("set", function(res) {
+			this.commentBlock.setHasDraft(true);
+			this.populateComments(res.responseText);
+		}.createDelegate(this));
 	},
 
 	deleteComment: function() {
-		getEl('id_action').dom.value = "delete";
+		this.commentAction("delete", function(res) {
+			this.commentBlock.setHasDraft(false);
+			this.newCommentField.dom.value = "";
+			this.existingComments.dom.innerHTML = res.responseText;
+			this.updateCommentCount();
+		}.createDelegate(this));
+	},
 
-		var url = "comments/" + this.commentBlock.filediffid + "/" +
-		         this.commentBlock.linenum + "/";
-		YAHOO.util.Connect.setForm(this.commentForm.dom);
-		YAHOO.util.Connect.asyncRequest("POST", url, {
-			success: function(res) {
-				this.hideMessage();
-				this.commentBlock.localComment = "";
-				this.commentBlock.setHasDraft(false);
-				this.newCommentField.dom.value = "";
-				this.existingComments.dom.innerHTML = res.responseText;
-				this.updateCommentCount();
-				this.closeDlg();
-			}.createDelegate(this),
+	saveReview: function() {
+		this.reviewAction("save",
+			this.checkEmptyCommentBlock.createDelegate(this));
+	},
 
-			failure: function(res) {
-				this.showError(res.statusText);
-			}.createDelegate(this),
-		});
+	deleteReview: function() {
+		this.reviewAction("delete",
+			this.resetReview.createDelegate(this, [true]));
+	},
+
+	publishReview: function() {
+		this.reviewAction("publish", this.resetReview.createDelegate(this));
+	},
+
+	resetReview: function(deleteDraft) {
+		for (var id in gCommentBlocks) {
+			var commentBlock = gCommentBlocks[id];
+
+			if (commentBlock.hasDraft) {
+				commentBlock.setHasDraft(false);
+
+				if (deleteDraft) {
+					commentBlock.setCount(commentBlock.count - 1);
+				}
+			}
+
+			commentBlock.localComment = "";
+
+			if (commentBlock.count == 0) {
+				commentBlock.discard();
+			}
+		}
+
+		this.commentBlock = null;
+		this.bodyTop.el.dom.value = "";
+		this.bodyBottom.el.dom.value = "";
+		this.bodyTop.autoGrow();
+		this.bodyBottom.autoGrow();
+		getEl("id_shipit").dom.checked = false;
 	},
 
 	showError: function(text) {
 		this.showMessage(text, "error");
+	},
+
+	getCommentActionURL: function() {
+		return "comments/" + this.commentBlock.filediffid + "/" +
+		       this.commentBlock.linenum + "/";
+	},
+
+	getReviewActionURL: function() {
+		return gReviewRequestPath + "reply/" + gRevision + "/";
+	},
+
+	commentAction: function(action, onSuccess) {
+		this.commentActionField.dom.value = action;
+
+		YAHOO.util.Connect.setForm(this.commentForm.dom);
+		YAHOO.util.Connect.asyncRequest("POST", this.getCommentActionURL(), {
+			success: function(res) {
+				this.hideMessage();
+				this.commentBlock.localComment = "";
+				onSuccess(res);
+				this.closeDlg();
+			}.createDelegate(this),
+
+			failure: function(res) {
+				this.showError(res.statusText);
+			}.createDelegate(this),
+		});
+	},
+
+	reviewAction: function(action, onSuccess) {
+		YAHOO.util.Connect.setForm(this.reviewForm.dom);
+		YAHOO.util.Connect.asyncRequest(
+			"POST", this.getReviewActionURL() + action + '/', {
+			success: function(res) {
+				this.hideMessage();
+				this.hide(onSuccess);
+			}.createDelegate(this),
+
+			failure: function(res) {
+				this.showError(res.statusText);
+			}.createDelegate(this),
+		});
 	},
 
 	showMessage: function(message, className) {
@@ -244,6 +392,14 @@ YAHOO.extendX(CommentDialog, YAHOO.ext.BasicDialog, {
 
 
 CommentBlock = function(fileid, lineNumCell, linenum, comments) {
+	this.discard = function() {
+		delete gCommentBlocks[this.el.id];
+
+		this.el.hide(true, .35, function() {
+			this.el.remove();
+		}.createDelegate(this));
+	};
+
 	this.setCount = function(count) {
 		this.count = count;
 		this.el.dom.innerHTML = this.count;
@@ -255,6 +411,8 @@ CommentBlock = function(fileid, lineNumCell, linenum, comments) {
 		} else {
 			this.el.removeClass("draft");
 		}
+
+		this.hasDraft = hasDraft;
 	};
 
 	this.showCommentDlg = function() {
@@ -271,6 +429,7 @@ CommentBlock = function(fileid, lineNumCell, linenum, comments) {
 	this.comments = comments;
 	this.linenum = linenum;
 	this.localComment = "";
+	this.hasDraft = false;
 
 	this.el = dh.append(lineNumCell, {
 		tag: 'span',
@@ -292,6 +451,8 @@ CommentBlock = function(fileid, lineNumCell, linenum, comments) {
 	}, this, true);
 
 	this.setCount(comments.length);
+
+	gCommentBlocks[this.el.id] = this;
 };
 
 
@@ -344,6 +505,7 @@ var gSelectedAnchor = INVALID;
 var gCurrentAnchor = 0;
 var gFileAnchorToId = {};
 var gCommentDlg = null;
+var gCommentBlocks = {};
 var gGhostCommentFlag = null;
 
 YAHOO.util.Event.on(window, "load", onPageLoaded);

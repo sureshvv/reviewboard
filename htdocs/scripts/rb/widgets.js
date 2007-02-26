@@ -322,3 +322,56 @@ YAHOO.extendX(RB.widgets.InlineCommaListEditor, RB.widgets.InlineEditor, {
 		return this.getValue().split(/,\s*/);
 	},
 });
+
+
+RB.widgets.AutosizeTextArea = function(el, config) {
+	YAHOO.ext.util.Config.apply(this, config);
+
+	this.el = getEl(el);
+	this.el.setStyle("overflow", "hidden");
+
+	this.size = parseFloat(this.el.getStyle('height') || '100');
+	this.resizeStep = this.resizeStep || 10;
+	this.minHeight = this.minHeight || this.size;
+
+	this.events = {
+		'resize': true,
+	};
+
+	if (this.autoGrowVertical) {
+		this.el.on('keyup', this.autoGrow, this, true);
+		this.autoGrow();
+	}
+}
+
+YAHOO.extendX(RB.widgets.AutosizeTextArea, YAHOO.ext.util.Observable, {
+	autoGrow: function() {
+		this.shrink();
+		this.grow();
+		this.fireEvent('resize', this);
+	},
+
+	shrink: function() {
+		if (this.size <= this.minHeight + this.resizeStep) {
+			return;
+		}
+
+		if (this.el.dom.scrollHeight <= this.el.dom.clientHeight) {
+			this.size -= 2;
+			this.el.setHeight(this.getHeight());
+			this.shrink();
+		}
+	},
+
+	grow: function() {
+		if (this.el.dom.scrollHeight > this.el.dom.clientHeight) {
+			this.size += 2;
+			this.el.setHeight(this.getHeight());
+			this.grow();
+		}
+	},
+
+	getHeight: function() {
+		return this.size + this.resizeStep;
+	},
+});

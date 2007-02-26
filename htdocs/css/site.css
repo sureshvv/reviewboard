@@ -455,7 +455,7 @@ table.sidebyside .commentflag.draft {
   font-weight: bold;
 }
 
-#comment-dlg #commentform textarea {
+#comment-dlg textarea {
   height: 100px;
   width: 450px;
   margin: 5px 0 0 0;
@@ -481,8 +481,12 @@ table.sidebyside .commentflag.draft {
 }
 
 #comment-dlg #comments-list li.comment {
-  border-bottom: 1px #cccccc solid;
+  border-top: 1px #cccccc solid;
   margin-bottom: 0.4em;
+}
+
+#comment-dlg #comments-list li.comment:first-child {
+  border-top: 0px;
 }
 
 #comment-dlg #comments-list dt {
@@ -503,6 +507,47 @@ table.sidebyside .commentflag.draft {
 #comment-dlg #comments-list dt span {
   color: #487858;
   font-weight: normal;
+}
+
+#comment-dlg #tab-review label {
+  display: block;
+  padding-top: 10px;
+}
+
+#comment-dlg #review-body {
+  display: block;
+  border: 1px #888a85 solid;
+  height: 300px;
+  padding: 0px;
+  cursor: text;
+}
+
+#comment-dlg #review-body textarea {
+  margin: 0px;
+  height: 1.5em;
+  border: 0;
+  overflow: hidden;
+}
+
+#comment-dlg #review-body #all-review-comments {
+  margin: 0px 10px;
+  border-top: 1px #888a85 dotted;
+  border-bottom: 1px #888a85 dotted;
+  cursor: default;
+}
+
+#comment-dlg #review-body #all-review-comments ol {
+  margin: 0px;
+  padding: 5px 0px 0px 0px;
+  list-style: none;
+}
+
+#comment-dlg #review-body #all-review-comments dt .filename {
+  font-weight: bold;
+}
+
+#comment-dlg #review-body #all-review-comments dt .lines {
+  color: #487858;
 }
 
 #review_request_form input[type='text'] {

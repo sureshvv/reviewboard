@@ -176,7 +176,19 @@ YAHOO.extendX(CommentDialog, YAHOO.ext.BasicDialog, {
 		this.commentBlock = commentBlock;
 		this.updateCommentsList();
 		this.newCommentField.dom.value = this.commentBlock.localComment;
-		getEl('id_num_lines').dom.value = 1; // XXX
+		getEl('id_num_lines').dom.value = this.commentBlock.localNumLines;
+
+		var commentLabel = getEl('id_comment_label');
+
+		if (this.commentBlock.localNumLines == 1) {
+			commentLabel.dom.innerHTML = "Your comment for line " +
+			                            this.commentBlock.linenum;
+		} else {
+			commentLabel.dom.innerHTML = "Your comment for lines " +
+			                            this.commentBlock.linenum + " - " +
+			                            (this.commentBlock.linenum +
+			                             this.commentBlock.localNumLines - 1);
+		}
 	},
 
 	updateCommentsList: function() {
@@ -315,6 +327,7 @@ YAHOO.extendX(CommentDialog, YAHOO.ext.BasicDialog, {
 			}
 
 			commentBlock.localComment = "";
+			commentBlock.localNumLines = 1;
 
 			if (commentBlock.count == 0) {
 				commentBlock.discard();
@@ -429,6 +442,7 @@ CommentBlock = function(fileid, lineNumCell, linenum, comments) {
 	this.comments = comments;
 	this.linenum = linenum;
 	this.localComment = "";
+	this.localNumLines = 1;
 	this.hasDraft = false;
 
 	this.el = dh.append(lineNumCell, {
@@ -507,6 +521,14 @@ var gFileAnchorToId = {};
 var gCommentDlg = null;
 var gCommentBlocks = {};
 var gGhostCommentFlag = null;
+var gSelection = {
+	table: null,
+	begin: null,
+	beginNum: 0,
+	end: null,
+	endNum: 0,
+	lastSeenIndex: 0,
+};
 
 YAHOO.util.Event.on(window, "load", onPageLoaded);
 
@@ -612,12 +634,47 @@ function isLineNumCell(cell) {
 function addComments(fileid, lines) {
 	var table = getEl(fileid);
 
-	table.on('click', function(e) {
+	table.on('mousedown', function(e) {
 		var node = e.target;
+
 		if (isLineNumCell(node)) {
 			YAHOO.util.Event.stopEvent(e);
-			var commentBlock = new CommentBlock(fileid, node,
-			                                    parseInt(node.innerHTML), []);
+
+			var row = node.parentNode;
+
+			gSelection.table = table;
+			gSelection.lastSeenIndex = row.rowIndex;
+			gSelection.begin    = gSelection.end    = node;
+			gSelection.beginNum = gSelection.endNum = parseInt(node.innerHTML);
+			getEl(row).addClass("selected");
+		}
+	});
+
+	table.on('mouseup', function(e) {
+		var node = e.target;
+
+		if (isLineNumCell(node)) {
+			YAHOO.util.Event.stopEvent(e);
+
+			var commentBlock = new CommentBlock(fileid, gSelection.begin,
+			                                    gSelection.beginNum, []);
+			commentBlock.localNumLines =
+				gSelection.endNum - gSelection.beginNum + 1;
+
+			var rows = gSelection.table.dom.rows;
+
+			for (var i = gSelection.begin.parentNode.rowIndex;
+			     i <= gSelection.end.parentNode.rowIndex;
+				 i++) {
+
+				getEl(rows[i]).removeClass("selected");
+			}
+
+			gSelection.begin    = gSelection.end    = null;
+			gSelection.beginNum = gSelection.endNum = 0;
+			gSelection.rows = [];
+			gSelection.table = null;
+
 			commentBlock.showCommentDlg();
 		} else {
 			var tbody = null;
@@ -637,22 +694,44 @@ function addComments(fileid, lines) {
 	});
 
 	table.on('mouseover', function(e) {
-		var node = e.target;
-		if (isLineNumCell(node) && node.childNodes.length == 1) {
-			if (!gGhostCommentFlag) {
-				gGhostCommentFlag = dh.append(document.body, {
-					tag: 'img',
-					src: '/images/comment-ghost.png',
-				}, true);
-				gGhostCommentFlag.enableDisplayMode();
-				gGhostCommentFlag.setAbsolutePositioned();
-				gGhostCommentFlag.setX(2);
+		var node = getEl(e.target);
+		if (node.hasClass("commentflag")) {
+			node = getEl(node.dom.parentNode);
+		}
+
+		if (isLineNumCell(node.dom)) {
+			node.setStyle("cursor", "pointer");
+
+			if (gSelection.table == table) {
+				var linenum = parseInt(node.dom.innerHTML);
+
+				if (linenum >= gSelection.beginNum) {
+					var row = node.dom.parentNode;
+
+					for (var i = gSelection.lastSeenIndex;
+						 i <= row.rowIndex;
+						 i++) {
+						getEl(table.dom.rows[i]).addClass("selected");
+					}
+
+					gSelection.end = node.dom;
+					gSelection.endNum = linenum;
+					gSelection.lastSeenIndex = row.rowIndex;
+				}
+			} else if (node.dom.childNodes.length == 1) {
+				if (!gGhostCommentFlag) {
+					gGhostCommentFlag = dh.append(document.body, {
+						tag: 'img',
+						src: '/images/comment-ghost.png',
+					}, true);
+					gGhostCommentFlag.enableDisplayMode();
+					gGhostCommentFlag.setAbsolutePositioned();
+					gGhostCommentFlag.setX(2);
+				}
+
+				gGhostCommentFlag.setTop(node.getY() - 1);
+				gGhostCommentFlag.show();
 			}
-
-			getEl(node).setStyle("cursor", "pointer");
-
-			gGhostCommentFlag.setTop(getEl(node).getY() - 1);
-			gGhostCommentFlag.show();
 		}
 	});
 
@@ -660,6 +739,25 @@ function addComments(fileid, lines) {
 		var relTarget = e.relatedTarget || e.toElement;
 		if (gGhostCommentFlag && relTarget != gGhostCommentFlag.dom) {
 			gGhostCommentFlag.hide();
+		}
+
+		if (gSelection.table == table) {
+			var fromNode = getEl(e.originalTarget);
+
+			if (fromNode.hasClass("commentflag")) {
+				fromNode = getEl(fromNode.dom.parentNode);
+			}
+
+			if (isLineNumCell(relTarget)) {
+				var destRowIndex = relTarget.parentNode.rowIndex;
+
+				if (destRowIndex >= gSelection.begin.parentNode.rowIndex) {
+					for (var i = gSelection.lastSeenIndex;
+						 i > relTarget.parentNode.rowIndex; i--) {
+						getEl(table.dom.rows[i]).removeClass("selected");
+					}
+				}
+			}
 		}
 	});
 

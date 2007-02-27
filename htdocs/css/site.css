@@ -372,16 +372,8 @@ table.sidebyside tbody th {
   background: #F0F0F0;
 }
 
-table.sidebyside tbody.replace th {
-  background: #fffe88;
-}
-
-table.sidebyside tbody.delete th {
-  background: #fcc8c8;
-}
-
-table.sidebyside tbody.insert th {
-  background: #aeffac;
+table.sidebyside tbody tr.selected {
+  background: #e2e2e2;
 }
 
 table.sidebyside tbody.collapsed {
@@ -407,10 +399,14 @@ table.sidebyside tbody.replace {
 
 table.sidebyside tbody.replace .hl {
   background: #e7e645;
-  /* XXX: this looks too much like a link ;)
-  color: blue;
-  border-bottom: 1px blue solid;
-  */
+}
+
+table.sidebyside tbody.replace th {
+  background: #fffe88;
+}
+
+table.sidebyside tbody.replace tr.selected {
+  background: #e2e179;
 }
 
 table.sidebyside tbody.delete {
@@ -419,10 +415,26 @@ table.sidebyside tbody.delete {
   border-bottom: 1px #303030 solid;
 }
 
+table.sidebyside tbody.delete th {
+  background: #fcc8c8;
+}
+
+table.sidebyside tbody.delete tr.selected {
+  background: #dfb1b1;
+}
+
 table.sidebyside tbody.insert {
   background: #aeffac;
   border-top: 1px #303030 solid;
   border-bottom: 1px #303030 solid;
+}
+
+table.sidebyside tbody.insert th {
+  background: #aeffac;
+}
+
+table.sidebyside tbody.insert tr.selected {
+  background: #9ae298;
 }
 
 /* Extra whitespace highlight */

@@ -809,19 +809,16 @@ function GetNextFileAnchor(dir) {
 
 function SetHighlighted(anchor, highlighted) {
 	var anchorNode = document.anchors[anchor];
-	var node = anchorNode.parentNode;
 	var nextNode = anchorNode.nextSibling.nextSibling;
 	var controlsNode;
 
-	if (node.tagName == "TD" || node.tagName == "TH") {
-		controlsNode = node.parentNode.getElementsByTagName('th')[0].firstChild.nextSibling;
-	}
-	else if (nextNode.className == "sidebyside") {
-		controlsNode = nextNode.getElementsByTagName('th')[0].firstChild;
-	}
-	else {
+	if (anchorNode.parentNode.tagName == "TH") {
+		controlsNode = anchorNode;
+	} else if (nextNode.className == "sidebyside") {
+		controlsNode = nextNode.rows[0].cells[0];
+	} else {
 		return;
 	}
 
-	controlsNode.nodeValue = (highlighted ? "▶" : "");
+	controlsNode.textContent = (highlighted ? "▶" : "");
 }

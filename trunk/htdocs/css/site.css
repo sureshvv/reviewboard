@@ -607,7 +607,7 @@ table.sidebyside .commentflag.draft {
   margin-top: 5px;
 }
 
-#review-request .editicon {
+.editicon {
   margin-left: 4px;
   vertical-align: bottom;
   cursor: pointer;

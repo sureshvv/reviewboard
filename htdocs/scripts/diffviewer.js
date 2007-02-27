@@ -175,6 +175,7 @@ YAHOO.extendX(CommentDialog, YAHOO.ext.BasicDialog, {
 
 		this.commentBlock = commentBlock;
 		this.updateCommentsList();
+		this.updateReviewCommentsList();
 		this.newCommentField.dom.value = this.commentBlock.localComment;
 		getEl('id_num_lines').dom.value = this.commentBlock.localNumLines;
 
@@ -202,7 +203,9 @@ YAHOO.extendX(CommentDialog, YAHOO.ext.BasicDialog, {
 				this.showError(res.statusText);
 			}.createDelegate(this),
 		});
+	},
 
+	updateReviewCommentsList: function() {
 		YAHOO.util.Connect.asyncRequest(
 			"GET", this.getReviewActionURL() + "comments/", {
 
@@ -287,6 +290,7 @@ YAHOO.extendX(CommentDialog, YAHOO.ext.BasicDialog, {
 		this.commentAction("set", function(res) {
 			this.commentBlock.setHasDraft(true);
 			this.populateComments(res.responseText);
+			this.updateReviewCommentsList();
 		}.createDelegate(this));
 	},
 

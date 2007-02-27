@@ -350,7 +350,6 @@ YAHOO.extendX(CommentDialog, YAHOO.ext.BasicDialog, {
 				this.hideMessage();
 				this.commentBlock.localComment = "";
 				onSuccess(res);
-				this.closeDlg();
 			}.createDelegate(this),
 
 			failure: function(res) {

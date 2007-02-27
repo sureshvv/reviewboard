@@ -284,6 +284,7 @@ YAHOO.extendX(CommentDialog, YAHOO.ext.BasicDialog, {
 			this.newCommentField.dom.value = "";
 			this.existingComments.dom.innerHTML = res.responseText;
 			this.updateCommentCount();
+                        this.closeDlg();
 		}.createDelegate(this));
 	},
 

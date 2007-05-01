@@ -13,7 +13,7 @@ Additional things you may want:
   * [http://www.saddi.com/software/flup flup]
   * [http://public.perforce.com/guest/robert_cowham/perforce/API/python/index.html p4python]
   * [http://pysvn.tigris.org pysvn]
-  * [http://code.google.com/p/python-nose nose] and [http://www.nedbatchelder.com/code/modules/coverage.py coverage.py] for unit testing.
+  * [http://code.google.com/p/python-nose nose] and [http://www.nedbatchelder.com/code/modules/coverage.py coverage.py] for running unit tests.
 
 = Configuration =
 

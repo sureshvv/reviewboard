@@ -14,12 +14,16 @@ Additional things you may want:
   * [http://www.saddi.com/software/flup flup]
   * [http://public.perforce.com/guest/robert_cowham/perforce/API/python/index.html p4python]
   * [http://pysvn.tigris.org pysvn]
+  * [http://code.google.com/p/python-nose nose] and [http://www.nedbatchelder.com/code/modules/coverage.py coverage.py] for unit testing.
 
 = Configuration =
 
 Django projects are configured through a settings file, which is basically just a python file that defines a bunch of variables.  Most of the settings for reviewboard are deployment-neutral, and these are kept in settings.py.  A few things (such as database configuration, SCM location, etc) need to be configured for each deployment.  These are kept in settings_local.py.
 
-To create this, first copy settings_local.py.tmpl to settings_local.py, then open it in your editor.  The easiest way to get up and running initially is to use sqlite as your database backend:
+To create this, first copy settings_local.py.tmpl to settings_local.py, then open it in your editor.
+
+== Database ==
+The easiest way to get up and running initially is to use sqlite as your database backend:
 {{{
 DATABASE_ENGINE = 'sqlite3'
 DATABASE_NAME = 'reviewboard.sqlite'
@@ -33,3 +37,14 @@ DATABASE_PASSWORD = 'password'
 DATABASE_HOST = '' # default (localhost)
 DATABASE_PORT = '' # default
 }}}
+Django can use a few other databases, but none except sqlite and mysql have been tested.
+
+== Secret Key ==
+Come up with a random string and set it in the `SECRET_KEY` variable.
+
+== SCM Backend ==
+Review Board has pluggable SCM (source-control management) backends.
+
+
+== Further Reading ==
+The [http://www.djangoproject.com/documentation/settings/ django documentation] contains a lot of additional keys that can be set.  In addition, any variables inside settings.py can be overridden in settings_local.py.

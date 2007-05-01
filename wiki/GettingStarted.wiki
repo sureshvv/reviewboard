@@ -15,5 +15,21 @@ Additional things you may want:
   * [http://public.perforce.com/guest/robert_cowham/perforce/API/python/index.html p4python]
   * [http://pysvn.tigris.org pysvn]
 
+= Configuration =
 
+Django projects are configured through a settings file, which is basically just a python file that defines a bunch of variables.  Most of the settings for reviewboard are deployment-neutral, and these are kept in settings.py.  A few things (such as database configuration, SCM location, etc) need to be configured for each deployment.  These are kept in settings_local.py.
 
+To create this, first copy settings_local.py.tmpl to settings_local.py, then open it in your editor.  The easiest way to get up and running initially is to use sqlite as your database backend:
+{{{
+DATABASE_ENGINE = 'sqlite3'
+DATABASE_NAME = 'reviewboard.sqlite'
+}}}
+If you would rather use mysql, you need to install it and get it running, and create a database to use.  Creating a special user is optional, especially if mysql is only open to "localhost".  You can then configure django to access it thusly:
+{{{
+DATABASE_ENGINE = 'mysql'
+DATABASE_NAME = 'reviewboard'
+DATABASE_USER = 'reviewboard'
+DATABASE_PASSWORD = 'password'
+DATABASE_HOST = '' # default (localhost)
+DATABASE_PORT = '' # default
+}}}

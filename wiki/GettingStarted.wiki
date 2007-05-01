@@ -61,6 +61,28 @@ P4_USER = 'foo'
 P4_PASSWORD = 'bar'
 }}}
 
+The astute observer will also notice scmtools/perforce_vmware.py.  This is a specialization of the PerforceTool which parses the changeset descriptions in use at [http://vmware.com VMware].  Adding special fields to perforce changelists is pretty common with larger depots, so this can be used as an example for how to deal with this.
 
 == Further Reading ==
 The [http://www.djangoproject.com/documentation/settings/ django documentation] contains a lot of additional keys that can be set.  In addition, any variables inside settings.py can be overridden in settings_local.py.
+
+= Running The Server =
+Now on to the fun part.
+
+== Creating the database ==
+You should now be finished configuring reviewboard.  To create the database tables, run
+{{{
+./manage.py syncdb
+}}}
+
+When asked to create a superuser, say "yes" and type in your desired account information.
+
+== Using the built-in web server ==
+Now, to run using django's built-in web server, type
+{{{
+./manage.py runserver
+}}}
+then open http://127.0.0.1:8000 in your web browser.  If all is working, you should be presented with a login box!  The built-in server is really really slow, so it's not really appropriate for final deployments, but it should get you started.
+
+== Running with apache or lighttpd ==
+This is more complicated.  There are some example configuration files for lighttpd and apache inside the conf/ directory in the reviewboard directory to get you started.  Another good resource is the [http://www.djangobook.com/en/beta/chapter21/ Deploying Django] chapter of [http://www.djangobook.com/ The Django Book]

@@ -43,7 +43,23 @@ Django can use a few other databases, but none except sqlite and mysql have been
 Come up with a random string and set it in the `SECRET_KEY` variable.
 
 == SCM Backend ==
-Review Board has pluggable SCM (source-control management) backends.
+Review Board has pluggable SCM (source-control management) backends.  As of now, there are two basic backends available:
+  * scmtools.svn.SVNTool
+  * scmtools.perforce.PerforceTool
+which connect to subversion and perforce, respectively.
+
+Here are some example configurations of these:
+{{{
+SCMTOOL_BACKEND = 'scmtools.svn.SVNTool'
+SCMTOOL_REPOPATH = 'http://reviewboard.googlecode.com/svn/trunk/'
+}}}
+
+{{{
+SCMTOOL_BACKEND = 'scmtools.perforce.PerforceTool'
+P4_PORT = 'public.perforce.com:1666'
+P4_USER = 'foo'
+P4_PASSWORD = 'bar'
+}}}
 
 
 == Further Reading ==

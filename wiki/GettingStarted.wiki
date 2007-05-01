@@ -45,7 +45,7 @@ Come up with a random string and set it in the `SECRET_KEY` variable.
 == SCM Backend ==
 Review Board has pluggable SCM (source-control management) backends.  As of now, there are two basic backends available:
   * scmtools.svn.SVNTool
-  * scmtools.perforce.PerforceTool
+  * scmtools.perforce.PerforceTool!
 which connect to subversion and perforce, respectively.
 
 Here are some example configurations of these:

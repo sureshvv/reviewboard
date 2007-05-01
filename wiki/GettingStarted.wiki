@@ -60,7 +60,7 @@ P4_USER = 'foo'
 P4_PASSWORD = 'bar'
 }}}
 
-The astute observer will also notice scmtools/perforce_vmware.py.  This is a specialization of the PerforceTool which parses the changeset descriptions in use at [http://vmware.com VMware].  Adding special fields to perforce changelists is pretty common with larger depots, so this can be used as an example for how to deal with this.
+The astute observer will also notice scmtools/perforce_vmware.py.  This is a specialization of the !PerforceTool which parses the changeset descriptions in use at [http://vmware.com VMware].  Adding special fields to perforce changelists is pretty common with larger depots, so this can be used as an example for how to deal with this.
 
 == Further Reading ==
 The [http://www.djangoproject.com/documentation/settings/ django documentation] contains a lot of additional keys that can be set.  In addition, any variables inside settings.py can be overridden in settings_local.py.

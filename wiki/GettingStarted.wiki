@@ -9,8 +9,7 @@ At the very least, you need:
 
 Additional things you may want:
   * [http://www.mysql.org Mysql] 5.0.31 or newer
-  * [http://www.lighttpd.net lighttpd] or
-  * [http://www.apache.org apache]
+  * [http://www.lighttpd.net lighttpd] or [http://www.apache.org apache]
   * [http://www.saddi.com/software/flup flup]
   * [http://public.perforce.com/guest/robert_cowham/perforce/API/python/index.html p4python]
   * [http://pysvn.tigris.org pysvn]

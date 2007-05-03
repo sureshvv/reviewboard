@@ -85,3 +85,6 @@ then open http://127.0.0.1:8000 in your web browser.  If all is working, you sho
 
 == Running with apache or lighttpd ==
 This is more complicated.  There are some example configuration files for lighttpd and apache inside the conf/ directory in the reviewboard directory to get you started.  Another good resource is the [http://www.djangobook.com/en/beta/chapter21/ Deploying Django] chapter of [http://www.djangobook.com/ The Django Book]
+
+== Set the site URL ==
+Log in to http://127.0.0.1:8000/admin as your superuser account.  Click "Sites", then "example.com".  Change both the domain and display names to reference your server.  Without this, emails will have http://example.com/ instead of your reviewboard server.

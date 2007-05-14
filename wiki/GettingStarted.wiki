@@ -95,4 +95,4 @@ The path identifies which server to contact.  For subversion repositories, give 
 The astute observer will also notice scmtools/perforce_vmware.py.  This is a specialization of the !PerforceTool which parses the changeset descriptions in use at [http://vmware.com VMware].  Adding special fields to perforce changelists is pretty common with larger depots, so this can be used as an example for how to deal with this.
 
 == Configure Groups ==
-When a user first logs in, they will be directed to the user profile page and asked to join groups.  Once again, create these through the django admin UI.  Each group is associated with a mailing list, which will be copied on relevant emails.
+When a user first logs in, they will be directed to the user profile page and asked to join groups.  Once again, create these through the django admin UI.  There are two Groups tables -- make sure to add these to the one within the "Reviews" section, not "Auth".  Each group is associated with a mailing list, which will be copied on relevant emails.

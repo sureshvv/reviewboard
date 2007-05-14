@@ -41,6 +41,10 @@ Django can use a few other databases, but none except sqlite and mysql have been
 == Secret Key ==
 Come up with a random string and set it in the `SECRET_KEY` variable.
 
+== Bug Tracker URL ==
+The `BUGZILLA_URL` variable is used to configure your bug tracker.  Bug numbers listed in review requests will automatically be hyperlinked to the relevant bugs.  This URL should be a format string with a single "%s" where the bug ID should go in the URL.  For example,
+the value in settings_local.py.tmpl is `'http://bugzilla/show_bug.cgi?id=%s'`.  Bugzilla users can just replace "bugzilla" here with the address of their local server.
+
 == Further Reading ==
 The [http://www.djangoproject.com/documentation/settings/ django documentation] contains a lot of additional keys that can be set.  In addition, any variables inside settings.py can be overridden in settings_local.py.
 

@@ -45,3 +45,12 @@ All information should be retrievable through a specified range of time:
   * "Month"
   * "Year"
   * "All"
+
+
+= Views =
+
+  * Status report view
+    * Plain text
+    * Wiki formats (for copying/pasting into a wiki)
+  * Graphs
+  * Text

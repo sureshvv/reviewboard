@@ -1,4 +1,5 @@
 #summary Instructions for getting reviewboard initially up and running.
+#labels Featured,Phase-Deploy
 
 = Basic Dependencies =
 

@@ -1,0 +1,21 @@
+#summary How to get started as a Review Board user
+
+= Introduction =
+
+This is very much a work in progress.  Feel free to help out writing
+this!
+
+= Details =
+
+Not much here yet...
+
+== Perforce ==
+
+Unfortunately, `p4 diff` is pretty limited.  If you're posting reviews
+against a perforce repository, the easiest thing to do is use the
+`post-review` tool.  If your administrator has not provided a customized
+version, download http://reviewboard.googlecode.com/svn/trunk/reviewboard/contrib/perforce/post-review
+and set the "REVIEWBOARD_HOST" at the top to point to your review board
+server.
+
+You'll need Python and the simplejson module installed.

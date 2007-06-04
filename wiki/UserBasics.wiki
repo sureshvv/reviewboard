@@ -9,6 +9,10 @@ this!
 
 Not much here yet...
 
+== Before You Start ==
+
+You'll need to use Firefox (2.0) or Camino.  Internet Explorer, Safari, Firefox 1.5 and Opera do not yet fully work.
+
 == Perforce ==
 
 Unfortunately, `p4 diff` is pretty limited.  If you're posting reviews
@@ -19,3 +23,25 @@ and set the "REVIEWBOARD_HOST" at the top to point to your review board
 server.
 
 You'll need Python and the simplejson module installed.
+
+== Reviewing Code ==
+
+To review code, navigate to the review request you wish to review and click "View Diff" in the top right.
+
+The general procedure is pretty simple:
+  # Navigate through the diff and look at the changed files.  There's a cursor available that lets you keep track of where you are (if you scroll to some other part of the code to look at something).  Pressing "n" will jump the cursor to the next change, and "p" to the previous.
+  # If you want to comment on one or more lines, click on the line number, or click and drag (downwards) to select multiple lines.  A box will pop up allowing you to enter your comment.  Click "Save Comment" when you're done.
+  # When finished with your review, click the Review tab in the comment dialog.  If you've closed this dialog, go ahead and open it again by clicking on a random line.  It doesn't matter.  Yes, we'll make this more sane soon.  Type in whatever you like above and below your contextual comments, click "Ship It" if you think it's ready to be submitted, and then click "Publish Review."
+
+After publishing a review, your review will be available in the Review Request page under the request box.  You will notice that every line you've commented on appears inline on the review box.  This helps the developer to see what you're talking about and helps for discussions about the code.  No more jumping back and forth between the e-mail client and the diff!
+
+== Discussing Reviews ==
+
+Discussions of a review take place on the review box.  Below each block of text, you'll find an Add Comment link.  Clicking this will preset a box that you can type in.  You can make several comments and then click "Publish" at the top of the review box to save your comments and e-mail it out.
+
+Discussions are single-threaded, like web forums, Digg, etc.  This allows people to read a conversation from top to bottom instead of jumping between lots of threads.
+
+= Reporting Problems =
+This system is still pretty new, and is undergoing constant development.  If you have a bug, please file it in the [http://code.google.com/p/reviewboard/issues/list Issue Tracker].  Keep in mind that tihs is a public bug tracker, so do not include any sensitive information in the bug report.
+
+Please also file feature requests if you have any.  We can't get to everything, but are working hard to make this a system people want to use.

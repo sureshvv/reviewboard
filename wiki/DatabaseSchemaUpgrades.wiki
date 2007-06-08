@@ -1,0 +1,28 @@
+#summary How to cope when the database schema changes
+
+= Introduction =
+
+Review Board is in heavy development, and while we try to avoid it, every so often the database schema has to change.  Django doesn't have an easy, built-in way to cope with this, so we've written an extra pair of tools to help out.
+
+= Details =
+
+First, *before you update*, check svn to see what changed between your current revision and HEAD.  If you see a "models.py" in there, chances are good that the schema needs to be updated.
+
+Stop your manage.py instance (to make sure nobody writes to the database after you dump it).  To save relevant information from the database, run
+{{{
+./contrib/db/backup-db.py > new-data.json
+mysqldump -p databasename > db-backup.sql
+}}}
+
+The SQL dump here is merely precautionary.  We haven't had any trouble with these scripts, but we wouldn't want you to lose your data!
+
+Now, update to the latest code
+{{{
+svn up
+}}}
+
+Finally, before restarting manage.py, load the database data:
+{{{
+./contrib/db/load-db.py new-data.json
+}}}
+This will regenerate the tables and populate them with your old data.  In case something goes amuck, you can do `svn up -rXX` (where XX is the revision you were on before), restore your SQL dump, and complain loudly to us.

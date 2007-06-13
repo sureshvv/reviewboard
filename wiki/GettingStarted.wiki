@@ -109,3 +109,6 @@ Here are some examples:
 
 == Configure Groups ==
 When a user first logs in, they will be directed to the user profile page and asked to join groups.  Once again, create these through the django admin UI.  There are two Groups tables -- make sure to add these to the one within the "Reviews" section, not "Auth".  Each group is associated with a mailing list, which will be copied on relevant emails.
+
+= Let Us Know! =
+We'd love to hear how you're using Review Board.  The [http://groups.google.com/group/reviewboard Review Board Discussion] google group is a great place to share how you've integrated Review Board into your workflow and how you think it could be improved.

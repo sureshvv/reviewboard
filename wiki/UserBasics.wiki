@@ -12,7 +12,7 @@ Not much here yet...
 
 == Before You Start ==
 
-You'll need to use Firefox (2.0) or Camino.  Internet Explorer, Safari, Firefox 1.5 and Opera do not yet fully work.
+Most common browsers should work.  We've heard of problems with Firefox 1.5 and Opera, but Firefox 2.0, Internet Explorer and Safari should work.
 
 == Perforce ==
 

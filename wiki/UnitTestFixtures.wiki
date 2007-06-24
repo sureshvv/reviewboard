@@ -1,0 +1,129 @@
+#summary Working with fixtures for unit tests
+#labels Phase-Implementation
+
+= Overview =
+
+Fixtures in Django are essentially dumps of part of the database. They contain data for the various models and can be loaded in automatically for unit tests. This makes it quite easy for us to have various sets of data to test against.
+
+For our tests, we currently have three sets of fixtures:
+
+  # accounts/fixtures/test_users.json - accounts/auth apps
+  # reviews/fixtures/test_reviewrequests.json - diffviewer/reviews apps
+  # scmtools/fixtures/test_scmtools.json - scmtools app
+
+Detailed information on what's contained in these fixtures is below.
+
+= Updating Fixtures =
+
+If you're going to add to the existing fixtures, you'll first want to modify settings_local.py and set your database to be sqlite. Then:
+
+{{{
+$ ./manage.py syncdb
+$ ./manage.py loaddata test_users test_scmtools test_reviewrequests
+}}}
+
+This should populate your database with the test data. After you've added to the data set, dump them back out:
+
+{{{
+$ ./manage.py dumpdata auth accounts > accounts/fixtures/test_users.json
+$ ./manage.py dumpdata diffviewer reviews > reviews/fixtures/test_reviewrequests.json
+$ ./manage.py dumpdata scmtools > scmtools/fixtures/test_scmtools.json
+}}}
+
+You can choose to only dump the data you've actually modified. If you've only created a review request, for example, feel free to just dump the diffviewer and reviews apps.
+
+
+= Using Fixtures in Tests =
+
+Using fixtures in tests is really easy. In your test class (which must be derived from `django.test.TestCase`), add a `fixtures = [...]` line listing the fixtures you intend to use. For example:
+
+{{{
+class MyTests(TestCase):
+    fixtures = ['test_users', 'test_reviewrequests', 'test_scmtools']
+
+    ...
+}}}
+
+Note that there are some dependencies to remember. `"test_users"` can be included by itself, as can `"test_scmtools"`, but if you want to use `"test_reviewrequests"`, you must include both `"test_users"` and `"test_scmtools"`.
+
+= Fixture Details =
+
+== test_users.json ==
+
+=== User entries ===
+
+==== "admin" ====
+
+  * *username:* "admin"
+  * *first_name:* "Admin"
+  * *last_name:* "User"
+  * *email:* "admin@example.com"
+  * *password:* "admin"
+  * *is_staff:* True
+  * *is_superuser:* True
+
+==== "doc" ====
+
+  * *username:* "admin"
+  * *first_name:* "Doc"
+  * *last_name:* "Dwarf"
+  * *email:* "doc@example.com"
+  * *password:* "doc"
+  * *Permissions set:* "reviews.can_change_status"
+
+==== "dopey" ====
+
+  * *username:* "dopey"
+  * *first_name:* "Dopey"
+  * *last_name:* "Dwarf"
+  * *email:* "dopey@example.com"
+  * *password:* "dopey"
+
+==== "grumpy" ====
+
+  * *username:* "grumpy"
+  * *first_name:* "Grumpy"
+  * *last_name:* "Dwarf"
+  * *email:* "grumpy@example.com"
+  * *password:* "grumpy"
+
+
+=== Group entries ===
+
+==== "devgroup" ====
+
+  * *name:* "devgroup"
+  * *display_name:* "Dev Group"
+  * *mailing_list:* "devgroup@example.com"
+  * *Users:* ["doc", "dopey"]
+
+==== "newgroup" ====
+
+  * *name:* "newgroup"
+  * *display_name:* "New Group"
+  * *mailing_list:* "newgroup@example.com"
+  * *Users:* None
+
+==== "emptygroup" ====
+
+  * *name:* "emptygroup"
+  * *display_name:* "Empty Group"
+  * *mailing_list:* None
+  * *Users:* None
+
+==== "privgroup" ====
+
+  * *name:* "privgroup"
+  * *display_name:* "Private Group"
+  * *mailing_list:* None
+  * *Users:* ["doc", "dopey", "grumpy"]
+
+
+== test_scmtools.json ==
+
+=== Repository entries ===
+
+==== "Review Board SVN" ====
+
+  * *name:* "Review Board SVN"
+  * *bug_tracker:* "http://code.googe.com/p/reviewboard/issues/detail?id=%s"

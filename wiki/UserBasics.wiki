@@ -14,6 +14,8 @@ Not much here yet...
 
 Most common browsers should work.  We've heard of problems with Firefox 1.5 and Opera, but Firefox 2.0, Internet Explorer and Safari should work.
 
+Many version control systems have a built-in diff tool, but if it calls the `diff` program, make sure you're using at least diffutils 2.8.x.
+
 == Perforce ==
 
 Unfortunately, `p4 diff` is pretty limited.  If you're posting reviews

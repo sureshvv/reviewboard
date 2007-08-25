@@ -1,0 +1,28 @@
+#summary Methods to optimize the server and improve responsiveness
+#labels Phase-Deploy
+
+= Introduction =
+
+We're working to keep Review Board lean and mean, but there are things you should do to improve responsiveness.
+
+
+== memcached ==
+
+The most important thing you can do is install [http://www.danga.com/memcached/ memcached] and configure it in `settings_local.py`. memcached is one of the most preferred caching backends for Django and Review Board and is used to keep various sorts of data in memory for quick retrieval. We use it for expensive operations such as generating the diffs.
+
+memcached does well when it has lots of memory to work with. At [http://www.vmware.com/ VMware], we have a dedicated memcached VM with 2GB of RAM.
+
+To set up memcache, put the following in `settings_local.py`:
+
+{{{
+CACHE_BACKEND = "memcached://ipaddress:11211/"
+}}}
+
+Replace _ipaddress_ with the address of the server running memcached. Often this will be `127.0.0.1`, if you're running it on the same server as Review Board.
+
+
+== GZip compression ==
+
+You can significantly reduce the size of the static files (CSS, JavaScript, etc.) by enabling GZip compression on the server.
+
+For installation instructions, refer to the [http://httpd.apache.org/docs/2.0/mod/mod_deflate.html Apache 2.0] or [http://trac.lighttpd.net/trac/wiki/Mod_Deflate lighttpd] documentation.

@@ -80,6 +80,8 @@ You'll want to optimize the server where you can. Refer to ServerOptimizations f
 == Set the site URL ==
 Log in to http://127.0.0.1:8000/admin as your superuser account.  Click "Sites", then "example.com".  Change both the domain and display names to reference your server.  Without this, emails will have http://example.com/ instead of your reviewboard server.
 
+Make sure that the SITE_ID variable in settings.py or settings_local.py is set to the object ID of the site object.
+
 == Set up repositories ==
 In the admin UI, select "Add" next to the "Repositories" label in the Scmtools section.  Give your repository a name and path, and select the type of server.  If your tool requires a login or password, provide those here.  By default, subversion and perforce
 tools are available.

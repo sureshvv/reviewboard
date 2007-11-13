@@ -45,9 +45,8 @@ repository.
 `post-review` is the preferred way to post review requests, mostly because it's
 so dang easy.  If your administrator has not provided a customized version,
 download
-http://reviewboard.googlecode.com/svn/trunk/reviewboard/contrib/perforce/post-review
-and set the "REVIEWBOARD_HOST" variable at the top to point to your review
-board server.
+http://reviewboard.googlecode.com/svn/trunk/reviewboard/contrib/tools/post-review.
+The first time you run it, it should ask you for a server (the full URL to your Review Board server).
 
 You'll need Python with the simplejson module installed for `post-review` to
 work.  Note that it currently only supports SVN and Perforce repositories.

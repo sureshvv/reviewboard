@@ -7,7 +7,6 @@ At the very least, you need:
   * [http://www.python.org python] 2.4 or newer
   * [http://www.djangoproject.com django] 0.97 (svn)
   * [http://www.sqlite.org sqlite] 3 (not necessary if using mysql)
-  * [http://freshmeat.net/projects/patchutils/ patchutils]
   * [http://www.pythonware.com/products/pil/ PIL]
 
 Additional things you may want:

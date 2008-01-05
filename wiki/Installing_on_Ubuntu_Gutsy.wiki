@@ -85,7 +85,7 @@ $ sudo apt-get install mercurial
 
 == Perforce ==
 
-Perforce is a bit more difficult to set up properly. See [Installing_Perforce_Support] for detailed instructions.
+Perforce is a bit more difficult to set up properly. You will need to install p4api and p4python. See [http://public.perforce.com/guest/robert_cowham/perforce/API/python/index.html#build p4python's documentation] for detailed instructions.
 
 
 = Development Tools =

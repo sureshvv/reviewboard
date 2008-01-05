@@ -19,6 +19,11 @@ Additional things you may want:
 
 Review Board has only been deployed on linux.  There may be things which have to be changed to deploy on other platforms such as windows or OS X.
 
+== Distribution-specific dependency guides ==
+
+ * [Installing_on_Ubuntu_Gutsy Installing on Ubuntu Gutsy (7.10)]
+
+
 = Configuration =
 
 Django projects are configured through a settings file, which is basically just a python file that defines a bunch of variables.  Most of the settings for reviewboard are deployment-neutral, and these are kept in settings.py.  A few things (such as database configuration, SCM location, etc) need to be configured for each deployment.  These are kept in settings_local.py.

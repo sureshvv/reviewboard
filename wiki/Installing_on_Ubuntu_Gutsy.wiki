@@ -8,7 +8,7 @@ Installation on Ubuntu Gutsy is easy for the most part, with exceptions. Most of
 Start by typing the following in a terminal:
 
 {{{
-$ sudo apt-get install subversion python-imaging python-flup
+$ sudo apt-get install subversion python-imaging python-flup memcached libmemcache-dev libmemcache0
 }}}
 
 Now change to a directory where you want to keep the Django source tree and type:
@@ -17,6 +17,12 @@ Now change to a directory where you want to keep the Django source tree and type
 $ svn co http://code.djangoproject.com/svn/django/trunk django_src
 $ cd django_src
 $ python setup.py install
+}}}
+
+Next we must set up cmemcache, the Python bindings for memcache. Download the [http://gijsbert.org/downloads/cmemcache/ latest release], extract it, and change to its directory. Then type:
+
+{{{
+$ sudo python setup.py install
 }}}
 
 If all went well, you should have Django installed and the base dependencies for Review Board.

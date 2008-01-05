@@ -16,7 +16,7 @@ Now change to a directory where you want to keep the Django source tree and type
 {{{
 $ svn co http://code.djangoproject.com/svn/django/trunk django_src
 $ cd django_src
-$ python setup.py install
+$ sudo python setup.py install
 }}}
 
 Next we must set up cmemcache, the Python bindings for memcache. Download the [http://gijsbert.org/downloads/cmemcache/ latest release], extract it, and change to its directory. Then type:

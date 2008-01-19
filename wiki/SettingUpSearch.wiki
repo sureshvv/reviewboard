@@ -28,6 +28,8 @@ Once this is done, cd back to the top-level PyLucene directory and edit the Make
 
 Finally, run `make`.  If this suceeds, follow up with `make install`.  If not, go back and check your Makefile settings.
 
+After it's built, you don't need to keep a JDK installed, just a JRE.  Removing this can free up a sizeable amount of space, which may be useful if you're trying to build a slim virtual machine.
+
 == Building the initial index ==
 Inside your settings_local.py file for Review Board, set `ENABLE_SEARCH` to True.  If you want the search index to exist in a specific location, also set the `SEARCH_INDEX` variable to the location you want.  This should point to an empty directory.
 

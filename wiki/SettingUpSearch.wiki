@@ -1,0 +1,37 @@
+#summary How to set up search
+
+= Introduction =
+
+Adding search to your review board is a bit of a complicated process, but it's worth it
+
+= Details =
+
+== Installing PyLucene ==
+
+This is by far the hardest step.  [http://pylucene.osafoundation.org/ PyLucene] is a wrapper around the Apache Lucene search engine for python, and is what Review Board search uses to do the indexing and querying.
+
+As a first step, download PyLucene.  There are two versions, _PyLucene with JCC_ and _PyLucene with GCJ_.  For this, you'll need the JCC version.  Luckily, this is also the easier of the two to build.  Download the latest and untar it. 
+
+You'll need to make sure you've got the build dependencies installed:
+  * gcc/g++
+  * A JDK
+  * Ant
+
+On Ubuntu, you can just type `apt-get install gcc g++ sun-java6-jdk ant`
+
+The first step in building PyLucene is to build JCC.  Inside the PyLucene directory, there's a `jcc` directory.  Enter it, and run:
+{{{
+python setup.py build && python setup.py install --prefix=/usr
+}}}
+
+Once this is done, cd back to the top-level PyLucene directory and edit the Makefile.  You'll need to write some custom settings for the distribution you're running on.  There are several examples, one of which may work unmodified.
+
+Finally, run `make`.  If this suceeds, follow up with `make install`.  If not, go back and check your Makefile settings.
+
+== Building the initial index ==
+Inside your settings_local.py file for Review Board, set `ENABLE_SEARCH` to True.  If you want the search index to exist in a specific location, also set the `SEARCH_INDEX` variable to the location you want.  This should point to an empty directory.
+
+Finally, run `./manage.py index --full`.  This should give you a progress indicator, and may take some time depending on the size of your database.
+
+== Maintaining the index ==
+In order to keep the search index up to date, `manage.py index` needs to run periodically.  A sample cron configuration exists in contrib/conf/.

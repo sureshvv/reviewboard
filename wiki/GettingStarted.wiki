@@ -8,6 +8,7 @@ At the very least, you need:
   * [http://www.djangoproject.com django] 0.97 (svn)
   * [http://www.sqlite.org sqlite] 3 (not necessary if using mysql)
   * [http://www.pythonware.com/products/pil/ PIL]
+  * [http://freshmeat.net/projects/patchutils/ patchutils]
 
 Additional things you may want:
   * [http://www.mysql.org Mysql] 5.0.31 or newer

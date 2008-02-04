@@ -24,6 +24,16 @@ Review Board has only been deployed on linux.  There may be things which have to
 
  * [Installing_on_Ubuntu_Gutsy Installing on Ubuntu Gutsy (7.10)]
 
+= Downloading =
+
+Review Board is still in development and we do not currently have a release for download. However, you can get the code through our Subversion development tree using the following command:
+
+{{{
+svn checkout http://reviewboard.googlecode.com/svn/trunk/reviewboard
+}}}
+
+We try to keep the development tree fairly stable, and we do our best to fix critical bugs as soon as they're reported.
+
 
 = Configuration =
 
@@ -73,7 +83,7 @@ Now, to run using django's built-in web server, type
 then open http://127.0.0.1:8000 in your web browser.  If all is working, you should be presented with a login box!  The built-in server is really really slow, so it's not really appropriate for final deployments, but it should get you started.
 
 == Running with apache or lighttpd ==
-This is more complicated.  There are some example configuration files for lighttpd and apache inside the conf/ directory in the reviewboard directory to get you started.  Another good resource is the [http://www.djangobook.com/en/beta/chapter21/ Deploying Django] chapter of [http://www.djangobook.com/ The Django Book]
+This is more complicated.  There are some example configuration files for lighttpd and apache inside the [http://reviewboard.googlecode.com/svn/trunk/reviewboard/contrib/conf/ conf/ directory] in the reviewboard directory to get you started.  Another good resource is the [http://www.djangobook.com/en/beta/chapter21/ Deploying Django] chapter of [http://www.djangobook.com/ The Django Book]
 
 == Optimize the server ==
 
@@ -116,7 +126,7 @@ Each repository also has a "Bug tracker" field.  Bug numbers listed in review re
 
 Here are some examples:
   * Bugzilla: `http://bugzilla.server/show_bug.cgi?id=%s`
-  * Trac: `http://trac.server/report/%s`
+  * Trac: `http://trac.server/ticket/%s`
   * Google issue tracker: `http://code.google.com/p/project/issues/detail?id=%s`
 
 == Configure Groups ==

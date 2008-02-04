@@ -26,6 +26,7 @@ The current administration UI is useful but we could simplify things a bit. The 
  * Viewing site statistics (such as server load, caching information, etc.)
  * Managing extensions
  * Downloading a database dump
+ * Clearing the cache
 
 A link will be provided for accessing the current admin page. We won't be removing any functionality.
 
@@ -44,6 +45,11 @@ Possible settings would include:
  * {{{REQUIRE_SITEWIDE_LOGIN}}}
 
 
+== User Manual ==
+
+If we don't somehow get to it before the 1.0 release, we really should work on having a useful, thorough user manual bundled with the software. Every page should have a "Help" link in the top-right. Optional inline help may also be useful in some areas, such as the diff viewer.
+
+
 == New Reviewable File Types ==
 
 There has been some request for reviewing files other than diffs. Screenshots have been the main one, though someone suggested Wiki changes and specialized views for certain text documents.
@@ -51,3 +57,40 @@ There has been some request for reviewing files other than diffs. Screenshots ha
 It would be nice to make our current comment setup a bit more generalized and allow new models provided by extensions to associate a comment with their own data. These comments would be part of the review, and would have the extension render the necessary comments in the review. The extension would also be responsible for providing the whole review UI for this file type.
 
 This would need some help from post-review, as binary files are not included in diffs. We would have to manually upload some files. Perhaps we can expose a list of supported mimetypes and file extensions for review, accessible through the API, and have post-review query that when deciding what to include in the diff.
+
+
+== Review Request Update Notifications ==
+
+It would be handy to know if someone has posted an update to a review request that you're currently on. We could pop up a little notification in the corner, similar to what GMail does for new conversations, informing the user that the review request has updated. There would be "Update Page" and "Ignore" links.
+
+
+== Handle Large Diffs ==
+
+We tend to fall apart with really large diffs. We may want to examine the diff and determine if there's too many files to realistically view in one shot. We could then send only a few and have the JavaScript query for the rest in chunks. This way the server wouldn't be bogged down and time out with one request.
+
+
+== Moved Regions in Diffs ==
+
+One feature I've been wanting to work on for a while is for our diff generator to be smarter about when code moves. Instead of marking this up as inserts/deletes, we can mark it as a "move" and indicate where it moved to. The diff viewer could then format this differently. This would give users a good visual cue that the code was only moved, not modified.
+
+We could go further in this by marking up moved regions even when part of the region changed, and then show those changes as well. This would require that we have some kind of threshold for number of changes (and how extensive those changes are) within a region of moved lines. It would be tricky and maybe we only care about the first part for now.
+
+
+== Improved Auto-Complete ==
+
+Our current auto-complete is nice, but one easy way to improve it is to allow for showing the full names/group display names alongside the IDs, and to also search full names and group display names when typing. That way, you could type either "chipx86" or "Christian" to find the right person.
+
+
+== CIA Support ==
+
+[http://www.cia.vc/ CIA] is a tool developed to keep track of commits to code repositories. These commits are often relayed to project IRC channels. Some projects use it for their issue trackers. We could use it to notify when there are new review requests or reviews, giving people in project channels instant notification and a URL. This would be an extension and not built into the codebase.
+
+
+== Attach Arbitrary Files ==
+
+Some users have requested that we allow for attaching any file type to a review request. This would be useful but of course could be open to abuse. Along with this feature we would want to provide a configurable max file size, maybe even configurable mimetypes. And of course administrators should be able to disable this feature.
+
+
+== Attach Arbitrary Links ==
+
+Likewise, it may be useful to have a list of links associated with a review request (such as a specialized diff for users that haven't seen the light yet). This would be fairly easy to add if we decided to do it.

@@ -41,7 +41,7 @@ $ sudo apt-get install python-pysqlite2
 == MySQL ==
 
 {{{
-$ sudo apt-get install mysql-server-5.0
+$ sudo apt-get install mysql-server-5.0 python-mysqldb
 }}}
 
 = Choosing a Web Server =

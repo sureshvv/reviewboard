@@ -1,0 +1,44 @@
+#summary Changes that require manual updates of Review Board servers
+#labels Phase-Deploy,Phase-Support,Featured
+
+= Introduction =
+
+As Review Board is in development, there are on occasion changes that require manual intervention for an upgrade. These may be server configuration changes that need to be performed or database migrations due to database schema changes. Keep track of this list for important updates.
+
+== Changes for 1.0 beta ==
+
+=== Upcoming media changes ===
+
+We're moving all media files into subdirectories of htdocs/media/ (/media by default in the URL). Some server changes will need to be made to work properly with this.
+
+  * Remove the htdocs/media symlink or directory, if it exists. Only do this if you specifically created this symlink/directory and it's not the new media directory we install. The new one contains "admin," "rb" and "djblets" directories, while the old one contains "img," "css" and "js."
+  * Remove any existing aliases pointing /media to Django's admin/media directory (or elsewhere) in the web server configuration file.
+  * Remove any existing aliases for /images, /css or /scripts.
+  * Add an alias pointing /media to the htdocs/media directory in your installation.
+
+For example, while an old configuration may look like this:
+
+{{{
+<VirtualHost *:80>
+  ...
+
+  Alias /media /usr/lib/python2.5/site-packages/django/contrib/admin/media
+  Alias /images /path/to/reviewboard/htdocs/images
+  Alias /css /path/to/reviewboard/htdocs/css
+  Alias /scripts /path/to/reviewboard/htdocs/scripts
+  Alias /errordocs /path/to/reviewboard/htdocs/errordocs
+</VirtualHost>
+}}}
+
+The new configuration would look like:
+
+{{{
+<VirtualHost *:80>
+  ...
+
+  Alias /media /path/to/reviewboard/htdocs/media
+  Alias /errordocs /path/to/reviewboard/htdocs/errordocs
+</VirtualHost>
+}}}
+
+The configuration required is highly dependent on your setup and server software. New example configuration files are provided in contrib/conf/.

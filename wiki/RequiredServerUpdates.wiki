@@ -51,7 +51,6 @@ For example:
 
 {{{
 $ cd reviewboard/htdocs
-$ mv htdocs/images/uploaded/* htdocs/media/uploaded/images/
-$ rm -rf htdocs/images/uploaded
+$ mv htdocs/images/uploaded htdocs/media/uploaded/images
 $ chown -R apache:apache htdocs/media/uploaded
 }}}

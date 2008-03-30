@@ -7,14 +7,16 @@ As Review Board is in development, there are on occasion changes that require ma
 
 == Changes for 1.0 beta ==
 
-=== Upcoming media changes ===
+=== r1247 - Media changes ===
 
-We're moving all media files into subdirectories of htdocs/media/ (/media by default in the URL). Some server changes will need to be made to work properly with this.
+We've moved all media files into subdirectories of htdocs/media/ (/media by default in the URL). Some server changes will need to be made to work properly with this.
 
-  * Remove the htdocs/media symlink or directory, if it exists. Only do this if you specifically created this symlink/directory and it's not the new media directory we install. The new one contains "admin," "rb" and "djblets" directories, while the old one contains "img," "css" and "js."
+  * Remove the htdocs/media symlink or directory, if it exists. You'll only need to do this if you specifically created this symlink/directory and it's not the new media directory we install. The new one contains "admin," "rb" and "djblets" directories, while the old one contains "img," "css" and "js." You can ignore this until svn complains about the directory when you update.
   * Remove any existing aliases pointing /media to Django's admin/media directory (or elsewhere) in the web server configuration file.
   * Remove any existing aliases for /images, /css or /scripts.
   * Add an alias pointing /media to the htdocs/media directory in your installation.
+  * Move your screenshots from htdocs/images/uploaded into htdocs/media/uploaded/images.
+    See below for more information.
 
 For example, while an old configuration may look like this:
 
@@ -42,3 +44,14 @@ The new configuration would look like:
 }}}
 
 The configuration required is highly dependent on your setup and server software. New example configuration files are provided in contrib/conf/.
+
+You will also need to update your uploaded images directory. Previously screenshots and other uploaded images were kept in htdocs/images/uploaded/. Now you will have to place them in htdocs/media/uploaded/images/. Note that the uploaded/ and uploaded/images/ directories should be owned by the user that your web server runs as so that the server can write files to the directory.
+
+For example:
+
+{{{
+$ cd reviewboard/htdocs
+$ mv htdocs/images/uploaded/* htdocs/media/uploaded/images/
+$ rm -rf htdocs/images/uploaded
+$ chown -R apache:apache htdocs/media/uploaded
+}}}

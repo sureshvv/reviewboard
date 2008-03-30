@@ -54,3 +54,9 @@ $ cd reviewboard/htdocs
 $ mv htdocs/images/uploaded htdocs/media/uploaded/images
 $ chown -R apache:apache htdocs/media/uploaded
 }}}
+
+Then fix your screenshot database entries by typing:
+
+{{{
+$ ./manage.py fixscreenshots
+}}}

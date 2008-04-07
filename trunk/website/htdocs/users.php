@@ -18,7 +18,7 @@
        a variety of advanced Internet and networking systems and devices.</li>
  <li><a href="http://www.tripwire.com/">Tripwire, Inc.</a>
      - Recognized leader of configuration audit and control soluitons.</li>
- <li><a href="http://www.vmware.com/">VMware</a></li>
+ <li><a href="http://www.vmware.com/">VMware</a>
      - Leading provider in desktop and enterprise virtualization products.</li>
  <li><a href="http://www.wesabe.com/">Wesabe</a>
      - A community of real people dealing with real money issues.</li>

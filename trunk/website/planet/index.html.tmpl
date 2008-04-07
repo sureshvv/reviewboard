@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+ <head>
+  <title>Review Board Hacker Blog</title>
+  <link rel="stylesheet" type="text/css" href="/css/site.css" />
+  <link rel="stylesheet" type="text/css" href="/css/planet.css" />
+  <link rel="icon" href="/favicon.ico" type="image/png" />
+  <link rel="SHORTCUT ICON" href="/favicon.ico" type="image/png" />
+  <link rel="alternate" type="application/rss+xml"
+        title="Review Board Hacker Blog"
+        href="http://feeds.feedburner.com/ReviewBoard" />
+ </head>
+ <body>
+  <div class="box-container">
+   <div class="box pageheader">
+    <div class="box-inner">
+     <h1><a href="/">Review Board</a></h1>
+     <h2>Code reviews are fun again! ...almost.</h2>
+    </div>
+   </div>
+  </div>
+  <div class="box-container">
+   <ul id="navbar">
+    <li><a href="/blog/">Blog</a></li>
+    <li><a href="http://demo.review-board.org/">Demo</a></li>
+    <li><a href="http://groups.google.com/group/reviewboard">Discuss</a></li>
+    <li><a href="http://code.google.com/p/reviewboard/w/list">Wiki</a></li>
+    <li><a href="http://code.google.com/p/reviewboard/">Development</a></li>
+    <li class="subscribe"><a href="http://feeds.feedburner.com/ReviewBoard"><img src="/images/feed-icon-16x16.png" width="16" height="16" border="0" alt="" /> Subscribe</a></li>
+   </ul>
+  </div>
+<TMPL_LOOP Items>
+  <div class="box-container">
+   <div class="box contentbox">
+    <div class="box-inner" id="content">
+<!-- google_ad_section_start -->
+ <TMPL_IF new_date>
+     <h2 class="date"><TMPL_VAR new_date></h2>
+ </TMPL_IF>
+     <div class="entry">
+      <div class="post">
+       <div class="post2">
+        <div class="post-header">
+         <img class="face" src="/images/faces/<TMPL_VAR channel_face ESCAPE="HTML">" width="<TMPL_VAR channel_facewidth ESCAPE="HTML">" height="<TMPL_VAR channel_faceheight ESCAPE="HTML">" alt="" /><br />
+         <h4 class="post-title"><a href="<TMPL_VAR link ESCAPE="HTML">"><TMPL_VAR title></a></h4>
+         <div class="person-info">by <a href="<TMPL_VAR channel_link ESCAPE="HTML">" title="<TMPL_VAR channel_title ESCAPE="HTML">"><TMPL_VAR channel_name></a></div>
+        </div>
+        <div class="post-contents">
+<TMPL_VAR content>
+        </div>
+        <div class="post-footer">
+         <p><a href="<TMPL_VAR link ESCAPE="HTML">"><TMPL_VAR date></a></p>
+        </div>
+       </div>
+      </div>
+     </div>
+	</div>
+   </div>
+  </div>
+</TMPL_LOOP>
+<!-- google_ad_section_end -->
+  <div class="last-updated">Last updated: <TMPL_VAR date></div>
+  <div class="footer">
+   Content copyright by their respective authors.<br />
+   Powered by <a href="http://www.planetplanet.org/">Planet!</a>
+  </div>
+  <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+  <script type="text/javascript">
+  _uacct = "UA-1584268-3";
+  urchinTracker();
+  </script>
+ </body>
+</html>

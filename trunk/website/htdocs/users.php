@@ -25,7 +25,9 @@
 </ul>
 <p>
  If your company, team or project uses Review Board and would like to be on
- our list (we'd love to have you!), contact us and we'll be glad to add it.
+ our list (we'd love to have you!), contact us at
+ <a href="http://groups.google.com/group/reviewboard">reviewboard@googlegroups.com</a>
+ and we'll be glad to add it.
 </p>
 <?php
     site_end();

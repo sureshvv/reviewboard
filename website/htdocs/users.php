@@ -16,10 +16,12 @@
  <li><a href="http://www.netlogicmicro.com/">NetLogic Microsystems</a>
      - A semiconductor company that develops knowledge-based processors for
        a variety of advanced Internet and networking systems and devices.</li>
- <li><a href="http://www.vmware.com/">VMware</a>
+ <li><a href="http://www.vmware.com/">VMware</a></li>
      - Leading provider in desktop and enterprise virtualization products.</li>
+ <li><a href="http://www.wesabe.com/">Wesabe</a>
+     - A community of real people dealing with real money issues.</li>
  <li><a href="http://search.yahoo.com/">Yahoo! Web Search</a>
-     - Yahoo!'s online search.
+     - Yahoo!'s online search.</li>
 </ul>
 
 <h1>Projects Using Review Board</h1>

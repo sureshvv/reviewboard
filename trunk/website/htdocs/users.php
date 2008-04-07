@@ -1,7 +1,7 @@
 <?php
     require "html.inc.php";
 
-    site_start();
+    site_start("Users");
 ?>
 <h1>Companies Using Review Board</h1>
 <ul>

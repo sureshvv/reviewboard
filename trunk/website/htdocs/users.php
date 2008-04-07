@@ -15,7 +15,10 @@
        a variety of advanced Internet and networking systems and devices.</li>
  <li><a href="http://www.vmware.com/">VMware</a>
      - Leading provider in desktop and enterprise virtualization products.</li>
+ <li><a href="http://search.yahoo.com/">Yahoo! Web Search</a>
+     - Yahoo!'s online search.
 </ul>
+
 <h1>Projects Using Review Board</h1>
 <ul>
  <li><a href="http://www.phinax.de/">PHInaX</a> and

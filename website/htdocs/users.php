@@ -7,6 +7,9 @@
 <ul>
  <li><a href="http://www.beatport.com/">Beatport</a>
      - An online electronic music store with hundreds of labels.</li>
+ <li><a href="http://www.hedgehoglab.com/">Hedgehog Lab</a>
+     - Developers of <a href="http://hedgehoglab.com/products/fixx">fixx</a>,
+	   an easy to use bug and issue tracking system.</li>
  <li><a href="http://www.ironport.com/">IronPort</a>
      - E-mail and web security provider for small businesses to large
        enterprises.</li>

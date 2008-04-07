@@ -1,0 +1,325 @@
+<?xml version="1.0"?>
+<rdf:RDF
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:foaf="http://xmlns.com/foaf/0.1/"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns="http://purl.org/rss/1.0/"
+>
+<channel rdf:about="http://review-board.org/blog/">
+	<title>Review Board Hacker Blog</title>
+	<link>http://review-board.org/blog/</link>
+	<description>Review Board Hacker Blog - http://review-board.org/blog/</description>
+
+	<items>
+		<rdf:Seq>
+			<rdf:li rdf:resource="http://www.chipx86.com/blog/?p=253" />
+			<rdf:li rdf:resource="http://www.chipx86.com/blog/?p=245" />
+			<rdf:li rdf:resource="http://www.chipx86.com/blog/?p=244" />
+			<rdf:li rdf:resource="http://www.chipx86.com/blog/?p=238" />
+			<rdf:li rdf:resource="http://www.chipx86.com/blog/?p=231" />
+			<rdf:li rdf:resource="http://www.chipx86.com/blog/?p=229" />
+			<rdf:li rdf:resource="http://www.chipx86.com/blog/?p=227" />
+			<rdf:li rdf:resource="http://david.navi.cx/?p=142" />
+			<rdf:li rdf:resource="http://www.chipx86.com/blog/?p=223" />
+			<rdf:li rdf:resource="http://david.navi.cx/blog/?p=137" />
+		</rdf:Seq>
+	</items>
+</channel>
+
+<item rdf:about="http://www.chipx86.com/blog/?p=253">
+	<title>Christian Hammond: Django Development with Djblets: Unrooting your URLs</title>
+	<link>http://www.chipx86.com/blog/?p=253</link>
+	<content:encoded>&lt;div class=&quot;series_toc&quot;&gt;&lt;h3&gt;Table of contents for Django Development with Djblets&lt;/h3&gt;&lt;ol&gt;&lt;li&gt;&lt;a href=&quot;http://www.chipx86.com/blog/?p=244&quot; title=&quot;Django Development with Djblets&quot;&gt;Django Development with Djblets&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;http://www.chipx86.com/blog/?p=245&quot; title=&quot;Django Development with Djblets: Custom Tag Helpers&quot;&gt;Django Development with Djblets: Custom Tag Helpers&lt;/a&gt;&lt;/li&gt;&lt;li&gt;Django Development with Djblets: Unrooting your URLs&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt; &lt;p&gt;Typically, Django sites are designed with the assumption that they&amp;#8217;ll have a domain or subdomain to themselves. Often times this is fine, but if you&amp;#8217;re developing a web application designed for redistribution, sometimes you can&amp;#8217;t make that assumption.&lt;/p&gt;
+&lt;p&gt;During development of &lt;a href=&quot;http://www.review-board.org/&quot;&gt;Review Board&lt;/a&gt;, many of our users wanted the ability to install Review Board into a subdirectory of one of their domains, rather than a subdomain.&lt;/p&gt;
+&lt;p&gt;There&amp;#8217;s a few rules that are important when making your site relocatable:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Always use &lt;tt&gt;MEDIA_URL&lt;/tt&gt; when referring to your media directory, so that people can customize where they put their media files.&lt;/li&gt;
+&lt;li&gt;Don&amp;#8217;t hard-code URLs in templates. Use the &lt;tt&gt;{% url %}&lt;/tt&gt; tag or &lt;tt&gt;get_absolute_url()&lt;/tt&gt; when possible.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;These solve some of the issues, but doesn&amp;#8217;t address relocating a Django site to a subdirectory.&lt;/p&gt;
+&lt;p&gt;Djblets fills in this gap by providing a special URL handler designed to act as a prefix for all your projects&amp;#8217; URLs. To make use of this, you need to modify your &lt;tt&gt;settings.py&lt;/tt&gt; file as follows:&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;settings.py&lt;/b&gt;&lt;/p&gt;
+
+&lt;div class=&quot;wp_syntax&quot;&gt;&lt;div class=&quot;code&quot;&gt;&lt;pre class=&quot;python&quot;&gt;TEMPLATE_CONTEXT_PROCESSORS = &lt;span&gt;&amp;#40;&lt;/span&gt;
+    ...
+    &lt;span&gt;'djblets.util.context_processors.siteRoot'&lt;/span&gt;,
+&lt;span&gt;&amp;#41;&lt;/span&gt;
+&amp;nbsp;
+SITE_ROOT_URLCONF = &lt;span&gt;'yourproject.urls'&lt;/span&gt;
+ROOT_URLCONF = &lt;span&gt;'djblets.util.rooturl'&lt;/span&gt;
+&amp;nbsp;
+SITE_ROOT = &lt;span&gt;'/'&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;tt&gt;SITE_ROOT&lt;/tt&gt; specifies where the site is located. By default, this should be &amp;#8220;/&amp;#8221;, but this can be changed to point to any path. For example, &amp;#8220;/myproject/&amp;#8221;. Note that it should always have a leading and a trailing slash.&lt;/p&gt;
+&lt;p&gt;The custom template context processor (&lt;tt&gt;djblets.util.context_processors.siteRoot&lt;/tt&gt;) will make &lt;tt&gt;SITE_ROOT&lt;/tt&gt; accessible to templates.&lt;/p&gt;
+&lt;p&gt;&lt;tt&gt;SITE_ROOT&lt;/tt&gt; should be used in templates when you need to refer to URLs that aren&amp;#8217;t designed to respect &lt;tt&gt;SITE_ROOT&lt;/tt&gt; (such as &lt;tt&gt;User.get_absolute_url&lt;/tt&gt;). Your own custom applications should always respect &lt;tt&gt;SITE_ROOT&lt;/tt&gt; whenever providing a URL.&lt;/p&gt;
+&lt;p&gt;&lt;tt&gt;ROOT_URLCONF&lt;/tt&gt; is typically what you would set to point to your project&amp;#8217;s URL. However, in this case, you&amp;#8217;ll be pointing it to &lt;tt&gt;djblets.util.rooturl&lt;/tt&gt;. This in turn will forward all URLs to your project&amp;#8217;s handler, defined in &lt;tt&gt;SITE_ROOT_URLCONF&lt;/tt&gt;.&lt;/p&gt;
+&lt;p&gt;This is all you need to have a fully relocatable Django site!&lt;/p&gt;
+&lt;p&gt;To sum up:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Add &lt;tt&gt;djblets.util.context_processors.siteRoot&lt;/tt&gt; to your &lt;tt&gt;TEMPLATE_CONTEXT_PROCESSORS&lt;/tt&gt;.&lt;/li&gt;
+&lt;li&gt;Set &lt;tt&gt;SITE_ROOT_URLCONF&lt;/tt&gt; to your project&amp;#8217;s URL handler.&lt;/li&gt;
+&lt;li&gt;Set &lt;tt&gt;ROOT_URLCONF&lt;/tt&gt; to &amp;#8216;djblets.util.rooturl&amp;#8217;&lt;/li&gt;
+&lt;li&gt;Prefix any URLs with &lt;tt&gt;SITE_ROOT&lt;/tt&gt; in your templates, unless the URL would already take &lt;tt&gt;SITE_ROOT&lt;/tt&gt; into account.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;This is functionality that will hopefully make its way into Django at some point. For now, you have an easy way of unrooting your Django project.&lt;/p&gt;
+ &lt;div class=&quot;series_links&quot;&gt;&lt;a href=&quot;http://www.chipx86.com/blog/?p=245&quot; title=&quot;Django Development with Djblets: Custom Tag Helpers&quot;&gt;Previous in series&lt;/a&gt; &lt;/div&gt;</content:encoded>
+	<dc:date>2008-04-04T06:35:11+00:00</dc:date>
+</item>
+<item rdf:about="http://www.chipx86.com/blog/?p=245">
+	<title>Christian Hammond: Django Development with Djblets: Custom Tag Helpers</title>
+	<link>http://www.chipx86.com/blog/?p=245</link>
+	<content:encoded>&lt;div class=&quot;series_toc&quot;&gt;&lt;h3&gt;Table of contents for Django Development with Djblets&lt;/h3&gt;&lt;ol&gt;&lt;li&gt;&lt;a href=&quot;http://www.chipx86.com/blog/?p=244&quot; title=&quot;Django Development with Djblets&quot;&gt;Django Development with Djblets&lt;/a&gt;&lt;/li&gt;&lt;li&gt;Django Development with Djblets: Custom Tag Helpers&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;http://www.chipx86.com/blog/?p=253&quot; title=&quot;Django Development with Djblets: Unrooting your URLs&quot;&gt;Django Development with Djblets: Unrooting your URLs&lt;/a&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt; &lt;p&gt;I&amp;#8217;m planning to cover all of what Django can do, but for now, let&amp;#8217;s start simple with something most Django developers spend way too much time creating: Custom tags.&lt;/p&gt;
+&lt;p&gt;Django&amp;#8217;s nice enough to provide a &lt;tt&gt;@register.simple_tag&lt;/tt&gt; decorator for creating very basic tags that don&amp;#8217;t take a context but do take parameters. This is great, but what if you want more? Many Django applications use the same boilerplate time and time again to create their tags, but we make it much easier.&lt;/p&gt;
+&lt;p&gt;Introducing &lt;tt&gt;@basictag&lt;/tt&gt; and &lt;tt&gt;@blocktag&lt;/tt&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;&lt;tt&gt;@basictag&lt;/tt&gt;&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;Ever wanted to use Django&amp;#8217;s &lt;tt&gt;@register.simple_tag&lt;/tt&gt; but needed access to the context? I&amp;#8217;ve found far too many cases where this would be useful, but Django doesn&amp;#8217;t make this easy. Your tag code would end up looking like this:&lt;/p&gt;
+
+&lt;div class=&quot;wp_syntax&quot;&gt;&lt;div class=&quot;code&quot;&gt;&lt;pre class=&quot;python&quot;&gt;&lt;span&gt;class&lt;/span&gt; MyTagNode&lt;span&gt;&amp;#40;&lt;/span&gt;template.&lt;span&gt;Node&lt;/span&gt;&lt;span&gt;&amp;#41;&lt;/span&gt;:
+    &lt;span&gt;def&lt;/span&gt; &lt;span&gt;__init__&lt;/span&gt;&lt;span&gt;&amp;#40;&lt;/span&gt;&lt;span&gt;self&lt;/span&gt;, arg1, arg2&lt;span&gt;&amp;#41;&lt;/span&gt;:
+        &lt;span&gt;self&lt;/span&gt;.&lt;span&gt;arg1&lt;/span&gt; = arg1
+        &lt;span&gt;self&lt;/span&gt;.&lt;span&gt;arg2&lt;/span&gt; = arg2
+&amp;nbsp;
+    &lt;span&gt;def&lt;/span&gt; render&lt;span&gt;&amp;#40;&lt;/span&gt;&lt;span&gt;self&lt;/span&gt;, context&lt;span&gt;&amp;#41;&lt;/span&gt;:
+        arg1 = Variable&lt;span&gt;&amp;#40;&lt;/span&gt;&lt;span&gt;self&lt;/span&gt;.&lt;span&gt;arg1&lt;/span&gt;&lt;span&gt;&amp;#41;&lt;/span&gt;.&lt;span&gt;resolve&lt;/span&gt;&lt;span&gt;&amp;#40;&lt;/span&gt;context&lt;span&gt;&amp;#41;&lt;/span&gt;
+        arg2 = Variable&lt;span&gt;&amp;#40;&lt;/span&gt;&lt;span&gt;self&lt;/span&gt;.&lt;span&gt;arg2&lt;/span&gt;&lt;span&gt;&amp;#41;&lt;/span&gt;.&lt;span&gt;resolve&lt;/span&gt;&lt;span&gt;&amp;#40;&lt;/span&gt;context&lt;span&gt;&amp;#41;&lt;/span&gt;
+&amp;nbsp;
+        &lt;span&gt;return&lt;/span&gt; context&lt;span&gt;&amp;#91;&lt;/span&gt;&lt;span&gt;'user'&lt;/span&gt;&lt;span&gt;&amp;#93;&lt;/span&gt;
+&amp;nbsp;
+@register.&lt;span&gt;tag&lt;/span&gt;
+&lt;span&gt;def&lt;/span&gt; mytag&lt;span&gt;&amp;#40;&lt;/span&gt;&lt;span&gt;parser&lt;/span&gt;, &lt;span&gt;token&lt;/span&gt;&lt;span&gt;&amp;#41;&lt;/span&gt;:
+    bits = &lt;span&gt;token&lt;/span&gt;.&lt;span&gt;split_contents&lt;/span&gt;&lt;span&gt;&amp;#40;&lt;/span&gt;&lt;span&gt;&amp;#41;&lt;/span&gt;
+    &lt;span&gt;return&lt;/span&gt; MyTagNode&lt;span&gt;&amp;#40;&lt;/span&gt;bits&lt;span&gt;&amp;#91;&lt;/span&gt;&lt;span&gt;1&lt;/span&gt;&lt;span&gt;&amp;#93;&lt;/span&gt;, bits&lt;span&gt;&amp;#91;&lt;/span&gt;&lt;span&gt;2&lt;/span&gt;&lt;span&gt;&amp;#93;&lt;/span&gt;&lt;span&gt;&amp;#41;&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Do this a few times and it&amp;#8217;s bound to drive you nuts. How about this instead?&lt;/p&gt;
+
+&lt;div class=&quot;wp_syntax&quot;&gt;&lt;div class=&quot;code&quot;&gt;&lt;pre class=&quot;python&quot;&gt;&lt;span&gt;from&lt;/span&gt; djblets.&lt;span&gt;util&lt;/span&gt;.&lt;span&gt;decorators&lt;/span&gt; &lt;span&gt;import&lt;/span&gt; basictag
+&amp;nbsp;
+@register.&lt;span&gt;tag&lt;/span&gt;
+@basictag&lt;span&gt;&amp;#40;&lt;/span&gt;takes_context=&lt;span&gt;True&lt;/span&gt;&lt;span&gt;&amp;#41;&lt;/span&gt;
+&lt;span&gt;def&lt;/span&gt; mytag&lt;span&gt;&amp;#40;&lt;/span&gt;context, arg1, arg2&lt;span&gt;&amp;#41;&lt;/span&gt;:
+    &lt;span&gt;return&lt;/span&gt; context&lt;span&gt;&amp;#91;&lt;/span&gt;&lt;span&gt;'user'&lt;/span&gt;&lt;span&gt;&amp;#93;&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Far less code and increased readability. Hooray!&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;&lt;tt&gt;@blocktag&lt;/tt&gt;&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;&lt;tt&gt;@blocktag&lt;/tt&gt; aims to do the same thing @basictag does but for block tags. A block tag is a tag that contains nested content, like &lt;tt&gt;@spaceless&lt;/tt&gt; or &lt;tt&gt;@for&lt;/tt&gt;. This usually requires even more boilerplate than the above code fragment, except with the added complexity of having to grab the contents of the block.&lt;/p&gt;
+&lt;p&gt;We&amp;#8217;ve condensed it down to this:&lt;/p&gt;
+
+&lt;div class=&quot;wp_syntax&quot;&gt;&lt;div class=&quot;code&quot;&gt;&lt;pre class=&quot;python&quot;&gt;&lt;span&gt;from&lt;/span&gt; djblets.&lt;span&gt;util&lt;/span&gt;.&lt;span&gt;decorators&lt;/span&gt; &lt;span&gt;import&lt;/span&gt; blocktag
+&amp;nbsp;
+@register.&lt;span&gt;tag&lt;/span&gt;
+@blocktag
+&lt;span&gt;def&lt;/span&gt; blinkblock&lt;span&gt;&amp;#40;&lt;/span&gt;context, nodelist, arg1, arg2&lt;span&gt;&amp;#41;&lt;/span&gt;:
+    &lt;span&gt;return&lt;/span&gt; &lt;span&gt;&amp;quot;&amp;amp;lt;blink&amp;amp;gt;%s&amp;amp;lt;/blink&amp;amp;gt;&amp;quot;&lt;/span&gt; % nodelist.&lt;span&gt;render&lt;/span&gt;&lt;span&gt;&amp;#40;&lt;/span&gt;context&lt;span&gt;&amp;#41;&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;If you&amp;#8217;ve built block tags in the past, you&amp;#8217;ll appreciate how simple that was.&lt;/p&gt;
+ &lt;div class=&quot;series_links&quot;&gt;&lt;a href=&quot;http://www.chipx86.com/blog/?p=244&quot; title=&quot;Django Development with Djblets&quot;&gt;Previous in series&lt;/a&gt; &lt;a href=&quot;http://www.chipx86.com/blog/?p=253&quot; title=&quot;Django Development with Djblets: Unrooting your URLs&quot;&gt;Next in series&lt;/a&gt;&lt;/div&gt;</content:encoded>
+	<dc:date>2008-02-29T12:37:46+00:00</dc:date>
+</item>
+<item rdf:about="http://www.chipx86.com/blog/?p=244">
+	<title>Christian Hammond: Django Development with Djblets</title>
+	<link>http://www.chipx86.com/blog/?p=244</link>
+	<content:encoded>&lt;div class=&quot;series_toc&quot;&gt;&lt;h3&gt;Table of contents for Django Development with Djblets&lt;/h3&gt;&lt;ol&gt;&lt;li&gt;Django Development with Djblets&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;http://www.chipx86.com/blog/?p=245&quot; title=&quot;Django Development with Djblets: Custom Tag Helpers&quot;&gt;Django Development with Djblets: Custom Tag Helpers&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;http://www.chipx86.com/blog/?p=253&quot; title=&quot;Django Development with Djblets: Unrooting your URLs&quot;&gt;Django Development with Djblets: Unrooting your URLs&lt;/a&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt; &lt;p&gt;&lt;a href=&quot;http://www.djangoproject.com/&quot;&gt;Django&lt;/a&gt; is an awesome development platform for web applications. With such features as database abstraction, template/view/url separation, built-in authentication with interchangeable backends, it&amp;#8217;s made web development much more enjoyable.&lt;/p&gt;
+&lt;p&gt;We use Django in &lt;a href=&quot;http://www.review-board.org/&quot;&gt;Review Board&lt;/a&gt; with much success. Over time, as we&amp;#8217;ve come to develop new features, we realized that much of our codebase was useful outside of Review Board and, bit by bit, moved pieces into a library we call Djblets.&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;What does Djblets do?&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;A bit of everything, really. Any time we have useful functionality that isn&amp;#8217;t tied to Review Board, we put it here.&lt;/p&gt;
+&lt;p&gt;Djblet&amp;#8217;s feature list currently consists of:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Authentication improvements, making it easy to register and login in one step, seamlessly, handle password recovery, and more.&lt;/li&gt;
+&lt;li&gt;Flexible datagrids for displaying data in a paginated list with user-specific column customization, ordering and sorting.&lt;/li&gt;
+&lt;li&gt;Decorators to drastically simplify creation of simple and block template tags.&lt;/li&gt;
+&lt;li&gt;Caching functions for calling a function and caching the result if the data isn&amp;#8217;t already in the cache, and a special URL pattern matcher that prevents caching of any contained URLs.&lt;/li&gt;
+&lt;li&gt;Unit testing utility classes.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;And of course more little things here and there.&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;Downloading Djblets&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;Djblets is not a released app, but it&amp;#8217;s pretty stable and well tested. You can check out a copy from our &lt;a href=&quot;http://svn.navi.cx/misc/trunk/djblets/djblets&quot;&gt;SVN repository&lt;/a&gt;, or automatically include it in your own repository through an &lt;tt&gt;svn:externals&lt;/tt&gt; entry.&lt;/p&gt;
+&lt;p&gt;Djblets is licensed under the MIT license, making it usable in most projects.&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;Using Djblets&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;Over time I&amp;#8217;ll be writing articles on using the many features of Djblets. See the other posts in the series, or dig around the Djblets source code.&lt;/p&gt;
+ &lt;div class=&quot;series_links&quot;&gt; &lt;a href=&quot;http://www.chipx86.com/blog/?p=245&quot; title=&quot;Django Development with Djblets: Custom Tag Helpers&quot;&gt;Next in series&lt;/a&gt;&lt;/div&gt;</content:encoded>
+	<dc:date>2008-02-29T12:35:35+00:00</dc:date>
+</item>
+<item rdf:about="http://www.chipx86.com/blog/?p=238">
+	<title>Christian Hammond: Review Board: The Past 5 Months</title>
+	<link>http://www.chipx86.com/blog/?p=238</link>
+	<content:encoded>&lt;p&gt;It&amp;#8217;s been about 5 months since I last gave a Review Board status update. Way too long, given how much has changed. So once again, let&amp;#8217;s start off with a few stats.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;b&gt;Total bugs open:&lt;/b&gt; 25&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Total bugs fixed:&lt;/b&gt; 186&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Feature requests open:&lt;/b&gt; 43&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Companies known to be using Review Board:&lt;/b&gt; at least 23&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Review Board has matured in recent months and has a very nice feature set. More and more we&amp;#8217;re seeing and hearing about companies using it in one or more teams. I was even lucky enough to &lt;a href=&quot;http://djangobook.com/en/1.0/appendixA/&quot;&gt;talk about it&lt;/a&gt; in the official &lt;a href=&quot;http://www.amazon.com/gp/redirect.html?ie=UTF8&amp;location=http%3A%2F%2Fwww.amazon.com%2FDefinitive-Guide-Django-Development-Right%2Fdp%2F1590597257%3Fie%3DUTF8%26s%3Dbooks%26qid%3D1199606657%26sr%3D8-1&amp;tag=chipx86com-20&amp;linkCode=ur2&amp;camp=1789&amp;creative=9325&quot;&gt;Django Book&lt;/a&gt;&lt;img src=&quot;http://www.assoc-amazon.com/e/ir?t=chipx86com-20&amp;l=ur2&amp;o=1&quot; width=&quot;1&quot; height=&quot;1&quot; border=&quot;0&quot; alt=&quot;&quot; /&gt;.&lt;/p&gt;
+&lt;p&gt;Development shows no sign of stalling. Our feature request list is a mile long, and our personal TODO lists are longer still. We&amp;#8217;ve implemented so many new features and fixed so many bugs that I can&amp;#8217;t even list them all, but let&amp;#8217;s take a look at the highlights.&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;New Top-Level Features&lt;/b&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;b&gt;iPhone support.&lt;/b&gt; Basic read-only iPhone support was added. It&amp;#8217;s more of a proof of concept and to make sure our codebase handles different UIs on top of it, but if your Review Board server is accessible from your iPhone, point Safari to &lt;tt&gt;/iphone/&lt;/tt&gt; for some fun.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Status Reports.&lt;/b&gt; Basic support for status reports have been added. While we don&amp;#8217;t have a fleshed out UI in place, the &lt;tt&gt;/reports/&lt;/tt&gt; URL will give you simple reports showing which review requests you&amp;#8217;ve reviewed, and other bits of information. This can even be presented in Wiki format!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;b&gt;Revision Control Systems Integration&lt;/b&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;b&gt;Mercurial support&lt;/b&gt;. One of our contributors has written support for doing review requests against Mercurial repositories. This supports local and remote repositories.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Git support&lt;/b&gt;. Basic Git support was written as well. It only works with local Git repositories (as it has to have access to &lt;tt&gt;.git&lt;/tt&gt; directories).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;b&gt;Diff Viewer&lt;/b&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;b&gt;Improved diff parser.&lt;/b&gt; We no longer require third party tools in order to parse diff files. We can do it ourselves faster and with greater flexibility. This has given us some speed advantages, reduced the hacks needed, and improved diff compatibility.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Interdiffs.&lt;/b&gt; Review Board can now display the differences between two revisions of a diff. This makes it much easier to review several iterations of large changes spanning many files.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Fixed diff line numbers.&lt;/b&gt; Line numbers in the diff viewer used to be artificial. They were essentially table row numbers. Now line numbers on the left-hand side of the diff viewer represent the actual line numbers in the original file, and line numbers on the right represent the new file.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;&amp;#8220;Review&amp;#8221; link&lt;/b&gt;. Added a &amp;#8220;Review&amp;#8221; link on the diff viewer and screenshot page for bringing up the Review dialog. Previously users had to click a link on the diff viewer regardless of whether they were leaving a comment on the diff.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;b&gt;Reviews&lt;/b&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;b&gt;Show commented screenshots on reviews.&lt;/b&gt; Portions of a screenshot that the user has commented on will appear in the review body, much like diff fragments do. This greatly improves the review process when it comes to screenshots.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Updated diffs create a new draft.&lt;/b&gt; Newly updated diffs used to instantly appear and send out an e-mail, which was annoying if you realized you needed to change and re-upload the diff again. Now updating the diff just creates a draft, if one doesn&amp;#8217;t already exist. The diff won&amp;#8217;t show up or spam users until you&amp;#8217;re ready for it to.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Auto-completion for reviewers.&lt;/b&gt; The reviewer lists now have support for auto-completion of group names and usernames. As you&amp;#8217;re typing, a list of choices based on the current text will appear. Navigating with the arrow keys or hitting Tab will auto-complete the selected entry.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Default reviewers.&lt;/b&gt; Administrators can now specify default reviewers for file paths (as defined by a regular expression). This allows certain groups to &amp;#8220;own&amp;#8221; files or paths and to be included on the reviewers list any time a diff touching those is uploaded.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Improved page banners.&lt;/b&gt; The draft banner at the top of the review request page has been improved and is now more clear. No longer do you have to save a draft and then publish it. It&amp;#8217;s now one single button on the banner. We also added &amp;#8220;discarded&amp;#8221; and &amp;#8220;submitted&amp;#8221; banners.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Alpha-numeric bug numbers.&lt;/b&gt; Not all bug trackers use numeric-only bug identifiers. We now support alpha-numeric bug numbers.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;b&gt;Dashboard and Review Request Lists&lt;/b&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;b&gt;Starred review requests and groups.&lt;/b&gt; Users can now &amp;#8220;star&amp;#8221; a review request they wish to keep track of in their dashboard. They&amp;#8217;ll be placed on the CC list and see changes in the dashboard. Users can also star a group in order to add it to their &amp;#8220;Watched Groups&amp;#8221; list in the dashboard.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Toggle display of submitted review requests.&lt;/b&gt; The &amp;#8220;All Review Requests&amp;#8221; page can now filter out submitted review requests via a toggleable &amp;#8220;Show/Hide Review Requests&amp;#8221; link.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Customizable columns.&lt;/b&gt; The various lists pages and the dashboard now support customizable columns. There are non-default columns that can be added to the view to show extra data, and existing columns can be removed. If you prefer all dates to be relative or absolute, just add the right columns. Furthermore, columns can be reordered simply by dragging them into the desired order.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;New dashboard column types:&lt;/b&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;b&gt;New Updates.&lt;/b&gt; This column shows a speech bubble icon when new discussions have taken place on a review request since the user last visited it.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Ship It.&lt;/b&gt; This column makes it easy to see if anybody has marked the review request as &amp;#8220;Ship It!&amp;#8221;&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Absolute/relative timestamps.&lt;/b&gt; Users wishing to see only relative or absolute timestamps in the dashboard can add the Last Updated/Posted Absolute or Relative timestamp columns.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Number of Reviews.&lt;/b&gt; Sometimes it&amp;#8217;s handy to see how many reviews have been made to a review request. This column provides that number.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Starred&lt;/b&gt;. Allows users to star/unstar a review request or group. This is like adding yourself to a CC list.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;b&gt;post-review&lt;/b&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;b&gt;Upload diffs from a revision range.&lt;/b&gt; &lt;tt&gt;&amp;#8211;revision-range&lt;/tt&gt; has been added to allow for uploading diffs from a range of revisions on the server. This is currently only implemented for SVN.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Specify a default summary.&lt;/b&gt; &lt;tt&gt;&amp;#8211;summary&lt;/tt&gt; has been added to provide a default summary for the review request.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Open a browser after uploading.&lt;/b&gt; &lt;tt&gt;&amp;#8211;open&lt;/tt&gt; has been added to open a browser to the new review request.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;b&gt;Distribution/Installation&lt;/b&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;b&gt;make install.&lt;/b&gt; It&amp;#8217;s now trivial to create a Review Board tarball or to install it on your system. We integrate with autoconf/automake to generate the Makefiles and sample/default configuration files. This brings us a giant step closer to putting out releases.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;b&gt;What&amp;#8217;s Next?&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;We have several things in the works. A couple of the major highlights would be a search interface and support for 3rd party extensions to Review Board. Stay tuned!&lt;/p&gt;</content:encoded>
+	<dc:date>2008-01-06T11:59:46+00:00</dc:date>
+</item>
+<item rdf:about="http://www.chipx86.com/blog/?p=231">
+	<title>Christian Hammond: Review Board Status Update</title>
+	<link>http://www.chipx86.com/blog/?p=231</link>
+	<content:encoded>&lt;p&gt;It&amp;#8217;s been just over a month since the last Review Board status update. I thought this time I&amp;#8217;d start off with a few stats.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;b&gt;Bugs open:&lt;/b&gt; 19&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Bugs fixed:&lt;/b&gt; 97&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Feature requests open:&lt;/b&gt; 27&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Contributors:&lt;/b&gt; 10&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Companies using Review Board:&lt;/b&gt; at least 13&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;If you&amp;#8217;re part of an open source project or company using Review Board, we&amp;#8217;d love to hear from you and your experience. We&amp;#8217;d like to make a list of who&amp;#8217;s using Review Board, so if you&amp;#8217;re able to list your project/company, please let us know!&lt;/p&gt;
+&lt;p&gt;Now on to the feature updates.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;b&gt;Internet Explorer compatibility&lt;/b&gt;. Internet Explorer should now work properly with Review Board. A lot of work was recently done to make this happen and it hasn&amp;#8217;t been as extensively tested as we&amp;#8217;d like just yet, but things do appear to be working. Firefox is still the preferred (and targetted) browser, but do feel free to try IE and let us know if anything breaks.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;CVS support&lt;/b&gt;. Review Board now supports CVS repositories. Right now there&amp;#8217;s only :pserver support, though, but patches are welcome.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Improved post-review script&lt;/b&gt;. post-review, the script of choice for creating and updating review requests from the command line, now supports both Perforce and Subversion, with support for more systems on the way. A single post-review script can now handle a variety of repositories for different projects, and projects can be set up to point post-review to the right Review Board server.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Column sorting and list paging.&lt;/b&gt; Columns in the dashboard and review request lists can now be sorted by summary, submitter, posted time or last updated time. There&amp;#8217;s also an improved pager at the bottom for skipping to other pages in the list.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Collapsed diff sections can now be expanded.&lt;/b&gt; The brown &amp;#8220;n lines hidden&amp;#8221; boxes in the diff viewer can be individually expanded without reloading the page by clicking a little &amp;#8220;Expand&amp;#8221; link on the box. This makes it easy to get more context when needed without expanding the entire diff and having to reload the page.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Cross-platform CRLF support.&lt;/b&gt; Diffs generated on Windows will now apply correctly on Review Board instances running on Linux, and vice-versa.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Improved diff loading times.&lt;/b&gt; Large diffs take a while to load, but we&amp;#8217;ve improved this slightly by caching much of the resulting diff so that it doesn&amp;#8217;t have to be regenerated again. More work is planned in this area to improve loading times, but it&amp;#8217;s a lot more usable now.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;More reliable database migration.&lt;/b&gt; The database migration scripts didn&amp;#8217;t scale very well due to the existing Django libraries we were making use of being problematic for large database sizes. We&amp;#8217;ve now fixed this, and they should be more reliable and hopefully a bit faster as well. There&amp;#8217;s now a percentage complete indicator when loading back in.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Anonymous access to Review Board.&lt;/b&gt; It&amp;#8217;s no longer necessary to have an account in order to view review requests and diffs. This is desirable for most open source projects. The old behavior of requiring an account for site-wide access can still be enabled, but is disabled by default.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In the works is a much improved diff parser that won&amp;#8217;t require lsdiff on the server hosting Review Board. This should make things a little easier for people installing on Windows, and it also cleans up the code quite nicely. This should be in sometime this week.&lt;/p&gt;</content:encoded>
+	<dc:date>2007-08-05T21:29:42+00:00</dc:date>
+</item>
+<item rdf:about="http://www.chipx86.com/blog/?p=229">
+	<title>Christian Hammond: Syntax Highlighting in the Diff Viewer</title>
+	<link>http://www.chipx86.com/blog/?p=229</link>
+	<content:encoded>&lt;p&gt;I was up late last night experimenting with a new feature for &lt;a href=&quot;http://www.review-board.org/&quot;&gt;Review Board&lt;/a&gt;. The idea was to introduce syntax highlighting for the code in the diff viewer through use of the &lt;a href=&quot;http://www.pygments.org/&quot;&gt;Pygments&lt;/a&gt; library. Actually getting syntax highlighting to work was pretty easy, and before long I had it working. The trick, it turned out, was to get it working with our interline diff support.&lt;/p&gt;
+&lt;p&gt;Pygments generates a nice HTML-formatted string with span tags, but we need to insert our own span tags for the highlighting. This was a pain, since you need to make sure you place them at the correct locations, keeping in mind the existing span tags and entities. The code also needed to avoid messing up the nesting of tags. After working with it a bit, I had that working as well, and now the code is up for review. In a couple of days, Review Board will have nice syntax-highlighted diff output!&lt;/p&gt;
+&lt;p&gt;I have some new improvements in the works for the diff algorithm that should result in much better diffs (especially when moving functions around) and improved UI for that case as well. I&amp;#8217;ll blog about that later when I have something to show :)&lt;/p&gt;
+&lt;div align=&quot;center&quot;&gt;&lt;a href=&quot;http://flickr.com/photos/chipx86/636044536/&quot;&gt;&lt;img src=&quot;http://www.review-board.org/images/screenshots/syntax_highlighting_thumb.png&quot; width=&quot;562&quot; height=&quot;311&quot; alt=&quot;Syntax highlighting&quot; border=&quot;0&quot; /&gt;&lt;/a&gt;&lt;/div&gt;</content:encoded>
+	<dc:date>2007-06-27T06:30:15+00:00</dc:date>
+</item>
+<item rdf:about="http://www.chipx86.com/blog/?p=227">
+	<title>Christian Hammond: Recent Happenings in Review Board</title>
+	<link>http://www.chipx86.com/blog/?p=227</link>
+	<content:encoded>&lt;p&gt;It&amp;#8217;s only been a couple of weeks since the &lt;a href=&quot;http://david.navi.cx/?p=142&quot;&gt;last update&lt;/a&gt; about &lt;a href=&quot;http://www.review-board.org/&quot;&gt;Review Board&lt;/a&gt;, but too much is happening to stay quiet.&lt;/p&gt;
+&lt;h2&gt;New Features&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;b&gt;Interdiffs&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;Ever go through a long patch review process only to find it&amp;#8217;s getting harder and harder to review any new changes due to the size of the patch? I&amp;#8217;m sure most large projects have had to deal with this at one point or another.&lt;/p&gt;
+&lt;p&gt;Review Board can now display interdiffs, which are diffs between versions of diffs. This makes it easy to see what was modified since the last change. Currently, there&amp;#8217;s no UI for this, as there&amp;#8217;s still a few backend changes that need to be made before we allow commenting on interdiffs, but it&amp;#8217;ll be a full, proper feature very soon.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;b&gt;New Diff Algorithm&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;We were previously using Python&amp;#8217;s SequenceMatcher, along with some hacks, to generate the diffs. SequenceMatcher, unfortunately, just isn&amp;#8217;t a desirable diff generator, due to its algorithm, quirks (assuming every change between matching blocks consists entirely of inserts, deletes, or changes instead of a mix of them), and lack of extensibility (no leading whitespace trimming to simplify diffs containing lots of indents).&lt;/p&gt;
+&lt;p&gt;I&amp;#8217;ve known for a while that we needed a new algorithm, so I finally sat down to write one. The obvious choice was the algorithm used in GNU diff (amongst other programs) &amp;#8212; Eugene Myers&amp;#8217; O(ND) Difference Algorithm. After a few frustrating nights that left me nearly bald (ok, not really), it worked! And the diffs were much better than the older diffs. I think this is the first Python implementation of this algorithm.&lt;/p&gt;
+&lt;p&gt;This also gives us the ability to add some heuristics and other logic to clean up the diffs. The result is much more readable diffs that no longer show indentation changes or huge misaligned fragments.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;b&gt;Improved support for project maintainers&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;Project maintainers can now quickly download the uploaded diff from the diff viewer in order to apply the patch to their own tree. They&amp;#8217;re also able to mark contributors&amp;#8217; review requests as submitted. While small additions, these make Review Board much more useful to open source projects.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;b&gt;Better browser and SCM compatibility&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;We&amp;#8217;re working on better browser compatibility and better SCM compatibility.&lt;/p&gt;
+&lt;p&gt;CVS is almost implemented. Contributors are working on Git and BZR support. We&amp;#8217;re working on the best ways to get these distributed systems integrated cleanly into the system.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;b&gt;Subversion post-review script&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;We just received a patch for adding a Subversion-specific post-review script. Soon, we&amp;#8217;ll combine the two and add support for CVS and other systems. This will give us one tool for creating review requests in all systems.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;We&amp;#8217;ve had a number of good contributors come out of the wood work, and from the sounds of it, several companies are using it now. I&amp;#8217;m planning to put up a page listing teams, companies and projects using Review Board, so let me know if you&amp;#8217;d like to be on the list! :)&lt;/p&gt;</content:encoded>
+	<dc:date>2007-06-22T06:44:44+00:00</dc:date>
+</item>
+<item rdf:about="http://david.navi.cx/?p=142">
+	<title>David Trowbridge: Review Board: post-release madness</title>
+	<link>http://david.navi.cx/?p=142</link>
+	<content:encoded>&lt;p&gt;Everyone seems to be loving review board.  Here&amp;#8217;s some of the crazy stuff that&amp;#8217;s happened this last couple weeks:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt; For about a day, a link was &lt;a href=&quot;http://programming.reddit.com/info/1uvy5/comments&quot;&gt;featured prominently&lt;/a&gt; on &lt;a href=&quot;http://programming.reddit.com/&quot;&gt;programming.reddit.com&lt;/a&gt; and somewhat less prominently on reddit&amp;#8217;s main page.  Unfortunately, Christian&amp;#8217;s &lt;a href=&quot;http://www.chipx86.com/blog/?p=222&quot;&gt;blog entry&lt;/a&gt; was inaccessible for some of this time, because the traffic took down his web server!&lt;/li&gt;
+&lt;li&gt;On June 1, we were PythonWare&amp;#8217;s (the authors of the ubiquitous Python Imaging Library) &lt;a href=&quot;http://www.pythonware.com/daily/#entry8826361014325761505&quot;&gt;Daily Python URL&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Patrick Farrell wrote an &lt;a href=&quot;http://reviewboard.googlecode.com/svn/trunk/reviewboard/accounts/backends.py&quot;&gt;LDAP authentication backend&lt;/a&gt; to integrate with his environment.&lt;/li&gt;
+&lt;li&gt;Robin Ericsson has been working on a &lt;a href=&quot;http://reviews.review-board.org/r/50/&quot;&gt;CVS repository backend&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;We&amp;#8217;ve had 91 &lt;a href=&quot;http://code.google.com/p/reviewboard/issues/list&quot;&gt;bugs and feature requests&lt;/a&gt; filed so far (a few of those were pre-announcement) and a whopping 67 of those are fixed and closed.&lt;/li&gt;
+&lt;li&gt;We&amp;#8217;ve gathered a lot of &lt;a href=&quot;http://www.google.com/search?hl=en&amp;q=review+board&amp;btnG=Google+Search&quot;&gt;google juice&lt;/a&gt;.  Haven&amp;#8217;t quite stolen the top spot yet.&lt;/li&gt;
+&lt;li&gt;Christian registered &lt;a href=&quot;http://review-board.org&quot;&gt;http://review-board.org&lt;/a&gt;, and set up a super-cute web site and a &lt;a href=&quot;http://demo.review-board.org/&quot;&gt;demo server&lt;/a&gt; (since inviting people to look at our production server was a big mistake).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Here&amp;#8217;s what some folks using the system are saying:&lt;/p&gt;
+&lt;blockquote&gt;&lt;p&gt;Review Board is so awesome it brings tears to my eyes. We&amp;#8217;ve been needing this &lt;u&gt;so&lt;/u&gt; badly for &lt;u&gt;so&lt;/u&gt; long, and now it&amp;#8217;s here and it&amp;#8217;s better than my wildest dreams! Thank you so much! Also, thanks for making it free!&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote&gt;&lt;p&gt;Just so you know, the people in my team that use ReviewBoard are loving it! Thank you!&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;These two emails have had us glowing like proud grandmothers. &lt;img src=&quot;http://david.navi.cx/wp-includes/images/smilies/icon_smile.gif&quot; alt=&quot;:)&quot; class=&quot;wp-smiley&quot; /&gt;  Who says open source is a thankless job?&lt;/p&gt;</content:encoded>
+	<dc:date>2007-06-05T18:30:01+00:00</dc:date>
+</item>
+<item rdf:about="http://www.chipx86.com/blog/?p=223">
+	<title>Christian Hammond: Review Board has a home and a demo server!</title>
+	<link>http://www.chipx86.com/blog/?p=223</link>
+	<content:encoded>&lt;p&gt;I was stunned by the response to my &lt;a href=&quot;http://www.chipx86.com/blog/?p=222&quot;&gt;post&lt;/a&gt; announcing Review Board. We had so much feedback and so many users signed up. Last I checked, our production server (which has so far been used as a demo/test server by others) has had over 550 registered users. Part of this was due to us being &lt;a href=&quot;http://programming.reddit.com/info/1uvy5/comments&quot;&gt;posted on reddit&lt;/a&gt;, which actually took down my server while I was sleeping!&lt;/p&gt;
+&lt;p&gt;Now, immediately we realized three things: 1) Sleeping is dangerous, 2) We needed a demo server, and 3) We needed a friendly home page.&lt;/p&gt;
+&lt;p&gt;I&amp;#8217;ve been trying my best not to sleep, but that&amp;#8217;s a ongoing project. As for the demo server, we pointed to our production server. This was, in retrospect, not the wisest of moves, as it ended up with hundreds of test comments. Not good when we&amp;#8217;re actually using this for Review Board code reviews!&lt;/p&gt;
+&lt;p&gt;Today I addressed these problems (not the sleep part).&lt;/p&gt;
+&lt;p&gt;Behold! &lt;a href=&quot;http://www.review-board.org/&quot;&gt;review-board.org&lt;/a&gt; is born! It provides a brief overview of the features, &lt;a href=&quot;http://www.review-board.org/blog/&quot;&gt;blog posts&lt;/a&gt; from David and I, and a link to our new &lt;a href=&quot;http://demo.review-board.org/&quot;&gt;demo server&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Now that we have a proper demo server people can play with, we&amp;#8217;re going to start cleaning up our &lt;a href=&quot;http://reviews.review-board.org/&quot;&gt;production server&lt;/a&gt;. If you have an account on there but are not working with the project, it will be removed in favor of the demo server. If you&amp;#8217;re planning to contribute and would like us not to obliterate your account, please do let us know :)&lt;/p&gt;
+&lt;p&gt;A lot has been happening with Review Board lately and several features are in the works. I won&amp;#8217;t go into detail right now, but for all those who have asked, yes, we are adding CVS support and are more than happy to accept patches and proposals for Git, Monotone, BZR, etc. support.&lt;/p&gt;</content:encoded>
+	<dc:date>2007-06-04T02:43:38+00:00</dc:date>
+</item>
+<item rdf:about="http://david.navi.cx/blog/?p=137">
+	<title>David Trowbridge: Announcing Review Board</title>
+	<link>http://david.navi.cx/?p=137</link>
+	<content:encoded>&lt;p&gt;Christian Hammond has a &lt;a href=&quot;http://www.chipx86.com/blog/?p=222&quot;&gt;great introduction&lt;/a&gt; to this project, so I&amp;#8217;ll keep this relatively short.&lt;/p&gt;
+&lt;p&gt;For the past several months, the two of us have been using our spare time at VMware (thanks to our managers) to work on a web-based tool for doing code review.  This is traditionally a big hole in software development infrastructure, and everyone tries to fill it with things like mailing lists or bug trackers.  We got tired of dealing with problems such as being unable to easily find out which patches needed review, or losing someone&amp;#8217;s comments deep within our inbox.  These problems aren&amp;#8217;t unique to commercial software either; one of the biggest gripes within the GNOME project is that it&amp;#8217;s hard to keep track of everything needing review.&lt;/p&gt;
+&lt;p&gt;It&amp;#8217;s been a heck of a ride over the last few weeks.  We&amp;#8217;ve rolled it out internally to two groups so far (Hosted UI, where we work, and Lab Manager, who were similarly fed up with email and decided they wanted to start using this immediately after seeing a demo).  We finally decided, with a lot of the kinks worked out, that we&amp;#8217;re ready to announce it to the world.&lt;/p&gt;
+&lt;p&gt;Review Board is hosted on &lt;a href=&quot;http://code.google.com/p/reviewboard/&quot;&gt;Google Code&lt;/a&gt;, and released under an MIT/X11 style license.  There are lots of goodies in the source (such as an NIS backend for django&amp;#8217;s authentication system) that we hope are useful to people, even if they don&amp;#8217;t use Review Board itself.&lt;/p&gt;
+&lt;p&gt;And, since new software can&amp;#8217;t be announced without screenshots, here are a couple of the screenshot support within reviewboard (for that double-screenshot taste).  There are lots more screens on &lt;a href=&quot;http://www.chipx86.com/blog/?p=222&quot;&gt;Christians&amp;#8217;s announcement&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://david.navi.cx/blog/wp-content/uploads/2007/05/request-with-screenshots.png&quot;&gt;&lt;img src=&quot;http://david.navi.cx/blog/wp-content/uploads/2007/05/request-with-screenshots-t.png&quot; alt=&quot;request-with-screenshots-t.png&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://david.navi.cx/blog/wp-content/uploads/2007/05/screenshot-comment.png&quot;&gt;&lt;img src=&quot;http://david.navi.cx/blog/wp-content/uploads/2007/05/screenshot-comment-t.png&quot; alt=&quot;screenshot-comment-t.png&quot; /&gt;&lt;/a&gt;&lt;/p&gt;</content:encoded>
+	<dc:date>2007-05-18T00:19:07+00:00</dc:date>
+</item>
+
+</rdf:RDF>

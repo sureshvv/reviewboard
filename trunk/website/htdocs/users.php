@@ -16,6 +16,8 @@
  <li><a href="http://www.netlogicmicro.com/">NetLogic Microsystems</a>
      - A semiconductor company that develops knowledge-based processors for
        a variety of advanced Internet and networking systems and devices.</li>
+ <li><a href="http://www.tripwire.com/">Tripwire, Inc.</a>
+     - Recognized leader of configuration audit and control soluitons.</li>
  <li><a href="http://www.vmware.com/">VMware</a></li>
      - Leading provider in desktop and enterprise virtualization products.</li>
  <li><a href="http://www.wesabe.com/">Wesabe</a>

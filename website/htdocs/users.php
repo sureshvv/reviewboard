@@ -7,6 +7,7 @@
 <ul>
  <li><a href="http://www.beatport.com/">Beatport</a>
      - An online electronic music store with hundreds of labels.</li>
+ <li><a href="http://www.datacomp.pt/">Datacomp</a></li>
  <li><a href="http://www.digium.com/">Digium</a>
      - Primary developers of Asterisk&reg;, the open source PBX.</li>
  <li><a href="http://www.hedgehoglab.com/">Hedgehog Lab</a>
@@ -21,6 +22,9 @@
  <li><a href="http://www.netlogicmicro.com/">NetLogic Microsystems</a>
      - A semiconductor company that develops knowledge-based processors for
        a variety of advanced Internet and networking systems and devices.</li>
+ <li><a href="http:/www.rpath.com/">rPath</a>
+      - A software appliance distributor bundling applications in virtual
+	    machines.</li>
  <li><a href="http://www.tripwire.com/">Tripwire, Inc.</a>
      - Recognized leader of configuration audit and control soluitons.</li>
  <li><a href="http://www.vmware.com/">VMware</a>

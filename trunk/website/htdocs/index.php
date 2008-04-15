@@ -17,7 +17,7 @@
 </p>
 <table id="overviewshots">
  <tr>
-  <td><img src="http://review-board.org/images/screenshots/reviewrequest_thumb.png" width="342" height="297" /></td>
+  <td><a href="http://flickr.com/photos/chipx86/525300364/in/set-72157600297790516/"><img src="http://review-board.org/images/screenshots/reviewrequest_thumb.png" width="342" height="297" /></a></td>
   <td>
    <h1>Detailed review requests</h1>
    <p>
@@ -33,7 +33,7 @@
   </td>
  </tr>
  <tr>
-  <td><img src="http://review-board.org/images/screenshots/diffviewer_thumb.png" width="342" height="297" /></td>
+  <td><a href="http://flickr.com/photos/chipx86/525300334/in/set-72157600297790516/"><img src="http://review-board.org/images/screenshots/diffviewer_thumb.png" width="342" height="297" /></a></td>
   <td>
    <h1>Powerful diff viewer</h1>
    <p>
@@ -59,7 +59,7 @@
   </td>
  </tr>
  <tr>
-  <td><img src="http://review-board.org/images/screenshots/commentdlg_thumb.png" width="342" height="297" /></td>
+  <td><a href="http://flickr.com/photos/chipx86/525300318/in/set-72157600297790516/"><img src="http://review-board.org/images/screenshots/commentdlg_thumb.png" width="342" height="297" /></a></td>
   <td>
    <h1>Comment and review dialog</h1>
    <p>
@@ -71,7 +71,7 @@
   </td>
  </tr>
  <tr>
-  <td><img src="http://review-board.org/images/screenshots/reviews_thumb.png" width="342" height="297" /></td>
+  <td><a href="http://flickr.com/photos/chipx86/525300366/in/set-72157600297790516/"><img src="http://review-board.org/images/screenshots/reviews_thumb.png" width="342" height="297" /></a></td>
   <td>
    <h1>Contextual discussions and reviews</h1>
    <p>
@@ -86,7 +86,7 @@
   </td>
  </tr>
  <tr>
-  <td><img src="http://review-board.org/images/screenshots/dashboard_thumb.png" width="342" height="297" /></td>
+  <td><a href="http://flickr.com/photos/chipx86/525300328/in/set-72157600297790516/"><img src="http://review-board.org/images/screenshots/dashboard_thumb.png" width="342" height="297" /></a></td>
   <td>
    <h1>The dashboard</h1>
    <p>

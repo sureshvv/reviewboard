@@ -45,10 +45,16 @@
     Keyboard shortcuts make it easy to jump around the diff. For example,
     pressing "n" will jump to the next changed chunk, while "p" will jump
     to the previous.
+   </p>
    <p>
-    Every revision of a diff is stored. In the future, this will allow us
-    to show the differences between revisions of the diff. This is especially
-    valuable when there are several iterations of large diffs.
+    To improve readability, we display syntax highlighting in the diff
+    and show the changes within a lines in a "replace" block.
+   </p>
+   <p>
+    Every revision of a diff is stored. This allows the user to look at any
+	revision of the diff and also to see the differences between revisions.
+    This is especially valuable when there are several iterations of large
+	diffs.
    </p>
   </td>
  </tr>
@@ -74,6 +80,9 @@
     lines of the diff inline on reviews. This allows people to read top to
     bottom and know exactly what people are talking about.
    </p>
+   <p>
+    We even display clips of commented regions of screenshots!
+   </p>
   </td>
  </tr>
  <tr>
@@ -83,6 +92,11 @@
    <p>
     Every user gets a dashboard, which displays the list of outgoing and
     incoming reviews. You'll never miss a review request again.
+   </p>
+   <p>
+    The dashboard is customizable. Columns can be rearranged, new columns
+    can be added and unwanted columns can be removed. The dashboard
+    can be sorted using two-level sorting.
    </p>
  </tr>
 </table>

@@ -29,9 +29,10 @@
    <ul id="navbar">
     <li><a href="/blog/">Blog</a></li>
     <li><a href="http://demo.review-board.org/">Demo</a></li>
-    <li><a href="http://flickr.com/photos/chipx86/sets/72157600297790516/detail/">Screen Shots</a></li>
+    <li><a href="http://flickr.com/photos/chipx86/sets/72157600297790516/detail/">Screenshots</a></li>
+    <li><a href="http://code.google.com/p/reviewboard/wiki/Documentation">Documentation</a></li>
     <li><a href="http://groups.google.com/group/reviewboard">Discuss</a></li>
-    <li><a href="/users.php">Who Uses It</a></li>
+    <li><a href="/users.php">Happy Users</a></li>
     <li><a href="http://code.google.com/p/reviewboard/w/list">Wiki</a></li>
     <li><a href="http://code.google.com/p/reviewboard/">Development</a></li>
    </ul>

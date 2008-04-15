@@ -63,6 +63,25 @@ img {
   padding: 10px;
 }
 
+.testimonial {
+  background: transparent url(/images/quote_left.png) top left no-repeat;
+  float: right;
+  width: 300px;
+  padding: 0;
+  margin: 10px 10px 20px 20px;
+}
+
+.testimonial .quote {
+  text-align: justify;
+  padding: 0px 30px;
+  background: transparent url(/images/quote_right.png) bottom right no-repeat;
+}
+
+.testimonial .source {
+  margin-top: 5px;
+  text-align: right;
+}
+
 #navbar {
   background-color: #C6DCF3;
   border: 1px #3465A4 solid;

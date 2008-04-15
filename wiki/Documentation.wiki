@@ -1,0 +1,20 @@
+#summary Documentation for Review Board
+#labels Featured
+
+= User Documentation =
+
+  * [UserBasics User Basics] - How to get started as a Review Board user.
+  * [SearchTips Search Tips] - How to make effective use of Review Board search.
+
+= Administrator Documentation =
+
+  * [GettingStarted Getting Started] - Contains installation instructions for different setups.
+  * [SettingUpSearch Setting Up Search] - How to set up search.
+  * [ServerOptimizations Server Optimizations] - Potential ways to improve performance on a Review Board server.
+  * [RequiredServerUpdates Required Server Updates] - Changes that require manual updates of Review Board servers.
+  * [DatabaseSchemaUpgrades Database Schema Upgrades] - How to cope when the database schema changes.
+
+= Developer Documentation =
+
+  * [ReviewBoardAPI Review Board API] - Reference documentation for writing applications that talk to Review Board servers.
+  * [UnitTestFixtures Unit Test Fixtures] - Working with fixtures for unit tests

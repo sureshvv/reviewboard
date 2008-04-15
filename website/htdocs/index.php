@@ -3,6 +3,17 @@
 
     site_start();
 ?>
+<blockquote class="testimonial">
+ <div class="quote">
+  Review Board has changed the way we review code changes, enforce high quality
+  coding standards and styles, and generally mentor new developers.  Every
+  time you visit <a href="http://search.yahoo.com/">search.yahoo.com</a>
+  you use code that has been reviewed on review board. We're great fans of
+  your work!
+ </div>
+ <div class="source">&mdash; Yahoo! Web Search</div>
+</blockquote>
+
 <p>
  For too long, code reviews have been too much of a chore. This is largely
  due to the lack of quality tools available, leaving developers to resort to
@@ -14,6 +25,12 @@
  review requests, switching between the diff and the e-mail, and trying to
  understand what parts of the code the reviewer was referring to. We decided
  to fix all that.
+</p>
+<p>
+ Review Board is a powerful web-based code review tool that offers
+ developers an easy way to handle code reviews. It scales well from small
+ projects to large companies and offers a variety of tools to take much
+ of the stress and time out of the code review process.
 </p>
 <table id="overviewshots">
  <tr>

@@ -8,6 +8,8 @@
 
 = Administrator Documentation =
 
+  * [Host_Requirements Host Requirements] - Requirements your host must meet for Review Board.
+  * [Before_You_Install Before You Install] - Pre-installation instructions.
   * [GettingStarted Getting Started] - Contains installation instructions for different setups.
   * [SettingUpSearch Setting Up Search] - How to set up search.
   * [ServerOptimizations Server Optimizations] - Potential ways to improve performance on a Review Board server.

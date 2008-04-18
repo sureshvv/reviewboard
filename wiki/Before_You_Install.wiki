@@ -1,0 +1,14 @@
+#summary What you need to know before installing Review Board
+#labels Phase-Deploy
+
+= Before You Install =
+
+Before you install Review Board, you'll need to make sure that the server you're installing Review Board on meets certain requirements. You'll also need to make sure you can make the appropriate changes on the server.
+
+First off, check to see that your server meets the [Host_Requirements host requirements] needed.
+
+You'll need shell access (usually through SSH) on the server in order to install any missing [Dependencies dependencies]. Most hosting providers you would run Review Board on will give you shell access. You'll also need a program to log into your shell. If you're using Windows, we recommend [http://www.putty.org/ Putty].
+
+You'll need to edit files on the server. You can do this either on the server using a program such as vim, nano, pico or emacs (on Linux-based systems) or by using a text editor on your computer (such as Notepad) and uploading through an FTP or SFTP client.
+
+If you meet all the requirements, you're ready to [GettingStarted install Review Board]. If you have any questions, you can ask your hosting provider or [http://groups.google.com/group/reviewboard contact us].

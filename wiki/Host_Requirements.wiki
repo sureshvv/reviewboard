@@ -1,0 +1,46 @@
+#summary Requirements your host must meet for Review Board
+#labels Phase-Deploy
+
+= Host Requirements =
+
+Review Board is known to work on Linux, Windows and MacOS X hosts. We're flexible and support a variety of configurations.
+
+The ideal server should have at least 512MB of RAM. Larger installations should ideally have 1GB or more. It should also have at least 2GB of storage space free to accommodate many screenshots and large databases.
+
+
+== Required Programs ==
+
+  * [http://www.djangoproject.com/ Django] version 0.97 or higher
+  * [http://www.python.org/ Python] version 2.4 or higher
+  * [http://www.pythonware.com/products/pil/ PIL] - The Python Imaging Library
+  * [http://freshmeat.net/projects/patchutils/ patchutils]
+  * [http://www.danga.com/memcached/ memcached] (Optional, but strongly recommended)
+
+
+== Database ==
+
+You will need one of the following database servers.
+
+  * [http://www.mysql.org/ MySQL] 5.0.31 or higher with:
+  * [http://www.postgresql.org/ PostgreSQL] 8.0 or higher
+  * [http://www.sqlite.org/ SQLite] 3
+
+
+== Web Server ==
+
+You will need one of the following web servers.
+
+  * [http://www.apache.org/ Apache] 2.0 or higher
+   * mod_rewrite
+   * mod_python or fastcgi
+  * [http://www.lighttpd.net/ lighttpd]
+
+
+== Perforce Support ==
+
+  * [http://public.perforce.com/guest/robert_cowham/perforce/API/python/index.html p4python] 
+
+
+== Subversion Support ==
+
+  * [http://pysvn.tigris.org/ pysvn]

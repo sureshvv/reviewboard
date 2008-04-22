@@ -1,7 +1,7 @@
 <?php
     require "html.inc.php";
 
-    site_start("Users");
+    site_start("Happy Users");
 ?>
 <h1>Companies Using Review Board</h1>
 <ul>
@@ -10,6 +10,9 @@
  <li><a href="http://www.datacomp.pt/">Datacomp</a></li>
  <li><a href="http://www.digium.com/">Digium</a>
      - Primary developers of Asterisk&reg;, the open source PBX.</li>
+ <li><a href="http://www.harmanbecker.com/">Harman International</a>
+     - Harman International is a supplier of high-end automotive audio and
+	   infotainment systems.</li>
  <li><a href="http://www.hedgehoglab.com/">Hedgehog Lab</a>
      - Developers of <a href="http://hedgehoglab.com/products/fixx">fixx</a>,
 	   an easy to use bug and issue tracking system.</li>

@@ -1,7 +1,7 @@
 #summary Information on using Review Board for Google's Summer of Code
 #labels Featured
 
-= Introduction =
+= Summer of Code Hosting =
 
 Every year, Google hosts their [http://code.google.com/soc/ Summer of Code], a Summer-long event that helps students to get involved with open source projects. Students propose a contribution to a project and the projects decide which students to accept. The projects benefit from having new contributors and the contributors benefit by being more active in open source and receiving paychecks from Google for their efforts.
 

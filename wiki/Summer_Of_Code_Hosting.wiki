@@ -45,6 +45,17 @@ There's no catch. We're doing this with the hope of spreading Review Board in th
 Code review is something most open source projects do at some level, but there aren't many good tools out there to help. We believe making code review easier and more fun through Review Board can lead to better applications.
 
 
+== Getting Students Ready ==
+
+Students and mentors wanting to use Review Board should download [http://code.google.com/p/reviewboard/source/browse/trunk/reviewboard/contrib/tools/post-review post-review], put it somewhere in their path and make it executable. To configure it with the Summer of Code Review Board server, put the following in {{{$HOME/.reviewboardrc}}}:
+
+{{{
+REVIEWBOARD_URL = "http://gsoc.review-board.org/"
+}}}
+
+There's additional [Documentation documentation] available as well. In particular, the [UserBasics User Basics] is a good read.
+
+
 == Reporting Problems ==
 
 While things should generally run smoothly, it is possible that there will be issues. If you do have a problem with the servers or anything related to Summer of Code and Review Board, you can post to the [http://groups.google.com/group/reviewboard-gsoc reviewboard-gsoc mailing list].

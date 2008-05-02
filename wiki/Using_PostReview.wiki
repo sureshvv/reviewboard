@@ -1,4 +1,4 @@
-﻿﻿#summary Instructions on using the post-review tool
+﻿#summary Instructions on using the post-review tool
 
 = Using post-review =
 
@@ -55,13 +55,13 @@ In order to do this, you should use the {{{--revision-range}}} parameter, which 
 Usage is easy. Simply type:
 
 {{{
-$ post-review --revision-range=_STARTREV_:_STOPREV_
+$ post-review --revision-range=STARTREV:STOPREV
 }}}
 
 Where _STARTREV_ is the beginning revision in the range and _STOPREV_ is the ending revision. If you only need to post a single revision, type:
 
 {{{
-$ post-review --revision-range=_REVISION_
+$ post-review --revision-range=REVISION
 }}}
 
 In order to update an existing review request, use the {{{-r}}} flag, as shown above.

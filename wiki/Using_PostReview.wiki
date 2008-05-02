@@ -1,4 +1,4 @@
-﻿#summary Instructions on using the post-review tool
+﻿﻿#summary Instructions on using the post-review tool
 
 = Using post-review =
 
@@ -76,7 +76,7 @@ This will cause the review request to be published, rather than being saved as a
 
 === -o, --open ===
 
-By default, Review Board will display the URL of the review request. By passing {{{-o</tt> or <tt>--open}}}, a web browser will automatically open to this URL.
+By default, Review Board will display the URL of the review request. By passing {{{-o}}} or {{{--open}}}, a web browser will automatically open to this URL.
 
 
 === --output-diff ===

@@ -32,6 +32,7 @@ To join, simply send an e-mail to [mailto:gsoc-request@review-board.org gsoc-req
   * Mailing list for review request and review e-mails (optional).
   * Bug tracker URL
   * Number of students you're expecting
+  * A link to the Summer of Code listings for any students or mentors involved.
 
 We'll respond to your request within the day and get things set up.
 

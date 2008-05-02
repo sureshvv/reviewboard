@@ -19,8 +19,10 @@ Perforce has a concept of changesets, which are server-stored descriptions of a 
 To post a review request for a specific change, or to update an existing review request for that change, type:
 
 {{{
-$ post-review _changenumber_
+$ post-review CHANGENUM
 }}}
+
+Where CHANGENUM is the changeset number in Perforce.
 
 The diff will be generated and uploaded to Review Board, and the review request information will be updated based on the changeset description.
 

@@ -1,4 +1,4 @@
-#summary Instructions on using the post-review tool
+﻿#summary Instructions on using the post-review tool
 
 = Using post-review =
 
@@ -33,7 +33,7 @@ CVS and Subversion don't have a concept of changesets, so instead the working co
 $ post-review
 }}}
 
-This will create a new review request and post the diff of the uncommitted changes. If you instead want to update an existing review request with new changes, use the <tt>-r</tt> parameter. For example, to update review request #42, type:
+This will create a new review request and post the diff of the uncommitted changes. If you instead want to update an existing review request with new changes, use the {{{-r}}} parameter. For example, to update review request #42, type:
 
 {{{
 $ post-review -r 42
@@ -50,7 +50,7 @@ $ post-review src/foo.c data/bar.png
 
 The default post-review invocation assumes uncommitted code is to be posted, but sometimes it's useful to post code that has already been committed to a repository, such as in a branch.
 
-In order to do this, you should use the <tt>--revision-range</tt> parameter, which will generate a diff based on a range of committed revisions. This allows a single review request to be generated based on the entire history of a branch, if desired.
+In order to do this, you should use the {{{--revision-range}}} parameter, which will generate a diff based on a range of committed revisions. This allows a single review request to be generated based on the entire history of a branch, if desired.
 
 Usage is easy. Simply type:
 
@@ -64,7 +64,7 @@ Where _STARTREV_ is the beginning revision in the range and _STOPREV_ is the end
 $ post-review --revision-range=_REVISION_
 }}}
 
-In order to update an existing review request, use the <tt>-r</tt> flag, as shown above.
+In order to update an existing review request, use the {{{-r}}} flag, as shown above.
 
 
 == Options ==
@@ -76,7 +76,7 @@ This will cause the review request to be published, rather than being saved as a
 
 === -o, --open ===
 
-By default, Review Board will display the URL of the review request. By passing <tt>-o</tt> or <tt>--open</tt>, a web browser will automatically open to this URL.
+By default, Review Board will display the URL of the review request. By passing {{{-o</tt> or <tt>--open}}}, a web browser will automatically open to this URL.
 
 
 === --output-diff ===
@@ -86,7 +86,7 @@ This will display the generated diff from post-review to the terminal, instead o
 
 === --server ===
 
-By passing <tt>--server=_URL_</tt>, you can override the Review Board server that post-review will use.
+By passing {{{--server=_URL_}}}, you can override the Review Board server that post-review will use.
 
 For example:
 
@@ -97,7 +97,7 @@ $ post-review --server=http://reviews.review-board.org/
 
 === --diff-only ===
 
-In the case of Perforce, it is sometimes desirable to update the diff without automatically updating the summary, description or other information. The <tt>--diff-only</tt> parameter will suppress any updates to the review request information itself.
+In the case of Perforce, it is sometimes desirable to update the diff without automatically updating the summary, description or other information. The {{{--diff-only}}} parameter will suppress any updates to the review request information itself.
 
 
 === --target-groups ===
@@ -113,7 +113,7 @@ $ post-review --target-groups=group1,group2
 
 === --target-people ===
 
-This works much like <tt>--target-groups</tt>, but assigns users to the reviewer list.
+This works much like {{{--target-groups}}}, but assigns users to the reviewer list.
 
 For example:
 
@@ -135,7 +135,7 @@ $ post-review --summary="This is a test"
 
 === --description ===
 
-This works like <tt>--summary</tt>, but will set the description of the review request.
+This works like {{{--summary}}}, but will set the description of the review request.
 
 For example:
 
@@ -146,7 +146,7 @@ $ post-review --description="This is my changeset description."
 
 === --revision-range ===
 
-In cases where existing committed code is to be put up for review, the <tt>--revision-range</tt> parameter is used to specify the revision or revisions with which to generate the diff.
+In cases where existing committed code is to be put up for review, the {{{--revision-range}}} parameter is used to specify the revision or revisions with which to generate the diff.
 
 For example:
 
@@ -159,12 +159,12 @@ This will generate a diff based on the changes between revisions 42 and 50 and p
 
 === --r, --review-request-id ===
 
-In order to update an existing review request using repository types that don't contain changesets (such as Subversion or CVS), the <tt>-r</tt> parameter should be used. This takes the ID of the review request to update.
+In order to update an existing review request using repository types that don't contain changesets (such as Subversion or CVS), the {{{-r}}} parameter should be used. This takes the ID of the review request to update.
 
 
 === --submit-as ===
 
-This is intended mainly for scripts acting on behalf of a user. This allows a review request to be posted or updated using another user's account. Not all users can use this feature. It can only be used by a post-review script with login credentials of a special user. The special user must have the <tt>reviews.can_submit_as_another_user</tt> permission.
+This is intended mainly for scripts acting on behalf of a user. This allows a review request to be posted or updated using another user's account. Not all users can use this feature. It can only be used by a post-review script with login credentials of a special user. The special user must have the {{{reviews.can_submit_as_another_user}}} permission.
 
 For example:
 
@@ -175,4 +175,4 @@ $ post-review --submit-as=johnny
 
 === -d, --debug ===
 
-When things go wrong, the <tt>--debug</tt> flag can be used to get additional information. This will print to the console a variety of debug information, including error responses from the server. It is best to save the results as an HTML file, as some of the errors may contain complicated HTML markup.
+When things go wrong, the {{{--debug}}} flag can be used to get additional information. This will print to the console a variety of debug information, including error responses from the server. It is best to save the results as an HTML file, as some of the errors may contain complicated HTML markup.

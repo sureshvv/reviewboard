@@ -1,1 +1,8 @@
-php_value include_path "/var/www/review-board.org/inc:.
+php_value include_path "/var/www/review-board.org/inc:."
+
+Redirect /screenshots http://flickr.com/photos/chipx86/sets/72157600297790516/detail/
+Redirect /documentation http://code.google.com/p/reviewboard/wiki/Documentation
+Redirect /development http://reviewboard.googlecode.com/
+
+RewriteEngine on
+RewriteRule wiki/?(.*)/?$ http://code.google.com/p/reviewboard/wiki/$1

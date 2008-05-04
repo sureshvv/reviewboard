@@ -20,7 +20,7 @@
   <div class="box-container">
    <div class="box pageheader">
     <div class="box-inner">
-     <h1>Review Board</h1>
+     <h1><a href="/">Review Board</a></h1>
      <h2>Code reviews are fun again! ...almost.</h2>
     </div>
    </div>
@@ -31,9 +31,8 @@
     <li><a href="http://demo.review-board.org/">Demo</a></li>
     <li><a href="http://flickr.com/photos/chipx86/sets/72157600297790516/detail/">Screenshots</a></li>
     <li><a href="http://code.google.com/p/reviewboard/wiki/Documentation">Documentation</a></li>
-    <li><a href="http://groups.google.com/group/reviewboard">Discuss</a></li>
+    <li><a href="http://groups.google.com/group/reviewboard">Mailing List</a></li>
     <li><a href="/users.php">Happy Users</a></li>
-    <li><a href="http://code.google.com/p/reviewboard/w/list">Wiki</a></li>
     <li><a href="http://code.google.com/p/reviewboard/">Development</a></li>
    </ul>
   </div>

@@ -54,7 +54,7 @@ Students and mentors wanting to use Review Board should download [http://code.go
 REVIEWBOARD_URL = "http://gsoc.review-board.org/"
 }}}
 
-There's additional [Documentation documentation] available as well. In particular, the [UserBasics User Basics] is a good read.
+You'll want to read the [Using_PostReview post-review documentation]. There's additional general [Documentation documentation] available as well. In particular, the [UserBasics User Basics] is a good read.
 
 
 == Reporting Problems ==

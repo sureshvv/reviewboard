@@ -3,16 +3,18 @@
 
     site_start("Happy Users");
 ?>
-<h1>Companies Using Review Board</h1>
+<h1>Companies using Review Board</h1>
 <ul>
  <li><a href="http://www.beatport.com/">Beatport</a>
      - An online electronic music store with hundreds of labels.</li>
  <li><a href="http://www.datacomp.pt/">Datacomp</a></li>
  <li><a href="http://www.digium.com/">Digium</a>
      - Primary developers of Asterisk&reg;, the open source PBX.</li>
+<!--
  <li><a href="http://www.harmanbecker.com/">Harman International</a>
      - Harman International is a supplier of high-end automotive audio and
 	   infotainment systems.</li>
+-->
  <li><a href="http://www.hedgehoglab.com/">Hedgehog Lab</a>
      - Developers of <a href="http://hedgehoglab.com/products/fixx">fixx</a>,
 	   an easy to use bug and issue tracking system.</li>
@@ -38,18 +40,35 @@
      - Yahoo!'s online search.</li>
 </ul>
 
-<h1>Projects Using Review Board</h1>
+<h1>Projects using Review Board</h1>
 <ul>
  <li><a href="http://www.phinax.de/">PHInaX</a> and
      <a href="http://www.sphinxlib.de/">S/PHI/nX Library</a>
      - An ab-initio-based multi-scale library and graphical user interface.</li>
  <li><a href="http://www.review-board.org/">Review Board</a></li>
 </ul>
+
+<h1>Google Summer of Code 2008 projects hosting with Review Board</h1>
+<ul>
+ <li><a href="http://openmrs.org/">OpenMRS</a> - An open source medical
+     record system focused on bringing cutting edge information management
+     to developing countries.</li>
+ <li><a href="http://ptolemy.eecs.berkeley.edu">Ptolemy</a> - A project that
+     studies modeling, simulation and design of concurrent, real-time
+     embedded systems.</li>
+</ul>
+
 <p>
  If your company, team or project uses Review Board and would like to be on
  our list (we'd love to have you!), contact us at
  <a href="http://groups.google.com/group/reviewboard">reviewboard@googlegroups.com</a>
  and we'll be glad to add it.
+</p>
+<p>
+ If your project is a participant in Google's
+ <a href="http://code.google.com/soc/">Summer of Code</a>, we offer
+ <a href="http://code.google.com/p/reviewboard/wiki/Summer_Of_Code_Hosting">free
+ hosting</a> on <a href="http://gsoc.review-board.org/">gsoc.review-board.org</a>.
 </p>
 <?php
     site_end();

@@ -29,11 +29,11 @@
    <ul id="navbar">
     <li><a href="/blog/">Blog</a></li>
     <li><a href="http://demo.review-board.org/">Demo</a></li>
-    <li><a href="http://flickr.com/photos/chipx86/sets/72157600297790516/detail/">Screenshots</a></li>
-    <li><a href="http://code.google.com/p/reviewboard/wiki/Documentation">Documentation</a></li>
+    <li><a href="/screenshots/">Screenshots</a></li>
+    <li><a href="/wiki/Documentation">Documentation</a></li>
     <li><a href="http://groups.google.com/group/reviewboard">Mailing List</a></li>
     <li><a href="/users.php">Happy Users</a></li>
-    <li><a href="http://code.google.com/p/reviewboard/">Development</a></li>
+    <li><a href="/development/">Development</a></li>
    </ul>
   </div>
   <div class="box-container">

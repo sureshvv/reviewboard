@@ -18,23 +18,46 @@
  </head>
  <body>
   <div class="box-container">
-   <div class="box pageheader">
-    <div class="box-inner">
-     <h1><a href="/">Review Board</a></h1>
-     <h2>Code reviews are fun again! ...almost.</h2>
-    </div>
-   </div>
-  </div>
-  <div class="box-container">
-   <ul id="navbar">
-    <li><a href="/blog/">Blog</a></li>
-    <li><a href="http://demo.review-board.org/">Demo</a></li>
-    <li><a href="/screenshots/">Screenshots</a></li>
-    <li><a href="/wiki/Documentation">Documentation</a></li>
-    <li><a href="http://groups.google.com/group/reviewboard">Mailing List</a></li>
-    <li><a href="/users.php">Happy Users</a></li>
-    <li><a href="/development/">Development</a></li>
-   </ul>
+   <table class="box pageheader">
+    <colgroup>
+     <col width="*" />
+     <col width="1" />
+     <col width="1" />
+     <col width="1" />
+    </colgroup>
+    <tr>
+     <td class="titlebox">
+      <h1><a href="/">Review Board</a></h1>
+      <h2>Code reviews are fun again! ...almost.</h2>
+     </td>
+     <td>
+      <dl>
+       <dt>About</dt>
+       <dd><a href="/blog/">Blogs</a></dd>
+       <dd><a href="/screenshots/">Screenshots</a></dd>
+       <dd><a href="/users.php">Happy Users</a></dd>
+       <dd><a href="/media/">Media and Links</a></dd>
+      </dl>
+     </td>
+     <td>
+      <dl>
+       <dt>Using</dt>
+       <dd><a href="/downloads/">Downloads</a></dd>
+       <dd><a href="http://demo.review-board.org/">Demo</a></dd>
+       <dd><a href="/wiki/Documentation">Documentation</a></dd>
+       <dd><a href="http://groups.google.com/group/reviewboard">Mailing List</a></dd>
+      </dl>
+     </td>
+     <td>
+      <dl>
+       <dt>Contributing</dt>
+       <dd><a href="http://reviews.review-board.org/">Code Reviews</a></dd>
+       <dd><a href="/bugs/">Bug Tracker</a></dd>
+       <dd><a href="/wiki/">Wiki</a></dd>
+      </dl>
+     </td>
+    </tr>
+   </table>
   </div>
   <div class="box-container">
    <div class="box contentbox">

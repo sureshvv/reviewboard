@@ -5,7 +5,7 @@ body {
   font-size: 8pt;
   margin: 0 auto;
   padding: 10px;
-  width: 750px;
+  width: 800px;
 }
 
 h1 {
@@ -26,11 +26,17 @@ img {
 }
 
 .box.contentbox {
-  background-color: #eaeff1;
+  background-color: #e1e9eb;
 }
 
 .box.pageheader {
   background-color: #f3e9a2;
+  width: 100%;
+}
+
+.box.pageheader .titlebox {
+  width: 28em;
+  vertical-align: middle;
 }
 
 .box.pageheader a {
@@ -51,6 +57,32 @@ img {
   margin: 5px 0 0 0;
   padding: 0;
   text-align: center;
+}
+
+.box.pageheader td {
+  vertical-align: top;
+}
+
+.box.pageheader dl {
+  margin: 0;
+  padding: 9px 18px;
+}
+
+.box.pageheader dt {
+  font-weight: bold;
+  font-size: 110%;
+  margin: 0 0 8px 0;
+  padding: 0;
+}
+
+.box.pageheader dd {
+  margin: 6px 0 0 0;
+  padding: 0;
+}
+
+.box.pageheader dd a {
+  color: #3c2500;
+  text-decoration: none;
 }
 
 .box-container {
@@ -80,27 +112,6 @@ img {
 .testimonial .source {
   margin-top: 5px;
   text-align: right;
-}
-
-#navbar {
-  background-color: #C6DCF3;
-  border: 1px #3465A4 solid;
-  list-style: none;
-  margin: 0;
-  padding: 9px 18px;
-}
-
-#navbar li {
-  display: inline;
-  height: 30px;
-  margin-right: 14px;
-}
-
-#navbar a {
-  color: #0000AA;
-  font-size: 110%;
-  font-weight: bold;
-  text-decoration: none;
 }
 
 #overviewshots td {

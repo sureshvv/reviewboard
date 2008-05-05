@@ -15,7 +15,8 @@
      by Marc Hedlund on <a href="http://radar.oreilly.com/">O'Reilly Radar</a>,
      March 31, 2008</li>
  <li><a href="http://www.moongift.jp/2008/03/review_board/">VMWareの開発でも利用されているソースコードレビュー共有ソフトウェア「Review Board」</a>
-     on Moongift, March 21, 2008 (Japanese)</li>
+     on <a href="http://www.moongift.jp/">Moongift</a>,
+     March 21, 2008 (Japanese)</li>
  <li><a href="http://www.infoq.com/news/2008/02/reviewboard">Review Board - Online Code Review Tool</a>
      by Gavin Terrill on <a href="http://www.infoq.com/">InfoQ</a>,
      February 12, 2008
@@ -40,7 +41,7 @@
  <li><a href="http://bob.yexley.net/review-board-web-based-code-review-tool">Review Board - Web based code review tool</a>
      by Bob Yexley - February, 2008</li>
  <li><a href="http://www.everes.net/2007/jun/06/reviewboard/">ReviewBoard 釣られて使ってみた</a>
-     by makoto - June 6, 2007</li>
+     by makoto - June 6, 2007 (Japanese)</li>
  <li><a href="http://www.rhonabwy.com/wp/2007/06/01/reviewboard/">ReviewBoard</a>
      by Joe Heck - June 1, 2007</li>
  <li><a href="http://blog.emptyway.com/2007/05/21/interesting-new-code-review-tool/">Interesting new code review tool</a>

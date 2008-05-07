@@ -14,6 +14,7 @@
   * [Before_You_Install Before You Install] - Pre-installation instructions.
   * [GettingStarted Getting Started] - Contains installation instructions for different setups.
   * [SettingUpSearch Setting Up Search] - How to set up search.
+  * [Configuring_EMail Configuring E-Mail] - How to configure Review Board for outgoing e-mail
   * [ServerOptimizations Server Optimizations] - Potential ways to improve performance on a Review Board server.
   * [RequiredServerUpdates Required Server Updates] - Changes that require manual updates of Review Board servers.
   * [DatabaseSchemaUpgrades Database Schema Upgrades] - How to cope when the database schema changes.

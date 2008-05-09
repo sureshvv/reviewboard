@@ -1,12 +1,9 @@
 #summary Configuring repositories in the admin UI and for post-review
 #labels Documentation
 
-= Configuring Repositories =
+= Adding Repositories =
 
 Review Board supports talking to multiple source code repositories of various types. A single Review Board server can be configured with nearly an unlimited number of repositories, making it useful in large projects and companies as well as small.
-
-
-== Adding New Repositories ==
 
 For Review Board to talk to a source code repository, it must first know how to access it.
 
@@ -15,17 +12,17 @@ To add a new repository, first click "Admin" in the upper-right of any Review Bo
 A form will appear with the following fields:
 
 
-=== Name (required) ===
+== Name (required) ==
 
 This is the human-readable name of the repository. The name can be whatever you like and will appear on the "New Review Request" page and in the review request detail information.
 
 
-=== Path (required) ===
+== Path (required) ==
 
 This is the path to the repository. It must be accessible by the server running Review Board. The value depends on the repository type.
 
 
-==== CVS ====
+=== CVS ===
 
 In an existing checkout, type:
 
@@ -36,7 +33,7 @@ $ cat CVS/Root
 Use the contents of this file as the repository path.
 
 
-==== Perforce ====
+=== Perforce ===
 
 In an existing checkout, type:
 
@@ -47,7 +44,7 @@ $ p4 info
 Use the value from the "Server address" field.
 
 
-==== Subversion ====
+=== Subversion ===
 
 In an existing checkout, type:
 
@@ -58,17 +55,17 @@ $ svn info
 Use the value from the "Repository Root" field.
 
 
-=== Username and Password (optional) ===
+== Username and Password (optional) ==
 
 Some repositories will require a username and password for any access. Some repositories (such as Subversion) generally do not need a username or password, and instead have implicit anonymous support, but this varies on the setup. Some repositories (such as CVS and Perforce) usually require a username but may not require a password. The administrator of the repository should know what is required.
 
 
-=== Tool (required) ===
+== Tool (required) ==
 
 This is the SCM tool used to talk to this repository. The values should be straightforward, as they're usually the names of the repository type.
 
 
-=== Bug tracker (optional) ===
+== Bug tracker (optional) ==
 
 In most projects, there's a bug tracker for the repository or project, and review requests will often reference bugs.
 
@@ -82,6 +79,6 @@ For example:
   * *Trac:* {{{http://trac.example.com/ticket/%s}}}
 
 
-=== Encoding (optional) ===
+== Encoding (optional) ==
 
 Encoding is a field not often needed, but in some cases there's confusion as to the proper encoding to expect from files in a repository. Set this to the proper encoding type (such as {{{utf-8}}}) if you need to, but generally you don't want to touch this field if things are working fine.

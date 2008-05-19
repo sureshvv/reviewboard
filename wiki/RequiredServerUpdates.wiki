@@ -7,6 +7,25 @@ As Review Board is in development, there are on occasion changes that require ma
 
 == Changes for 1.0 beta ==
 
+=== r1361 - Database migrations ===
+
+Database migrations used to be performed by running {{{./contrib/db/backup-db.py}}} before updating the SVN checkout and then running {{{./contrib/db/load-db.py}}} afterwards. This process was slow on large installs and wasn't nearly flexible enough for more complex database modifications.
+
+Starting in r1361, we've moved to using [http://django-evolution.googlecode.com/ Django Evolution] for our database migrations. No steps need to be performed before an SVN update. After every update, you should run:
+
+{{{
+$ ./manage.py syncdb
+}}}
+
+This will let you know if you need to perform a migration (or "evolution"). If you do, run:
+
+{{{
+$ ./manage.py evolve --execute
+}}}
+
+The migration will be performed quickly and in-place. While this should not cause any problems in your database, it is, as always, advisable that you perform a database backup (using your database's native backup tools or SQL dumping support) before performing a database migration.
+
+
 === r1247 - Media changes ===
 
 We've moved all media files into subdirectories of htdocs/media/ (/media by default in the URL). Some server changes will need to be made to work properly with this.

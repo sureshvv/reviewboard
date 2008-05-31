@@ -17,6 +17,13 @@
   <link rel="SHORTCUT ICON" href="/favicon.ico" type="image/png" />
  </head>
  <body>
+<?php
+
+		site_body_start();
+	}
+
+	function site_body_start() {
+?>
   <div class="box-container">
    <table class="box pageheader">
     <colgroup>
@@ -33,7 +40,8 @@
      <td>
       <dl>
        <dt>About</dt>
-       <dd><a href="/blog/">Blogs</a></dd>
+       <dd><a href="/news/">News</a></dd>
+       <dd><a href="/blog/">Developer Blogs</a></dd>
        <dd><a href="/screenshots/">Screenshots</a></dd>
        <dd><a href="/users.php">Happy Users</a></dd>
        <dd><a href="/media/">Media and Links</a></dd>

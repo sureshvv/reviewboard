@@ -78,6 +78,7 @@ img {
 .box.pageheader dd {
   margin: 6px 0 0 0;
   padding: 0;
+  white-space: nowrap;
 }
 
 .box.pageheader dd a {
@@ -116,4 +117,8 @@ img {
 
 #overviewshots td {
   vertical-align: top;
+}
+
+#content {
+  text-align: left;
 }

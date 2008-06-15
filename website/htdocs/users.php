@@ -42,6 +42,8 @@
 
 <h1>Projects using Review Board</h1>
 <ul>
+ <li><a href="http://tragicallyleet.com/projects/nodedb/">NodeDB</a>
+     - A document-oriented database written in Python.</li>
  <li><a href="http://www.phinax.de/">PHInaX</a> and
      <a href="http://www.sphinxlib.de/">S/PHI/nX Library</a>
      - An ab-initio-based multi-scale library and graphical user interface.</li>

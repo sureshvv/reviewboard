@@ -5,7 +5,7 @@
 
 At the very least, you need:
   * [http://www.python.org python] 2.4 or newer
-  * [http://www.djangoproject.com django] 0.97 (svn)
+  * [http://www.djangoproject.com django] 1.0 alpha or higher
   * [http://www.sqlite.org sqlite] 3 (not necessary if using mysql)
   * [http://www.pythonware.com/products/pil/ PIL]
   * [http://freshmeat.net/projects/patchutils/ patchutils]

@@ -10,7 +10,7 @@ The ideal server should have at least 512MB of RAM. Larger installations should 
 
 == Required Programs ==
 
-  * [http://www.djangoproject.com/ Django] version 0.97 or higher
+  * [http://www.djangoproject.com/ Django] version 1.0 alpha or higher
   * [http://www.python.org/ Python] version 2.4 or higher
   * [http://www.pythonware.com/products/pil/ PIL] - The Python Imaging Library
   * [http://freshmeat.net/projects/patchutils/ patchutils]

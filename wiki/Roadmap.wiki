@@ -42,7 +42,8 @@ The release process will be:
 || *Feature*                      || *Issue Number*  || *Status*    ||
 || Diff change descriptions       ||                 || Not started ||
 || Linkify URLs in descriptions   || issue 258       || Not started ||
-|| "Not Shippable" status         || issue 489       || Not started     ||
+|| "Not Shippable" status         || issue 489       || Not started ||
+|| User manual                    ||                 || Not started ||
 
 
 == Bugs ==

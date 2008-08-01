@@ -35,6 +35,7 @@ The release process will be:
 || Logging                        || Not started    ||
 || First-time installation wizard || Not started    ||
 || Monotone repository support    || Initial support pending review ([http://reviews.review-board.org/r/393/ /r/393]) ||
+|| Move to ExtJS                  || In progress    ||
 
 
 === Maybe Features ===

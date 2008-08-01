@@ -17,34 +17,6 @@ We may decide not to implement a separate concept for hooks and instead just use
 Feature requests tagged with [http://code.google.com/p/reviewboard/issues/list?q=milestone%3AExtensions Extensions] are candidates for future extensions.
 
 
-== Improved Admin UI ==
-
-The current administration UI is useful but we could simplify things a bit. The current /admin page containing a list of models will move to a separate page, and in its place will be a more user-friendly admin page with links for the common tasks administrators have to deal with. These will include:
-
- * Adding/changing review groups
- * Adding/changing repositories
- * Viewing site statistics (such as server load, caching information, etc.)
- * Managing extensions
- * Downloading a database dump
- * Clearing the cache
-
-A link will be provided for accessing the current admin page. We won't be removing any functionality.
-
-This page may also contain Review Board news on the side (such as release announcements).
-
-
-== Dynamic Changes for Server Settings ==
-
-Right now people must edit {{{settings_local.py}}} for all server settings. While this file will not be going away, we may want to give users the ability to modify some of this from a web UI. We can generate the resulting file ({{{settings_gen.py}}}?) in a server-writable directory.
-
-Possible settings would include:
-
- * {{{SEND_REVIEW_MAIL}}}
- * {{{ENABLE_SEARCH}}}
- * {{{DIFF_SYNTAX_HIGHLIGHTING}}}
- * {{{REQUIRE_SITEWIDE_LOGIN}}}
-
-
 == User Manual ==
 
 If we don't somehow get to it before the 1.0 release, we really should work on having a useful, thorough user manual bundled with the software. Every page should have a "Help" link in the top-right. Optional inline help may also be useful in some areas, such as the diff viewer.

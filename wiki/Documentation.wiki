@@ -21,5 +21,7 @@
 
 = Developer Documentation =
 
+  * [Roadmap] - Development roadmap for the upcoming release.
+  * [IdeasFor2_0] - Ideas for the Review Board 2.0 release.
   * [ReviewBoardAPI Review Board API] - Reference documentation for writing applications that talk to Review Board servers.
   * [UnitTestFixtures Unit Test Fixtures] - Working with fixtures for unit tests

@@ -32,7 +32,7 @@ The release process will be:
 || *Feature*                      || *Status*       ||
 || New admin UI                   || Committed.     ||
 || Dynamic site settings          || Pending review ||
-|| Logging                        || Not started    ||
+|| Logging                        || Pending review ||
 || First-time installation wizard || Not started    ||
 || Monotone repository support    || Initial support pending review ([http://reviews.review-board.org/r/393/ /r/393]) ||
 || Move to ExtJS                  || In progress    ||
@@ -41,10 +41,10 @@ The release process will be:
 === Maybe Features ===
 
 || *Feature*                      || *Issue Number*  || *Status*    ||
-|| Diff change descriptions       ||                 || Not started ||
+|| Diff change descriptions       || issue 333       || Not started ||
 || Linkify URLs in descriptions   || issue 258       || Not started ||
 || "Not Shippable" status         || issue 489       || Not started ||
-|| User manual                    ||                 || Not started ||
+|| User manual                    || issue 368       || Not started ||
 
 
 == Bugs ==

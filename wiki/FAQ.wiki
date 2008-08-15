@@ -7,7 +7,7 @@
 
 === Does Review Board support post-commit review? ===
 
-Yes, Review Board can handle post-commit review, though currently you need to [[Using_PostReview use post-review]] for this.
+Yes, Review Board can handle post-commit review, though currently you need to [Using_PostReview use post-review] for this.
 
 Review Board was initially designed for pre-commit reviews and large changes need to be made before post-commit reviews can be handled in the web UI. We plan to get to this after Review Board 1.0.
 

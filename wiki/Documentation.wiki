@@ -3,6 +3,7 @@
 
 = User Documentation =
 
+  * [FAQ] - Frequently Asked Questions
   * [UserBasics User Basics] - How to get started as a Review Board user.
   * [SearchTips Search Tips] - How to make effective use of Review Board search.
   * [Using_PostReview Using post-review] - Instructions on using the post-review tool.

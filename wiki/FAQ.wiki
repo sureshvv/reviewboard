@@ -1,0 +1,31 @@
+#summary Frequently Asked Questions
+#labels Featured
+
+= Frequently Asked Questions =
+
+== General Usage ==
+
+=== Does Review Board support post-commit review? ===
+
+Yes, Review Board can handle post-commit review, though currently you need to [[Using_PostReview use post-review]] for this.
+
+Review Board was initially designed for pre-commit reviews and large changes need to be made before post-commit reviews can be handled in the web UI. We plan to get to this after Review Board 1.0.
+
+
+=== What's pre-commit and post-commit reviews? ===
+
+Pre-commit reviews are where code is reviewed before it's checked into a public repository and mainline, non-developer branch. Code isn't committed until reviewers sign off on it, leaving the tree stable and easing changes.
+
+Post-commit reviews are where code is first committed to a public repository and then reviewed. This makes the code available to others to develop against until the code is reviewed, but large-scale changes to the architecture of the code can then be hard to make without disrupting others. Post-commit reviews sometimes happen by individuals or by a large group sitting together and reading over the code together.
+
+
+== Developing Review Board ==
+
+=== What is Review Board written in? ===
+
+Review Board is written in [http://www.python.org/ Python], using the [http://www.djangoproject.com/ Django] web framework.
+
+
+=== Where do I submit patches for Review Board? ===
+
+Patches to Review Board or Djblets should be submitted to our own Review Board instance, [http://reviews.review-board.org/ reviews.review-board.org]. If you submit patches to the mailing list or bug tracker, we'll ask you to move them here for review.

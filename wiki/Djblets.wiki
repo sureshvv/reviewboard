@@ -1,0 +1,23 @@
+#summary Information on the Djblets module
+
+= Djblets =
+
+Djblets is a separate but closely linked project containing a number of useful utility functions and classes for use with [http://www.djangoproject.com/ Django]. We make it a goal to put generic code written for Review Board into Djblets for other developers to use.
+
+Djblets is under the MIT license.
+
+
+== Download ==
+
+Djblets is hosted in a different Subversion repository. You can [http://svn.navi.cx/misc/trunk/djblets browse] the repository or check it out:
+
+{{{
+$ svn checkout http://svn.navi.cx/misc/trunk/djblets
+}}}
+
+
+== Documentation ==
+
+While Djblets is documented, there is not yet an online version of this documentation.
+
+See the [http://www.chipx86.com/blog/?p=244 Django Development with Djblets] articles and tutorials to get a feel for what's available in Djblets and how to use it.

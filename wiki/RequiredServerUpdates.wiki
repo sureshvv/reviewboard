@@ -7,6 +7,18 @@ As Review Board is in development, there are on occasion changes that require ma
 
 == Changes for 1.0 beta ==
 
+=== r1463 - Site Configurations ===
+
+Review Board now handles site configurations through the administration UI. Most settings can no be handled in the Settings page, and very few will still need to be edited in settings_local.py. In coming months, more options will be added to here.
+
+After updating, users will need to run {{{./manage.py syncdb}}} to perform the migrations and add the new database schema.
+
+
+=== r1461 - Django 1.0 beta 2 ===
+
+We now require Django 1.0 beta 2. Users can still use Django SVN for the time being, though Django 1.0 will soon be released and we will then depend on that.
+
+
 === r1361 - Database migrations ===
 
 Database migrations used to be performed by running {{{./contrib/db/backup-db.py}}} before updating the SVN checkout and then running {{{./contrib/db/load-db.py}}} afterwards. This process was slow on large installs and wasn't nearly flexible enough for more complex database modifications.

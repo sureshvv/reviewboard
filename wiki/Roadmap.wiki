@@ -30,12 +30,12 @@ The release process will be:
 === Must-Have Features ===
 
 || *Feature*                      || *Status*       ||
-|| New admin UI                   || Committed.     ||
-|| Dynamic site settings          || Pending review ||
+|| New admin UI                   || Committed      ||
+|| Dynamic site settings          || Committed      ||
 || Logging                        || Pending review ||
-|| Move to Python setuptools      || In progress    ||
+|| Move to Python setuptools      || Committed      ||
 || First-time installation wizard || Not started    ||
-|| Monotone repository support    || Initial support pending review ([http://reviews.review-board.org/r/393/ /r/393]) ||
+|| Monotone repository support    || Committed      ||
 || Move to ExtJS                  || In progress    ||
 
 

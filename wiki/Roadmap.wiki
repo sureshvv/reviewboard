@@ -8,7 +8,7 @@ This describes the roadmap for the 1.0 release of Review Board, including an est
 
 == Schedule ==
 
-We expect to have a 1.0 release by the end of December. This may change due to many factors, but we're proceeding with this goal in mind.
+We expect to have a 1.0 release by the end of December 2008. This may change due to many factors, but we're proceeding with this goal in mind.
 
 The release process will be:
 
@@ -21,7 +21,7 @@ The release process will be:
 
 == Release Dependencies ==
 
-  * *Django 1.0:* Review Board's biggest dependency is [http://www.djangoproject.com/ Django]. Their [http://code.djangoproject.com/wiki/VersionOneRoadmap roadmap] places Django 1.0 at September.
+  * *Django 1.0:* Review Board's biggest dependency is [http://www.djangoproject.com/ Django]. Django 1.0 released on 3 September, 2008.
   * *Django Evolution:* [http://django-evolution.googlecode.com/ Django Evolution] is another important dependency. Their release schedule is unknown but we'll likely depend on either a snapshot of their Subversion repository or the closest stable release at the point of our release.
 
 
@@ -29,14 +29,14 @@ The release process will be:
 
 === Must-Have Features ===
 
-|| *Feature*                      || *Status*       ||
-|| New admin UI                   || Committed      ||
-|| Dynamic site settings          || Committed      ||
-|| Logging                        || Pending review ||
-|| Move to Python setuptools      || Committed      ||
-|| First-time installation wizard || Not started    ||
-|| Monotone repository support    || Committed      ||
-|| Move to ExtJS                  || In progress    ||
+|| *Feature*                      || *Status*                     ||
+|| New admin UI                   || Committed                    ||
+|| Dynamic site settings          || Committed                    ||
+|| Logging                        || Committed                    ||
+|| Move to Python setuptools      || Committed                    ||
+|| First-time installation wizard || Not started                  ||
+|| Monotone repository support    || Started in trunk, but broken ||
+|| Move to ExtJS                  || In progress                  ||
 
 
 === Maybe Features ===

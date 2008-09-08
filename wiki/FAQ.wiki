@@ -33,7 +33,7 @@ FORCE_SCRIPT_NAME = "/"
 
 If this is a subdirectory install on lighttpd, set this variable to the subdirectory name (making sure to keep leading and trailing slashes).
 
-=== I'm getting the error: OperationalError at /dashboard/ near "DISTINCT": syntax error ===
+=== I'm getting the error: !OperationalError at /dashboard/ near "DISTINCT": syntax error ===
 
 Your version of sqlite is too old. Make sure you're running sqlite 3.2.1 or higher.
 

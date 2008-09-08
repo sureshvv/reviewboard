@@ -1,0 +1,28 @@
+#summary What needs to be done to get rid of YUI-Ext
+#labels Phase-Design,Phase-Requirements,Phase-Implementation
+
+= Introduction =
+
+When Review Board was first written, we chose to use [http://developer.yahoo.com/yui/ YUI] and YUI-Ext as our JavaScript toolkits. Since then, YUI-Ext has been replaced with a completely new (and backward-incompatible) implementation called [http://www.extjs.com/ ExtJS].
+
+Some experimental work was done toward moving to ExtJS, but there are licensing concerns. ExtJS is dual-licensed and it's not clear where we fit. It is partially under a commercial license and partially under GPL 3. Their license terms place some additional restrictions and since we are not a GPL 3 application and are instead MIT, which allows people to modify our code and not release it, we're pretty sure there will eventually be licensing issues. Especially if anyone produces an extension down the road on top of Review Board that is intended for sale.
+
+= What are we moving to? =
+
+The YUI toolkit has become a lot more powerful these days and may provide most of what we need. We're going to investigate moving almost exclusively to this. Anything custom that is reusable will be put into a JavaScript library in Djblets called Gravy.
+
+If it turns out that YUI still doesn't fully meet our need and we'd have to write custom code anyway, it may be time to look into an alternative that is less heavy-weight. One popular alternative is [http://www.jquery.com/ jQuery], which we should spend time looking into.
+
+= What will it take to switch? =
+
+Right now, a lot of code is dependent on YUI-ext. A quick ack shows that we most often use the following:
+
+  * YAHOO.ext.DomHelper
+  * YAHOO.ext.BasicDialog
+  * YAHOO.ext.util.Observable
+  * YAHOO.ext.util.Config
+  * YAHOO.ext.util.Browser
+  * YAHOO.ext.util.JSON
+  * YAHOO.ext.EventManager
+
+On top of this, any time we {{{getEl()}}}, we're grabbing a YAHOO.ext.Element, so it's quite likely we're calling methods on Elements that are specific to YUI-ext. We'll have to find these as we migrate away from YUI-ext.

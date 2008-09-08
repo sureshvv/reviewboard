@@ -19,6 +19,25 @@ Pre-commit reviews are where code is reviewed before it's checked into a public 
 Post-commit reviews are where code is first committed to a public repository and then reviewed. This makes the code available to others to develop against until the code is reviewed, but large-scale changes to the architecture of the code can then be hard to make without disrupting others. Post-commit reviews sometimes happen by individuals or by a large group sitting together and reading over the code together.
 
 
+== Troubleshooting ==
+
+=== I'm getting a 404 for every page ===
+
+This points to a configuration error in your web server configuration.
+
+If you're using lighttpd as your web server, add the following to settings_local.py file:
+
+{{{
+FORCE_SCRIPT_NAME = "/"
+}}}
+
+If this is a subdirectory install on lighttpd, set this variable to the subdirectory name (making sure to keep leading and trailing slashes).
+
+=== I'm getting the error: OperationalError at /dashboard/ near "DISTINCT": syntax error ===
+
+Your version of sqlite is too old. Make sure you're running sqlite 3.2.1 or higher.
+
+
 == Developing Review Board ==
 
 === What is Review Board written in? ===

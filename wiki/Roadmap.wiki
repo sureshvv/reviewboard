@@ -29,14 +29,14 @@ The release process will be:
 
 === Must-Have Features ===
 
-|| *Feature*                      || *Status*                     ||
-|| New admin UI                   || Committed                    ||
-|| Dynamic site settings          || Committed                    ||
-|| Logging                        || Committed                    ||
-|| Move to Python setuptools      || Committed                    ||
-|| First-time installation wizard || Not started                  ||
-|| Monotone repository support    || Started in trunk, but broken ||
-|| Move to ExtJS                  || In progress                  ||
+|| *Feature*                                || *Status*                     ||
+|| New admin UI                             || Committed                    ||
+|| Dynamic site settings                    || Committed                    ||
+|| Logging                                  || Committed                    ||
+|| Move to Python setuptools                || Committed                    ||
+|| First-time installation wizard           || Not started                  ||
+|| Monotone repository support              || Started in trunk, but broken ||
+|| [Eliminating_YUIExt Eliminating YUI-Ext] || In progress                  ||
 
 
 === Maybe Features ===

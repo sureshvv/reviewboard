@@ -5,6 +5,18 @@
 
 == General Usage ==
 
+=== Is Review Board free for commercial use? ===
+
+Yes, Review Board is absolutely free for commercial use.
+
+
+=== What license is Review Board under? ===
+
+Review Board is under the MIT license, which basically means you are free to do as you want. You must however keep the software under the MIT license.
+
+This permits companies to create custom modifications of Review Board for their setups without contributing back. However, we strongly encourage people to contribute back to the project, as it benefits everybody and will ease upgrades by helping to keep your codebase from straying too far from ours.
+
+
 === Does Review Board support post-commit review? ===
 
 Yes, Review Board can handle post-commit review, though currently you need to [Using_PostReview use post-review] for this.
@@ -36,6 +48,11 @@ If this is a subdirectory install on lighttpd, set this variable to the subdirec
 === I'm getting the error: !OperationalError at /dashboard/ near "DISTINCT": syntax error ===
 
 Your version of sqlite is too old. Make sure you're running sqlite 3.2.1 or higher.
+
+
+=== I'm having trouble installing post-review on Windows Vista ===
+
+See the [Installing_Simplejson_On_Vista Installing simplejson On Vista] page for a possible solution to your problem.
 
 
 == Developing Review Board ==

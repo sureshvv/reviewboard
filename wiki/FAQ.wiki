@@ -50,6 +50,13 @@ If this is a subdirectory install on lighttpd, set this variable to the subdirec
 Your version of sqlite is too old. Make sure you're running sqlite 3.2.1 or higher.
 
 
+=== I get a page telling me to run syncdb, but I've done that already ===
+
+Generally this page is there to let you know when we've updated the database schema so you can make the appropriate changes. Be sure to run {{{./manage.py syncdb}}} and follow the [DatabaseSchemaUpgrades database schema upgrade instructions] if it tells you an evolution is required.
+
+If you've done that already and you're still getting the error, and you're using sqlite for your database, you may need to set {{{DATABASE_NAME}}} in {{{settings_local.py}}} to the absolute path of the database instead of the relative path. See [http://groups.google.com/group/reviewboard/browse_thread/thread/9836ff1bcb501cc4?hl=en this thread] for more information.
+
+
 === I'm having trouble installing post-review on Windows Vista ===
 
 See the [Installing_Simplejson_On_Vista Installing simplejson On Vista] page for a possible solution to your problem.

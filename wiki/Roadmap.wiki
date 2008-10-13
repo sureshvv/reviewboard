@@ -42,7 +42,7 @@ The release process will be:
 === Maybe Features ===
 
 || *Feature*                      || *Issue Number*  || *Status*    ||
-|| Diff change descriptions       || issue 333       || Started     ||
+|| Diff change descriptions       || issue 333       || Committed   ||
 || Linkify URLs in descriptions   || issue 258       || Not started ||
 || "Not Shippable" status         || issue 489       || Not started ||
 || User manual                    || issue 368       || Not started ||

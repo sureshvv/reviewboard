@@ -5,7 +5,10 @@
 ?>
 <h1>Presentations</h1>
 <ul>
+ <li>Developing Review Board [<a href="/presentations/djangocon2008_developing_reviewboard.pdf">PDF slides</a>]
+     by Christian Hamond and David Trowbridge at <a href="http://www.djangocon.org/">DjangoCon 2008</a> on September 6, 2008</li>
  <li><a href="http://blip.tv/file/827320">Review Board in Open Source</a>
+     [<a href="/presentations/lugradio_usa_2008_reviewboard.pdf">PDF slides</a>]
      by Christian Hamond at LugRadio Live USA 2008 on April 13, 2008</li>
 </ul>
 

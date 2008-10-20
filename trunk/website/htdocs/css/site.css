@@ -9,10 +9,12 @@ body {
 }
 
 h1 {
+  margin: 0;
   font-size: 10pt;
 }
 
 h2 {
+  margin-top: 30px;
   font-size: 8pt;
 }
 
@@ -121,4 +123,40 @@ img {
 
 #content {
   text-align: left;
+}
+
+#thermometer {
+  display: block;
+  float: right;
+  width: 200px;
+  position: relative;
+}
+
+#thermometer .meter {
+  height: 200px;
+  position: relative;
+}
+
+#thermometer .item {
+  border-top: 1px black solid;
+  padding-left: 20px;
+  margin-left: 27px;
+  position: absolute;
+  width: 150px;
+}
+
+#thermometer .empty {
+  background: url("/images/thermometer_empty.png") repeat-y;
+  border: 1px black solid;
+  border-bottom: 0;
+  margin-left: 12px;
+  width: 26px;
+}
+
+#thermometer .full {
+  background: url("/images/thermometer_full.png") repeat-y;
+  border-left: 1px black solid;
+  border-right: 1px black solid;
+  margin-left: 12px;
+  width: 26px;
 }

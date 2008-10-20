@@ -7,4 +7,5 @@ Redirect /development http://reviewboard.googlecode.com/
 RewriteEngine on
 RewriteRule wiki/?(.*)/?$ http://code.google.com/p/reviewboard/wiki/$1
 RewriteRule bugs/?$ http://code.google.com/p/reviewboard/issues/list
+RewriteRule bugs/new/?$ http://code.google.com/p/reviewboard/issues/entry
 RewriteRule bugs/(.*)/?$ http://code.google.com/p/reviewboard/issues/detail?id=$1

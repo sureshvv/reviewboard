@@ -60,8 +60,10 @@
       <dl>
        <dt>Contributing</dt>
        <dd><a href="http://reviews.review-board.org/">Code Reviews</a></dd>
+       <dd><a href="http://build.review-board.org/waterfall">Build Monitoring</a></dd>
        <dd><a href="/bugs/">Bug Tracker</a></dd>
        <dd><a href="/wiki/">Wiki</a></dd>
+       <dd><a href="/donate/">Donate</a></dd>
       </dl>
      </td>
     </tr>

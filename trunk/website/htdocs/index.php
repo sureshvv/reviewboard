@@ -14,6 +14,8 @@
  <div class="source">&mdash; Yahoo! Web Search</div>
 </blockquote>
 
+<div><a href="/donate/"><img src="https://www.paypal.com/en_US/i/btn/btn_donate_LG.gif" /></a></div>
+
 <p>
  For too long, code reviews have been too much of a chore. This is largely
  due to the lack of quality tools available, leaving developers to resort to

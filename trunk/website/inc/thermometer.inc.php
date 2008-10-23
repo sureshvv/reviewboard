@@ -1,11 +1,11 @@
 <?php
 
-$THERMOMETER_GOAL = 2000;
-$THERMOMETER_CURRENT = 0;
+$THERMOMETER_GOAL = 2300;
+$THERMOMETER_CURRENT = 100;
 
 $THERMOMETER_ITEMS = array(
-	2000 => "Web hosting (1 year)",
-	1000  => "Web hosting (6 months)",
+	2300 => "Web hosting (1 year)",
+	1150  => "Web hosting (6 months)",
 );
 
 function display_thermometer()
@@ -27,6 +27,8 @@ function display_thermometer()
   <div class="full" style="height:<?php print $cur_pct; ?>%;">&nbsp;</div>
  </div>
  <img src="/images/thermometer_bottom.png" width="52" height="48" alt="" />
+ <p><b>Goal:</b> $<?php print $THERMOMETER_GOAL; ?>.00</p>
+ <p><b>Current:</b> $<?php print $THERMOMETER_CURRENT; ?>.00</p>
 </div>
 
 <?php

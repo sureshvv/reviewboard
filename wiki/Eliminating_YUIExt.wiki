@@ -9,20 +9,6 @@ Some experimental work was done toward moving to ExtJS, but there are licensing 
 
 = What are we moving to? =
 
-The YUI toolkit has become a lot more powerful these days and may provide most of what we need. We're going to investigate moving almost exclusively to this. Anything custom that is reusable will be put into a JavaScript library in Djblets called Gravy.
+We have decided to move to [http://www.jquery.com/ jQuery], a popular and powerful JavaScript library.
 
-If it turns out that YUI still doesn't fully meet our need and we'd have to write custom code anyway, it may be time to look into an alternative that is less heavy-weight. One popular alternative is [http://www.jquery.com/ jQuery], which we should spend time looking into.
-
-= What will it take to switch? =
-
-Right now, a lot of code is dependent on YUI-ext. A quick ack shows that we most often use the following:
-
-  * YAHOO.ext.DomHelper
-  * YAHOO.ext.BasicDialog
-  * YAHOO.ext.util.Observable
-  * YAHOO.ext.util.Config
-  * YAHOO.ext.util.Browser
-  * YAHOO.ext.util.JSON
-  * YAHOO.ext.EventManager
-
-On top of this, any time we {{{getEl()}}}, we're grabbing a YAHOO.ext.Element, so it's quite likely we're calling methods on Elements that are specific to YUI-ext. We'll have to find these as we migrate away from YUI-ext.
+As of October 27, the work to move over to jQuery is nearly complete. With this comes a simpler and more streamlined UI for Review Board. Once a few more tests have been run and a couple features implemented, this will go up for review.

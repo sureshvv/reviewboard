@@ -9,7 +9,6 @@ Things that NEED to be Fixed:
 Known bugs:
  - Resizing doesn't always work correctly
  - If something goes wrong, there is no info given to the user as to what is happening
- - The login screen pops up behind the current window sometimes 
  - Still require a diff util for windows
 
 

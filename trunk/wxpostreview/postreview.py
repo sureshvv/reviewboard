@@ -533,6 +533,9 @@ class PerforceClient(SCMClient):
     and generates compatible diffs.
     """
     def getPendingCLs(self, expensive=None):
+      if not check_install('p4 help'):
+        print "P4 is not correctly installed"
+        return [] # p4 isn't installed, so we don't have any CLs to view
       cmd = 'p4 changes -u %s -s pending' % self.username
       f = os.popen(cmd, 'r')
       data = f.readlines()

@@ -1,12 +1,5 @@
 <?php
-
-$THERMOMETER_GOAL = 2300;
-$THERMOMETER_CURRENT = 100;
-
-$THERMOMETER_ITEMS = array(
-	2300 => "Web hosting (1 year)",
-	1150  => "Web hosting (6 months)",
-);
+include "donations.inc.php";
 
 function display_thermometer()
 {

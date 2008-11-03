@@ -5,9 +5,13 @@
 ?>
 <h1>Companies using Review Board</h1>
 <ul>
+ <li><a href="http://auscope.org.au/">AuScope</a>
+     - An organization for a National Earch Science Infrastructure program.</li>
  <li><a href="http://www.beatport.com/">Beatport</a>
      - An online electronic music store with hundreds of labels.</li>
- <li><a href="http://www.datacomp.pt/">Datacomp</a></li>
+ <li><a href="http://www.datacomp.pt/">Datacomp</a>
+     - Portugal-based software house and hardware integrator, focused on
+       Financial, Health, Public Administration and Utilities sectors.</li>
  <li><a href="http://www.digium.com/">Digium</a>
      - Primary developers of Asterisk&reg;, the open source PBX.</li>
 <!--
@@ -24,6 +28,12 @@
  <li><a href="http://www.leapfrogonline.com/">Leapfrog Online</a>
      - Provides Fortune 500 marketers with customized, performence-based
 	   digital direct marketing solutions.</li>
+ <li><a href="http://www.linkgard.com/">Linkgard</a>
+     - A software development and information security company specializing
+       in Enterprise Content Management and Archiving.</li>
+ <li><a href="http://www.navtechinc.com/">Navtech Inc.</a>
+     - A airline software company that provides products for such tasks as
+       flight planning and crew scheduling.</li>
  <li><a href="http://www.netlogicmicro.com/">NetLogic Microsystems</a>
      - A semiconductor company that develops knowledge-based processors for
        a variety of advanced Internet and networking systems and devices.</li>

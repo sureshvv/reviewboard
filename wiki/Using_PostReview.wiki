@@ -81,7 +81,7 @@ This will cause the review request to be published, rather than being saved as a
 By default, Review Board will display the URL of the review request. By passing {{{-o}}} or {{{--open}}}, a web browser will automatically open to this URL.
 
 
-=== --output-diff ===
+=== -n, --output-diff ===
 
 This will display the generated diff from post-review to the terminal, instead of posting the diff to a Review Board server.
 
@@ -146,6 +146,39 @@ $ post-review --description="This is my changeset description."
 }}}
 
 
+=== --description-file ===
+
+This allows a text file containing a lengthy review description to be passed to post-review.  This option is mutually exclusive with --description.
+
+For example:
+
+{{{
+$ post-review --description-file="/tmp/desc.txt"
+}}}
+
+
+=== --branch ===
+
+This works like {{{--summary}}}, but will set the affected branch field of the review request.
+
+For example:
+
+{{{
+$ post-review --branch=1.5
+}}}
+
+
+=== --bugs-closed ===
+
+This works like {{{--summary}}}, but will set the closed bugs field of the review request.
+
+For example:
+
+{{{
+$ post-review --bugs-closed=234,863
+}}}
+
+
 === --revision-range ===
 
 In cases where existing committed code is to be put up for review, the {{{--revision-range}}} parameter is used to specify the revision or revisions with which to generate the diff.
@@ -172,7 +205,58 @@ For example:
 
 {{{
 $ post-review --submit-as=johnny
+$ post-review --submit-as=johnny --username=auto --password=secret
 }}}
+
+The latter example will authenticate as user {{{auto}}} with password {{{secret}}}, but the new review request will be submitted as {{{johnny}}}.
+
+A valid stored cookie will override this option.
+
+
+=== --username ===
+
+This provides a username to Review Board for authentication. If this option is used, post-review will not interactively ask for a username. Unless {{{--submit-as}}} is also provided, this username will be attached as the submitter to the review request.
+
+For example:
+
+{{{
+$ post-review --username=sue
+}}}
+
+A valid stored cookie will override this option.
+
+
+=== --password ===
+
+This provides a password to Review Board for authentication. If this option is used, post-review will not interactively ask for a password. If {{{--username}}} is also supplied (with or without {{{--submit-as}}}), this password must be valid for that user; if {{{--submit-as}}} is supplied without {{{--username}}}, this password must be valid for the submit-as user.
+
+For example:
+
+{{{
+$ post-review --password=secret
+}}}
+
+A valid stored cookie will override this option.
+
+
+=== --change-only ===
+
+Updates info from changelist, but does not upload a new diff.  This option is only available if your repository supports changesets (currently only Perforce).
+
+
+=== --parent ===
+
+Provides the parent branch this diff should be against.  This option is only available if your repository supports parent diffs (currently only Mercurial and Git).
+
+
+=== --p4-client ===
+
+The Perforce client name that the review is in.
+
+
+=== --p4-port ===
+
+The Perforce server's IP address that the review is on.
 
 
 === -d, --debug ===

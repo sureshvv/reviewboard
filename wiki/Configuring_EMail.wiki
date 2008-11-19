@@ -15,18 +15,9 @@ Configuring the mail server is beyond the scope of this documentation, but typic
 
 == Configure E-Mail Settings ==
 
-First, Review Board must be told where the server lives.
+Configuring e-mail in Review Board is simple. Go into the site administration page, click "Settings", and then "E-Mail".
 
-Set the following in {{{settings_local.py}}}:
-
-{{{
-EMAIL_HOST = "smtp.example.com"
-EMAIL_PORT = 25
-
-SEND_REVIEW_MAIL = True
-}}}
-
-{{{EMAIL_HOST}}} should of course be set to the hostname of your mail server. {{{EMAIL_PORT}}} should almost always be 25, unless you've specifically changed the port number.
+Make sure to fill out the fields to point to your mail server. Then enable the "Send e-mails for review requests and reviews".
 
 At this point, Review Board should be ready to start sending e-mail.
 
@@ -35,4 +26,4 @@ At this point, Review Board should be ready to start sending e-mail.
 
 Review groups can be assigned a mailing list. If set, all new review requests, updates to existing review requests, and discussions on them that are assigned to the review group will trigger e-mails to the mailing list.
 
-If a mailing list is not set on a review group, and {{{SEND_REVIEW_MAIL}}} is {{{True}}}, then every member of the group will be e-mailed with the updates.
+If a mailing list is not set on a review group, and "Send e-mails for review requests and reviews" is enabled, then every member of the group will be e-mailed with the updates.

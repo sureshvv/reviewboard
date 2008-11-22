@@ -1,0 +1,17 @@
+Dependencies:
+
+	python-virtualenv
+
+
+Installation Instructions
+-------------------------
+
+First, install the necessary dependencies:
+
+$ sudo apt-get install python-virtualenv python-buildbot
+
+
+Then install buildbatter:
+
+$ cd buildbatter
+$ sudo python setup.py install

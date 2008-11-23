@@ -7,7 +7,24 @@ Djblets is a separate but closely linked project containing a number of useful u
 Djblets is under the MIT license.
 
 
-== Download ==
+== Installation ==
+
+Installing Djblets is easy. If you have Python setuptools installed, simply type:
+
+{{{
+$ sudo easy_install --upgrade Djblets
+}}}
+
+This will fetch the latest version and install it.
+
+To fetch the latest bleeding edge release, you can run:
+
+{{{
+$ sudo easy_install --upgrade -f http://www.review-board.org/downloads/bleeding/ Djblets
+}}}
+
+
+== Development ==
 
 Djblets is hosted in a different Subversion repository. You can [http://svn.navi.cx/misc/trunk/djblets browse] the repository or check it out:
 

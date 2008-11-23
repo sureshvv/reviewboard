@@ -1,0 +1,51 @@
+#summary Information on setting up buildbot slaves
+
+= Setting up Buildbot Slaves =
+
+Setting up a buildbot slave is pretty easy. There's only a few things that need to be installed.
+
+Right now we only support buildbot on Linux systems, but in the future we'll work toward Windows as well. This document also assumes Debian or Ubuntu in some places.
+
+
+== Dependencies ==
+
+First, you'll need svn and setuptools. This is best installed through your distribution's native package:
+
+{{{
+$ sudo apt-get install subversion python-setuptools
+}}}
+
+You'll then need to get virtualenv on your system:
+
+{{{
+$ sudo easy_install virtualenv
+}}}
+
+The buildbot steps will install PIL (Python Imaging Library), which will have to compile a few things. You'll need gcc and the Python development headers for this. On Debian/Ubuntu, this is easily done:
+
+{{{
+$ sudo apt-get build-dep python-imaging
+}}}
+
+
+== Creating the Slave ==
+
+Slaves generally live in {{{/var/lib/buildbot}}} somewhere. To keep it organized, I recommend something like {{{/var/lib/buildbot/slaves/reviewboard}}}. Assuming this setup, do the following:
+
+{{{
+$ sudo mkdir -p /var/lib/buildbot/slaves/reviewboard
+$ sudo buildbot create-slave /var/lib/buildbot/slaves/reviewboard build.review-board.org:9989 _slavename_ _password_
+}}}
+
+
+The slave name and password are pretty much up to you. I recommend including the distro name and version, and the Python version. We'll need both the name and password to finish setup on our end.
+
+
+Once this is complete, go into the new slave directory and type:
+
+{{{
+$ ln -s /usr/bin/virtualenv virtualenv
+}}}
+
+
+This should be all that's needed!

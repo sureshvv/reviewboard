@@ -12,7 +12,7 @@ Right now we only support buildbot on Linux systems, but in the future we'll wor
 First, you'll need svn and setuptools. This is best installed through your distribution's native package:
 
 {{{
-$ sudo apt-get install subversion python-setuptools
+$ sudo apt-get install subversion libsvn-dev python-setuptools
 }}}
 
 You'll then need to get virtualenv on your system:

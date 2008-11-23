@@ -55,6 +55,21 @@ find_links = http://www.review-board.org/downloads/bleeding/
 }}}
 
 
+== Windows-Specific Instructions ==
+
+If you're on Windows, you're going to need patchutils. Most Linux systems come with this by default, but Windows does not. You'll need to follow these instructions to get a compatible patchutils installed.
+
+  * First, download and run the [http://www.cygwin.com Cygwin Installer].
+  * Follow the instructions until you get to the "Packages" part.
+  * Put a check next to "patchutils" in the "Utils" group.
+  * Continue on and begin the installation process.
+  * Open Control Panel and click "System."
+  * Go to the "Advanced" pane.
+  * Click on "Environment Variables."
+  * Find the "PATH" variable and edit it (or create a new one if it doesn't exist). Add the Cygwin bin path (e.g., "{{{C:\Cygwin\Bin}}}") to the PATH.
+  * Save this, exit out of all the windows, and restart your web server.
+
+
 = Site Installation =
 
 Once Review Board is installed, you need to install a Review Board site instance. This is done through the {{{rb-site}}} tool:
@@ -70,6 +85,17 @@ $ sudo rb-site install /var/www/reviews.example.com
 }}}
 
 This will walk you through setting up your site. It will ask you a series of questions, such as your database information, domain name, server types, etc., and will generate your new database (if it doesn't already exist).
+
+
+== Directory Permissions ==
+
+You'll need to make sure that the {{{db}}} directory (if it exists) and the {{{htdocs/media/uploaded}}} directory are writable by the web server. The web server's username depends on your system and server. It's often something like "{{{www-data}}}" or "{{{apache}}}".
+
+For example, to change the permissions on a Debian or Ubuntu system, type:
+
+{{{
+$ sudo chown -R www-data:www-data db htdocs/media/uploaded
+}}}
 
 
 == Web Server Configuration ==
@@ -172,6 +198,13 @@ When a user first logs in, they will be directed to the user profile page and as
 == Set Up Search ==
 
 This isn't strictly necessary (and might be hard on some platforms), but it'll make your users love you.  See SettingUpSearch for details.
+
+= Additional Information =
+
+For more information on Review Board, look at the [Documentation] page.
+
+If you get stuck, first look in the [FAQ]. If it doesn't answer your question, contact us on the [http://groups.google.com/group/reviewboard mailing list].
+
 
 = Let Us Know! =
 

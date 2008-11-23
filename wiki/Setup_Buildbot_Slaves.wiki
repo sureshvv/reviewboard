@@ -48,4 +48,11 @@ $ ln -s /usr/bin/virtualenv virtualenv
 }}}
 
 
+Then we'll want to make sure we have the scripts necessary for the slave. In the new slave directory, run:
+
+{{{
+$ svn co http://reviewboard.googlecode.com/svn/trunk/buildbot/conf/slave/ .
+}}}
+
+
 This should be all that's needed!

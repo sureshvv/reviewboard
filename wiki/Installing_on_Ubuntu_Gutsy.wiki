@@ -3,20 +3,12 @@
 
 = Basic Setup =
 
-Installation on Ubuntu Gutsy is easy for the most part, with exceptions. Most of the packages we need are packaged by default. We'll need to grab Django and the Python Memcache bindings manually.
+Installation on Ubuntu Gutsy is easy for the most part, with exceptions. Most of the packages we need are packaged by default. We'll need to grab the Python Memcache bindings manually.
 
 Start by typing the following in a terminal:
 
 {{{
 $ sudo apt-get install build-essential subversion python-imaging python-flup python-dev memcached libmemcache-dev
-}}}
-
-Now change to a directory where you want to keep the Django source tree and type:
-
-{{{
-$ svn co http://code.djangoproject.com/svn/django/trunk django_src
-$ cd django_src
-$ sudo python setup.py install
 }}}
 
 Next we must set up cmemcache, the Python bindings for memcache. Download the [http://gijsbert.org/downloads/cmemcache/ latest release], extract it, and change to its directory. Then type:

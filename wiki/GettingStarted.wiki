@@ -4,8 +4,9 @@
 = Basic Dependencies =
 
 At the very least, you need:
-  * [http://www.python.org python] 2.4 or newer
-  * [http://www.djangoproject.com django] 1.0 alpha or higher
+  * [http://www.python.org Python] 2.4 or newer
+  * Python setuptools
+  * [http://www.djangoproject.com Django] 1.0 or higher
   * [http://www.sqlite.org sqlite] 3 (not necessary if using mysql)
   * [http://www.pythonware.com/products/pil/ PIL]
   * [http://freshmeat.net/projects/patchutils/ patchutils]
@@ -18,87 +19,121 @@ Additional things you may want:
   * [http://pysvn.tigris.org pysvn]
   * [http://code.google.com/p/python-nose nose] and [http://www.nedbatchelder.com/code/modules/coverage.py coverage.py] for running unit tests.
 
-Review Board has only been deployed on linux.  There may be things which have to be changed to deploy on other platforms such as windows or OS X.
+These installation instructions have been tested with Linux. There may be things which have to be changed to deploy on other platforms such as Windows or OS X.
+
 
 == Distribution-specific dependency guides ==
 
  * [Installing_on_Ubuntu_Gutsy Installing on Ubuntu Gutsy (7.10)]
 
+
 = Downloading =
 
-Review Board is still in development and we do not currently have a release for download. However, you can get the code through our Subversion development tree using the following command:
+Before you begin, you'll need Python setuptools. Most Linux distributions have this packaged and available for installation. To install on Debian or Ubuntu, you can type:
 
 {{{
-svn checkout http://reviewboard.googlecode.com/svn/trunk/reviewboard
+$ sudo apt-get install python-setuptools
 }}}
 
-We try to keep the development tree fairly stable, and we do our best to fix critical bugs as soon as they're reported.
+You can then install Review Board, Djblets, Django-Evolution, Django, and PIL in one go with the following command:
 
-
-= Configuration =
-
-Django projects are configured through a settings file, which is basically just a python file that defines a bunch of variables.  Most of the settings for reviewboard are deployment-neutral, and these are kept in settings.py.  A few things (such as database configuration, SCM location, etc) need to be configured for each deployment.  These are kept in settings_local.py.
-
-To create this, first copy settings_local.py.tmpl to settings_local.py, then open it in your editor.
-
-== Database ==
-The easiest way to get up and running initially is to use sqlite as your database backend:
 {{{
-DATABASE_ENGINE = 'sqlite3'
-DATABASE_NAME = 'reviewboard.sqlite'
+$ sudo easy_install ReviewBoard
 }}}
-If you would rather use mysql, you need to install it and get it running, and create a database to use.  Creating a special user is optional, especially if mysql is only open to "localhost".  You can then configure django to access it thusly:
+
+Right now, this will fetch the nightly versions of these packages. After we release 1.0, this will only fetch stable releases.
+
+
+== Bleeding Edge Releases ==
+
+If you want to use bleeding-edge packages (which are generated any time any of the above modules change), put the following in {{{$HOME/.pydistutils.cfg}}} (on Linux) or {{{$HOME\\pydistutils.cfg}}} (on Windows):
+
 {{{
-DATABASE_ENGINE = 'mysql'
-DATABASE_NAME = 'reviewboard'
-DATABASE_USER = 'reviewboard'
-DATABASE_PASSWORD = 'password'
-DATABASE_HOST = '' # default (localhost)
-DATABASE_PORT = '' # default
+[easy_install]
+
+find_links = http://www.review-board.org/downloads/bleeding/
 }}}
-Django can use a few other databases, but none except sqlite and mysql have been tested.
 
-== Secret Key ==
-Come up with a random string and set it in the `SECRET_KEY` variable.
 
-== Further Reading ==
-The [http://www.djangoproject.com/documentation/settings/ django documentation] contains a lot of additional keys that can be set.  In addition, any variables inside settings.py can be overridden in settings_local.py.
+= Site Installation =
 
-= Running The Server =
-Now on to the fun part.
+Once Review Board is installed, you need to install a Review Board site instance. This is done through the {{{rb-site}}} tool:
 
-== Creating the database ==
-You should now be finished configuring reviewboard.  To create the database tables, run
 {{{
-./manage.py syncdb
+$ sudo rb-site install /path/to/sitedir
 }}}
 
-When asked to create a superuser, say "yes" and type in your desired account information.
+For example, if you were installing {{{reviews.example.com}}} in {{{/var/www/reviews.example.com}}}, you would use:
 
-== Using the built-in web server ==
-Now, to run using django's built-in web server, type
 {{{
-./manage.py runserver
+$ sudo rb-site install /var/www/reviews.example.com
 }}}
-then open http://127.0.0.1:8000 in your web browser.  If all is working, you should be presented with a login box!  The built-in server is really really slow, so it's not really appropriate for final deployments, but it should get you started.
 
-== Running with apache or lighttpd ==
-This is more complicated.  There are some example configuration files for lighttpd and apache inside the [http://reviewboard.googlecode.com/svn/trunk/reviewboard/contrib/conf/ conf/ directory] in the reviewboard directory to get you started.  Another good resource is the [http://www.djangobook.com/en/beta/chapter21/ Deploying Django] chapter of [http://www.djangobook.com/ The Django Book]
+This will walk you through setting up your site. It will ask you a series of questions, such as your database information, domain name, server types, etc., and will generate your new database (if it doesn't already exist).
 
-== Optimize the server ==
+
+== Web Server Configuration ==
+
+A {{{conf}}} directory will be created in your new site tree containing sample web server configuration files. In most setups, these files should just work, but some setups may require tweaking.
+
+If you're using Apache, you can usually copy the file to {{{/etc/apache2/sites-available}}} and then create a symlink to that in {{{/etc/apache2/sites-enabled}}}. This directory depends on your operating system and distribution.
+
+Refer to your web server's manual for additional information. If you're stuck, someone on our mailing list may be able to assist you.
+
+
+== Server Optimization ==
 
 You'll want to optimize the server where you can. Refer to ServerOptimizations for more information.
 
 
+= Upgrading =
+
+To upgrade Review Board, type:
+
+{{{
+$ sudo easy_install --upgrade ReviewBoard
+}}}
+
+This will fetch the latest Review Board, Django, Djblets and Django-Evolution packages and install them.
+
+Then, for each installed site on your server, run:
+
+{{{
+$ sudo rb-site upgrade /path/to/sitedir
+}}}
+
+This will run any database migrations that may be needed and update the media directories to include any new changes. This must be ran after upgrading Review Board or the site may not function correctly.
+
+
+= Migrating Installations =
+
+If you have an old installation (installed through the SVN tree using either {{{setup.py install}}} or {{{make install}}}), you can migrate your site over to the new installation.
+
+First, you may want to shut down your server if you're going to overwrite the site directory. You'll want to move your current site directory to a backup location.
+
+Run the above commands to install Review Board and set up your new site directory.
+
+If your database is sqlite, {{{rb-site install}}} will create a new sqlite database for you in your site's {{{db}}} directory. You can overwrite this database with your backed up database.
+
+Once you've installed the site, run {{{rb-site upgrade}}} on the directory tree (as described above) to perform any database migrations that may be needed.
+
+Either overwrite your existing web server configuration file for this site using the generated files in {{{conf}}}, or edit them to reflect the settings in this file.
+
+Start the server back up. You should be ready to go again. If everything works as expected, you can now delete your old SVN checkout and site directory.
+
+
 = Final Configuration =
 
-== Set the site URL ==
-Log in to http://127.0.0.1:8000/admin as your superuser account.  Click "Sites", then "example.com".  Change both the domain and display names to reference your server.  Without this, emails will have http://example.com/ instead of your reviewboard server.
+== Site Administration ==
 
-Make sure that the SITE_ID variable in settings.py or settings_local.py is set to the object ID of the site object.
+To administer the site, open a web browser to your new Review Board site and log in, then click "Admin" in the upper-right corner. Make sure this is the username configured during site installation.
 
-== Set up repositories ==
-In the admin UI, select "Add" next to the "Repositories" label in the Scmtools section.  Give your repository a name and path, and select the type of server.  If your tool requires a login or password, provide those here.  By default, subversion and perforce
+From the admin UI, you can change site settings, add repositories, review groups, manage users, and check the latest Review Board news updates.
+
+
+== Set Up Repositories ==
+
+In the admin dashboard, select "Add" next to the "Repositories" label. Give your repository a name and path, and select the type of server.  If your tool requires a login or password, provide those here.  By default, subversion and perforce
 tools are available.
 
 The path identifies which server to contact.  For subversion repositories, give the repository path.  For perforce servers, give the contents of your $P4PORT environment variable.  For example:
@@ -122,6 +157,7 @@ The path identifies which server to contact.  For subversion repositories, give 
 The astute observer will also notice scmtools/perforce_vmware.py.  This is a specialization of the !PerforceTool which parses the changeset descriptions in use at [http://vmware.com VMware].  Adding special fields to perforce changelists is pretty common with larger depots, so this can be used as an example for how to deal with this.
 
 == Bug Tracker URL ==
+
 Each repository also has a "Bug tracker" field.  Bug numbers listed in review requests will automatically be hyperlinked to the relevant bugs.  This field should be a format string with a single "%s" where the bug ID should go in the URL.
 
 Here are some examples:
@@ -130,10 +166,13 @@ Here are some examples:
   * Google issue tracker: `http://code.google.com/p/project/issues/detail?id=%s`
 
 == Configure Groups ==
-When a user first logs in, they will be directed to the user profile page and asked to join groups.  Once again, create these through the django admin UI.  There are two Groups tables -- make sure to add these to the one within the "Reviews" section, not "Auth".  Each group is associated with a mailing list, which will be copied on relevant emails.
 
-== Set up search ==
+When a user first logs in, they will be directed to the user profile page and asked to join groups.  Once again, create these through the admin dashboard by clicking "Add" next to "Review Groups." Each group is associated with a mailing list, which will be copied on relevant emails.
+
+== Set Up Search ==
+
 This isn't strictly necessary (and might be hard on some platforms), but it'll make your users love you.  See SettingUpSearch for details.
 
 = Let Us Know! =
-We'd love to hear how you're using Review Board.  The [http://groups.google.com/group/reviewboard Review Board Discussion] google group is a great place to share how you've integrated Review Board into your workflow and how you think it could be improved.
+
+We'd love to hear how you're using Review Board.  The [http://groups.google.com/group/reviewboard Review Board Discussion] Google group is a great place to share how you've integrated Review Board into your workflow and how you think it could be improved.

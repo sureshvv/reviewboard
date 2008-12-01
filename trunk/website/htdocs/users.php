@@ -5,7 +5,7 @@
 ?>
 <h1>Companies using Review Board</h1>
 <ul>
- <li><a href="http://auscope.org.au/">AuScope</a>
+ <li><a href="http://www.auscope.org.au/">AuScope</a>
      - An organization for a National Earch Science Infrastructure program.</li>
  <li><a href="http://www.beatport.com/">Beatport</a>
      - An online electronic music store with hundreds of labels.</li>

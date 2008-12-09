@@ -5,6 +5,12 @@
 ?>
 <h1>Companies using Review Board</h1>
 <ul>
+ <li><a href="http://www.alcatel-lucent.com/">Alcatel-Lucent</a>
+     - A global communications company providing voice, data and video services
+       to service providers, enterprises and governments. They're using
+       Review Board for the
+       <a href="http://www.alcatel-lucent.com/omniaccess3500/">Omni Non Stop
+       Laptop Guardian</a>.</li>
  <li><a href="http://www.auscope.org.au/">AuScope</a>
      - An organization for a National Earch Science Infrastructure program.</li>
  <li><a href="http://www.beatport.com/">Beatport</a>
@@ -42,6 +48,10 @@
 	    machines.</li>
  <li><a href="http://www.tripwire.com/">Tripwire, Inc.</a>
      - Recognized leader of configuration audit and control soluitons.</li>
+ <li><a href="http://www.twitter.com/">Twitter</a>
+     - A service for friends, family, and co–workers to communicate and stay
+       connected through the exchange of quick, frequent answers to one
+       simple question: What are you doing?</li>
  <li><a href="http://www.vmware.com/">VMware</a>
      - Leading provider in desktop and enterprise virtualization products.</li>
  <li><a href="http://www.wesabe.com/">Wesabe</a>
@@ -52,6 +62,8 @@
 
 <h1>Projects using Review Board</h1>
 <ul>
+ <li><a href="http://www.asterisk.org/">Asterisk</a>
+     - The world's leading open source PBX and internet telephony engine.</li>
  <li><a href="http://tragicallyleet.com/projects/nodedb/">NodeDB</a>
      - A document-oriented database written in Python.</li>
  <li><a href="http://www.phinax.de/">PHInaX</a> and

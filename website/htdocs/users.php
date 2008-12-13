@@ -72,7 +72,9 @@
  <li><a href="http://www.phinax.de/">PHInaX</a> and
      <a href="http://www.sphinxlib.de/">S/PHI/nX Library</a>
      - An ab-initio-based multi-scale library and graphical user interface.</li>
- <li><a href="http://plasma.kde.org/">Plasma for KDE</a></li>
+ <li><a href="http://plasma.kde.org/">Plasma for KDE</a>
+     - A universal canvas for graphical user interfaces, KDE4's workspace
+	   shell and widgets.</li>
  <li><a href="http://www.review-board.org/">Review Board</a></li>
 </ul>
 

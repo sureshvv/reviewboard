@@ -37,6 +37,9 @@
  <li><a href="http://www.linkgard.com/">Linkgard</a>
      - A software development and information security company specializing
        in Enterprise Content Management and Archiving.</li>
+ <li><a href="http://www.good.com/">Motorola Good Technology Group</a>
+     - A division of Motorola that specializes in enterprise wireless handheld
+       computing software and services.</li>
  <li><a href="http://www.navtechinc.com/">Navtech Inc.</a>
      - A airline software company that provides products for such tasks as
        flight planning and crew scheduling.</li>
@@ -69,6 +72,7 @@
  <li><a href="http://www.phinax.de/">PHInaX</a> and
      <a href="http://www.sphinxlib.de/">S/PHI/nX Library</a>
      - An ab-initio-based multi-scale library and graphical user interface.</li>
+ <li><a href="http://plasma.kde.org/">Plasma for KDE</a></li>
  <li><a href="http://www.review-board.org/">Review Board</a></li>
 </ul>
 

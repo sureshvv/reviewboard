@@ -1,4 +1,5 @@
 #summary How to set up search
+#labels Phase-Deploy
 
 = Introduction =
 
@@ -31,9 +32,10 @@ Finally, run `make`.  If this suceeds, follow up with `make install`.  If not, g
 After it's built, you don't need to keep a JDK installed, just a JRE.  Removing this can free up a sizeable amount of space, which may be useful if you're trying to build a slim virtual machine.
 
 == Building the initial index ==
-Inside your settings_local.py file for Review Board, set `ENABLE_SEARCH` to True.  If you want the search index to exist in a specific location, also set the `SEARCH_INDEX` variable to the location you want.  This should point to an empty directory.
 
-Finally, run `./manage.py index --full`.  This should give you a progress indicator, and may take some time depending on the size of your database.
+Open the General Settings page in the Administration UI and put a checkmark next to "Enable search." If you want the search index to exist in a specific location, also set the "Search index file" field to the location you want.  By default this will be blank.
+
+Finally, run `rb-site manage /path/to/site index -- --full`.  This should give you a progress indicator, and may take some time depending on the size of your database.
 
 == Maintaining the index ==
-In order to keep the search index up to date, `manage.py index` needs to run periodically.  A sample cron configuration exists in contrib/conf/.
+In order to keep the search index up to date, `rb-site manage /path/to/site index` needs to run periodically.  A sample cron configuration exists as `conf/search-cron.conf` in the site directory.

@@ -35,7 +35,7 @@ The release process will be:
 || Logging                                  || Committed                    ||
 || Move to Python setuptools                || Committed                    ||
 || Site installation script                 || Committed                    ||
-|| UI Rewrite ([Eliminating_YUIExt Eliminating YUI-Ext]) || In progress     ||
+|| UI Rewrite ([Eliminating_YUIExt Eliminating YUI-Ext]) || Committed       ||
 
 
 === Maybe Features ===
@@ -44,7 +44,8 @@ The release process will be:
 || Diff change descriptions       || issue 333       || Committed   ||
 || Linkify URLs in descriptions   || issue 258       || Not started ||
 || "Not Shippable" status         || issue 489       || Not started ||
-|| User manual                    || issue 368       || Not started ||
+|| User manual                    || issue 368       || In progress ||
+|| Page load time improvements    ||                 || In progress ||
 || Monotone repository support    ||                 || Started in trunk, but broken ||
 
 

@@ -12,6 +12,7 @@
     * [Host_Requirements Host Requirements]
     * [Before_You_Install Before You Install]
     * [GettingStarted Getting Started]
+    * [AddingRepositories Adding Repositories]
     * [SettingUpSearch Setting Up Search]
     * [Configuring_EMail Configuring E-Mail]
     * [ServerOptimizations Server Optimizations]
@@ -19,6 +20,6 @@
     * [DatabaseSchemaUpgrades Database Schema Upgrades]
   * Developer Documentation
     * [Roadmap]
-    * [IdeasFor2_0]
+    * [IdeasFor2_0 Ideas for Review Board 2.0]
     * [ReviewBoardAPI Review Board API]
     * [UnitTestFixtures Unit Test Fixtures]

@@ -3,6 +3,9 @@
 
 = Frequently Asked Questions =
 
+<wiki:toc max_depth="3" />
+
+
 == General Usage ==
 
 === Is Review Board free for commercial use? ===

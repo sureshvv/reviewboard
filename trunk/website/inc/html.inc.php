@@ -52,7 +52,7 @@
        <dt>Using</dt>
        <dd><a href="/downloads/">Downloads</a></dd>
        <dd><a href="http://demo.review-board.org/">Demo</a></dd>
-       <dd><a href="/wiki/Documentation">Documentation</a></dd>
+       <dd><a href="/docs/">Documentation</a></dd>
        <dd><a href="http://groups.google.com/group/reviewboard">Mailing List</a></dd>
       </dl>
      </td>

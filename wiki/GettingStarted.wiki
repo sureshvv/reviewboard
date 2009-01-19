@@ -46,7 +46,7 @@ This will install the latest released version of Review Board and its dependenci
 
 == Nightly Releases ==
 
-If you want to use nightly releases, put the following in {{{$HOME/.pydistutils.cfg}}} (on Linux) or {{{$HOME\\pydistutils.cfg}}} (on Windows):
+If you want to use nightly releases, put the following in {{{$HOME/.pydistutils.cfg}}} (on Linux) or {{{$HOME\pydistutils.cfg}}} (on Windows):
 
 {{{
 [easy_install]

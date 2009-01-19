@@ -9,8 +9,12 @@ body {
 }
 
 h1 {
-  margin: 0;
+  margin: 2em 0 0 0;
   font-size: 10pt;
+}
+
+h1:first-child {
+  margin: 0;
 }
 
 h2 {
@@ -159,4 +163,9 @@ img {
   border-right: 1px black solid;
   margin-left: 12px;
   width: 26px;
+}
+
+#version {
+  margin-top: 2em;
+  text-align: center;
 }

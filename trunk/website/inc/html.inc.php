@@ -1,6 +1,4 @@
 <?php
-	require "consts.inc.php";
-
 	function site_start($title = "") {
 		if ($title == "") {
 			$title = "Review Board";
@@ -25,7 +23,6 @@
 	}
 
 	function site_body_start() {
-		global $CURRENT_VERSION;
 ?>
   <div class="box-container">
    <table class="box pageheader">
@@ -39,7 +36,7 @@
      <td class="titlebox">
       <h1><a href="/">Review Board</a></h1>
       <h2>Code reviews are fun again! ...almost.</h2>
-	  <p id="version"><b>Current release:</b> <?php print $CURRENT_VERSION; ?></p>
+	  <p id="version"><b>Current release:</b> <?php print get_latest_release(); ?></p>
      </td>
      <td>
       <dl>
@@ -92,5 +89,9 @@
  </body>
 </html>
 <?php
+	}
+
+	function get_latest_release() {
+		return "1.0 alpha 1";
 	}
 ?>

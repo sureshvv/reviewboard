@@ -5,7 +5,7 @@
 ?>
 <h1>Releases</h1>
 <p>
- The current release of Review Board is <b>1.0 alpha 1</b>.
+ The current release of Review Board is <b><?php print get_latest_release(); ?></b>.
 </p>
 <p>
  New Review Board releases are downloaded and installed automatically through

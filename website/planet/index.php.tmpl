@@ -1,3 +1,6 @@
+<?php
+	require "html.inc.php";
+?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
@@ -11,57 +14,9 @@
         title="Review Board Hacker Blog"
         href="http://feeds.feedburner.com/ReviewBoard" />
  </head>
- <body>
-  <div class="box-container">
-   <table class="box pageheader">
-    <colgroup>
-     <col width="*" />
-     <col width="1" />
-     <col width="1" />
-     <col width="1" />
-    </colgroup>
-    <tr>
-     <td class="titlebox">
-      <h1><a href="/">Review Board</a></h1>
-      <h2>Code reviews are fun again! ...almost.</h2>
-     </td>
-     <td>
-      <dl>
-       <dt>About</dt>
-       <dd><a href="/news/">News</a></dd>
-       <dd><a href="/blog/">Developer Blogs</a></dd>
-       <dd><a href="/screenshots/">Screenshots</a></dd>
-       <dd><a href="/users.php">Happy Users</a></dd>
-       <dd><a href="/media/">Media and Links</a></dd>
-      </dl>
-     </td>
-     <td>
-      <dl>
-       <dt>Using</dt>
-       <dd><a href="/downloads/">Downloads</a></dd>
-       <dd><a href="http://demo.review-board.org/">Demo</a></dd>
-       <dd><a href="/wiki/Documentation">Documentation</a></dd>
-       <dd><a href="http://groups.google.com/group/reviewboard">Mailing List</a></dd>
-      </dl>
-     </td>
-     <td>
-      <dl>
-       <dt>Contributing</dt>
-       <dd><a href="http://reviews.review-board.org/">Code Reviews</a></dd>
-       <dd><a href="http://build.review-board.org/waterfall">Build Monitoring</a></dd>
-       <dd><a href="/bugs/">Bug Tracker</a></dd>
-       <dd><a href="/wiki/">Wiki</a></dd>
-       <dd><a href="/donate/">Donate</a></dd>
-      </dl>
-     </td>
-    </tr>
-   </table>
-  </div>
-<TMPL_LOOP Items>
-  <div class="box-container">
-   <div class="box contentbox">
-    <div class="box-inner" id="content">
+<?php site_body_start(); ?>
 <!-- google_ad_section_start -->
+<TMPL_LOOP Items>
  <TMPL_IF new_date>
      <h2 class="date"><TMPL_VAR new_date></h2>
  </TMPL_IF>
@@ -82,9 +37,6 @@
        </div>
       </div>
      </div>
-	</div>
-   </div>
-  </div>
 </TMPL_LOOP>
 <!-- google_ad_section_end -->
   <div class="last-updated">Last updated: <TMPL_VAR date></div>
@@ -92,10 +44,4 @@
    Content copyright by their respective authors.<br />
    Powered by <a href="http://www.planetplanet.org/">Planet!</a>
   </div>
-  <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
-  <script type="text/javascript">
-  _uacct = "UA-1584268-3";
-  urchinTracker();
-  </script>
- </body>
-</html>
+<?php site_end(); ?>

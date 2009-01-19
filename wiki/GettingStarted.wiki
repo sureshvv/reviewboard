@@ -8,7 +8,7 @@ At the very least, you need:
   * Python setuptools
   * [http://www.djangoproject.com Django] 1.0 or higher
   * [http://www.sqlite.org sqlite] 3 (not necessary if using mysql)
-  * [http://www.pythonware.com/products/pil/ PIL]
+  * [http://www.pythonware.com/products/pil/ PIL
   * [http://freshmeat.net/projects/patchutils/ patchutils]
 
 Additional things you may want:
@@ -41,17 +41,17 @@ You can then install Review Board, Djblets, Django-Evolution, Django, and PIL in
 $ sudo easy_install ReviewBoard
 }}}
 
-Right now, this will fetch the nightly versions of these packages. After we release 1.0, this will only fetch stable releases.
+This will install the latest released version of Review Board and its dependencies.
 
 
-== Bleeding Edge Releases ==
+== Nightly Releases ==
 
-If you want to use bleeding-edge packages (which are generated any time any of the above modules change), put the following in {{{$HOME/.pydistutils.cfg}}} (on Linux) or {{{$HOME\\pydistutils.cfg}}} (on Windows):
+If you want to use nightly releases, put the following in {{{$HOME/.pydistutils.cfg}}} (on Linux) or {{{$HOME\\pydistutils.cfg}}} (on Windows):
 
 {{{
 [easy_install]
 
-find_links = http://www.review-board.org/downloads/bleeding/
+find_links = http://www.review-board.org/downloads/nightlies/
 }}}
 
 

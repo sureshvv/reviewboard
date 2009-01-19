@@ -1,0 +1,54 @@
+server.modules = (
+    "mod_access",
+    "mod_accesslog",
+    "mod_expire",
+    "mod_fastcgi",
+    "mod_alias",
+    "mod_rewrite",
+)
+
+# This is not used directly, it is superceded by our aliases below.
+server.document-root = "@sitedir@/htdocs"
+server.errorlog      = "@sitedir@/logs/lighttpd-error.log"
+accesslog.filename   = "@sitedir@/logs/lighttpd-access.log"
+server.pid-file      = "@sitedir@/lighttpd.pid"
+
+fastcgi.server = (
+    "/reviewboard.fcgi" => (
+        "main" => (
+	    "host" => "127.0.0.1",
+	    "port" => 3033,
+        )
+    ),
+)
+
+alias.url = (
+    "/media" => "@sitedir@/htdocs/media",
+    "/errordocs" => "@sitedir@/htdocs/errordocs",
+)
+
+url.rewrite-once = (
+    "^(/media/.*)$" => "$1",
+    "^(/errordocs/.*)$" => "$1",
+    "^(/.*)$" => "/reviewboard.fcgi$1",
+)
+
+# Aggressively cache all static files
+$HTTP["url"] =~ "^/(css|images|scripts)/" {
+    expire.url = ( "" => "access 1 hours" )
+}
+
+mimetype.assign = (
+    ".gif"  => "image/gif",
+    ".jpg"  => "image/jpeg",
+    ".jpeg" => "image/jpeg",
+    ".ico"  => "image/png",
+    ".png"  => "image/png",
+    ".pdf"  => "application/pdf",
+    ".gz"   => "application/x-gzip",
+    ".css"  => "text/css",
+    ".html" => "text/html",
+    ".htm"  => "text/html",
+    ".txt"  => "text/plain",
+    ".js"   => "text/javascript",
+)

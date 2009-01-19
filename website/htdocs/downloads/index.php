@@ -40,9 +40,6 @@
 <pre>
  $ svn checkout http://reviewboard.googlecode.com/svn/trunk/reviewboard
 </pre>
-<p>
- <a href="/docs">Documentation</a> is available to help with the installation.
-</p>
 <?php
 	site_end();
 ?>

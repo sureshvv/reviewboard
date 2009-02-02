@@ -1,0 +1,15 @@
+{% load djblets_utils %}
+{% load gravatars %}
+ <div class="blog-post">
+  <div class="blog-post-header">
+   <div class="gravatar">{% gravatar post.author 40 %}</div>
+   <div class="blog-post-title"><a href="{{post.get_absolute_url}}">{{post.title}}</a></div>
+   <div class="blog-post-author">
+    by <a href="{{post.author.blog_feeds.get.site_url}}">{{post.author|user_displayname}}</a>
+    - {{post.timestamp|date:"F j, Y - g:m A"}}
+   </div>
+  </div>
+  <div class="blog-post-contents">
+   {{post.content|safe}}
+  </div>
+ </div>

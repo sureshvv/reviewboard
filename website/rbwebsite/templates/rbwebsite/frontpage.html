@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<div id="sidebar">
+ <div class="section">
+  <h1 class="title">{% trans "News Updates" %}</h1>
+  <ul>
+{% for post in latest_news %}
+   <li><a href="{{post.get_absolute_url}}">{{post.title}}</a></li>
+{% endfor %}
+  </ul>
+ </div>
+{% if testimonial_user %}
+ <div class="section">
+  <h1 class="title">{% trans "So Say the Happy Users" %}</h1>
+  <blockquote class="testimonial">
+   <div class="quote">
+    {{testimonial_user.testimonial|safe}}
+   </div>
+   <div class="source">
+    &mdash; <a href="{{testimonial_user.url}}">{{testimonial_user.name}}</a>
+   </div>
+  </blockquote>
+ </div>
+{% endif %}
+</div>
+
+<p>
+{% blocktrans %}
+ For too long, code reviews have been too much of a chore. This is largely due
+ to the lack of quality tools available, leaving developers to resort to e-mail
+ and bug tracker-based solutions.
+{% endblocktrans %}
+</p>
+<p>
+{% blocktrans %}
+ At <a href="http://www.vmware.com/">VMware</a>, we've traditionally done code
+ reviews over e-mail. A significant amount of time was wasted in forming review
+ requests, switching between the diff and the e-mail, and trying to understand
+ what parts of the code the reviewer was referring to. We decided to fix all
+ that.
+{% endblocktrans %}
+</p>
+<p>
+{% blocktrans %}
+ Review Board is a powerful web-based code review tool that offers developers
+ an easy way to handle code reviews. It scales well from small projects to
+ large companies and offers a variety of tools to take much of the stress and
+ time out of the code review process.
+{% endblocktrans %}
+</p>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% load i18n %}
+{% if is_paginated %}
+<div class="paginator">
+ {% if has_previous %}<a href="?page={{previous}}" title="Previous Page">{% trans "Previous" %}</a></span>{% endif %}
+{% for pagenum in paginator.page_range %}
+{%  ifequal pagenum page %}
+ <span class="current-page">{{pagenum}}</span>
+{%  else %}
+ <a href="?page={{pagenum}}" title="Page {{pagenum}}">{{pagenum}}</a>
+{%  endifequal %}
+{% endfor %}
+{% if has_next %}<a href="?page={{next}}" title="Next Page">{% trans "Next" %}</a></span>{% endif %}
+ <span class="page-count">{{pages}} pages</span>
+</div>
+{% endif %}

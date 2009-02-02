@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Downloads" %}{% endblock %}
+
+{% block page-header %}
+<h1>{% trans "Downloads" %}</h1>
+{% endblock %}
+
+{# Page content #}
+{% block content %}
+
+{# Some URLs we use inside blocktrans tags #}
+{% url doc-page "GettingStarted" as getting_started_url %}
+
+<h2>{% trans "Releases" %}</h2>
+<ul>
+{% for product in products %}
+ <li>{{product.name}} {{ product.releases.latest.version}}</li>
+{% endfor %}
+</ul>
+<p>
+ {% blocktrans %}
+ New Review Board releases are downloaded and installed automatically
+ through our installer. See the
+ <a href="{{getting_started_url}}">Getting Started</a> guide for
+ instructions.
+ {% endblocktrans %}
+</p>
+<p>
+ {% blocktrans %}
+ All releases can be manually downloaded from our
+ <a href="http://downloads.review-board.org/releases/">releases</a> directory.
+ {% endblocktrans %}
+</p>
+
+<h2>{% trans "Nightly Builds" %}</h2>
+<p>
+ {% blocktrans %}
+ If you want to use the latest and greatest in-development builds of
+ Review Board, you can install our nightly builds, generated at around
+ midnight Pacific Standard Time. See our
+ <a href="{{getting_started_url}}">Getting Started</a> guide
+ for instructions.
+ {% endblocktrans %}
+</p>
+<p>
+ {% blocktrans %}
+ Note that these builds can be unstable, so use at your own risk.
+ We do try to keep them as bug-free as possible, though.
+ {% endblocktrans %}
+</p>
+<p>
+ {% blocktrans %}
+ Nightlies can be manually downloaded from our
+ <a href="http://downloads.review-board.org/nightlies/">nightlies</a> directory.
+ {% endblocktrans %}
+</p>
+
+<h2>{% trans "Bleeding Edge (SVN)" %}</h2>
+<p>
+ {% blocktrans %}
+ Review Board SVN can be checked out by typing the following on the command
+ line:
+ {% endblocktrans %}
+</p>
+<pre>
+$ svn checkout http://reviewboard.googlecode.com/svn/trunk/reviewboard
+</pre>
+
+{% endblock %}
+

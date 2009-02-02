@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Mailing Lists" %}{% endblock %}
+
+{% block page-header %}
+<h1>{% trans "Mailing Lists" %}</h1>
+{% endblock %}
+
+{% block content %}
+<ul class="mailing-lists">
+ <li>
+  <a href="http://groups.google.com/group/reviewboard">reviewboard@googlegroups.com</a>
+  <p>
+{% blocktrans %}
+ Our primary mailing list, where we handle support requests, announce releases
+ and new features, and discuss Review Board development. This mailing list
+ usually gets a few posts a day.
+{% endblocktrans %}
+  </p>
+ </li>
+ <li>
+  <a href="http://groups.google.com/group/reviewboard-reviews">reviewboard-reviews@googlegroups.com</a>
+  <p>
+{% blocktrans %}
+ All review requests and reviews on the Review Board codebase is sent here.
+ If you're interested in development, this may be useful.
+{% endblocktrans %}
+  </p>
+ </li>
+ <li>
+  <a href="http://groups.google.com/group/reviewboard-issues">reviewboard-issues@googlegroups.com</a>
+  <p>
+{% blocktrans %}
+ All new bug reports and comments to bug reports are sent to this mailing list.
+ This is another useful mailing list for developers.
+{% endblocktrans %}
+  </p>
+ </li>
+</ul>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load djblets_utils %}
+{% load i18n %}
+
+{% block title %}{% trans "Screenshots" %}{% endblock %}
+
+{% block page-header %}
+<h1>{% trans "Screenshots" %}</h1>
+
+{% for screenshot in screenshots %}
+{%  if screenshot.public %}
+<div class="screenshot">
+{%   if screenshot.caption %}
+ <h3 class="title">{{screenshot.caption}}</h3>
+{%   endif %}
+  <div class="main">
+ <a href="{{screenshot.get_absolute_url}}">{{screenshot.thumb}}</a>
+{%   if screenshot.description %}
+  <div class="description">{{screenshot.description|paragraphs}}</div>
+{%   endif %}
+ </div>
+ <br clear="both" />
+</div>
+{%  endif %}
+{% endfor %}
+{% endblock %}
+
+{% block content %}
+
+{% endblock %}

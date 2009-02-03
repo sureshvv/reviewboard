@@ -25,16 +25,16 @@ urlpatterns = patterns('',
 
 urlpatterns += patterns('django.contrib.syndication.views',
     # Feeds
-    url(r'^feeds/rss/(?P<url>.*)/$', 'feed',
+    url(r'^feed/rss/(?P<url>.*)/$', 'feed',
         {'feed_dict': rss_feeds},
         name="rss-feed"),
-    url(r'^feeds/atom/(?P<url>.*)/$', 'feed',
+    url(r'^feed/atom/(?P<url>.*)/$', 'feed',
         {'feed_dict': atom_feeds},
         name="atom-feed"),
 )
 
 # Redirect the main feed to FeedBurner
 urlpatterns += patterns('django.views.generic.simple',
-    url(r'^feeds/$', 'redirect_to',
+    url(r'^feed/$', 'redirect_to',
         {'url': 'http://feeds.feedburner.com/ReviewBoard'}),
 )

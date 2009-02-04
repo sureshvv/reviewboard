@@ -7,6 +7,8 @@ from djblets.util.misc import generate_cache_serials
 
 from rbwebsite.happyusers.models import HappyUser
 from rbwebsite.news.models import NewsPost
+from rbwebsite.news.sitemaps import NewsSitemap
+from rbwebsite.sitemaps import PageSitemap
 
 
 generate_cache_serials()
@@ -20,6 +22,12 @@ def get_testimonial_user():
         return users[0]
 
     return None
+
+
+sitemaps = {
+    'news': NewsSitemap,
+    'pages': PageSitemap,
+}
 
 
 urlpatterns = patterns('',
@@ -92,6 +100,10 @@ urlpatterns = patterns('',
 
     # Admin UI
     (r'^admin/(.*)', admin.site.root),
+
+    # Sitemaps
+    (r'^sitemap.xml$', 'django.contrib.sitemaps.views.sitemap',
+     {'sitemaps': sitemaps}),
 )
 
 

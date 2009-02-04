@@ -1,13 +1,13 @@
-php_value include_path "/var/www/review-board.org/inc:."
+#php_value include_path "/var/www/review-board.org/inc:."
 
-Redirect /screenshots http://flickr.com/photos/chipx86/sets/72157600297790516/detail/
-Redirect /documentation http://code.google.com/p/reviewboard/wiki/Documentation
-Redirect /development http://reviewboard.googlecode.com/
+#Redirect /screenshots http://flickr.com/photos/chipx86/sets/72157600297790516/detail/
+#Redirect /documentation http://code.google.com/p/reviewboard/wiki/Documentation
+#Redirect /development http://reviewboard.googlecode.com/
 
-RewriteEngine on
-RewriteRule docs/$ http://code.google.com/docreader/#p=reviewboard [NE]
-RewriteRule docs/?(.*?)/?$ http://code.google.com/docreader/#p=reviewboard&t=$1 [NE]
-RewriteRule wiki/?(.*?)/?$ http://code.google.com/p/reviewboard/wiki/$1
-RewriteRule bugs/?$ http://code.google.com/p/reviewboard/issues/list
-RewriteRule bugs/new/?$ http://code.google.com/p/reviewboard/issues/entry
-RewriteRule bugs/(.*?)/?$ http://code.google.com/p/reviewboard/issues/detail?id=$1
+#RewriteEngine on
+#RewriteRule docs/$ http://code.google.com/docreader/#p=reviewboard [NE]
+#RewriteRule docs/?(.*?)/?$ http://code.google.com/docreader/#p=reviewboard&t=$1 [NE]
+#RewriteRule wiki/?(.*?)/?$ http://code.google.com/p/reviewboard/wiki/$1
+#RewriteRule bugs/?$ http://code.google.com/p/reviewboard/issues/list
+#RewriteRule bugs/new/?$ http://code.google.com/p/reviewboard/issues/entry
+#RewriteRule bugs/(.*?)/?$ http://code.google.com/p/reviewboard/issues/detail?id=$1

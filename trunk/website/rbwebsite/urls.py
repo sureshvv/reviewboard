@@ -1,6 +1,7 @@
 import os
 
-from django.conf.urls.defaults import include, patterns, url
+from django.conf.urls.defaults import include, patterns, url, \
+                                      handler404, handler500
 from django.conf import settings
 from django.contrib import admin
 from djblets.util.misc import generate_cache_serials

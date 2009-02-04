@@ -3,11 +3,13 @@ import os
 from django.conf.urls.defaults import include, patterns, url
 from django.conf import settings
 from django.contrib import admin
+from djblets.util.misc import generate_cache_serials
 
 from rbwebsite.happyusers.models import HappyUser
 from rbwebsite.news.models import NewsPost
 
 
+generate_cache_serials()
 admin.autodiscover()
 
 

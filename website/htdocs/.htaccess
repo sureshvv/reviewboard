@@ -1,13 +1,20 @@
-#php_value include_path "/var/www/review-board.org/inc:."
+<IfModule mod_expires.c>
+  <FilesMatch "\.(jpg|gif|png|css|js|htc)">
+    ExpiresActive on
+    ExpiresDefault "access plus 1 year"
+  </FilesMatch>
+</IfModule>
 
-#Redirect /screenshots http://flickr.com/photos/chipx86/sets/72157600297790516/detail/
-#Redirect /documentation http://code.google.com/p/reviewboard/wiki/Documentation
-#Redirect /development http://reviewboard.googlecode.com/
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html
+  AddOutputFilterByType DEFLATE text/plain
+  AddOutputFilterByType DEFLATE text/xml
+  AddOutputFilterByType DEFLATE text/css
+  AddOutputFilterByType DEFLATE text/javascript
+  AddOutputFilterByType DEFLATE application/javascript
+  AddOutputFilterByType DEFLATE application/x-javascript
+</IfModule>
 
-#RewriteEngine on
-#RewriteRule docs/$ http://code.google.com/docreader/#p=reviewboard [NE]
-#RewriteRule docs/?(.*?)/?$ http://code.google.com/docreader/#p=reviewboard&t=$1 [NE]
-#RewriteRule wiki/?(.*?)/?$ http://code.google.com/p/reviewboard/wiki/$1
-#RewriteRule bugs/?$ http://code.google.com/p/reviewboard/issues/list
-#RewriteRule bugs/new/?$ http://code.google.com/p/reviewboard/issues/entry
-#RewriteRule bugs/(.*?)/?$ http://code.google.com/p/reviewboard/issues/detail?id=$1
+# We don't use ETag support yet.
+# This reduces the size of the HTTP headers.
+FileETag none

@@ -252,6 +252,11 @@ blockquote.testimonial .source {
   margin-right: 23em;
 }
 
+#searchbar {
+  clear: both;
+  margin-left: 15.5em;
+}
+
 #sidebar {
   display: block;
   float: right;

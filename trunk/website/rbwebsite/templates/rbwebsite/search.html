@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}Search Results{% endblock %}
+
+{% block content %}
+{% if query %}
+<div id="search-results">
+ <div id="search-results-js-required">
+  Review Board search uses Google Custom Search, which requires JavaScript.
+  If you have trouble seeing your search results,
+  <a href="http://www.google.com/cse?{{query_string|escape}}">view the results
+  on Google's site</a>.
+ </div>
+</div>
+<script type="text/javascript">
+ var searchMessage = document.getElementById("search-results-js-required");
+ searchMessage.parentNode.removeChild(searchMessage);
+
+ var googleSearchIframeName = "search-results";
+ var googleSearchFormName = "search-box";
+ var googleSearchDomain = "www.google.com";
+ var googleSearchPath = "/cse";
+</script>
+<script type="text/javascript" src="http://www.google.com/afsonline/show_afs_search.js"></script>
+{% else %}
+<p>You didn't enter a search.</p>
+{% endif %}
+{% endblock %}
+

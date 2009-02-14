@@ -99,6 +99,9 @@ urlpatterns = patterns('',
         {'url': 'users/'}),
 
 
+    # Search
+    (r'^search/$', 'rbwebsite.search.views.search'),
+
     # Admin UI
     (r'^admin/(.*)', admin.site.root),
 

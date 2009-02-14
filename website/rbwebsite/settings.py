@@ -65,6 +65,7 @@ INSTALLED_APPS = (
     'rbwebsite.press',
     'rbwebsite.releases',
     'rbwebsite.screenshots',
+    'rbwebsite.search',
 )
 
 WEB_API_ENCODERS = (

@@ -17,11 +17,6 @@ We may decide not to implement a separate concept for hooks and instead just use
 Feature requests tagged with [http://code.google.com/p/reviewboard/issues/list?q=milestone%3AExtensions Extensions] are candidates for future extensions.
 
 
-== User Manual ==
-
-If we don't somehow get to it before the 1.0 release, we really should work on having a useful, thorough user manual bundled with the software. Every page should have a "Help" link in the top-right. Optional inline help may also be useful in some areas, such as the diff viewer.
-
-
 == New Reviewable File Types ==
 
 There has been some request for reviewing files other than diffs. Screenshots have been the main one, though someone suggested Wiki changes and specialized views for certain text documents.
@@ -34,11 +29,6 @@ This would need some help from post-review, as binary files are not included in 
 == Review Request Update Notifications ==
 
 It would be handy to know if someone has posted an update to a review request that you're currently on. We could pop up a little notification in the corner, similar to what GMail does for new conversations, informing the user that the review request has updated. There would be "Update Page" and "Ignore" links.
-
-
-== Handle Large Diffs ==
-
-We tend to fall apart with really large diffs. We may want to examine the diff and determine if there's too many files to realistically view in one shot. We could then send only a few and have the JavaScript query for the rest in chunks. This way the server wouldn't be bogged down and time out with one request.
 
 
 == Moved Regions in Diffs ==

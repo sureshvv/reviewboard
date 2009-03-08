@@ -1,11 +1,12 @@
-#summary Ideas for Google Summer of Code students
+﻿#summary Ideas for Google Summer of Code students
 #labels Featured,Phase-Design
 
 = Introduction =
 
 This page lists some of the ideas we've come up with that students could tackle for a [http://code.google.com/soc/ Google Summer of Code] project. Proposals can be made based on items in this list, or you can propose something entirely new.
 
-You can also look at our 
+You can also look at our bugs marked [http://code.google.com/p/reviewboard/issues/list?can=2&q=label:ExtensionIdea ExtensionIdea] for more ideas.
+
 
 = IDE Integration =
 
@@ -43,4 +44,44 @@ The goal is to be able to run one script and get Review Board installed. However
   * Support managing third party packages for Review Board. This will be important for extensions when we land that in SVN.
 
 
-= 
+= Diff Analysis, "Moved" regions, and Filtering =
+
+Add the ability to analyze an upload diff in the background. This should do the following:
+
+  * Record the number of adds/deletes/replaces, for use in the diff viewer's changed files list.
+  * Find blocks of deletes that match blocks of inserts and mark them as "moves," based on some minimum line count. Update the diff viewer to link between these sections.
+  * Find common changes (such as a variable rename) and mark them. We could then use this information to filter out such changes, turning large reviews into smaller ones.
+
+
+= Policy Support =
+
+Provide a flexible framework for defining custom policy across Review Board. This should cover the following:
+
+  * Only allow users to view review requests in groups they belong in.
+  * Prevent users from joining arbitrary groups.
+  * Requirements for closing a review request. This should be flexible enough to allow administrators to define rules such as requiring all target reviewers to review it, or some minimum number, or some percentage, and handle such attributes as the number of "Ship Its."
+
+There's more that may be needed here. Part of this will be to ask companies on our mailing list for their requirements, and forming a strategy with us based on these requirements.
+
+
+= Tighter Project Tools Support =
+
+In order to better integrate Review Board with other tools, we should add tighter repository integration. It should be trivial to get to the listing for a file in a repository browser (say, on Trac) through the diff viewer, or post review requests based on committed code in a repository.
+
+We should also improve the admin UI to make it easier to associate a repository URL or a bug tracker URL without the user having to type the full path. For example, they could type the path to the trac repository and select "Trac," and the admin UI should do the rest.
+
+
+= Theme Support =
+
+Giving users the ability to customize the look and feel of Review Board means that companies can better integrate the tool into their existing infrastructure, and open source projects can provide one navigation bar across their site, Trac (or whatever), and Review Board.
+
+Part of this is to clean up the templates such that they can be extended by theme templates without breaking existing functionality. The actual theme support itself must also be developed and put into our Djblets library.
+
+
+= Improved Admin UI =
+
+The administration UI should be rethought and should offer more hand-holding to get started with Review Board. It should easily walk new administrators through setting up repositories, linking them to bug trackers, customizing the settings, etc.
+
+Something like a task-based UI might work for this by offering a side panel of things the administrator might want to do. Another thing to look at would be WordPress's new administration UI.
+
+It should also be easy to see an overview of what's happening on the system, such as the number of logged in users, load on the server, memory usage, etc.

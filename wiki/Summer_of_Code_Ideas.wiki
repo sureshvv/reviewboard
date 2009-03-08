@@ -1,0 +1,46 @@
+#summary Ideas for Google Summer of Code students
+#labels Featured,Phase-Design
+
+= Introduction =
+
+This page lists some of the ideas we've come up with that students could tackle for a [http://code.google.com/soc/ Google Summer of Code] project. Proposals can be made based on items in this list, or you can propose something entirely new.
+
+You can also look at our 
+
+= IDE Integration =
+
+Add support to Visual Studio, Eclipse, or another popular IDE to work with Review Board. At a minimum this should support:
+
+  * Posting/updating review requests
+  * Viewing the user's existing review requests and changing their statuses
+  * Applying a change from a review request to the active codebase.
+
+This could be extended for more advanced functionality, including:
+
+  * Inline commenting on diffs within the IDE (possibly through a browser plugin, or through the IDE's code editors themselves).
+  * Looking at pending changes to an active file.
+
+Most of this functionality will be in the IDE plugin itself, but some will be to Review Board (such as adding new API for accessing this information).
+
+
+= Windows Installer =
+
+Add a new, all-encompassing Windows Installer. The installer would install Review Board and its dependencies, optionally installing Python, Django, Apache, MySQL, or whatever based on the user's preference and existing installed services.
+
+In most cases, installing dependencies will simply require automating the download of an existing MSI file on the web. Some dependencies, however, may need to be packaged by us.
+
+The installer must be an MSI installer, based on [http://nsis.sourceforge.net/ NSIS]. There's some base work done on this to get you started.
+
+
+= Linux/Cross-Platform Installer Framework =
+
+Provide an extensible Linux installer that can handle getting Review Board up and running on most popular distros (Red Hat Enterprise Linux, Fedora, Debian, SuSE, Ubuntu). This should be able to determine what packages are installed, install new packages (perhaps from third party package feeds where appropriate).
+
+The goal is to be able to run one script and get Review Board installed. However, this should go beyond just getting Review Board up and running. It should also handle the following:
+
+  * Provide a cross-platform UI library for interactions (GTK+, terminal, possibly Windows)
+  * Provide a Python module for querying what's installed, performing installs and upgrades, etc. This should interface with easy_install and the system's package manager where possible.
+  * Support managing third party packages for Review Board. This will be important for extensions when we land that in SVN.
+
+
+= 

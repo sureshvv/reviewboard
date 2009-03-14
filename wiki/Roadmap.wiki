@@ -56,8 +56,8 @@ The release process will be:
 
 || *Feature*                      || *Issue Number*  || *Status*    ||
 || Admin manual                   ||                 || In progress ||
-|| User manual                    || issue 368       || Not started ||
-|| API documentation              ||                 || Not started ||
+|| User manual                    || issue 368       || In progress ||
+|| API documentation              ||                 || In progress ||
 
 === Bugs ===
 

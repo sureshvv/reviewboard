@@ -45,11 +45,10 @@ The release process will be:
 
 === Maybe Features ===
 
-|| *Feature*                      || *Issue Number*  || *Status*    ||
-|| Diff change descriptions       || issue 333       || Committed   ||
-|| Disable user registration      ||                 || Not started ||
-|| Linkify URLs in descriptions   || issue 258       || Committed   ||
-|| Monotone repository support    ||                 || Started in trunk, but broken ||
+|| *Feature*                      || *Issue Number*  || *Status*       ||
+|| Diff change descriptions       || issue 333       || Committed      ||
+|| Disable user registration      ||                 || Pending Review ||
+|| Linkify URLs in descriptions   || issue 258       || Committed      ||
 
 
 === Documentation ===

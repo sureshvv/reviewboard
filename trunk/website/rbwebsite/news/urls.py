@@ -71,3 +71,8 @@ urlpatterns += patterns('django.views.generic.simple',
     url(r'^feed/$', 'redirect_to',
         {'url': 'http://feeds.feedburner.com/ReviewBoardNews'}),
 )
+
+# Support a WordPress-compatible XML-RPC interface.
+urlpatterns += patterns('rbwebsite.news.views',
+    (r'xmlrpc/$', 'xmlrpc'),
+)

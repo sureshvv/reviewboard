@@ -74,5 +74,5 @@ urlpatterns += patterns('django.views.generic.simple',
 
 # Support a WordPress-compatible XML-RPC interface.
 urlpatterns += patterns('rbwebsite.news.views',
-    (r'xmlrpc/$', 'xmlrpc'),
+    (r'xmlrpc/?$', 'xmlrpc'),
 )

@@ -22,11 +22,13 @@
   <div id="container">
    <div id="topbar">
     <div id="logo">
-     <a href="{% url front-page %}">
+     <h1>
+	  <a href="{% url front-page %}">
       <img src="{{MEDIA_URL}}rbsite/images/logo.png?{{MEDIA_SERIAL}}"
-           width="130" height="123" alt="" />
-      <h1>Review Board</h1>
-     </a>
+           width="130" height="123" alt="" /><br />
+	  Review Board
+      </a>
+     </h1>
     </div>
     <div id="navbar">
      <dl>
@@ -67,7 +69,7 @@
          <input type="submit" name="sa" value="Search" />
        </div>
      </form>
-     <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&lang=en"></script>
+     <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
 	</div>
    </div>
    <div id="page-header">

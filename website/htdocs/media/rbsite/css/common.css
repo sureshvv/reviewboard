@@ -180,9 +180,10 @@ blockquote.testimonial .source {
   padding-right: 20px;
 }
 
-#logo a {
+#logo h1 a {
   color: black;
   text-decoration: none;
+  font-weight: normal;
 }
 
 #logo h1 {
@@ -190,6 +191,10 @@ blockquote.testimonial .source {
   font-weight: normal;
   margin: 0;
   padding: 0;
+}
+
+#logo img {
+  margin-bottom: 3px;
 }
 
 #navbar {

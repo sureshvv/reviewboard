@@ -1,9 +1,11 @@
 import os
+import re
 from datetime import datetime
 
 from django.db import models
 from django.db.models import permalink
 from django.contrib.auth.models import User
+from django.template.defaultfilters import slugify
 
 
 class Category(models.Model):
@@ -42,6 +44,28 @@ class NewsPost(models.Model):
             'day': self.timestamp.strftime("%d"),
             'slug': self.slug,
         })
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            slug = slugify(self.title)
+
+            counter_finder = re.compile(r'-\d+$')
+            counter = 1
+
+            while 1:
+                existing_count = NewsPost.objects.filter(slug=slug).count()
+
+                if existing_count == 0:
+                    break
+
+                counter += 1
+                counter_str = "-%i" % counter
+                slug = "%s%s" % (slug[:256 - len(counter_str)],
+                                 counter_str)
+
+            self.slug = slug
+
+        super(NewsPost, self).save(*args, **kwargs)
 
     def __unicode__(self):
         return self.title

@@ -1,22 +1,4 @@
 #summary How to cope when the database schema changes
+#labels Deprecated
 
-= Introduction =
-
-Review Board is in heavy development, and while we try to avoid it, every so often the database schema has to change.  To migrate existing databases for these changes, we use a third party tool called [http://django-evolution.googlecode.com Django Evolution]. This is distributed along with the Review Board codebase.
-
-
-= Details =
-
-Every time you update your copy of Review Board, you should run:
-
-{{{
-$ ./manage.py syncdb
-}}}
-
-This will let you know if you need to perform a migration (or "evolution"). If you do, run:
-
-{{{
-$ ./manage.py evolve --execute
-}}}
-
-The migration will be performed quickly and in-place. While this should not cause any problems in your database, it is, as always, advisable that you perform a database backup (using your database's native backup tools or SQL dumping support) before performing a database migration.
+This page is deprecated. See http://www.review-board.org/docs/manual/dev/admin/sites/upgrading-sites/

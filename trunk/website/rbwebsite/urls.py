@@ -37,7 +37,7 @@ urlpatterns = patterns('',
         {'template': 'rbwebsite/frontpage.html',
          'extra_context': {
              'testimonial_user': get_testimonial_user,
-             'latest_news': NewsPost.objects.filter(public=True),
+             'latest_news': NewsPost.objects.filter(public=True)[:6],
          }
         },
         name="front-page"),

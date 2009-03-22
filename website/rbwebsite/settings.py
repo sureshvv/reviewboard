@@ -59,6 +59,7 @@ INSTALLED_APPS = (
     'djblets.gravatars',
     'djblets.util',
     'rbwebsite.blogfeeds',
+    'rbwebsite.docs',
     'rbwebsite.donations',
     'rbwebsite.happyusers',
     'rbwebsite.news',

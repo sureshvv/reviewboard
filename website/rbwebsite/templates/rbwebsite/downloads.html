@@ -11,7 +11,7 @@
 {% block content %}
 
 {# Some URLs we use inside blocktrans tags #}
-{% url doc-page "GettingStarted" as getting_started_url %}
+{% url doc-page "manual" "dev" "admin" as admin_guide_url %}
 
 <h2>{% trans "Releases" %}</h2>
 <ul>
@@ -23,8 +23,7 @@
  {% blocktrans %}
  New Review Board releases are downloaded and installed automatically
  through our installer. See the
- <a href="{{getting_started_url}}">Getting Started</a> guide for
- instructions.
+ <a href="{{admin_guide_url}}">Administration Guide</a> for instructions.
  {% endblocktrans %}
 </p>
 <p>
@@ -39,9 +38,8 @@
  {% blocktrans %}
  If you want to use the latest and greatest in-development builds of
  Review Board, you can install our nightly builds, generated at around
- midnight Pacific Standard Time. See our
- <a href="{{getting_started_url}}">Getting Started</a> guide
- for instructions.
+ midnight Pacific Standard Time. See the
+ <a href="{{admin_guide_url}}">Administration Guide</a> for instructions.
  {% endblocktrans %}
 </p>
 <p>

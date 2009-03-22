@@ -53,14 +53,7 @@ urlpatterns = patterns('',
 
     # "Get Started" links
     (r'^downloads/', include('rbwebsite.releases.urls')),
-    url(r'^docs/$',
-        'django.views.generic.simple.redirect_to',
-        {'url': 'http://code.google.com/docreader/#p=reviewboard'},
-        name="doc-index"),
-    url(r'^docs/(?P<page>[^/]+)/$',
-        'django.views.generic.simple.redirect_to',
-        {'url': 'http://code.google.com/docreader/#p=reviewboard&t=%(page)s'},
-        name="doc-page"),
+    (r'^docs/', include('rbwebsite.docs.urls')),
 
     # "Community" links
     url(r'^mailing-lists/$',

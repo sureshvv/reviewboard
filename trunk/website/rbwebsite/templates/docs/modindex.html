@@ -1,0 +1,14 @@
+{% extends "docs/docpage.html" %}
+
+{% block title %}Documentation | Module Index{% endblock %}
+
+{% block body %}
+<h1>Module Index</h1>
+
+<dl>
+{% for modname, collapse, cgroup, indent, fname, synops, pform, dep in doc.modindexentries %}
+ <dt><a href="{{fname}}"><tt class="literal xref">{{modname}}</tt></a></dt>
+ <dd>{{synops}}</dd>
+{% endfor %}
+</dl>
+{% endblock %}

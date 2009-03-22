@@ -28,6 +28,22 @@ h2 {
   font-weight: normal;
 }
 
+h3 {
+  margin-top: 1.5em;
+  margin-bottom: 0;
+  font-size: 10pt;
+  font-weight: bold;
+  color: #68450e;
+}
+
+h4 {
+  margin-top: 1.5em;
+  margin-bottom: 0;
+  font-size: 9pt;
+  font-weight: bold;
+  color: #98753e;
+}
+
 img {
   border: 0;
 }
@@ -35,6 +51,7 @@ img {
 pre {
   background: #f6f6f6;
   border: 1px #cacdc6 solid;
+  overflow: auto;
   padding: 0.8em;
 }
 
@@ -151,13 +168,16 @@ blockquote.testimonial .source {
   margin-bottom: 6px;
 }
 
+#content ol li {
+  margin: 0.8em 0;
+}
+
 #content ul {
   list-style: square;
-  margin-bottom: 3em;
 }
 
 #content ul li {
-  margin-bottom: 1em;
+  margin: 0.8em 0;
 }
 
 #content ul li .testimonial {
@@ -267,9 +287,10 @@ blockquote.testimonial .source {
 }
 
 #sidebar {
+  background: white;
   display: block;
   float: right;
-  margin-left: 3em;
+  padding-left: 2em;
   width: 30em;
 }
 

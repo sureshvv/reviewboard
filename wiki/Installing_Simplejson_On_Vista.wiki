@@ -1,16 +1,4 @@
-#summary Instructions on installing simplejson on Windows Vista.
-#labels Phase-Support
+﻿#summary Instructions on installing simplejson on Windows Vista.
+#labels Deprecated
 
-= Installing simplejson on Vista =
-
-If you are having trouble getting simplejson (which needed for post-review) working under Windows Vista, try the following instructions. See also [http://groups.google.co.in/group/pylons-discuss/browse_thread/thread/fcaf0b8025f2c00c this thread] for additional information.
-
-  # [http://pypi.python.org/packages/source/s/simplejson/simplejson-1.9.2.tar.gz#md5=9fe5d9a98da5ffc347bfee2ccf386fcb Download] the .tgz file for simplejson from the [http://pypi.python.org Python Cheeseshop].
-  # Untar the file to a local directory (using [http://www.7-zip.org 7Zip], [http://www.winrar.com WinRAR] or another program).
-  # Edit the file in {{{simplejson-1.9.2/simplejson.egg-info/SOURCES.txt}}} and remove the line containing {{{"native_libs.txt"}}}.
-  # Run: {{{easy_install simplejson-1.9.2}}}
-
-If you don't have {{{easy_install}}}, [http://peak.telecommunity.com/dist/ez_setup.py download ez_setup] and run it to
-install the Python setuptools. Then repeat step 4 above.
-
-Thanks to Daniel Wexler for this information.
+This page has moved. See http://www.review-board.org/docs/manual/dev/faq/#i-m-having-trouble-installing-post-review-on-windows-vista

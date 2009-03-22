@@ -1,41 +1,4 @@
-#summary How to set up search
-#labels Phase-Deploy
+﻿#summary How to set up search
+#labels Deprecated
 
-= Introduction =
-
-Adding search to your review board is a bit of a complicated process, but it's worth it
-
-= Details =
-
-== Installing PyLucene ==
-
-This is by far the hardest step.  [http://pylucene.osafoundation.org/ PyLucene] is a wrapper around the Apache Lucene search engine for python, and is what Review Board search uses to do the indexing and querying.
-
-As a first step, download PyLucene.  There are two versions, _PyLucene with JCC_ and _PyLucene with GCJ_.  For this, you'll need the JCC version.  Luckily, this is also the easier of the two to build.  Download the latest and untar it. 
-
-You'll need to make sure you've got the build dependencies installed:
-  * gcc/g++
-  * A JDK
-  * Ant
-
-On Ubuntu, you can just type `apt-get install gcc g++ sun-java6-jdk ant`
-
-The first step in building PyLucene is to build JCC.  Inside the PyLucene directory, there's a `jcc` directory.  Enter it, and run:
-{{{
-python setup.py build && python setup.py install --prefix=/usr
-}}}
-
-Once this is done, cd back to the top-level PyLucene directory and edit the Makefile.  You'll need to write some custom settings for the distribution you're running on.  There are several examples, one of which may work unmodified.
-
-Finally, run `make`.  If this suceeds, follow up with `make install`.  If not, go back and check your Makefile settings.
-
-After it's built, you don't need to keep a JDK installed, just a JRE.  Removing this can free up a sizeable amount of space, which may be useful if you're trying to build a slim virtual machine.
-
-== Building the initial index ==
-
-Open the General Settings page in the Administration UI and put a checkmark next to "Enable search." If you want the search index to exist in a specific location, also set the "Search index file" field to the location you want.  By default this will be blank.
-
-Finally, run `rb-site manage /path/to/site index -- --full`.  This should give you a progress indicator, and may take some time depending on the size of your database.
-
-== Maintaining the index ==
-In order to keep the search index up to date, `rb-site manage /path/to/site index` needs to run periodically.  A sample cron configuration exists as `conf/search-cron.conf` in the site directory.
+This page has moved. See http://www.review-board.org/docs/manual/dev/admin/installation/linux/#installing-pylucene and http://www.review-board.org/docs/manual/dev/admin/sites/management-commands/#search-indexing

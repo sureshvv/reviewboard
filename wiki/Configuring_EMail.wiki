@@ -1,29 +1,4 @@
-#summary How to configure Review Board for outgoing e-mail
-#labels Documentation,ServerAdministration
+﻿#summary How to configure Review Board for outgoing e-mail
+#labels Deprecated
 
-= Configuring E-Mail =
-
-Review Board has the capability to send e-mails out on the user's behalf for any updates to review requests or reviews. This allows people to receive updates to review requests and discussions in their e-mail client.
-
-
-== Install a Mail Server ==
-
-To configure this, you'll need an SMTP mail server installed, such as [http://www.postfix.org/ Postfix] or [http://www.sendmail.org/ Sendmail]. The SMTP server does not have to be on the same server as Review Board, but Review Board must be able to access it.
-
-Configuring the mail server is beyond the scope of this documentation, but typically on most installs, it's available out of the box.
-
-
-== Configure E-Mail Settings ==
-
-Configuring e-mail in Review Board is simple. Go into the site administration page, click "Settings", and then "E-Mail".
-
-Make sure to fill out the fields to point to your mail server. Then enable the "Send e-mails for review requests and reviews".
-
-At this point, Review Board should be ready to start sending e-mail.
-
-
-== Configuring Groups ==
-
-Review groups can be assigned a mailing list. If set, all new review requests, updates to existing review requests, and discussions on them that are assigned to the review group will trigger e-mails to the mailing list.
-
-If a mailing list is not set on a review group, and "Send e-mails for review requests and reviews" is enabled, then every member of the group will be e-mailed with the updates.
+This page has moved. See http://www.review-board.org/docs/manual/dev/admin/admin-ui/email-settings/

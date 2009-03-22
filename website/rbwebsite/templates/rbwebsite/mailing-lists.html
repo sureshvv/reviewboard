@@ -32,10 +32,28 @@
   <a href="http://groups.google.com/group/reviewboard-issues">reviewboard-issues@googlegroups.com</a>
   <p>
 {% blocktrans %}
- All new bug reports and comments to bug reports are sent to this mailing list.
- This is another useful mailing list for developers.
+ All new bug reports and comments to bug reports filed on our bug tracker are
+ automatically sent to this mailing list. This is another useful mailing list
+ for developers.
+{% endblocktrans %}
+  </p>
+  <p>
+{% blocktrans %}
+ <b>Do not</b> post here with support questions! This is an announcement-only
+ mailing list.
 {% endblocktrans %}
   </p>
  </li>
+ <li>
+  <a href="http://groups.google.com/group/reviewboard-gsoc">reviewboard-gsoc@googlegroups.com</a>
+  <p>
+{% url summer-of-code as summer-of-code %}
+{% url summer-of-code-hosting as summer-of-code-hosting %}
+{% blocktrans %}
+ Students working on Review Board for Google's
+ <a href="{{summer-of-code}}">Summer of Code</a> and projects
+ <a href="{{summer-of-code-hosting}}">hosting</a> with us should
+ subscribe to this mailing list for discussion and support.
+{% endblocktrans %}
 </ul>
 {% endblock %}

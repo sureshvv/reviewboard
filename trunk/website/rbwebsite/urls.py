@@ -68,6 +68,18 @@ urlpatterns = patterns('',
         {'template': 'rbwebsite/mailing-lists.html'},
         name="mailing-lists"),
     (r'^users/', include('rbwebsite.happyusers.urls')),
+
+    url('^summer-of-code/$',
+        'django.views.generic.simple.direct_to_template',
+        {'template': 'rbwebsite/summer-of-code.html'},
+        name='summer-of-code'),
+    url('^summer-of-code/hosting/$',
+        'django.views.generic.simple.direct_to_template',
+        {'template': 'rbwebsite/summer-of-code-hosting.html'}),
+    url('^summer-of-code/2009/$',
+        'django.views.generic.simple.direct_to_template',
+        {'template': 'rbwebsite/summer-of-code-2009.html'}),
+
     url('^thirdparty/$',
         'django.views.generic.simple.direct_to_template',
         {'template': 'rbwebsite/third-party.html'},
@@ -90,7 +102,8 @@ urlpatterns = patterns('',
         name='wiki'),
     url('^wiki/(?P<page>[^/]+)/$',
         'django.views.generic.simple.redirect_to',
-        {'url': 'http://code.google.com/p/reviewboard/wiki/%(page)s'}),
+        {'url': 'http://code.google.com/p/reviewboard/wiki/%(page)s'},
+        name='wiki-page'),
 
 
     # Old redirects

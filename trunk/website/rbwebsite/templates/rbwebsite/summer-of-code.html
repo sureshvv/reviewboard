@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Summer of Code" %}{% endblock %}
+
+{% block page-header %}
+<h1>{% trans "Summer of Code" %}</h1>
+{% endblock %}
+
+{% block content %}
+<h2>Overview</h2>
+<p>
+ Google's <a href="http://code.google.com/soc/">Summer of Code</a> is an
+ opportunity for students to essentially "intern" at an open source project
+ for a summer. Every year, students are given the opportunity to apply to
+ a project and are paid for their time.
+</p>
+<p>
+ Review Board is currently participating as an organization that students can
+ apply to, and by offering hosting for other open source projects.
+</p>
+
+<h2>More Information</h2>
+<ul>
+ <li><a href="2009/">Summer of Code 2009</a></li>
+ <li><a href="hosting/">Review Board Hosting</a> for Summer of Code Projects</li>
+</ul>
+
+
+<h2>Hosting Summer of Code Projects</h2>
+<a name="applying"></a>
+<p>
+ We're also providing <a href="#hosting">hosting</a> for other open source
+ projects that are participating in Summer of Code. If you're a student or
+ an organization interested in using Review Board for student-contributed
+ code, you can <a href="#request-hosting">request hosting</a>.
+</p>
+{% endblock %}

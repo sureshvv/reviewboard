@@ -7,7 +7,6 @@
     * [UserBasics User Basics]
     * [SearchTips Search Tips]
     * [Using_PostReview Using post-review]
-    * [Summer_Of_Code_Hosting Hosting for Google Summer of Code]
   * Administrator Documentation
     * [Host_Requirements Host Requirements]
     * [Before_You_Install Before You Install]

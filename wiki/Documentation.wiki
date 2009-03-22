@@ -1,28 +1,4 @@
 #summary Documentation for Review Board
-#labels Featured
+#labels Deprecated
 
-= User Documentation =
-
-  * [FAQ] - Frequently Asked Questions
-  * [UserBasics User Basics] - How to get started as a Review Board user.
-  * [SearchTips Search Tips] - How to make effective use of Review Board search.
-  * [Using_PostReview Using post-review] - Instructions on using the post-review tool.
-  * [Summer_Of_Code_Hosting Hosting for Google Summer of Code] - Information on signing up for the free Review Board hosting for Google's Summer of Code.
-
-= Administrator Documentation =
-
-  * [Host_Requirements Host Requirements] - Requirements your host must meet for Review Board.
-  * [Before_You_Install Before You Install] - Pre-installation instructions.
-  * [GettingStarted Getting Started] - Contains installation instructions for different setups.
-  * [SettingUpSearch Setting Up Search] - How to set up search.
-  * [Configuring_EMail Configuring E-Mail] - How to configure Review Board for outgoing e-mail
-  * [ServerOptimizations Server Optimizations] - Potential ways to improve performance on a Review Board server.
-  * [RequiredServerUpdates Required Server Updates] - Changes that require manual updates of Review Board servers.
-  * [DatabaseSchemaUpgrades Database Schema Upgrades] - How to cope when the database schema changes.
-
-= Developer Documentation =
-
-  * [Roadmap] - Development roadmap for the upcoming release.
-  * [IdeasFor2_0] - Ideas for the Review Board 2.0 release.
-  * [ReviewBoardAPI Review Board API] - Reference documentation for writing applications that talk to Review Board servers.
-  * [UnitTestFixtures Unit Test Fixtures] - Working with fixtures for unit tests
+This page has moved. See http://www.review-board.org/docs/

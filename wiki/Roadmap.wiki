@@ -54,8 +54,8 @@ The release process will be:
 === Documentation ===
 
 || *Feature*                      || *Issue Number*  || *Status*    ||
-|| Admin manual                   ||                 || In progress ||
-|| User manual                    || issue 368       || In progress ||
+|| Admin manual                   ||                 || Committed   ||
+|| User manual                    || issue 368       || Committed   ||
 || API documentation              ||                 || In progress ||
 
 === Bugs ===

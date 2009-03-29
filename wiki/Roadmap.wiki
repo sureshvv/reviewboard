@@ -17,6 +17,7 @@ The release process will be:
   * *Alpha 2:* All of our [#Must_Have_Features must-have features] must be implemented. Many of our [#Bugs Milestone-1.0 bugs] will still be open, but no new features will be added outside what's on this roadmap without a compelling case. We hope to have most of our contributed patches that are ready to commit in this release. Non-trivial contributions will be pushed to our next release.
     * *Release Date:* Tuesday, February 3, 2009
   * *Beta 1:* All [#Maybe_Features "maybe" features] that we decide we want in 1.0 must be implemented. All other features will be pushed back to the next release. The focus after this will be on documentation and bug fixes.
+    * *Release Date:* Saturday, March 28, 2009
   * *Beta 2:* All medium and high priority [#Bugs Milestone-1.0 bugs] should be fixed.
   * *Release Candidate 1:* All bugs we're going to fix for Review Board 1.0 should be fixed by this point. If any critical bugs are filed after this point, there may be a Release Candidate 2.
   * *Final Release*

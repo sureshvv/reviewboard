@@ -13,73 +13,81 @@
 {% block scripts %}{% endblock %}
  </head>
  <body>
+  <div id="page-wrapper">
    <div id="thermometer-horiz">
     {% url donate as donate_url %}
     {% blocktrans %}
     Help fund Review Board development!
-	<a href="{{donate_url}}">Donate</a> today.
+    <a href="{{donate_url}}">Donate</a> today.
     {% endblocktrans %}
-  </div>
-  <div id="container">
-   <div id="topbar">
-    <div id="logo">
-     <h1>
-	  <a href="{% url front-page %}">
-      <img src="{{MEDIA_URL}}rbsite/images/logo.png?{{MEDIA_SERIAL}}"
-           width="130" height="123" alt="" /><br />
-	  Review Board
-      </a>
-     </h1>
-    </div>
-    <div id="navbar">
-     <dl>
-      <dt>{% trans "About" %}</dt>
-      <dd><a href="{% url news %}">{% trans "News" %}</a></dd>
-      <dd><a href="{% url developer-blogs %}">{% trans "Developer Blogs" %}</a></dd>
-      <dd><a href="{% url screenshots %}">{% trans "Screenshots" %}</a></dd>
-      <dd><a href="{% url press %}">{% trans "Press and Media" %}</a></dd>
-     </dl>
-     <dl>
-      <dt>{% trans "Get Started" %}</dt>
-      <dd><a href="{% url downloads %}">{% trans "Downloads" %}</a></dd>
-      <dd><a href="{% url doc-index %}">{% trans "Documentation" %}</a></dd>
-      <dd><a href="{% url doc-page "manual" "dev" "faq" %}">{% trans "FAQ" %}</a></dd>
-      <dd><a href="http://demo.review-board.org/">{% trans "Demo" %}</a></dd>
-     </dl>
-     <dl>
-      <dt>{% trans "Community" %}</dt>
-      <dd><a href="{% url mailing-lists %}">{% trans "Mailing Lists" %}</a></dd>
-      <dd><a href="{% url happy-users %}">{% trans "Happy Users" %}</a></dd>
-      <dd><a href="{% url summer-of-code %}">{% trans "Summer of Code" %}</a></dd>
-      <!-- <dd><a href="{% url third-party %}">{% trans "Third Party Resources" %}</a></dd> -->
-     </dl>
-     <dl>
-      <dt>{% trans "Development" %}</dt>
-      <dd><a href="http://reviews.review-board.org/">{% trans "Code Reviews" %}</a></dd>
-      <dd><a href="http://build.review-board.org/waterfall">{% trans "Build Monitoring" %}</a></dd>
-      <dd><a href="{% url bugs %}">{% trans "Bug Tracker" %}</a></dd>
-      <dd><a href="{% url wiki %}">{% trans "Wiki" %}</a></dd>
-     </dl>
-    </div>
-	<div id="searchbar">
-     <form action="http://www.review-board.org/search/" id="cse-search-box">
-       <div>
-         <input type="hidden" name="cx" value="012453821479077667007:67xhl95j4cm" />
-         <input type="hidden" name="cof" value="FORID:9" />
-         <input type="hidden" name="ie" value="UTF-8" />
-         <input type="text" name="q" size="31" />
-         <input type="submit" name="sa" value="Search" />
-       </div>
-     </form>
-     <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
-	</div>
    </div>
-   <div id="page-header">
-    {% block page-header %}{% endblock %}
-   </div>
-   <div id="content">
+   <div id="container">
+    <div id="topbar">
+     <div id="logo">
+      <h1>
+       <a href="{% url front-page %}">
+        <img src="{{MEDIA_URL}}rbsite/images/logo.png?{{MEDIA_SERIAL}}"
+             width="130" height="123" alt="" /><br />
+        Review Board
+       </a>
+      </h1>
+     </div>
+     <div id="navbar">
+      <dl>
+       <dt>{% trans "About" %}</dt>
+       <dd><a href="{% url news %}">{% trans "News" %}</a></dd>
+       <dd><a href="{% url developer-blogs %}">{% trans "Developer Blogs" %}</a></dd>
+       <dd><a href="{% url screenshots %}">{% trans "Screenshots" %}</a></dd>
+       <dd><a href="{% url press %}">{% trans "Press and Media" %}</a></dd>
+      </dl>
+      <dl>
+       <dt>{% trans "Get Started" %}</dt>
+       <dd><a href="{% url downloads %}">{% trans "Downloads" %}</a></dd>
+       <dd><a href="{% url doc-index %}">{% trans "Documentation" %}</a></dd>
+       <dd><a href="{% url doc-page "manual" "dev" "faq" %}">{% trans "FAQ" %}</a></dd>
+       <dd><a href="http://demo.review-board.org/">{% trans "Demo" %}</a></dd>
+      </dl>
+      <dl>
+       <dt>{% trans "Community" %}</dt>
+       <dd><a href="{% url mailing-lists %}">{% trans "Mailing Lists" %}</a></dd>
+       <dd><a href="{% url happy-users %}">{% trans "Happy Users" %}</a></dd>
+       <dd><a href="{% url summer-of-code %}">{% trans "Summer of Code" %}</a></dd>
+       <!-- <dd><a href="{% url third-party %}">{% trans "Third Party Resources" %}</a></dd> -->
+      </dl>
+      <dl>
+       <dt>{% trans "Development" %}</dt>
+       <dd><a href="http://reviews.review-board.org/">{% trans "Code Reviews" %}</a></dd>
+       <dd><a href="http://build.review-board.org/waterfall">{% trans "Build Monitoring" %}</a></dd>
+       <dd><a href="{% url bugs %}">{% trans "Bug Tracker" %}</a></dd>
+       <dd><a href="{% url wiki %}">{% trans "Wiki" %}</a></dd>
+      </dl>
+     </div>
+     <div id="searchbar">
+      <form action="http://www.review-board.org/search/" id="cse-search-box">
+        <div>
+          <input type="hidden" name="cx" value="012453821479077667007:67xhl95j4cm" />
+          <input type="hidden" name="cof" value="FORID:9" />
+          <input type="hidden" name="ie" value="UTF-8" />
+          <input type="text" name="q" size="31" />
+          <input type="submit" name="sa" value="Search" />
+        </div>
+      </form>
+      <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
+     </div>
+    </div>
+    <div id="page-header">
+     {% block page-header %}{% endblock %}
+    </div>
+    <div id="content">
 {% block content %}{% endblock %}
+    </div>
    </div>
+  </div>
+  <div id="footer">
+   <p>
+    Review Board is Copyright &copy; 2006-2009 Christian Hammond and
+    David Trowbridge. All rights reserved.
+   </p>
   </div>
 {% block scripts-post %}{% endblock %}
   <script type="text/javascript">

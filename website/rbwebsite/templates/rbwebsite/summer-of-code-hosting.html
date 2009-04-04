@@ -85,11 +85,16 @@
 
 <h2>Getting Students Ready</h2>
 <p>
- Students and mentors wanting to use Review Board should download
- <a href="http://code.google.com/p/reviewboard/source/browse/trunk/reviewboard/contrib/tools/post-review">post-review</a>,
- put it somewhere in their path and make it executable. To configure it with
- the Summer of Code Review Board server, put the following in
- <tt>$HOME/.reviewboardrc</tt>:
+ Students and mentors wanting to use Review Board should download RBTools,
+ which contains a handy tool called post-review. You can install RBTools
+ by typing the following in your terminal:
+</p>
+<pre>
+$ sudo easy_install RBTools
+</pre>
+<p>
+ To configure post-review with the Summer of Code Review Board server, put the
+ following in <tt>$HOME/.reviewboardrc</tt>:
 </p>
 <pre>
 REVIEWBOARD_URL = "http://gsoc.review-board.org/"

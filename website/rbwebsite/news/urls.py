@@ -6,7 +6,6 @@ from rbwebsite.news.models import Category, NewsPost
 
 news_info = {
     'template_name': 'news/news.html',
-    'date_field': 'timestamp',
     'queryset': NewsPost.objects.filter(public=True),
     'extra_context': {
         'categories': Category.objects.all(),
@@ -15,7 +14,12 @@ news_info = {
     },
 }
 
-news_post_info = news_info.copy()
+date_news_info = news_info.copy()
+date_news_info.update({
+    'date_field': 'timestamp',
+})
+
+news_post_info = date_news_info.copy()
 news_post_info.update({
     'template_name': 'news/post.html',
     'template_object_name': 'post',
@@ -38,18 +42,21 @@ urlpatterns = patterns('django.views.generic.date_based',
         dict({
             'num_latest': 10,
             'template_object_name': 'object_list',
-        }, **news_info),
+        }, **date_news_info),
         name='news'),
     url(r'^(?P<year>\d{4})/$', 'archive_year',
         dict({
             'make_object_list': True,
-        }, **news_info)),
+        }, **date_news_info)),
     url(r'^(?P<year>\d{4})/(?P<month>\d{1,2})/$', 'archive_month',
         dict({
             'month_format': '%m',
-        }, **news_info)),
+        }, **date_news_info)),
     url(r'^(?P<year>\d{4})/(?P<month>\d{1,2})/(?P<day>\d{1,2})/$',
-        'archive_day', news_info),
+        'archive_day',
+        dict({
+            'month_format': '%m',
+        }, **date_news_info)),
     url(r'^(?P<year>\d{4})/(?P<month>\d{1,2})/(?P<day>\d{1,2})/(?P<slug>[-\w]+)/$',
         'object_detail',
         news_post_info,
@@ -74,5 +81,10 @@ urlpatterns += patterns('django.views.generic.simple',
 
 # Support a WordPress-compatible XML-RPC interface.
 urlpatterns += patterns('rbwebsite.news.views',
+    url(r'^categories/(?P<slug>[-\w]+)/$',
+        'category_posts',
+        news_info,
+        name="news-category"),
+
     (r'xmlrpc/?$', 'xmlrpc'),
 )

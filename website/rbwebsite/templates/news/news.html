@@ -1,7 +1,11 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% block title %}{% trans "News" %}{% endblock %}
+{% block title %}{% trans "News" %} {% spaceless %}
+{%  if year %}| {{year}}{% endif %}
+{%  if month %}| {{month|date:"F Y"}}{% endif %}
+{%  if day %}| {{day|date:"F d, Y"}}{% endif %}
+{% endspaceless %}{% endblock %}
 
 {% block extrahead %}
 <link rel="alternate" type="application/rss+xml" title="Review Board | News RSS Feed" href="http://www.review-board.org/news/feed/" />

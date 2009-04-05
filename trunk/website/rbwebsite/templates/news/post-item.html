@@ -1,6 +1,14 @@
 {% load djblets_utils %}
 {% load gravatars %}
  <div class="blog-post">
+  <div class="badges">
+   <div class="badge">
+    <iframe src="http://digg.com/tools/diggthis.php?u=http://{{site.domain}}{{post.get_absolute_url|urlencode}}&t={{post.title|urlencode}}" height="80" width="52" scrolling="no" frameborder="0"></iframe>
+   </div>
+   <div class="badge">
+    <iframe src="http://www.reddit.com/button_content?t=2&width=51&url=http://{{site.domain}}{{post.get_absolute_url|urlencode}}&title={{post.title|urlencode}}" height="69" width="51" scrolling="no" frameborder="0"></iframe>
+   </div>
+  </div>
   <div class="blog-post-header">
    <div class="gravatar">{% gravatar post.author 40 %}</div>
    <div class="blog-post-title"><a href="{{post.get_absolute_url}}">{{post.title}}</a></div>

@@ -7,6 +7,7 @@ from django.contrib.sites.models import Site
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseNotAllowed
 from django.utils.html import strip_spaces_between_tags
+from django.views.generic.list_detail import object_list
 
 from rbwebsite.news.models import Category, NewsPost
 
@@ -14,6 +15,13 @@ from rbwebsite.news.models import Category, NewsPost
 METHOD_NOT_SUPPORTED = Fault(0, "Method not supported")
 BAD_LOGIN_PASS       = Fault(403, "Authentication failed")
 NO_SUCH_PAGE         = Fault(404, "Page not found")
+
+
+def category_posts(request, slug, queryset, extra_context, template_name):
+    return object_list(request,
+                       queryset.filter(categories__slug=slug),
+                       extra_context=extra_context,
+                       template_name=template_name)
 
 
 def get_user(username, password):

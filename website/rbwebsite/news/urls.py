@@ -1,4 +1,5 @@
 from django.conf.urls.defaults import patterns, url
+from django.contrib.sites.models import Site
 
 from rbwebsite.news.feeds import RssNewsFeed, AtomNewsFeed
 from rbwebsite.news.models import Category, NewsPost
@@ -11,6 +12,7 @@ news_info = {
         'categories': Category.objects.all(),
         'all_posts': NewsPost.objects.filter(public=True),
         'dates': NewsPost.objects.all().dates("timestamp", "month", "DESC"),
+        'site': Site.objects.get_current(),
     },
 }
 

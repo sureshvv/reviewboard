@@ -76,6 +76,15 @@ blockquote.testimonial .source {
   text-align: right;
 }
 
+.badges {
+  float: right;
+  margin: 0 0 2em 2em;
+}
+
+.badge {
+  margin-bottom: 1em;
+}
+
 .blog-post {
   margin-left: 2em;
 }

@@ -19,8 +19,15 @@ The release process will be:
   * *Beta 1:* All [#Maybe_Features "maybe" features] that we decide we want in 1.0 must be implemented. All other features will be pushed back to the next release. The focus after this will be on documentation and bug fixes.
     * *Release Date:* Saturday, March 28, 2009
   * *Beta 2:* All medium and high priority [#Bugs Milestone-1.0 bugs] should be fixed.
-  * *Release Candidate 1:* All bugs we're going to fix for Review Board 1.0 should be fixed by this point. If any critical bugs are filed after this point, there may be a Release Candidate 2.
+    * *Release Date:* Sunday, March 29, 2009
+  * *Release Candidate 1:* Most critical bugs Review Board 1.0 were fixed.
+    * *Release Date:* Sunday, May 3, 2009
+  * *Release Candidate 2:* Some additional showstopper bugs found in RC1 were fixed.
+    * *Release Date:* Friday, May 8, 2009
+  * *Release Candidate 3:* A major performance issue was fixed, and a few important bugs we decided needed to be fixed for 1.0 were fixed.
+    * *Release Date:* Saturday, June 13, 2009
   * *Final Release*
+    * *Scheduled Release:* Sunday, June 20, 2009
 
 
 == Release Dependencies ==

@@ -27,7 +27,8 @@ class Release(models.Model):
     minor_version = models.PositiveIntegerField()
     micro_version = models.PositiveIntegerField()
     release_type = models.CharField(max_length=5, choices=RELEASE_TYPES)
-    release_num = models.PositiveIntegerField("release number", blank=True)
+    release_num = models.PositiveIntegerField("release number", blank=True,
+                                              null=True)
 
     timestamp = models.DateTimeField(default=datetime.now)
 

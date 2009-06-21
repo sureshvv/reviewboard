@@ -16,7 +16,8 @@
 <h2>{% trans "Releases" %}</h2>
 <ul>
 {% for product in products %}
- <li>{{product.name}} {{ product.releases.latest.version}}</li>
+ <li>{{product.name}} {{product.releases.latest.version}}
+     [<a href="{{product.releases.latest.get_release_notes_url}}">Release Notes</a>]</li>
 {% endfor %}
 </ul>
 <p>

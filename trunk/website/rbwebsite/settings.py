@@ -67,6 +67,7 @@ INSTALLED_APPS = (
     'rbwebsite.releases',
     'rbwebsite.screenshots',
     'rbwebsite.search',
+    'django_evolution' # Must be last
 )
 
 WEB_API_ENCODERS = (

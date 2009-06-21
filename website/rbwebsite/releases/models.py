@@ -1,5 +1,6 @@
 from datetime import datetime
 
+from django.core.urlresolvers import reverse
 from django.db import models
 
 
@@ -52,6 +53,13 @@ class Release(models.Model):
             ver += " %s %s" % (self.release_type, self.release_num)
 
         return ver
+
+    def get_release_notes_url(self):
+        ver = self.version.replace(" ", "-")
+
+        return reverse("doc-page",
+                       args=["releasenotes", "dev",
+                             "%s/%s" % (self.product.slug, ver)])
 
     def __unicode__(self):
         return u"%s %s" % (self.product, self.version)

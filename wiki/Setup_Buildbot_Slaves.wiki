@@ -84,10 +84,10 @@ $ sudo svn co http://reviewboard.googlecode.com/svn/trunk/buildbot/conf/slave/ .
 Change the ownership of the slave directory and its contents.
 
 {{{
-$ sudo chown -R buildbot:nogroup /var/lib/build bot/slaves/reviewboard
+$ sudo chown -R buildbot:nogroup /var/lib/buildbot/slaves/reviewboard
 }}}
 
-Now register this buildbot so that it will start up along with the system. Add the following to {{/etc/default/buildbot}}:
+Now register this buildbot so that it will start up along with the system. Add the following to {{{/etc/default/buildbot}}}:
 
 {{{
 BB_NUMBER[0]=0

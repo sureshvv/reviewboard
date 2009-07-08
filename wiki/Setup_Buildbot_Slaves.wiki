@@ -4,7 +4,7 @@
 
 Setting up a buildbot slave is pretty easy. There's only a few things that need to be installed.
 
-Right now we only support buildbot on Linux systems, but in the future we'll work toward Windows as well. This document also assumes Debian or Ubuntu in some places.
+Right now we only support buildbot on Linux systems, but in the future we'll work toward Windows as well. This document also assumes Debian or Ubuntu in some places. You may have to make adjustments for other Linux distributions.
 
 
 == Choosing the right Python version ==
@@ -46,11 +46,13 @@ Finally, buildbot itself:
 $ sudo apt-get install buildbot
 }}}
 
-If your version of buildbot is earlier than 0.7.9, then run (using the default {{{easy_install}}} version):
+If your version of buildbot is earlier than 0.7.9, then run the following (using the default {{{easy_install}}} version), after the install above:
 
 {{{
 $ sudo easy_install buildbot
 }}}
+
+It's important to install the system package first in order to get the init scripts.
 
 
 == Creating the Slave ==
@@ -79,10 +81,21 @@ Then we'll want to make sure we have the scripts necessary for the slave. In the
 $ sudo svn co http://reviewboard.googlecode.com/svn/trunk/buildbot/conf/slave/ .
 }}}
 
-Finally, change the ownership of the slave directory and its contents.
+Change the ownership of the slave directory and its contents.
 
 {{{
 $ sudo chown -R buildbot:nogroup /var/lib/build bot/slaves/reviewboard
+}}}
+
+Now register this buildbot so that it will start up along with the system. Add the following to {{/etc/default/buildbot}}:
+
+{{{
+BB_NUMBER[0]=0
+BB_NAME[0]="Review Board slave"
+BB_USER[0]="buildbot"
+BB_BASEDIR[0]="/var/lib/buildbot/slaves/reviewboard"
+BB_OPTIONS[0]=""
+BB_PREFIXCMD[0]=""
 }}}
 
 

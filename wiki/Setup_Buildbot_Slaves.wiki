@@ -7,6 +7,19 @@ Setting up a buildbot slave is pretty easy. There's only a few things that need 
 Right now we only support buildbot on Linux systems, but in the future we'll work toward Windows as well. This document also assumes Debian or Ubuntu in some places.
 
 
+== Choosing the right Python version ==
+
+These instructions are assuming that the default version of Python on the system is the version you want to use for testing. If using a separate version, you'll need to install the support and use the appropriate commands. For example:
+
+{{{
+$ sudo apt-get install python2.4 python2.4-dev python2.4-setuptools
+}}}
+
+Then use {{{easy_install-2.4}}} below.
+
+On Ubuntu 9.04 and higher, Python 2.4 is deprecated, and support isn't automatically available for setuptools. For this, download the egg and install it manually using the [http://pypi.python.org/pypi/setuptools setuptools installation instructions].
+
+
 == Dependencies ==
 
 First, you'll need svn and setuptools. This is best installed through your distribution's native package:
@@ -25,6 +38,12 @@ The buildbot steps will install PIL (Python Imaging Library), which will have to
 
 {{{
 $ sudo apt-get build-dep python-imaging
+}}}
+
+Finally, buildbot itself:
+
+{{{
+$ sudo easy_install buildbot
 }}}
 
 

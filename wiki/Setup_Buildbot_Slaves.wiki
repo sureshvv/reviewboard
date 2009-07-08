@@ -43,6 +43,12 @@ $ sudo apt-get build-dep python-imaging
 Finally, buildbot itself:
 
 {{{
+$ sudo apt-get install buildbot
+}}}
+
+If your version of buildbot is earlier than 0.7.9, then run (using the default {{{easy_install}}} version):
+
+{{{
 $ sudo easy_install buildbot
 }}}
 
@@ -63,14 +69,20 @@ The slave name and password are pretty much up to you. I recommend including the
 Once this is complete, go into the new slave directory and type:
 
 {{{
-$ ln -s /usr/bin/virtualenv virtualenv
+$ sudo ln -s /usr/bin/virtualenv virtualenv
 }}}
 
 
 Then we'll want to make sure we have the scripts necessary for the slave. In the new slave directory, run:
 
 {{{
-$ svn co http://reviewboard.googlecode.com/svn/trunk/buildbot/conf/slave/ .
+$ sudo svn co http://reviewboard.googlecode.com/svn/trunk/buildbot/conf/slave/ .
+}}}
+
+Finally, change the ownership of the slave directory and its contents.
+
+{{{
+$ sudo chown -R buildbot:nogroup /var/lib/build bot/slaves/reviewboard
 }}}
 
 

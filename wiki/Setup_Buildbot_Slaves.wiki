@@ -22,22 +22,22 @@ On Ubuntu 9.04 and higher, Python 2.4 is deprecated, and support isn't automatic
 
 == Dependencies ==
 
-First, you'll need svn and setuptools. This is best installed through your distribution's native package:
+First, you'll need some packages used in the testing. These are best installed through your distribution's native package:
 
 {{{
-$ sudo apt-get install subversion libsvn-dev python-setuptools
+$ sudo apt-get install subversion libsvn-dev python-setuptools pyflakes git-core mercurial
 }}}
 
-You'll then need to get virtualenv on your system:
+You'll then need to get some Python-specific modules on your system:
 
 {{{
-$ sudo easy_install virtualenv
+$ sudo easy_install virtualenv P4PythonInstaller
 }}}
 
-The buildbot steps will install PIL (Python Imaging Library), which will have to compile a few things. You'll need gcc and the Python development headers for this. On Debian/Ubuntu, this is easily done:
+The buildbot steps will install PIL (Python Imaging Library) and PySVN, which will have to compile a few things. You'll need gcc and the Python development headers for this, as well as some other development packages. On Debian/Ubuntu, this is easily done:
 
 {{{
-$ sudo apt-get build-dep python-imaging
+$ sudo apt-get build-dep python-imaging python-svn
 }}}
 
 Finally, buildbot itself:
@@ -46,10 +46,10 @@ Finally, buildbot itself:
 $ sudo apt-get install buildbot
 }}}
 
-If your version of buildbot is earlier than 0.7.9, then run the following (using the default {{{easy_install}}} version), after the install above:
+If your version of buildbot is earlier than 0.7.10, then run the following (using the default {{{easy_install}}} version), after the install above:
 
 {{{
-$ sudo easy_install buildbot
+$ sudo easy_install -U buildbot
 }}}
 
 It's important to install the system package first in order to get the init scripts.
@@ -71,7 +71,7 @@ The slave name and password are pretty much up to you. I recommend including the
 Once this is complete, go into the new slave directory and type:
 
 {{{
-$ sudo ln -s /usr/bin/virtualenv virtualenv
+$ sudo ln -s `which virtualenv` virtualenv
 }}}
 
 
@@ -81,10 +81,10 @@ Then we'll want to make sure we have the scripts necessary for the slave. In the
 $ sudo svn co http://reviewboard.googlecode.com/svn/trunk/buildbot/conf/slave/ .
 }}}
 
-Change the ownership of the slave directory and its contents.
+Change the ownership of the buildbot directory and its contents.
 
 {{{
-$ sudo chown -R buildbot:nogroup /var/lib/buildbot/slaves/reviewboard
+$ sudo chown -R buildbot:nogroup /var/lib/buildbot
 }}}
 
 Now register this buildbot so that it will start up along with the system. Add the following to {{{/etc/default/buildbot}}}:

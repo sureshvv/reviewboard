@@ -355,12 +355,12 @@ None
       "testing_done":"",
       "branch":"",
       "submitter":{
-         "username":"peks",
-         "first_name":"Martin",
-         "last_name":"Zibert",
-         "url":"\/users\/peks\/",
-         "email":"zibert.martin@gmail.com",
-         "fullname":"Martin Zibert",
+         "username":"testuser",
+         "first_name":"Test",
+         "last_name":"User",
+         "url":"\/users\/testuser\/",
+         "email":"testuser@example.com",
+         "fullname":"Test User",
          "id":572
       },
       "time_added":"2007-06-26 07:58:40",

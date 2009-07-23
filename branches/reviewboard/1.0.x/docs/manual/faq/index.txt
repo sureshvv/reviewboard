@@ -132,6 +132,17 @@ database instead of the relative path. See `this thread
 for more information.
 
 
+I installed a site using SQLite and every page generates an error
+-----------------------------------------------------------------
+
+This may mean the database isn't able to be written. If you see
+``OperationalError: attempt to write to a readonly database`` in your
+Apache's :file:`error_log`, then this is certainly the case.
+
+Make sure you've set the permissions of the site's :file:`db` directory to
+match the user for the web server.
+
+
 I'm having trouble installing post-review on Windows Vista
 ----------------------------------------------------------
 
@@ -168,6 +179,15 @@ I get the error "Unable to parse the server response" when uploading screenshots
 The permissions on your :file:`htdocs/media/uploaded` directory and
 subdirectories are wrong. You need to make sure the contents are writable by
 the web server.
+
+
+The Edit Review page is really slow on Firefox
+----------------------------------------------
+
+The "It's All Text" extension has been known to have problems with
+Review Board. If you're encountering problems related to text areas or
+slowdown in the Edit Review page, try disabling this extension and seeing if
+it makes a difference.
 
 
 Developing Review Board

@@ -9,11 +9,12 @@ from django.template import RequestContext
 from django.views.static import serve
 
 
-VERSIONS = ["dev"]
+VERSIONS = settings.DOCS_ROOT.keys()
 
 
 def get_doc_path(section, version, parts=[]):
-    return os.path.join(settings.DOCS_ROOT, section, "_build", "pickle",
+    return os.path.join(settings.DOCS_ROOT[version], section,
+                        "_build", "pickle",
                         *parts)
 
 def index(request):

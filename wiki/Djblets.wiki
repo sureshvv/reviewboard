@@ -26,10 +26,10 @@ $ sudo easy_install --upgrade -f http://www.review-board.org/downloads/bleeding/
 
 == Development ==
 
-Djblets is hosted in a different Subversion repository. You can [http://svn.navi.cx/misc/trunk/djblets browse] the repository or check it out:
+Djblets is hosted in a Git repository. You can [http://github.com/djblets/djblets browse] the repository or check it out:
 
 {{{
-$ svn checkout http://svn.navi.cx/misc/trunk/djblets
+$ git clone git://github.com/djblets/djblets.git
 }}}
 
 

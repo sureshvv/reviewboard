@@ -1,76 +1,64 @@
 #summary Development roadmap for the upcoming release
 #labels Phase-Design,Phase-Requirements,Phase-Implementation
 
-= Review Board 1.0 Roadmap =
+= Review Board 1.1 Roadmap =
 
-This describes the roadmap for the 1.0 release of Review Board, including an estimated schedule, features we expect to have in the release, and bugs we want to fix.
+This describes the roadmap for the 1.1 release of Review Board, including an estimated schedule, features we expect to have in the release, and bugs we want to fix.
 
 
 == Schedule ==
 
-We hope to have a 1.0 release by March 2009. This may change due to many factors, but we're proceeding with this goal in mind. We were hoping for a December 2008 release, which became unrealistic due some delays in important changes we wanted in.
+Review Board 1.0 was released on June 20, 2009. Since then, we've had a lot of development, including the Google Summer of Code. We hope to have a 1.1 release by January 2010. This may change due to many factors, but we're proceeding with this goal in mind.
 
 The release process will be:
 
   * *Alpha 1:* Most of our [#Must_Have_Features must-have features] should be implemented.
-    * *Release Date:* Sunday, January 18th, 2009
-  * *Alpha 2:* All of our [#Must_Have_Features must-have features] must be implemented. Many of our [#Bugs Milestone-1.0 bugs] will still be open, but no new features will be added outside what's on this roadmap without a compelling case. We hope to have most of our contributed patches that are ready to commit in this release. Non-trivial contributions will be pushed to our next release.
-    * *Release Date:* Tuesday, February 3, 2009
-  * *Beta 1:* All [#Maybe_Features "maybe" features] that we decide we want in 1.0 must be implemented. All other features will be pushed back to the next release. The focus after this will be on documentation and bug fixes.
-    * *Release Date:* Saturday, March 28, 2009
-  * *Beta 2:* All medium and high priority [#Bugs Milestone-1.0 bugs] should be fixed.
-    * *Release Date:* Sunday, March 29, 2009
-  * *Release Candidate 1:* Most critical bugs Review Board 1.0 were fixed.
-    * *Release Date:* Sunday, May 3, 2009
-  * *Release Candidate 2:* Some additional showstopper bugs found in RC1 were fixed.
-    * *Release Date:* Friday, May 8, 2009
-  * *Release Candidate 3:* A major performance issue was fixed, and a few important bugs we decided needed to be fixed for 1.0 were fixed.
-    * *Release Date:* Saturday, June 13, 2009
+    * *Release Date:* Tuesday, September 15th, 2009
+  * *Alpha 2:* All of our [#Must_Have_Features must-have features] must be implemented. Many of our [#Bugs Milestone-1.1 bugs] will still be open, but no new features will be added outside what's on this roadmap without a compelling case. We hope to have most of our contributed patches that are ready to commit in this release. Non-trivial contributions will be pushed to our next release.
+    * *Release Date:* Monday, October 5, 2009
+  * *Beta 1:* All [#Maybe_Features "maybe" features] that we decide we want in 1.1 must be implemented. All other features will be pushed back to the next release. The focus after this will be on documentation and bug fixes.
+    * *Release Date:* Saturday, October 31, 2009
+  * *Beta 2:* All medium and high priority [#Bugs Milestone-1.1 bugs] should be fixed.
+    * *Release Date:* Monday, November 30, 2009
+  * *Release Candidate 1:* Additional [#Bugs Milestone-1.1 bugs] fixed as necessary.
+    * *Release Date:* Saturday, December 5, 2009
   * *Final Release*
-    * *Scheduled Release:* Sunday, June 20, 2009
+    * *Scheduled Release:* Saturday, January 23, 2010
 
 
 == Release Dependencies ==
 
-  * *Django 1.0:* Review Board's biggest dependency is [http://www.djangoproject.com/ Django]. Django 1.0 released on 3 September, 2008.
+  * *Django 1.1:* Review Board's biggest dependency is [http://www.djangoproject.com/ Django]. Django 1.1 released on July 29, 2010.
   * *Django Evolution:* [http://django-evolution.googlecode.com/ Django Evolution] is another important dependency. Their release schedule is unknown but we'll likely depend on either a snapshot of their Subversion repository or the closest stable release at the point of our release.
 
 
-== Release 1.0 ==
+== Release 1.1 ==
 
 === Must-Have Features ===
 
 || *Feature*                                || *Status*                     ||
-|| New admin UI                             || Committed                    ||
-|| Dynamic site settings                    || Committed                    ||
-|| Logging                                  || Committed                    ||
-|| Move to Python setuptools                || Committed                    ||
-|| Site installation script                 || Committed                    ||
-|| UI Rewrite ([Eliminating_YUIExt Eliminating YUI-Ext]) || Committed       ||
-|| Page load time improvements              || Committed                    ||
-|| Move to jQuery 1.3                       || Committed                    ||
+|| Dynamic update notifications             || Committed (ce1eeed)          ||
+|| Hosting service easy-config              || Committed (52c49a8)          ||
+|| Screenshot drag-and-drop upload          || Committed (621f6ac)          ||
+|| HTML email support                       || Committed (05a8aeb)          ||
+|| Raw-file URL remote Git support          || Committed (8df8d29)          ||
+|| Toggling whitespace display in diff      || Committed (629bbc1)          ||
+|| Move detection                           || In progress                  ||
+|| New settings UI                          || Not started                  ||
 
 
 === Maybe Features ===
 
-|| *Feature*                      || *Issue Number*  || *Status*  ||
-|| Diff change descriptions       || issue 333       || Committed ||
-|| Disable user registration      ||                 || Committed ||
-|| Linkify URLs in descriptions   || issue 258       || Committed ||
-
-
-=== Documentation ===
-
 || *Feature*                      || *Issue Number*  || *Status*    ||
-|| Admin manual                   ||                 || Committed   ||
-|| User manual                    || issue 368       || Committed   ||
-|| API documentation              ||                 || In progress ||
+|| OpenID authentication          || issue 242       || Not started ||
+|| Real names in drop-downs       || issue 598       || Not started ||
+|| "Not Shippable" status         || issue 489       || Not started ||
 
 === Bugs ===
 
-We have a list of bugs we'd like to fix for 1.0. Any and all bugs that we can fix should be fixed, but we specifically mark some as Milestone-Release1.0.
+We have a list of bugs we'd like to fix for 1.1. Any and all bugs that we can fix should be fixed, but we specifically mark some as Milestone-Release1.1.
 
-  * [http://code.google.com/p/reviewboard/issues/list?can=2&q=milestone:Release1.0 Milestone-Release1.0 bug list]
+  * [http://code.google.com/p/reviewboard/issues/list?can=2&q=milestone:Release1.1 Milestone-Release1.1 bug list]
 
 
 == Release 1.5 ==
@@ -78,7 +66,6 @@ We have a list of bugs we'd like to fix for 1.0. Any and all bugs that we can fi
 === Must-Have Features ===
 
 || *Feature*                      || *Issue Number*  || *Status*    ||
-|| "Not Shippable" status         || issue 489       || Not started ||
 || User/group access policies     ||                 || Not started ||
 || Third-party extensions         ||                 || Not started ||
 

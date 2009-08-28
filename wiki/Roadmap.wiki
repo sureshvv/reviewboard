@@ -51,8 +51,11 @@ The release process will be:
 
 || *Feature*                      || *Issue Number*  || *Status*    ||
 || OpenID authentication          || issue 242       || Not started ||
-|| Real names in drop-downs       || issue 598       || Not started ||
+|| Incremental expansion          || issue 342       || Not started ||
+|| Nagging                        || issue 421       || Not started ||
 || "Not Shippable" status         || issue 489       || Not started ||
+|| Real names in drop-downs       || issue 598       || Not started ||
+
 
 === Bugs ===
 

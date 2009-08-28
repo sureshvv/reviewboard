@@ -28,7 +28,7 @@ The release process will be:
 
 == Release Dependencies ==
 
-  * *Django 1.1:* Review Board's biggest dependency is [http://www.djangoproject.com/ Django]. Django 1.1 released on July 29, 2010.
+  * *Django 1.1:* Review Board's biggest dependency is [http://www.djangoproject.com/ Django]. Django 1.1 released on July 29, 2009.
   * *Django Evolution:* [http://django-evolution.googlecode.com/ Django Evolution] is another important dependency. Their release schedule is unknown but we'll likely depend on either a snapshot of their Subversion repository or the closest stable release at the point of our release.
 
 

@@ -13,7 +13,7 @@ Review Board 1.0 was released on June 20, 2009. Since then, we've had a lot of d
 The release process will be:
 
   * *Alpha 1:* Most of our [#Must_Have_Features must-have features] should be implemented.
-    * *Release Date:* Tuesday, September 19th, 2009
+    * *Release Date:* Saturday, September 19th, 2009
   * *Alpha 2:* All of our [#Must_Have_Features must-have features] must be implemented. Many of our [#Bugs Milestone-1.1 bugs] will still be open, but no new features will be added outside what's on this roadmap without a compelling case. We hope to have most of our contributed patches that are ready to commit in this release. Non-trivial contributions will be pushed to our next release.
     * *Release Date:* Monday, October 5, 2009
   * *Beta 1:* All [#Maybe_Features "maybe" features] that we decide we want in 1.1 must be implemented. All other features will be pushed back to the next release. The focus after this will be on documentation and bug fixes.

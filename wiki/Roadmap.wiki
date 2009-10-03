@@ -44,6 +44,8 @@ The release process will be:
 || Raw-file URL remote Git support          || Committed (8df8d29)          ||
 || Toggling whitespace display in diff      || Committed (629bbc1)          ||
 || Move detection                           || In progress                  ||
+|| Repository validation                    || In progress                  ||
+|| SSH and HTTPS support                    || In progress                  ||
 || New settings UI                          || Not started                  ||
 
 

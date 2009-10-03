@@ -15,13 +15,13 @@ The release process will be:
   * *Alpha 1:* Most of our [#Must_Have_Features must-have features] should be implemented.
     * *Release Date:* Saturday, September 19th, 2009
   * *Alpha 2:* All of our [#Must_Have_Features must-have features] must be implemented. Many of our [#Bugs Milestone-1.1 bugs] will still be open, but no new features will be added outside what's on this roadmap without a compelling case. We hope to have most of our contributed patches that are ready to commit in this release. Non-trivial contributions will be pushed to our next release.
-    * *Release Date:* Monday, October 5, 2009
+    * *Release Date:* Monday, October 11, 2009
   * *Beta 1:* All [#Maybe_Features "maybe" features] that we decide we want in 1.1 must be implemented. All other features will be pushed back to the next release. The focus after this will be on documentation and bug fixes.
-    * *Release Date:* Saturday, October 31, 2009
+    * *Release Date:* Saturday, November 14, 2009
   * *Beta 2:* All medium and high priority [#Bugs Milestone-1.1 bugs] should be fixed.
-    * *Release Date:* Monday, November 30, 2009
+    * *Release Date:* Monday, December 5, 2009
   * *Release Candidate 1:* Additional [#Bugs Milestone-1.1 bugs] fixed as necessary.
-    * *Release Date:* Saturday, December 5, 2009
+    * *Release Date:* Saturday, December 13, 2009
   * *Final Release*
     * *Scheduled Release:* Saturday, January 23, 2010
 

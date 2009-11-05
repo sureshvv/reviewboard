@@ -144,7 +144,7 @@ Returns a list of all review groups.  If the query parameter is passed, groups w
 }
 }}}
 
-==/api/json/groups/<group_name>/star/==
+==/api/json/groups/`<group_name>`/star/==
 
 Login Required. 
 
@@ -159,7 +159,7 @@ None
 }}}
 
 
-==/api/json/groups/<group_name>/unstar/==
+==/api/json/groups/`<group_name>`/unstar/==
 Login Required. 
 
 Removes a group from the user's watched groups list.
@@ -173,10 +173,10 @@ None
 }}}
 
 ==/api/json/reviewrequests/all/==
-==/api/json/reviewrequests/to/group/<group_name>/==
-==/api/json/reviewrequests/to/user/<username>/==
-==/api/json/reviewrequests/from/user/<username>/==
-==/api/json/reviewrequests/repository/<repository_id>/changenum/<changenum>/==
+==/api/json/reviewrequests/to/group/`<group_name>`/==
+==/api/json/reviewrequests/to/user/`<username>`/==
+==/api/json/reviewrequests/from/user/`<username>`/==
+==/api/json/reviewrequests/repository/`<repository_id>`/changenum/`<changenum>`/==
 
 Login Required
 GET Required
@@ -241,9 +241,9 @@ Return a list of reviews that match:
 
 
 ==/api/json/reviewrequests/all/count/==
-==/api/json/reviewrequests/to/group/<group_name>/count/==
-==/api/json/reviewrequests/to/user/<username>/count/==
-==/api/json/reviewrequests/from/user/<username>/count/==
+==/api/json/reviewrequests/to/group/`<group_name>`/count/==
+==/api/json/reviewrequests/to/user/`<username>`/count/==
+==/api/json/reviewrequests/from/user/`<username>`/count/==
 Login Required
 GET Required
 
@@ -315,7 +315,7 @@ Creates a new review request.
 }
 }}}
 
-==/api/json/reviewrequests/<review_request_id>/==
+==/api/json/reviewrequests/`<review_request_id>`/==
 Login Required. 
 
 Returns a review request with the specified changenum.
@@ -371,7 +371,7 @@ None
 }}}
 
 
-==/api/json/reviewrequests/<review_request_id>/star/==
+==/api/json/reviewrequests/`<review_request_id>`/star/==
 
 Login Required
 
@@ -385,7 +385,7 @@ None
 {"stat": "ok"}
 }}}
 
-==/api/json/reviewrequests/<review_request_id>/unstar/==
+==/api/json/reviewrequests/`<review_request_id>`/unstar/==
 
 Login Required
 
@@ -399,7 +399,7 @@ None
 {"stat": "ok"}
 }}}
 
-==/api/json/reviewrequests/<review_request_id>/delete/==
+==/api/json/reviewrequests/`<review_request_id>`/delete/==
 
 Login Required
 Permission Required
@@ -414,7 +414,7 @@ None
 {"stat": "ok"}
 }}}
 
-==/api/json/reviewrequests/<review_request_id>/update_from_changenum/==
+==/api/json/reviewrequests/`<review_request_id>`/update_from_changenum/==
 
 Login Required
 Requires POST
@@ -426,7 +426,7 @@ None
 {{{
 }}}
 
-==/api/json/reviewrequests/<review_request_id>/draft/save/==
+==/api/json/reviewrequests/`<review_request_id>`/draft/save/==
 
 Login Required
 Requires POST
@@ -440,7 +440,7 @@ Requires POST
 {{{
 }}}
 
-==/api/json/reviewrequests/<review_request_id>/draft/discard/==
+==/api/json/reviewrequests/`<review_request_id>`/draft/discard/==
 
 Login Required
 Requires POST
@@ -451,19 +451,7 @@ Requires POST
 {{{
 }}}
 
-==/api/json/reviewrequests/<review_request_id>/draft/set/<field_name>/==
-
-Login Required
-Requires POST
-
-===Arguments===
-
-===Example Response===
-{{{
-
-}}}
-
-==/api/json/reviewrequests/<review_request_id>/draft/set/==
+==/api/json/reviewrequests/`<review_request_id>`/draft/set/`<field_name>`/==
 
 Login Required
 Requires POST
@@ -475,7 +463,7 @@ Requires POST
 
 }}}
 
-==/api/json/reviewrequests/<review_request_id>/reviews/draft/save/==
+==/api/json/reviewrequests/`<review_request_id>`/draft/set/==
 
 Login Required
 Requires POST
@@ -487,7 +475,7 @@ Requires POST
 
 }}}
 
-==/api/json/reviewrequests/<review_request_id>/reviews/draft/publish/==
+==/api/json/reviewrequests/`<review_request_id>`/reviews/draft/save/==
 
 Login Required
 Requires POST
@@ -499,7 +487,7 @@ Requires POST
 
 }}}
 
-==/api/json/reviewrequests/<review_request_id>/reviews/draft/delete/==
+==/api/json/reviewrequests/`<review_request_id>`/reviews/draft/publish/==
 
 Login Required
 Requires POST
@@ -511,7 +499,7 @@ Requires POST
 
 }}}
 
-==/api/json/reviewrequests/<review_request_id>/reviews/draft/comments/==
+==/api/json/reviewrequests/`<review_request_id>`/reviews/draft/delete/==
 
 Login Required
 Requires POST
@@ -523,7 +511,7 @@ Requires POST
 
 }}}
 
-==/api/json/reviewrequests/<review_request_id>/reviews/==
+==/api/json/reviewrequests/`<review_request_id>`/reviews/draft/comments/==
 
 Login Required
 Requires POST
@@ -535,7 +523,7 @@ Requires POST
 
 }}}
 
-==/api/json/reviewrequests/<review_request_id>/reviews/count/==
+==/api/json/reviewrequests/`<review_request_id>`/reviews/==
 
 Login Required
 Requires POST
@@ -547,7 +535,7 @@ Requires POST
 
 }}}
 
-==/api/json/reviewrequests/<review_request_id>/reviews/<review_id>/==
+==/api/json/reviewrequests/`<review_request_id>`/reviews/count/==
 
 Login Required
 Requires POST
@@ -559,7 +547,7 @@ Requires POST
 
 }}}
 
-==/api/json/reviewrequests/<review_request_id>/reviews/<review_id>/comments/==
+==/api/json/reviewrequests/`<review_request_id>`/reviews/`<review_id>`/==
 
 Login Required
 Requires POST
@@ -571,7 +559,7 @@ Requires POST
 
 }}}
 
-==/api/json/reviewrequests/<review_request_id>/reviews/<review_id>/comments/count/==
+==/api/json/reviewrequests/`<review_request_id>`/reviews/`<review_id>`/comments/==
 
 Login Required
 Requires POST
@@ -583,7 +571,7 @@ Requires POST
 
 }}}
 
-==/api/json/reviewrequests/<review_request_id>/reviews/<review_id>/replies/draft/==
+==/api/json/reviewrequests/`<review_request_id>`/reviews/`<review_id>`/comments/count/==
 
 Login Required
 Requires POST
@@ -595,7 +583,7 @@ Requires POST
 
 }}}
 
-==/api/json/reviewrequests/<review_request_id>/reviews/<review_id>/replies/draft/save/==
+==/api/json/reviewrequests/`<review_request_id>`/reviews/`<review_id>`/replies/draft/==
 
 Login Required
 Requires POST
@@ -607,7 +595,7 @@ Requires POST
 
 }}}
 
-==/api/json/reviewrequests/<review_request_id>/reviews/<review_id>/replies/draft/discard/==
+==/api/json/reviewrequests/`<review_request_id>`/reviews/`<review_id>`/replies/draft/save/==
 
 Login Required
 Requires POST
@@ -619,7 +607,7 @@ Requires POST
 
 }}}
 
-==/api/json/reviewrequests/<review_request_id>/reviews/<review_id>/replies/==
+==/api/json/reviewrequests/`<review_request_id>`/reviews/`<review_id>`/replies/draft/discard/==
 
 Login Required
 Requires POST
@@ -631,7 +619,7 @@ Requires POST
 
 }}}
 
-==/api/json/reviewrequests/<review_request_id>/reviews/<review_id>/replies/count/==
+==/api/json/reviewrequests/`<review_request_id>`/reviews/`<review_id>`/replies/==
 
 Login Required
 Requires POST
@@ -643,7 +631,7 @@ Requires POST
 
 }}}
 
-==/api/json/reviewrequests/<review_request_id>/diff/new/==
+==/api/json/reviewrequests/`<review_request_id>`/reviews/`<review_id>`/replies/count/==
 
 Login Required
 Requires POST
@@ -655,7 +643,7 @@ Requires POST
 
 }}}
 
-==/api/json/reviewrequests/<review_request_id>/screenshot/new/==
+==/api/json/reviewrequests/`<review_request_id>`/diff/new/==
 
 Login Required
 Requires POST
@@ -667,7 +655,7 @@ Requires POST
 
 }}}
 
-==/api/json/reviewrequests/<review_request_id>/diff/<diff_revision>/file/<filediff_id>/line/<line>/comments/==
+==/api/json/reviewrequests/`<review_request_id>`/screenshot/new/==
 
 Login Required
 Requires POST
@@ -679,7 +667,7 @@ Requires POST
 
 }}}
 
-==/api/json/reviewrequests/<review_request_id>/diff/<diff_revision>-<interdiff_revision>/file/<filediff_id>-<interfilediff_id>/line/<line>/comments/==
+==/api/json/reviewrequests/`<review_request_id>`/diff/`<diff_revision>`/file/`<filediff_id>`/line/`<line>`/comments/==
 
 Login Required
 Requires POST
@@ -691,7 +679,19 @@ Requires POST
 
 }}}
 
-==/api/json/reviewrequests/<review_request_id>/s/<screenshot_id>/comments/<w>x<h>+<x>+<y>/==
+==/api/json/reviewrequests/`<review_request_id>`/diff/`<diff_revision>`-`<interdiff_revision>`/file/`<filediff_id>`-`<interfilediff_id>`/line/`<line>`/comments/==
+
+Login Required
+Requires POST
+
+===Arguments===
+
+===Example Response===
+{{{
+
+}}}
+
+==/api/json/reviewrequests/`<review_request_id>`/s/`<screenshot_id>`/comments/`<w>`x`<h>`+`<x>`+`<y>`/==
 
 Login Required
 Requires POST

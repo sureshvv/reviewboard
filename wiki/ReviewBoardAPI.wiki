@@ -523,6 +523,34 @@ Requires POST
 
 }}}
 
+
+==/api/json/reviewrequests/`<review_request_id>`/diff/==
+
+===Arguments===
+
+None 
+
+===Example Response===
+{{{
+{
+    "stat": "ok",
+    "diffsets": [
+        {
+            "timestamp": "2009-07-12 14:05:34",
+            "revision": 1,
+            "id": 1,
+            "repository": {
+                "path": "file:///path/to/repos",
+                "tool": "Subversion",
+                "id": 1,
+                "name": "Test"
+            },
+            "name": "test.diff"
+        }
+    ]
+}
+}}}
+
 ==/api/json/reviewrequests/`<review_request_id>`/reviews/==
 
 Login Required

@@ -17,13 +17,13 @@ The release process will be:
   * *Alpha 2:* All of our [#Must_Have_Features must-have features] must be implemented. Many of our [#Bugs Milestone-1.1 bugs] will still be open, but no new features will be added outside what's on this roadmap without a compelling case. We hope to have most of our contributed patches that are ready to commit in this release. Non-trivial contributions will be pushed to our next release.
     * *Release Date:* Monday, October 11, 2009
   * *Beta 1:* All [#Maybe_Features "maybe" features] that we decide we want in 1.1 must be implemented. All other features will be pushed back to the next release. The focus after this will be on documentation and bug fixes.
-    * *Release Date:* Saturday, November 14, 2009
+    * *Release Date:* Saturday, January 16, 2010
   * *Beta 2:* All medium and high priority [#Bugs Milestone-1.1 bugs] should be fixed.
-    * *Release Date:* Monday, December 5, 2009
+    * *Release Date:* Monday, February 6, 2009
   * *Release Candidate 1:* Additional [#Bugs Milestone-1.1 bugs] fixed as necessary.
-    * *Release Date:* Saturday, December 13, 2009
+    * *Release Date:* Saturday, December 13, 2010
   * *Final Release*
-    * *Scheduled Release:* Saturday, January 23, 2010
+    * *Scheduled Release:* Saturday, March 6, 2010
 
 
 == Release Dependencies ==
@@ -32,7 +32,7 @@ The release process will be:
   * *Django Evolution:* [http://django-evolution.googlecode.com/ Django Evolution] is another important dependency. Their release schedule is unknown but we'll likely depend on either a snapshot of their Subversion repository or the closest stable release at the point of our release.
 
 
-== Release 1.1 ==
+== Release 1.5 (formally 1.1) ==
 
 === Must-Have Features ===
 
@@ -43,29 +43,26 @@ The release process will be:
 || HTML email support                       || Committed (05a8aeb)          ||
 || Raw-file URL remote Git support          || Committed (8df8d29)          ||
 || Toggling whitespace display in diff      || Committed (629bbc1)          ||
-|| Move detection                           || In progress                  ||
-|| Repository validation                    || In progress                  ||
-|| SSH and HTTPS support                    || In progress                  ||
-|| New settings UI                          || Not started                  ||
+|| Move detection                           || Committed (c52c1bf)          ||
+|| Repository validation                    || Committed (fccd8bd)          ||
+|| SSH and HTTPS support                    || Committed (fccd8bd)          ||
 
 
 === Maybe Features ===
 
-|| *Feature*                      || *Issue Number*  || *Status*            ||
-|| OpenID authentication          || issue 242       || Not started         ||
-|| Incremental expansion          || issue 342       || Not started         ||
-|| "Not Shippable" status         || issue 489       || Not started         ||
-|| Real names in drop-downs       || issue 598       || Committed (245ab23) ||
+|| *Feature*                       || *Issue Number*  || *Status*            ||
+|| Real names in drop-downs        || issue 598       || Committed (245ab23) ||
+|| Function headers in diff viewer || issue 114       || Committed (7ef6e62) ||
 
 
 === Bugs ===
 
-We have a list of bugs we'd like to fix for 1.1. Any and all bugs that we can fix should be fixed, but we specifically mark some as Milestone-Release1.1.
+We have a list of bugs we'd like to fix for 1.5. Any and all bugs that we can fix should be fixed, but we specifically mark some as Milestone-Release1.5.
 
-  * [http://code.google.com/p/reviewboard/issues/list?can=2&q=milestone:Release1.1 Milestone-Release1.1 bug list]
+  * [http://code.google.com/p/reviewboard/issues/list?can=2&q=milestone:Release1.5 Milestone-Release1.5 bug list]
 
 
-== Release 1.5 ==
+== Release 2.0 ==
 
 === Must-Have Features ===
 
@@ -75,6 +72,6 @@ We have a list of bugs we'd like to fix for 1.1. Any and all bugs that we can fi
 
 === Bugs ===
 
-We have a list of bugs we'd like to fix for 1.5. Any and all bugs that we can fix should be fixed, but we specifically mark some as Milestone-Release1.5.
+We have a list of bugs we'd like to fix for 2.0. Any and all bugs that we can fix should be fixed, but we specifically mark some as Milestone-Release2.0.
 
-  * [http://code.google.com/p/reviewboard/issues/list?can=2&q=milestone:Release1.5 Milestone-Release1.5 bug list]
+  * [http://code.google.com/p/reviewboard/issues/list?can=2&q=milestone:Release2.0 Milestone-Release2.0 bug list]

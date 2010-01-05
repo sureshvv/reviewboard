@@ -1,14 +1,14 @@
 #summary Development roadmap for the upcoming release
 #labels Phase-Design,Phase-Requirements,Phase-Implementation
 
-= Review Board 1.1 Roadmap =
+= Review Board 1.5 Roadmap =
 
-This describes the roadmap for the 1.1 release of Review Board, including an estimated schedule, features we expect to have in the release, and bugs we want to fix.
+This describes the roadmap for the 1.5 release of Review Board, including an estimated schedule, features we expect to have in the release, and bugs we want to fix.
 
 
 == Schedule ==
 
-Review Board 1.0 was released on June 20, 2009. Since then, we've had a lot of development, including the Google Summer of Code. We hope to have a 1.1 release by January 2010. This may change due to many factors, but we're proceeding with this goal in mind.
+Review Board 1.0 was released on June 20, 2009. Since then, we've had a lot of development, including the Google Summer of Code. We hope to have a 1.5 release by March 2010. This may change due to many factors, but we're proceeding with this goal in mind.
 
 The release process will be:
 
@@ -16,14 +16,14 @@ The release process will be:
     * *Release Date:* Saturday, September 19th, 2009
   * *Alpha 2:* All of our [#Must_Have_Features must-have features] must be implemented. Many of our [#Bugs Milestone-1.1 bugs] will still be open, but no new features will be added outside what's on this roadmap without a compelling case. We hope to have most of our contributed patches that are ready to commit in this release. Non-trivial contributions will be pushed to our next release.
     * *Release Date:* Monday, October 11, 2009
-  * *Beta 1:* All [#Maybe_Features "maybe" features] that we decide we want in 1.1 must be implemented. All other features will be pushed back to the next release. The focus after this will be on documentation and bug fixes.
+  * *Beta 1:* All [#Maybe_Features "maybe" features] that we decide we want in 1.5 must be implemented. All other features will be pushed back to the next release. The focus after this will be on documentation and bug fixes.
     * *Release Date:* Saturday, January 16, 2010
-  * *Beta 2:* All medium and high priority [#Bugs Milestone-1.1 bugs] should be fixed.
+  * *Beta 2:* All medium and high priority [#Bugs Milestone-1.5 bugs] should be fixed.
     * *Release Date:* Monday, February 6, 2009
-  * *Release Candidate 1:* Additional [#Bugs Milestone-1.1 bugs] fixed as necessary.
-    * *Release Date:* Saturday, December 13, 2010
+  * *Release Candidate 1:* Additional [#Bugs Milestone-1.5 bugs] fixed as necessary.
+    * *Release Date:* Saturday, March 6, 2010
   * *Final Release*
-    * *Scheduled Release:* Saturday, March 6, 2010
+    * *Scheduled Release:* Saturday, March 20, 2010
 
 
 == Release Dependencies ==
@@ -32,7 +32,7 @@ The release process will be:
   * *Django Evolution:* [http://django-evolution.googlecode.com/ Django Evolution] is another important dependency. Their release schedule is unknown but we'll likely depend on either a snapshot of their Subversion repository or the closest stable release at the point of our release.
 
 
-== Release 1.5 (formally 1.1) ==
+== Release 1.5 (formerly 1.1) ==
 
 === Must-Have Features ===
 

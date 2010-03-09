@@ -10,7 +10,9 @@ You can also look at our bugs marked [http://code.google.com/p/reviewboard/issue
 
 = IDE Integration =
 
-Add support to Visual Studio, Eclipse, or another popular IDE to work with Review Board. At a minimum this should support:
+Add support to Visual Studio or another popular IDE to work with Review Board. Note that Eclipse support is already being worked on separately.
+
+At a minimum this should support:
 
   * Posting/updating review requests
   * Viewing the user's existing review requests and changing their statuses
@@ -44,24 +46,12 @@ The goal is to be able to run one script and get Review Board installed. However
   * Support managing third party packages for Review Board. This will be important for extensions when we land that in SVN.
 
 
-= Diff Analysis, "Moved" regions, and Filtering =
+= Diff Analysis and Filtering =
 
 Add the ability to analyze an upload diff in the background. This should do the following:
 
   * Record the number of adds/deletes/replaces, for use in the diff viewer's changed files list.
-  * Find blocks of deletes that match blocks of inserts and mark them as "moves," based on some minimum line count. Update the diff viewer to link between these sections.
   * Find common changes (such as a variable rename) and mark them. We could then use this information to filter out such changes, turning large reviews into smaller ones.
-
-
-= Policy Support =
-
-Provide a flexible framework for defining custom policy across Review Board. This should cover the following:
-
-  * Only allow users to view review requests in groups they belong in.
-  * Prevent users from joining arbitrary groups.
-  * Requirements for closing a review request. This should be flexible enough to allow administrators to define rules such as requiring all target reviewers to review it, or some minimum number, or some percentage, and handle such attributes as the number of "Ship Its."
-
-There's more that may be needed here. Part of this will be to ask companies on our mailing list for their requirements, and forming a strategy with us based on these requirements.
 
 
 = Tighter Project Tools Support =

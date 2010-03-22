@@ -1,6 +1,5 @@
 ﻿#summary Ideas for Google Summer of Code students
 #labels Featured,Phase-Design
-
 = Introduction =
 
 This page lists some of the ideas we've come up with that students could tackle for a [http://code.google.com/soc/ Google Summer of Code] project. Proposals can be made based on items in this list, or you can propose something entirely new.
@@ -26,24 +25,17 @@ This could be extended for more advanced functionality, including:
 Most of this functionality will be in the IDE plugin itself, but some will be to Review Board (such as adding new API for accessing this information).
 
 
-= Windows Installer =
+= Better Distributed Versioning Control System Support =
 
-Add a new, all-encompassing Windows Installer. The installer would install Review Board and its dependencies, optionally installing Python, Django, Apache, MySQL, or whatever based on the user's preference and existing installed services.
+Make Review Board work better for various DVCS scenarios. There should be research into existing solutions, discussion with current users, and much thought into how to make this work well with Review Board.
 
-In most cases, installing dependencies will simply require automating the download of an existing MSI file on the web. Some dependencies, however, may need to be packaged by us.
+Some ideas include:
 
-The installer must be an MSI installer, based on [http://nsis.sourceforge.net/ NSIS]. There's some base work done on this to get you started.
+  * Maintaining several sets of revisioned diffs for a review request, each with a name, so that an entire tree of patches can be reviewed on a single review request.
+  * Allow review requests to be "chained" together, so that one review request can be marked to precede or follow another, in order to show the order of changes.
+  * Expanding RBTools to better handle DVCS scenarios with whatever changes are made in Review Board.
 
-
-= Linux/Cross-Platform Installer Framework =
-
-Provide an extensible Linux installer that can handle getting Review Board up and running on most popular distros (Red Hat Enterprise Linux, Fedora, Debian, SuSE, Ubuntu). This should be able to determine what packages are installed, install new packages (perhaps from third party package feeds where appropriate).
-
-The goal is to be able to run one script and get Review Board installed. However, this should go beyond just getting Review Board up and running. It should also handle the following:
-
-  * Provide a cross-platform UI library for interactions (GTK+, terminal, possibly Windows)
-  * Provide a Python module for querying what's installed, performing installs and upgrades, etc. This should interface with easy_install and the system's package manager where possible.
-  * Support managing third party packages for Review Board. This will be important for extensions when we land that in SVN.
+These are preliminary ideas. The end result may be very different, and will be based on various users' needs.
 
 
 = Diff Analysis and Filtering =
@@ -75,3 +67,22 @@ The administration UI should be rethought and should offer more hand-holding to 
 Something like a task-based UI might work for this by offering a side panel of things the administrator might want to do. Another thing to look at would be WordPress's new administration UI.
 
 It should also be easy to see an overview of what's happening on the system, such as the number of logged in users, load on the server, memory usage, etc.
+
+= Windows Installer =
+
+Add a new, all-encompassing Windows Installer. The installer would install Review Board and its dependencies, optionally installing Python, Django, Apache, MySQL, or whatever based on the user's preference and existing installed services.
+
+In most cases, installing dependencies will simply require automating the download of an existing MSI file on the web. Some dependencies, however, may need to be packaged by us.
+
+The installer must be an MSI installer, based on [http://nsis.sourceforge.net/ NSIS]. There's some base work done on this to get you started.
+
+
+= Linux/Cross-Platform Installer Framework =
+
+Provide an extensible Linux installer that can handle getting Review Board up and running on most popular distros (Red Hat Enterprise Linux, Fedora, Debian, SuSE, Ubuntu). This should be able to determine what packages are installed, install new packages (perhaps from third party package feeds where appropriate).
+
+The goal is to be able to run one script and get Review Board installed. However, this should go beyond just getting Review Board up and running. It should also handle the following:
+
+  * Provide a cross-platform UI library for interactions (GTK+, terminal, possibly Windows)
+  * Provide a Python module for querying what's installed, performing installs and upgrades, etc. This should interface with easy_install and the system's package manager where possible.
+  * Support managing third party packages for Review Board. This will be important for extensions when we land that in SVN.

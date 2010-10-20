@@ -3,15 +3,17 @@
 = Introduction =
 
 Tasks come in 8 flavors:
-1. Code: Tasks related to writing or refactoring code
-2. Documentation: Tasks related to creating/editing documents
-3. Outreach: Tasks related to community management and outreach/marketing
-4. Quality Assurance: Tasks related to testing and ensuring code is of high quality
-5. Research: Tasks related to studying a problem and recommending solutions
-6. Training: Tasks related to helping others learn more
-7. Translation: Tasks related to localization
-8. User Interface: Tasks related to user experience research or user interface design and interaction
+# Code: Tasks related to writing or refactoring code
+# Documentation: Tasks related to creating/editing documents
+# Outreach: Tasks related to community management and outreach/marketing
+# Quality Assurance: Tasks related to testing and ensuring code is of high quality
+# Research: Tasks related to studying a problem and recommending solutions
+# Training: Tasks related to helping others learn more
+# Translation: Tasks related to localization
+# User Interface: Tasks related to user experience research or user interface design and interaction
 
+
+Note that many "Documentation" and "Outreach" tasks also can qualify as "Training", and many of the "Code" tasks are also related to "User Interface".
 
 = Tasks =
 

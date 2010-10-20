@@ -1,0 +1,54 @@
+#summary Project ideas for the Google Code-in program
+
+= Introduction =
+
+Tasks come in 8 flavors:
+1. Code: Tasks related to writing or refactoring code
+2. Documentation: Tasks related to creating/editing documents
+3. Outreach: Tasks related to community management and outreach/marketing
+4. Quality Assurance: Tasks related to testing and ensuring code is of high quality
+5. Research: Tasks related to studying a problem and recommending solutions
+6. Training: Tasks related to helping others learn more
+7. Translation: Tasks related to localization
+8. User Interface: Tasks related to user experience research or user interface design and interaction
+
+
+= Tasks =
+
+|| *Task Type*       || *Task Name*                                                                                         || *Issue*                                                           || *Difficulty*  ||
+|| Code              || Provide a better default for the repository selector                                                || [http://code.google.com/p/reviewboard/issues/detail?id=372   372] || Easy          ||
+|| Code              || Don't prompt for groups if no groups defined                                                        || [http://code.google.com/p/reviewboard/issues/detail?id=1233 1233] || Easy          ||
+|| Code              || post-review for perforce. don't submit if changelist is empty                                       || [http://code.google.com/p/reviewboard/issues/detail?id=832   832] || Easy          ||
+|| Code              || User profile page: show gravatar, name, e-mail, username, list of groups, list of outgoing requests ||                                                                   || Easy          ||
+|| Code              || Search does not search by changelist number                                                         || [http://code.google.com/p/reviewboard/issues/detail?id=1508 1508] || Easy          ||
+|| Code              || Allow multiple mailing lists for a review group                                                     || [http://code.google.com/p/reviewboard/issues/detail?id=1661 1661] || Easy          ||
+|| Code              || Keyboard shortcut for commenting on a selected block                                                || [http://code.google.com/p/reviewboard/issues/detail?id=44     44] || Medium        ||
+|| Code              || Add post-commit review submission to post-review for perforce                                       || [http://code.google.com/p/reviewboard/issues/detail?id=921   921] || Medium        ||
+|| Code              || More intelligent handling of rename operations.                                                     || [http://code.google.com/p/reviewboard/issues/detail?id=1235 1235] || Medium        ||
+|| Code              || Add per-user local time-zone configuration                                                          || [http://code.google.com/p/reviewboard/issues/detail?id=1470 1470] || Medium        ||
+|| Code              || Ability to disable screenshot functionality                                                         || [http://code.google.com/p/reviewboard/issues/detail?id=1817 1817] || Medium        ||
+|| Code              || GitHub support should accommodate GitHub Organizations                                              || [http://code.google.com/p/reviewboard/issues/detail?id=1834 1834] || Medium        ||
+|| Code              || Better user browser: Browse by ABC, DEF first, then other substrings, instead of a huge list        ||                                                                   || Medium        ||
+|| Code              || Built-in search: When users don't have PyLucene, provide some basic search with auto-complete       ||                                                                   || Medium        ||
+|| Code              || Allow for reviews based on an existing committed revision in the web UI                             || [http://code.google.com/p/reviewboard/issues/detail?id=100   100] || Difficult     ||
+|| Code              || Allow user to reorder the files being diffed                                                        || [http://code.google.com/p/reviewboard/issues/detail?id=654   654] || Difficult     ||
+|| Code              || Use a Mail Transfer Agent (MTA) to send mail instead of a mail server listening at a TCP/IP port    || [http://code.google.com/p/reviewboard/issues/detail?id=1068 1068] || Difficult     ||
+|| Documentation     || Typo in Getting Started Documentation                                                               || [http://code.google.com/p/reviewboard/issues/detail?id=1820 1820] || Trivial       ||
+|| Documentation     || Need to set permissions on database properly                                                        || [http://code.google.com/p/reviewboard/issues/detail?id=1164 1164] || Trivial       ||
+|| Documentation     || Bad link (subversion installers) in installation dox                                                || [http://code.google.com/p/reviewboard/issues/detail?id=1710 1710] || Trivial       ||
+|| Documentation     || Plain CentOS 5.4 requires "yum install mysql-devel" before "easy_install MYSQL-python"              || [http://code.google.com/p/reviewboard/issues/detail?id=1746 1746] || Trivial       ||
+|| Documentation     || MySQL support on Mac OS X Server requires downloading the developer pieces                          || [http://code.google.com/p/reviewboard/issues/detail?id=1757 1757] || Trivial       ||
+|| Documentation     || Document how to raise the mysql packet size                                                         || [http://code.google.com/p/reviewboard/issues/detail?id=676   676] || Easy          ||
+|| Documentation     || Explicitly document which versions are database-compatible                                          || [http://code.google.com/p/reviewboard/issues/detail?id=1606 1606] || Easy          ||
+|| Documentation     || Add information on using password-less SSH for repositories                                         || [http://code.google.com/p/reviewboard/issues/detail?id=1749 1749] || Easy          ||
+|| Documentation     || Manual contains zero information about Mercurial repo setup                                         || [http://code.google.com/p/reviewboard/issues/detail?id=1699 1699] || Medium        ||
+|| Documentation     || Document support for apache/mod_wsgi                                                                || [http://code.google.com/p/reviewboard/issues/detail?id=1782 1782] || Medium        ||
+|| Documentation     || ReviewBoard documentation should explain how to add a Bazaar repository                             || [http://code.google.com/p/reviewboard/issues/detail?id=1841 1841] || Medium        ||
+|| Outreach          || Improving feature list with details for the web site                                                ||                                                                   || Medium        ||
+|| Outreach          || Other marketing materials? Better web site?                                                         ||                                                                   || Medium        ||
+|| Outreach          || Demonstration videos showing off Review Board features. Either general overview or topic-specific   ||                                                                   || Med/Difficult ||
+|| Quality Assurance || Write scripts to generate sample databases of different sizes for scalability testing               ||                                                                   || Medium        ||
+|| Quality Assurance || Improve our Selenium test suite on non-Firefox browsers                                             ||                                                                   || Med/Difficult ||
+|| Translation       || Write a dummy translation for testing (can be scripted)                                             ||                                                                   || Easy          ||
+|| Translation       || Fix bugs related to internationalization (unmarked strings)                                         ||                                                                   || Medium        ||
+|| Translation       || Figure out how to translate javascript strings                                                      ||                                                                   || Difficult     ||

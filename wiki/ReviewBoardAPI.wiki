@@ -1,3 +1,0 @@
-#summary Documentation for the public Review Board API
-
-The API documentation has moved to [http://www.reviewboard.org/docs/manual/dev/webapi/]

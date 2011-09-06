@@ -26,31 +26,9 @@ It would be nice to make our current comment setup a bit more generalized and al
 This would need some help from post-review, as binary files are not included in diffs. We would have to manually upload some files. Perhaps we can expose a list of supported mimetypes and file extensions for review, accessible through the API, and have post-review query that when deciding what to include in the diff.
 
 
-== Review Request Update Notifications ==
-
-It would be handy to know if someone has posted an update to a review request that you're currently on. We could pop up a little notification in the corner, similar to what GMail does for new conversations, informing the user that the review request has updated. There would be "Update Page" and "Ignore" links.
-
-
-== Moved Regions in Diffs ==
-
-One feature I've been wanting to work on for a while is for our diff generator to be smarter about when code moves. Instead of marking this up as inserts/deletes, we can mark it as a "move" and indicate where it moved to. The diff viewer could then format this differently. This would give users a good visual cue that the code was only moved, not modified.
-
-We could go further in this by marking up moved regions even when part of the region changed, and then show those changes as well. This would require that we have some kind of threshold for number of changes (and how extensive those changes are) within a region of moved lines. It would be tricky and maybe we only care about the first part for now.
-
-
-== Improved Auto-Complete ==
-
-Our current auto-complete is nice, but one easy way to improve it is to allow for showing the full names/group display names alongside the IDs, and to also search full names and group display names when typing. That way, you could type either "chipx86" or "Christian" to find the right person.
-
-
 == CIA Support ==
 
 [http://www.cia.vc/ CIA] is a tool developed to keep track of commits to code repositories. These commits are often relayed to project IRC channels. Some projects use it for their issue trackers. We could use it to notify when there are new review requests or reviews, giving people in project channels instant notification and a URL. This would be an extension and not built into the codebase.
-
-
-== Attach Arbitrary Files ==
-
-Some users have requested that we allow for attaching any file type to a review request. This would be useful but of course could be open to abuse. Along with this feature we would want to provide a configurable max file size, maybe even configurable mimetypes. And of course administrators should be able to disable this feature.
 
 
 == Attach Arbitrary Links ==

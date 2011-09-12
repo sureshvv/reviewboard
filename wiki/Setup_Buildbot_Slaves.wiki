@@ -78,7 +78,9 @@ $ sudo ln -s `which virtualenv` virtualenv
 Then we'll want to make sure we have the scripts necessary for the slave. In the new slave directory, run:
 
 {{{
-$ sudo svn co http://reviewboard.googlecode.com/svn/trunk/buildbot/conf/slave/ .
+$ git init
+$ git remote add origin git://github.com/reviewboard/rb-buildbot-slave-config.git
+$ git pull origin master
 }}}
 
 Change the ownership of the buildbot directory and its contents.

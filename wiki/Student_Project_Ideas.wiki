@@ -23,7 +23,7 @@ This would drastically reduce database usage in most scenarios.
   * {{{reviewboard/diffviewer}}}
 
 
-== Better moved/renamed files ==
+== Better Moved/Renamed Files ==
 
 Today, if a file is moved/renamed, we show two diff entries: One showing the file removed, and one showing the file re-added under the new name. If the content was changed, we don't have a clear way of showing that. This increases the amount of code that has to be reviewed.
 
@@ -35,12 +35,13 @@ The templates will need to tell that the file was renamed. If there's content, i
 
 *Code coverage:*
 
+  * {{{rbtools}}}
   * {{{reviewboard/diffviewer}}}
   * {{{reviewboard/scmtools}}}
   * {{{reviewboard/templates/diffviewer}}}
 
 
-== Inline file attachments ==
+== Inline File Attachments ==
 
 Review Board 1.6 introduced support for file attachments. They were standalone and tied to a review request. We should also allow them to be uploaded and tied to a diff, for binary files that otherwise wouldn't be able to be displayed.
 
@@ -56,7 +57,106 @@ post-review would need to be updated to optionally upload binary files (under a 
 
 *Code coverage:*
 
+  * {{{rbtools}}}
   * {{{reviewboard/attachments}}}
   * {{{reviewboard/reviews/views.py}}}
   * {{{reviewboard/templates/diffviewer}}}
   * {{{reviewboard/webapi/resources.py}}}
+
+
+= Review Request Change History Projects =
+
+The change history for a review request is pretty basic and can use improvements. This is broken up into a few different areas.
+
+
+== Show Links for Interdiffs ==
+
+When a user uploads a diff, we show a link to the uploaded diff revision. We should also provide a link to the interdiff, showing what's changed. This can probably be titled "Show what's changed."
+
+This is a very easy change, and could function as a good introduction for those who are working on this set of tasks.
+
+*Code coverage:*
+
+  * {{{reviewboard/changedescs}}}
+  * {{{reviewboard/templates/reviews}}}
+
+
+== Tracking User Changes ==
+
+Admins and special users can modify/close review requests, but we show that the original submitter made the changes. It'd be better to have some accountability for this.
+
+The ChangeDescription model should contain a user field indicating who made the change. If blank, it can fall back to the owner of the review request.
+
+When a user performs an operation (modifying a field or closing a review request), their logged in user should be passed to that ChangeDescription.
+
+E-mails should be sent from the user making the change, instead of from the original author.
+
+The template should render the user when it differs from the original author.
+
+*Code coverage:*
+
+  * {{{reviewboard/changedescs}}}
+  * {{{reviewboard/notifications}}}
+  * {{{reviewboard/reviews}}}
+  * {{{reviewboard/templates/reviews}}}
+  * {{{reviewboard/webapi/resources.py}}}
+
+
+== Better Description/Testing Done Changes ==
+
+When the Description/Testing Done fields have a lot of text, it can be hard to see what changed. It'd be useful to be able to display this better.
+
+There are a couple options. If we find that text was added only at the beginning, we could show "<new text> ...", or "... <new text>" if added at the end.
+
+We'd need to play with options to see what other ways we could show this. It would certainly help people who are trying to figure out what changed.
+
+*Code coverage:*
+
+  * {{{reviewboard/reviews}}}
+  * {{{reviewboard/templates/reviews}}}
+
+
+== Issue Tracking Integration ==
+
+Review Board 1.6 introduced Issue Tracking, which simplifies the review process by allowing reviewers to say "This thing needs to be fixed" and allows the author to easily click a button saying "I fixed it" or "No, I'm not fixing this."
+
+Right now, you have to look through the reviews to see what was fixed for a particular change.
+
+We should render this information when showing a change description. We can query all resolved issues from the time of the last change description to the current one, and render those.
+
+We can also show this in the green draft box at the top of the page where the author typically describes what's in the change.
+
+This would save on typing and make it clearer to everyone what happened.
+
+This would need to be integrated into the e-mails as well.
+
+
+*Code coverage:*
+
+  * {{{reviewboard/changedescs}}}
+  * {{{reviewboard/notifications}}}
+  * {{{reviewboard/reviews}}}
+  * {{{reviewboard/templates}}}
+
+
+= General Web UI Projects =
+
+== Fewer Reloads ==
+
+Many operations today reload the page. For example, publishing a draft of a review, or discarding, or closing a review request.
+
+Ideally, we would be able to make some of these changes more dynamic. Instead of doing a full reload, it would just dynamically update the page content.
+
+The one trick with this work is making sure we don't have too many redundant bits of UI. If we're rendering some stuff on initial page load from the templates and then rendering separately on demand via JavaScript, we could get into some inconsistencies down the road. So this would need a solution.
+
+An option would be to have URLs that render the page content instead. Change history descriptions, for example. Then it's handled in one place.
+
+Some simple tasks here would be to handle the case of review drafts, so that they don't reload the page. There, we're talking simple CSS class changes, or removing elements.
+
+This is a bit of a general task, and we'd need to figure out the specifics.
+
+*Code coverage:*
+
+  * {{{reviewboard/htdocs/media/rb/js}}}
+  * {{{reviewboard/reviews}}}
+  * {{{reviewboard/templates}}}

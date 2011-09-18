@@ -1,0 +1,62 @@
+#summary Ideas for student projects
+#labels Featured,Phase-Design
+
+= Introduction =
+
+This page lists some of the ideas we've come up with that students could tackle for student projects. Proposals can be made based on items in this list, or you can propose something entirely new.
+
+You can also look at our bugs marked [http://code.google.com/p/reviewboard/issues/list?can=2&q=label:ExtensionIdea ExtensionIdea] for more ideas.
+
+
+= Diff Viewer Projects =
+
+== Reducing Diff Storage ==
+
+Today, we parse an uploaded diff, split it into files, and store it in the database in base64. We do this again for every new iteration of the diff, and that can lead to redundancy when only some of the files have changed.
+
+For this project, we would update the FileDiff table to store a SHA1 composed of the diff content, and store a reference to another FileDiff containing that content. When uploading a new diff, we would generate a new SHA1 and see if that review request already has an entry. If so, the new FileDiff would point to the FileDiff with the content, leaving its own diff content field blank.
+
+This would drastically reduce database usage in most scenarios.
+
+*Code coverage:*
+
+  * {{{reviewboard/diffviewer}}}
+
+
+== Better moved/renamed files ==
+
+Today, if a file is moved/renamed, we show two diff entries: One showing the file removed, and one showing the file re-added under the new name. If the content was changed, we don't have a clear way of showing that. This increases the amount of code that has to be reviewed.
+
+Instead, we should take advantage of info from the diff that says if the file has been moved/renamed. We should set a flag in the FileDiff (see STATUSES) indicating so, and show one entry.
+
+This will require updating post-review to pass the "-M" flag for git, and potentially flags for other SCMs. Mercurial is a likely candidate for needing something. Investigation will be needed to determine if Subversion, etc. can provide such information as well.
+
+The templates will need to tell that the file was renamed. If there's content, it will continue to show it.
+
+*Code coverage:*
+
+  * {{{reviewboard/diffviewer}}}
+  * {{{reviewboard/scmtools}}}
+  * {{{reviewboard/templates/diffviewer}}}
+
+
+== Inline file attachments ==
+
+Review Board 1.6 introduced support for file attachments. They were standalone and tied to a review request. We should also allow them to be uploaded and tied to a diff, for binary files that otherwise wouldn't be able to be displayed.
+
+This would involve updating the FileAttachment model to contain a source revision field, which, along with its filename, would match data in a FileDiff. These file attachments should be filtered out from the main review request display.
+
+The diff viewer, upon encountering a binary file that can't be displayed, should look up a matching FileAttachment and display an entry for that inline.
+
+A good addition would be to have a clean mechanism for registering a class that would know how to render a file attachment in the diff viewer. It would be keyed off by a mimetype. A built-in one could render images. The fallback would be to display a UI similar to that of the file attachments on the review request page.
+
+The web API would need to be updated to know how to filter, to take params for the source revision, and to be able to get a related FileAttachment from a FileDiff.
+
+post-review would need to be updated to optionally upload binary files (under a certain size) using this API.
+
+*Code coverage:*
+
+  * {{{reviewboard/attachments}}}
+  * {{{reviewboard/reviews/views.py}}}
+  * {{{reviewboard/templates/diffviewer}}}
+  * {{{reviewboard/webapi/resources.py}}}

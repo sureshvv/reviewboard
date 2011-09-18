@@ -118,6 +118,7 @@ We'd need to play with options to see what other ways we could show this. It wou
 
 == Issue Tracking Integration ==
 
+=== Show Issue State Changes in Change Descriptions ===
 Review Board 1.6 introduced Issue Tracking, which simplifies the review process by allowing reviewers to say "This thing needs to be fixed" and allows the author to easily click a button saying "I fixed it" or "No, I'm not fixing this."
 
 Right now, you have to look through the reviews to see what was fixed for a particular change.
@@ -138,6 +139,19 @@ This would need to be integrated into the e-mails as well.
   * {{{reviewboard/reviews}}}
   * {{{reviewboard/templates}}}
 
+=== Make "Open an Issue" Checkbox Default State Configurable Per User ===
+
+The "open an issue" checkbox currently defaults to "checked" for users making comments.  Our bug reports tell us that there are certain types of users who find this quite annoying, since the types of comments they make do not open issues, which means that they have to manually uncheck the checkbox.
+
+So the default state of the "open an issue" checkbox should be configurable per user.
+
+=== Expose Toggles for Opening Issues in Review Summary Dialog ===
+
+In the review summary dialog (brought up when clicking the "edit" button in the green bar when creating a review), a summary of all comments is displayed.  We want to also show checkboxes for opening and closing issues per comment.
+
+=== Display a Summary of All Issues per Review Request ===
+
+We'd like to display a table (probably beneath the "testing" textarea) in the review request page that shows a list of all issues for a review request, and what state they're in.  There should also be widgets to quickly toggling the issue states, and links for quickly jumping down to the review comment that opened the issue.
 
 = General Web UI Projects =
 

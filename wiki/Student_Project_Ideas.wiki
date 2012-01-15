@@ -10,18 +10,6 @@ You can also look at our bugs marked [http://code.google.com/p/reviewboard/issue
 
 = Diff Viewer Projects =
 
-== Reducing Diff Storage ==
-
-Today, we parse an uploaded diff, split it into files, and store it in the database in base64. We do this again for every new iteration of the diff, and that can lead to redundancy when only some of the files have changed.
-
-For this project, we would update the FileDiff table to store a SHA1 composed of the diff content, and store a reference to another FileDiff containing that content. When uploading a new diff, we would generate a new SHA1 and see if that review request already has an entry. If so, the new FileDiff would point to the FileDiff with the content, leaving its own diff content field blank.
-
-This would drastically reduce database usage in most scenarios.
-
-*Code coverage:*
-
-  * {{{reviewboard/diffviewer}}}
-
 
 == Better Moved/Renamed Files ==
 
@@ -138,6 +126,36 @@ This would need to be integrated into the e-mails as well.
   * {{{reviewboard/reviews}}}
   * {{{reviewboard/templates}}}
 
+= Extension Projects =
+
+== Reviewer Feedback ==
+
+For a review request marked as "submitted", it might be useful to have an extension that gives the reviewee the option to anonymously rate the reviews they received.  They could rate them on a 5-point scale for things like Tone, Thoroughness, and Clarity.  This feedback would not be visible to other users of Review Board - only to those receiving the feedback.  We would likely want to show an sliding aggregation of this feedback to each reviewer once they've received a certain number of ratings.
+
+This way, reviewers also get some sense of how their reviews are going.
+
+== Weekly Headlines ==
+
+Finding out what's been happening on Review Board isn't always easy.  It might be worthwhile to have users be able to opt-in to weekly email updates from Review Board that tell them useful things about the groups that they belong to.  In particular, it could mention things about:
+
+1)  Outstanding reviews that they could / should tackle
+2)  A list of review requests that have been marked submitted, and which ones have been discarded
+3)  A list of new review requests
+4)  Perhaps something like, "the top reviewer of the week"
+
+== Automated Static Analysis ==
+
+Lots of languages have static analysis tools to help keep code clean, safe, and functional.  Python, for example, has the pep8 tool to help do style clean-ups.
+
+Perhaps we could have an extension that allows users to activate various static analysis tools for changes to files with particular extensions.  So, for example, we could set pep8 to analyze changes to .py files.
+
+The extension could then be an automated reviewer that comments on any offending sections of code.  If no offending areas of code are found in the changeset, the automated reviewer gives a Ship It.
+
+== Extension Scaffold Generator ==
+
+Creating a Review Board extension means creating a lot of boilerplate code that is mostly the same from extension to extension.  It'd be nice if there was a tool that could just write those scaffolds out, and stub out the sections that the developer needs to work on.
+
+For extra coolness, the generator could possibly take parameters like --dashboard-link "MyDashboardLink", that would do the work to import and stub out hooks required by the extension.
 
 = General Web UI Projects =
 
@@ -150,10 +168,6 @@ So the default state of the "open an issue" checkbox should be configurable per 
 == Expose Toggles for Opening Issues in Review Summary Dialog ===
 
 In the review summary dialog (brought up when clicking the "edit" button in the green bar when creating a review), a summary of all comments is displayed.  We want to also show checkboxes for opening and closing issues per comment.
-
-== Display a Summary of All Issues per Review Request ===
-
-We'd like to display a table (probably beneath the "testing" textarea) in the review request page that shows a list of all issues for a review request, and what state they're in.  There should also be widgets to quickly toggling the issue states, and links for quickly jumping down to the review comment that opened the issue.
 
 == Better Change Description rendering ==
 

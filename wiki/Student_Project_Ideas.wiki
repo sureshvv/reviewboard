@@ -138,10 +138,11 @@ This way, reviewers also get some sense of how their reviews are going.
 
 Finding out what's been happening on Review Board isn't always easy.  It might be worthwhile to have users be able to opt-in to weekly email updates from Review Board that tell them useful things about the groups that they belong to.  In particular, it could mention things about:
 
-1)  Outstanding reviews that they could / should tackle
-2)  A list of review requests that have been marked submitted, and which ones have been discarded
-3)  A list of new review requests
-4)  Perhaps something like, "the top reviewer of the week"
+  # Outstanding reviews that they could / should tackle
+  # A list of review requests that have been marked submitted, and which ones have been discarded
+  # A list of new review requests
+  # Perhaps something like, "the top reviewer of the week"
+  # Perhaps more...
 
 == Automated Static Analysis ==
 

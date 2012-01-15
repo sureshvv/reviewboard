@@ -158,6 +158,26 @@ Creating a Review Board extension means creating a lot of boilerplate code that 
 
 For extra coolness, the generator could possibly take parameters like --dashboard-link "MyDashboardLink", that would do the work to import and stub out hooks required by the extension.
 
+= Web API Projects =
+
+== Polish and Land Python Web Client Tools ==
+
+There's been an ongoing effort to replace the useful, yet convoluted post-review tool with a set of smaller tools and scripts that operate with the Review Board Web API.
+
+Some of this work has already been completed, but has not been merged, and is likely a bit out of date.  We would like someone to take over this project, and drive it through to the point where it can be merged.
+
+= Integration Projects =
+
+== Better Bugzilla Integration ==
+
+Bugzilla is a web-based bug-tracking application used by companies such as Mozilla, Red Hat, GNOME, KDE, the Apache Project, and NASA (among others).
+
+Bugzilla currently ships with a built-in code review tool called "Splinter" that, while mostly functional, leaves much to be desired.
+
+We would like someone to design and develop a nice way to integrate a Bugzilla instance and a Review Board instance.
+
+This is a large, somewhat exploratory project, and will likely involve creating Bugzilla addons and Review Board addons.  We would want a detailed design for the workflow provided to us before any implementation would occur.
+
 = General Web UI Projects =
 
 == Make "Open an Issue" Checkbox Default State Configurable Per User ===

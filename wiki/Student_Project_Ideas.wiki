@@ -152,7 +152,7 @@ Perhaps we could have an extension that allows users to activate various static 
 
 The extension could then be an automated reviewer that comments on any offending sections of code.  If no offending areas of code are found in the changeset, the automated reviewer gives a Ship It.
 
-== Extension Scaffold Generator ==
+== Extension Scaffold Generator (ammok) ==
 
 Creating a Review Board extension means creating a lot of boilerplate code that is mostly the same from extension to extension.  It'd be nice if there was a tool that could just write those scaffolds out, and stub out the sections that the developer needs to work on.
 

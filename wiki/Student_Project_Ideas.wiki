@@ -180,7 +180,7 @@ This is a large, somewhat exploratory project, and will likely involve creating 
 
 = General Web UI Projects =
 
-== Make "Open an Issue" Checkbox Default State Configurable Per User ===
+== Make "Open an Issue" Checkbox Default State Configurable Per User  (h20) ===
 
 The "open an issue" checkbox currently defaults to "checked" for users making comments.  Our bug reports tell us that there are certain types of users who find this quite annoying, since the types of comments they make do not open issues, which means that they have to manually uncheck the checkbox.
 

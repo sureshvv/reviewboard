@@ -57,7 +57,7 @@ post-review would need to be updated to optionally upload binary files (under a 
 The change history for a review request is pretty basic and can use improvements. This is broken up into a few different areas.
 
 
-== Show Links for Interdiffs ==
+== Show Links for Interdiffs (cim1) ==
 
 When a user uploads a diff, we show a link to the uploaded diff revision. We should also provide a link to the interdiff, showing what's changed. This can probably be titled "Show what's changed."
 
@@ -67,6 +67,8 @@ This is a very easy change, and could function as a good introduction for those 
 
   * {{{reviewboard/changedescs}}}
   * {{{reviewboard/templates/reviews}}}
+
+Code Review: http://reviews.reviewboard.org/r/2810/
 
 
 == Tracking User Changes ==
@@ -128,7 +130,7 @@ This would need to be integrated into the e-mails as well.
 
 = Extension Projects =
 
-== Reviewer Feedback ==
+== Reviewer Feedback (cim1) ==
 
 For a review request marked as "submitted", it might be useful to have an extension that gives the reviewee the option to anonymously rate the reviews they received.  They could rate them on a 5-point scale for things like Tone, Thoroughness, and Clarity.  This feedback would not be visible to other users of Review Board - only to those receiving the feedback.  We would likely want to show an sliding aggregation of this feedback to each reviewer once they've received a certain number of ratings.
 

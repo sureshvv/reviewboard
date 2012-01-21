@@ -144,7 +144,7 @@ Finding out what's been happening on Review Board isn't always easy.  It might b
   # Perhaps something like, "the top reviewer of the week"
   # Perhaps more...
 
-== Automated Static Analysis ==
+== Automated Static Analysis (smacleod) ==
 
 Lots of languages have static analysis tools to help keep code clean, safe, and functional.  Python, for example, has the pep8 tool to help do style clean-ups.
 

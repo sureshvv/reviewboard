@@ -1,0 +1,11 @@
+#summary WIP information on building extensions.
+
+= Introduction =
+
+This is the beginnings of a guide to building review board extensions.
+
+
+= Relevant Links =
+
+  * Some simple toy extensions - https://github.com/mikeconley/RB-Toy-Extensions
+  * Extension to enhance bug tracker support - https://github.com/hongbin/rb-extension-pack/tree/bug-tracker

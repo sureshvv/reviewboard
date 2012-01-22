@@ -14,6 +14,14 @@ Our UCOSP students this semester will be using this page to track and report the
 == Wilson ==
 
 == Anthony ==
+=== January 20-22, 2012: Code Sprint ===
+  * *Completed*
+    * Addressed issue 495
+    * Filed additional bugs
+    * Claimed a project (Extension Scaffolding Generator) and explored extensions
+  * *Objectives*
+    * Implement a script in rbtools for generating scaffolding for new extensions
+  
 
 == Steven ==
 === Completed ===

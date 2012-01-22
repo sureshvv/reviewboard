@@ -12,7 +12,14 @@ Our UCOSP students this semester will be using this page to track and report the
 == David ==
 
 == Wilson ==
-
+=== Code Sprint ===
+  * *Completed*
+    * Lots of learning
+    * Started on WebUI project
+  * *Objectives*
+    * Continue to familiarize myself with Ubuntu OS, javascript, html, and just the general flow of information
+    * Implement a change for defaulting the "Open an Issue" checkbox ie issue 2282
+  
 == Anthony ==
 === January 20-22, 2012: Code Sprint ===
   * *Completed*

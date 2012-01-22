@@ -14,6 +14,10 @@ Our UCOSP students this semester will be using this page to track and report the
 == Wilson ==
 
 == Anthony ==
+  # January 20-22, 2012: Code Sprint
+    * Addressed issue 495
+    * Submitted bugs
+    * Claimed Extension Scaffolding Generator extension and started looking into creating new Extensions manually and automatically (auditing Jinja2 as a templating engine)
 
 == Steven ==
 

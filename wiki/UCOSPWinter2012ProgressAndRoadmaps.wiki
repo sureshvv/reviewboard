@@ -1,0 +1,22 @@
+#summary A utility page to allow UCOSP students to track and report their progress
+
+= UCOSP Progress and Roadmap for Winter 2012 =
+
+Our UCOSP students this semester will be using this page to track and report their progress as they go.
+
+
+== Wei Lu ==
+
+== Yazan ==
+
+== David ==
+
+== Wilson ==
+
+== Anthony ==
+
+== Steven ==
+
+== Jim ==
+
+== Curtis ==

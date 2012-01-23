@@ -50,8 +50,8 @@ Our UCOSP students this semester will be using this page to track and report the
 === Code Sprint ===
   * *Completed*
     * Fix a small bug http://reviews.reviewboard.org/r/2800/
-    * Worked on a bug which turned out to be more involved than I had first perceived http://reviews.reviewboard.org/r/2810/
+    * Worked on a small feature enhancement which turned out to be more involved than I had first perceived http://reviews.reviewboard.org/r/2810/
     * Got a good 'reboot' into Django, as well as a good understanding of the projects scope.
   * *Objectives*
-    * Finish the second bug that I started tackling.
+    * Finish the feature that I started tackling.
     * reviewboard-social extension

@@ -188,11 +188,11 @@ The "open an issue" checkbox currently defaults to "checked" for users making co
 
 So the default state of the "open an issue" checkbox should be configurable per user.
 
-== Expose Toggles for Opening Issues in Review Summary Dialog ===
+== Expose Toggles for Opening Issues in Review Summary Dialog (jimrrchen) ==
 
 In the review summary dialog (brought up when clicking the "edit" button in the green bar when creating a review), a summary of all comments is displayed.  We want to also show checkboxes for opening and closing issues per comment.
 
-== Better Change Description rendering ==
+== Better Change Description rendering (jimrrchen) ==
 
 Right now, when a user changes various fields on the review request (summary, description, etc), we show a box that has both the new and old text. It would be really cool to build on our existing diff view to show what changed in a more usable manner.
 

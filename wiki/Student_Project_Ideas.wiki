@@ -11,7 +11,7 @@ You can also look at our bugs marked [http://code.google.com/p/reviewboard/issue
 = Diff Viewer Projects =
 
 
-== Better Moved/Renamed Files ==
+== Better Moved/Renamed Files (happyface) ==
 
 Today, if a file is moved/renamed, we show two diff entries: One showing the file removed, and one showing the file re-added under the new name. If the content was changed, we don't have a clear way of showing that. This increases the amount of code that has to be reviewed.
 

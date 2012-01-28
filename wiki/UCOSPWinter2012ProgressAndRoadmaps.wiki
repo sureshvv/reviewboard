@@ -28,6 +28,8 @@ Our UCOSP students this semester will be using this page to track and report the
     * Claimed a project (Extension Scaffolding Generator) and explored extensions
   * *Objectives*
     * Implement a script in rbtools for generating scaffolding for new extensions
+=== Projects ===
+*Current* - Extension Scaffold Generator
   
 
 == Steven ==

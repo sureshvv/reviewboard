@@ -8,10 +8,10 @@ This page lists some of the ideas we've come up with that students could tackle 
 You can also look at our bugs marked [http://code.google.com/p/reviewboard/issues/list?can=2&q=label:ExtensionIdea ExtensionIdea] for more ideas.
 
 
-= Diff Viewer Projects =
+= Diff Viewer Projects (happyface) =
 
 
-== Better Moved/Renamed Files (happyface) ==
+== Better Moved/Renamed Files ==
 
 Today, if a file is moved/renamed, we show two diff entries: One showing the file removed, and one showing the file re-added under the new name. If the content was changed, we don't have a clear way of showing that. This increases the amount of code that has to be reviewed.
 
@@ -29,7 +29,7 @@ The templates will need to tell that the file was renamed. If there's content, i
   * {{{reviewboard/templates/diffviewer}}}
 
 
-== Inline File Attachments (happyface) ==
+== Inline File Attachments ==
 
 Review Board 1.6 introduced support for file attachments. They were standalone and tied to a review request. We should also allow them to be uploaded and tied to a diff, for binary files that otherwise wouldn't be able to be displayed.
 

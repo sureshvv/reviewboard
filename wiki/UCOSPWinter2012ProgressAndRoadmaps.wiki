@@ -44,8 +44,9 @@ Our UCOSP students this semester will be using this page to track and report the
 === Completed ===
   * Fix a small bug http://code.google.com/p/reviewboard/issues/detail?id=2074
   * Opened two bugs: Issue 2458 and 2459, gonna fix it if I got time between projects
-=== Objectives ===
   * Expose Toggles for Opening Issues in Review Summary Dialog
+=== Objectives ===
+  * Better Change Description rendering
 
 
 == Curtis ==

@@ -4,6 +4,103 @@
 
 This is the beginnings of a guide to building review board extensions.
 
+== Basic Skeleton ==
+  * `setup.py`
+{{{
+from setuptools import setup, find_packages
+
+PACKAGE = "SampleExtension"
+VERSION = "0.1"
+
+setup(
+    name=PACKAGE,
+    version=VERSION,
+    description="description of extension",
+    author="Your Name",
+    packages=["sample_extension"],
+    entry_points={
+        'reviewboard.extensions':
+            '%s = sample_extension.extension:SampleExtension' % PACKAGE,
+    },
+)
+}}}
+  If you have static files that need to be copied over, define them in the package_data entry:
+{{{
+    package_data={
+        'sample_extension': [
+            'templates/sample_extension/*.html',
+        ],
+    },
+}}}
+  * `sample_extension/__init__.py`
+  * `sample_extension/extension.py`
+{{{
+from django.conf import settings
+from django.conf.urls.defaults import patterns, include
+from reviewboard.extensions.base import Extension
+
+class SampleExtension(Extension):
+    def __init__(self, *args, **kwargs):
+        super(SampleExtension, self).__init__()
+}}}
+
+== Adding a Configuration Page ==
+  * `sample_extension/extension.py`
+  Add the following line to the SampleExtension class definition.
+{{{
+    is_configurable = True
+}}}
+  * `sample_extension/admin_urls.py`
+  Ensure that the empty pattern is matched at a minimum, as that will be the default configuration location:
+{{{
+patterns('sample_extension.views',
+    url(r'^$', 'configure'),
+)
+}}}
+  * `sample_extension/views.py`
+  Define the configuration view specified in the `admin_urls.py` pattern.
+  * `sample_extension/templates/*.html`
+
+== Adding a Dashboard Link ==
+  * `sample_extension/urls.py`
+  Ensure that the empty pattern is matched at a minimum, as that will be the location of the dashboard link:
+{{{
+patterns('sample_extension.views',
+    url(r'^$', 'dashboard'),
+)
+}}}
+  * `sample_extension/extension.py`
+  Two hooks need to be defined to support the dashboard hook: a `URLHook`, and a `DashboardHook`:
+{{{
+from reviewboard.extensions.base import Extension
+from reviewboard.extensions.hook import DashboardHook, URLHook
+}}}
+{{{
+class SampleExtensionURLHook(URLHook):
+    def __init__(self, extension, *args, **kwargs):
+        pattern = patterns('', (r'^sample_extension_path/',
+                           include('sample_extension.urls')))
+        super(SampleExtensionURLHook, self).__init__(extension, pattern)
+
+        
+class SampleExtensionDashboardHook(DashboardHook):
+    def __init__(self, extension, *args, **kwargs):
+        entries = [{
+            'label': '<name of sidebar link>',
+            'url': settings.SITE_ROOT + 'sample_extension_path/',
+        }]
+        super(SampleExtensionDashboardHook, self).__init__(extension,
+                entries=entries, *args, **kwargs)
+}}}
+  They will then need to be assigned to members of the Extension during initialization.
+{{{
+        self.url_hook = SampleExtensionURLHook(self)
+        self.dashboard_hook = SampleExtensionDashboardHook(self)
+}}}
+  * `sample_extension/views.py`
+  Define the dashboard view specified in the `urls.py` pattern.
+  
+
 
 = Relevant Links =
 

@@ -106,7 +106,7 @@ We'd need to play with options to see what other ways we could show this. It wou
   * {{{reviewboard/templates/reviews}}}
 
 
-== Issue Tracking Integration ==
+== Issue Tracking Integration (ammok) ==
 
 Review Board 1.6 introduced Issue Tracking, which simplifies the review process by allowing reviewers to say "This thing needs to be fixed" and allows the author to easily click a button saying "I fixed it" or "No, I'm not fixing this."
 

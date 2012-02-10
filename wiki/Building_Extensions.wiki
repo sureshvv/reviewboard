@@ -100,9 +100,29 @@ class SampleExtensionDashboardHook(DashboardHook):
   * `sample_extension/views.py`
   Define the dashboard view specified in the `urls.py` pattern.
   
+= Storing to the database =
 
+== Configuration Settings ==
+
+The djblets extension base class, Extension, provides a settings member. This member is a "glorified dictionary" which can be saved to, and loaded from the database.
+
+  * Example 1 - Loading Settings
+{{{
+ExtensionName.settings.load()
+mysetting = ExtensionName.settings['mysetting']
+}}}
+  * Example 2 - Saving Settings
+{{{
+ExtensionName.settings['mysetting'] = "New Setting Value"
+ExtensionName.settings.save()
+}}}
+
+== Models ==
+
+When an extension is loaded, it is added to the django INSTALLED_APPS automatically. New models are written to the database by review board by running syncdb programmatically (This is done for you).
 
 = Relevant Links =
 
   * Some simple toy extensions - https://github.com/mikeconley/RB-Toy-Extensions
   * Extension to enhance bug tracker support - https://github.com/hongbin/rb-extension-pack/tree/bug-tracker
+  * Blog post outlining how extensions make db changes, and use python eggs - http://mikeconley.ca/blog/2010/05/12/python-eggs-sunny-side-up-and-other-goodies/

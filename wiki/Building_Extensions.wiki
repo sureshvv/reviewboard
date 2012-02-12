@@ -99,6 +99,30 @@ class SampleExtensionDashboardHook(DashboardHook):
 }}}
   * `sample_extension/views.py`
   Define the dashboard view specified in the `urls.py` pattern.
+
+== Adding a Template Hook ==
+  * `sample_extension/extension.py`
+  Another hook will need to be defined to support the template hook. Add an import for `TemplateHook` to the existing Hook imports:
+{{{
+from reviewboard.extensions.hook import DashboardHook, URLHook, TemplateHook
+}}}
+  Then add the hook to the existing 'SampleExtension' class:
+{{{
+class SampleExtension(Extension):
+    is_configurable = True
+    def __init__(self, *args, **kwargs):
+        super(SampleExtension, self).__init__()
+        self.url_hook = SampleExtensionURLHook(self)
+        self.dashboard_hook = SampleExtensionDashboardHook(self)
+        self.template_hook = TemplateHook(self, "template-hook-label",
+            "SampleExtension/template.html", [
+                'context1',
+                'context2',
+                'context3',
+            ]
+        )
+}}}
+  To explain this a bit, you are instantiating and holding reference to a TemplateHook. This passes four parameters when instantiating. First it is passed the extension calling it (self), then the name of the hook point (template-hook-label) which are already present in the reviewboard templates. Next it is passed the extension template to invoke at this hook point. Finally it can be passed an optional array of contexts that the hook will be activated on. These contexts are mapped to names already defined within the urls.py file.
   
 = Storing to the database =
 

@@ -1,0 +1,29 @@
+#summary RBTools specifications and roadmap
+
+=Introduction=
+
+Here are listed basic concepts of the upcoming python interface for RB API v2.
+
+==Basic idea==
+
+=Components=
+
+==Modules==
+
+===rbtools.api===
+
+===rbtools.clients===
+
+===rbtools.commands===
+
+===rbtools.utils===
+
+==Command-line interface==
+
+=Future plans=
+
+=Relevant links=
+
+  # [http://www.reviewboard.org/docs/manual/dev/webapi/#rest-api-2-0 Review Board REST API 2.0]
+  # [https://groups.google.com/d/topic/reviewboard-dev/HFm7rz4QE2k/discussion The interface design discussion]
+  # [https://groups.google.com/d/topic/reviewboard-dev/MLOFW3DqoaM/discussion New commands layout discussion]

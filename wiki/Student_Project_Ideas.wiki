@@ -136,7 +136,7 @@ For a review request marked as "submitted", it might be useful to have an extens
 
 This way, reviewers also get some sense of how their reviews are going.
 
-== Weekly Headlines ==
+== Weekly Headlines (weilul) ==
 
 Finding out what's been happening on Review Board isn't always easy.  It might be worthwhile to have users be able to opt-in to weekly email updates from Review Board that tell them useful things about the groups that they belong to.  In particular, it could mention things about:
 

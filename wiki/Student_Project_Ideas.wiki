@@ -160,6 +160,10 @@ Creating a Review Board extension means creating a lot of boilerplate code that 
 
 For extra coolness, the generator could possibly take parameters like --dashboard-link "MyDashboardLink", that would do the work to import and stub out hooks required by the extension.
 
+== Reviewable Paste ==
+
+Like pastie.orb, or pastebin, but with inline commenting.
+
 = Web API Projects =
 
 == Polish and Land Python Web Client Tools ==

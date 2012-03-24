@@ -3,45 +3,63 @@
 
 = Introduction =
 
-This page lists some of the ideas we've come up with that students could tackle for student projects. Proposals can be made based on items in this list, or you can propose something entirely new.
+This page lists some of the ideas we've come up with that students could tackle
+for student projects. Proposals can be made based on items in this list, or you
+can propose something entirely new.
 
-You can also look at our bugs marked [http://code.google.com/p/reviewboard/issues/list?can=2&q=label:ExtensionIdea ExtensionIdea] for more ideas.
+You can also look at our bugs marked
+[http://code.google.com/p/reviewboard/issues/list?can=2&q=label:ExtensionIdea ExtensionIdea] for more ideas.
 
 
-= Diff Viewer Projects (happyface) =
+= Diff Viewer Projects =
 
 
 == Better Moved/Renamed Files ==
 
-Today, if a file is moved/renamed, we show two diff entries: One showing the file removed, and one showing the file re-added under the new name. If the content was changed, we don't have a clear way of showing that. This increases the amount of code that has to be reviewed.
+We've started to make progress in showing better diffs when files have been
+moved or renamed, but so far the work has been limited to git. In most other
+cases, we show two entries: one showing the file removed, and one showing the
+file added under the new name. If the content was changed, we don't have a clear
+way of showing that. This increases the amount of code that has to be reviewed.
 
-Instead, we should take advantage of info from the diff that says if the file has been moved/renamed. We should set a flag in the FileDiff (see STATUSES) indicating so, and show one entry.
+Instead, we should take advantage of info from the diff that says if the file
+has been moved/renamed. We should set a flag in the FileDiff (see STATUSES)
+indicating so, and show one entry.
 
-This will require updating post-review to pass the "-M" flag for git, and potentially flags for other SCMs. Mercurial is a likely candidate for needing something. Investigation will be needed to determine if Subversion, etc. can provide such information as well.
-
-The templates will need to tell that the file was renamed. If there's content, it will continue to show it.
+This will require updating post-review to add support for setting the status
+correctly for various other SCMs.
 
 *Code coverage:*
 
   * {{{rbtools}}}
-  * {{{reviewboard/diffviewer}}}
   * {{{reviewboard/scmtools}}}
-  * {{{reviewboard/templates/diffviewer}}}
 
 
 == Inline File Attachments ==
 
-Review Board 1.6 introduced support for file attachments. They were standalone and tied to a review request. We should also allow them to be uploaded and tied to a diff, for binary files that otherwise wouldn't be able to be displayed.
+Review Board 1.6 introduced support for file attachments. They were standalone
+and tied to a review request. We should also allow them to be uploaded and tied
+to a diff, for binary files that otherwise wouldn't be able to be displayed.
 
-This would involve updating the FileAttachment model to contain a source revision field, which, along with its filename, would match data in a FileDiff. These file attachments should be filtered out from the main review request display.
+This would involve updating the FileAttachment model to contain a source
+revision field, which, along with its filename, would match data in a FileDiff.
+These file attachments should be filtered out from the main review request
+display.
 
-The diff viewer, upon encountering a binary file that can't be displayed, should look up a matching FileAttachment and display an entry for that inline.
+The diff viewer, upon encountering a binary file that can't be displayed, should
+look up a matching FileAttachment and display an entry for that inline.
 
-A good addition would be to have a clean mechanism for registering a class that would know how to render a file attachment in the diff viewer. It would be keyed off by a mimetype. A built-in one could render images. The fallback would be to display a UI similar to that of the file attachments on the review request page.
+A good addition would be to have a clean mechanism for registering a class that
+would know how to render a file attachment in the diff viewer. It would be keyed
+off by a mimetype. A built-in one could render images. The fallback would be to
+display a UI similar to that of the file attachments on the review request page.
 
-The web API would need to be updated to know how to filter, to take params for the source revision, and to be able to get a related FileAttachment from a FileDiff.
+The web API would need to be updated to know how to filter, to take params for
+the source revision, and to be able to get a related FileAttachment from a
+FileDiff.
 
-post-review would need to be updated to optionally upload binary files (under a certain size) using this API.
+post-review would need to be updated to optionally upload binary files (under a
+certain size) using this API.
 
 *Code coverage:*
 
@@ -52,165 +70,106 @@ post-review would need to be updated to optionally upload binary files (under a 
   * {{{reviewboard/webapi/resources.py}}}
 
 
-= Review Request Change History Projects =
+= Review Request Projects =
 
-The change history for a review request is pretty basic and can use improvements. This is broken up into a few different areas.
+== Review Request Collaboration ==
 
+More and more, users are wanting to collaborate on a given review request. We'd
+like to add the ability for two or more people to make changes to the review
+request or post diffs, and have some way of warning each other that there are
+existing drafts from other users.
 
-== Show Links for Interdiffs (cim1) ==
-
-When a user uploads a diff, we show a link to the uploaded diff revision. We should also provide a link to the interdiff, showing what's changed. This can probably be titled "Show what's changed."
-
-This is a very easy change, and could function as a good introduction for those who are working on this set of tasks.
-
-*Code coverage:*
-
-  * {{{reviewboard/changedescs}}}
-  * {{{reviewboard/templates/reviews}}}
-
-Code Review: http://reviews.reviewboard.org/r/2810/
+This will require adding a user relation to the draft model, and tracking when
+there are multiple drafts for a single review request. This will also require
+making some changes to allow users to give each other permission to collaborate
+on a review request.
 
 
-== Tracking User Changes (weilul) ==
-
-Admins and special users can modify/close review requests, but we show that the original submitter made the changes. It'd be better to have some accountability for this.
-
-The ChangeDescription model should contain a user field indicating who made the change. If blank, it can fall back to the owner of the review request.
-
-When a user performs an operation (modifying a field or closing a review request), their logged in user should be passed to that ChangeDescription.
-
-E-mails should be sent from the user making the change, instead of from the original author.
-
-The template should render the user when it differs from the original author.
-
-*Code coverage:*
-
-  * {{{reviewboard/changedescs}}}
-  * {{{reviewboard/notifications}}}
-  * {{{reviewboard/reviews}}}
-  * {{{reviewboard/templates/reviews}}}
-  * {{{reviewboard/webapi/resources.py}}}
-
-
-== Better Description/Testing Done Changes ==
-
-When the Description/Testing Done fields have a lot of text, it can be hard to see what changed. It'd be useful to be able to display this better.
-
-There are a couple options. If we find that text was added only at the beginning, we could show "<new text> ...", or "... <new text>" if added at the end.
-
-We'd need to play with options to see what other ways we could show this. It would certainly help people who are trying to figure out what changed.
-
-*Code coverage:*
-
-  * {{{reviewboard/reviews}}}
-  * {{{reviewboard/templates/reviews}}}
-
-
-== Issue Tracking Integration (ammok) ==
-
-Review Board 1.6 introduced Issue Tracking, which simplifies the review process by allowing reviewers to say "This thing needs to be fixed" and allows the author to easily click a button saying "I fixed it" or "No, I'm not fixing this."
-
-Right now, you have to look through the reviews to see what was fixed for a particular change.
-
-We should render this information when showing a change description. We can query all resolved issues from the time of the last change description to the current one, and render those.
-
-We can also show this in the green draft box at the top of the page where the author typically describes what's in the change.
-
-This would save on typing and make it clearer to everyone what happened.
-
-This would need to be integrated into the e-mails as well.
-
-
-*Code coverage:*
-
-  * {{{reviewboard/changedescs}}}
-  * {{{reviewboard/notifications}}}
-  * {{{reviewboard/reviews}}}
-  * {{{reviewboard/templates}}}
 
 = Extension Projects =
 
-== Reviewer Feedback (cim1) ==
+== Pluggable Review UIs ==
 
-For a review request marked as "submitted", it might be useful to have an extension that gives the reviewee the option to anonymously rate the reviews they received.  They could rate them on a 5-point scale for things like Tone, Thoroughness, and Clarity.  This feedback would not be visible to other users of Review Board - only to those receiving the feedback.  We would likely want to show an sliding aggregation of this feedback to each reviewer once they've received a certain number of ratings.
+We'd like to allow extensions to provide UIs for reviewing file types other than
+diffs. The most basic of these would provide a review UI for plain text files
+(which would satisfy a long-running feature request to allow reviewing only the
+current version of a file instead of a diff to it).
 
-This way, reviewers also get some sense of how their reviews are going.
+More complicated UIs could allow reviewing Microsoft Word or PDF documents,
+diagrams, etc.
 
-== Weekly Headlines (weilul) ==
 
-Finding out what's been happening on Review Board isn't always easy.  It might be worthwhile to have users be able to opt-in to weekly email updates from Review Board that tell them useful things about the groups that they belong to.  In particular, it could mention things about:
+== Automated Static Analysis ==
 
-  # Outstanding reviews that they could / should tackle
-  # A list of review requests that have been marked submitted, and which ones have been discarded
-  # A list of new review requests
-  # Perhaps something like, "the top reviewer of the week"
-  # Perhaps more...
+Lots of languages have static analysis tools to help keep code clean, safe, and
+functional. Python, for example, has the pep8 tool to help do style clean-ups.
 
-== Automated Static Analysis (smacleod) ==
+Perhaps we could have an extension that allows users to activate various static
+analysis tools for changes to files with particular extensions.  So, for
+example, we could set pep8 to analyze changes to .py files.
 
-Lots of languages have static analysis tools to help keep code clean, safe, and functional.  Python, for example, has the pep8 tool to help do style clean-ups.
+The extension could then be an automated reviewer that comments on any offending
+sections of code.  If no offending areas of code are found in the changeset, the
+automated reviewer gives a Ship It.
 
-Perhaps we could have an extension that allows users to activate various static analysis tools for changes to files with particular extensions.  So, for example, we could set pep8 to analyze changes to .py files.
-
-The extension could then be an automated reviewer that comments on any offending sections of code.  If no offending areas of code are found in the changeset, the automated reviewer gives a Ship It.
-
-== Extension Scaffold Generator (ammok) ==
-
-Creating a Review Board extension means creating a lot of boilerplate code that is mostly the same from extension to extension.  It'd be nice if there was a tool that could just write those scaffolds out, and stub out the sections that the developer needs to work on.
-
-For extra coolness, the generator could possibly take parameters like --dashboard-link "MyDashboardLink", that would do the work to import and stub out hooks required by the extension.
 
 == Reviewable Paste ==
 
 Like pastie.orb, or pastebin, but with inline commenting.
 
+
 = Web API Projects =
 
 == Polish and Land Python Web Client Tools ==
 
-There's been an ongoing effort to replace the useful, yet convoluted post-review tool with a set of smaller tools and scripts that operate with the Review Board Web API.
+There's been an ongoing effort to replace the useful, yet convoluted post-review
+tool with a set of smaller tools and scripts that operate with the Review Board
+Web API.
 
-Some of this work has already been completed, but has not been merged, and is likely a bit out of date.  We would like someone to take over this project, and drive it through to the point where it can be merged.
+Some of this work has already been completed, but has not been merged, and is
+likely a bit out of date.  We would like someone to take over this project, and
+drive it through to the point where it can be merged.
+
 
 = Integration Projects =
 
 == Better Bugzilla Integration ==
 
-Bugzilla is a web-based bug-tracking application used by companies such as Mozilla, Red Hat, GNOME, KDE, the Apache Project, and NASA (among others).
+Bugzilla is a web-based bug-tracking application used by companies such as
+Mozilla, Red Hat, GNOME, KDE, the Apache Project, and NASA (among others).
 
-Bugzilla currently ships with a built-in code review tool called "Splinter" that, while mostly functional, leaves much to be desired.
+Bugzilla currently ships with a built-in code review tool called "Splinter"
+that, while mostly functional, leaves much to be desired.
 
-We would like someone to design and develop a nice way to integrate a Bugzilla instance and a Review Board instance.
+We would like someone to design and develop a nice way to integrate a Bugzilla
+instance and a Review Board instance.
 
-This is a large, somewhat exploratory project, and will likely involve creating Bugzilla addons and Review Board addons.  We would want a detailed design for the workflow provided to us before any implementation would occur.
+This is a large, somewhat exploratory project, and will likely involve creating
+Bugzilla addons and Review Board addons.  We would want a detailed design for
+the workflow provided to us before any implementation would occur.
+
 
 = General Web UI Projects =
 
-== Make "Open an Issue" Checkbox Default State Configurable Per User  (h20) ===
-
-The "open an issue" checkbox currently defaults to "checked" for users making comments.  Our bug reports tell us that there are certain types of users who find this quite annoying, since the types of comments they make do not open issues, which means that they have to manually uncheck the checkbox.
-
-So the default state of the "open an issue" checkbox should be configurable per user.
-
-== Expose Toggles for Opening Issues in Review Summary Dialog (jimrrchen) ==
-
-In the review summary dialog (brought up when clicking the "edit" button in the green bar when creating a review), a summary of all comments is displayed.  We want to also show checkboxes for opening and closing issues per comment.
-
-== Better Change Description rendering (jimrrchen) ==
-
-Right now, when a user changes various fields on the review request (summary, description, etc), we show a box that has both the new and old text. It would be really cool to build on our existing diff view to show what changed in a more usable manner.
-
 == Fewer Reloads ==
 
-Many operations today reload the page. For example, publishing a draft of a review, or discarding, or closing a review request.
+Many operations today reload the page. For example, publishing a draft of a
+review, or discarding, or closing a review request.
 
-Ideally, we would be able to make some of these changes more dynamic. Instead of doing a full reload, it would just dynamically update the page content.
+Ideally, we would be able to make some of these changes more dynamic. Instead of
+doing a full reload, it would just dynamically update the page content.
 
-The one trick with this work is making sure we don't have too many redundant bits of UI. If we're rendering some stuff on initial page load from the templates and then rendering separately on demand via JavaScript, we could get into some inconsistencies down the road. So this would need a solution.
+The one trick with this work is making sure we don't have too many redundant
+bits of UI. If we're rendering some stuff on initial page load from the
+templates and then rendering separately on demand via JavaScript, we could get
+into some inconsistencies down the road. So this would need a solution.
 
-An option would be to have URLs that render the page content instead. Change history descriptions, for example. Then it's handled in one place.
+An option would be to have URLs that render the page content instead. Change
+history descriptions, for example. Then it's handled in one place.
 
-Some simple tasks here would be to handle the case of review drafts, so that they don't reload the page. There, we're talking simple CSS class changes, or removing elements.
+Some simple tasks here would be to handle the case of review drafts, so that
+they don't reload the page. There, we're talking simple CSS class changes, or
+removing elements.
 
 This is a bit of a general task, and we'd need to figure out the specifics.
 

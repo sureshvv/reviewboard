@@ -1,5 +1,7 @@
 #summary WIP information on building extensions.
 
+This page is out of date. The current documentation for building extensions can be found at [http://www.reviewboard.org/docs/codebase/dev/extending/extensions/ Writing Review Board Extensions].
+
 = Introduction =
 
 This is the beginnings of a guide to building review board extensions.

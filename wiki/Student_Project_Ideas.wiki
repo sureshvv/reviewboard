@@ -14,27 +14,6 @@ You can also look at our bugs marked
 = Diff Viewer Projects =
 
 
-== Better Moved/Renamed Files ==
-
-We've started to make progress in showing better diffs when files have been
-moved or renamed, but so far the work has been limited to git. In most other
-cases, we show two entries: one showing the file removed, and one showing the
-file added under the new name. If the content was changed, we don't have a clear
-way of showing that. This increases the amount of code that has to be reviewed.
-
-Instead, we should take advantage of info from the diff that says if the file
-has been moved/renamed. We should set a flag in the FileDiff (see STATUSES)
-indicating so, and show one entry.
-
-This will require updating post-review to add support for setting the status
-correctly for various other SCMs.
-
-*Code coverage:*
-
-  * {{{rbtools}}}
-  * {{{reviewboard/scmtools}}}
-
-
 == Inline File Attachments ==
 
 Review Board 1.6 introduced support for file attachments. They were standalone
@@ -58,6 +37,8 @@ The web API would need to be updated to know how to filter, to take params for
 the source revision, and to be able to get a related FileAttachment from a
 FileDiff.
 
+This mechanism should also be extensible so that extensions can register themselves to handle particular binary file types.
+
 post-review would need to be updated to optionally upload binary files (under a
 certain size) using this API.
 
@@ -72,19 +53,6 @@ certain size) using this API.
 
 = Review Request Projects =
 
-== Review Request Collaboration ==
-
-More and more, users are wanting to collaborate on a given review request. We'd
-like to add the ability for two or more people to make changes to the review
-request or post diffs, and have some way of warning each other that there are
-existing drafts from other users.
-
-This will require adding a user relation to the draft model, and tracking when
-there are multiple drafts for a single review request. This will also require
-making some changes to allow users to give each other permission to collaborate
-on a review request.
-
-
 
 = Extension Projects =
 
@@ -97,25 +65,6 @@ current version of a file instead of a diff to it).
 
 More complicated UIs could allow reviewing Microsoft Word or PDF documents,
 diagrams, etc.
-
-
-== Automated Static Analysis ==
-
-Lots of languages have static analysis tools to help keep code clean, safe, and
-functional. Python, for example, has the pep8 tool to help do style clean-ups.
-
-Perhaps we could have an extension that allows users to activate various static
-analysis tools for changes to files with particular extensions.  So, for
-example, we could set pep8 to analyze changes to .py files.
-
-The extension could then be an automated reviewer that comments on any offending
-sections of code.  If no offending areas of code are found in the changeset, the
-automated reviewer gives a Ship It.
-
-
-== Reviewable Paste ==
-
-Like pastie.orb, or pastebin, but with inline commenting.
 
 
 = Web API Projects =
@@ -132,22 +81,6 @@ drive it through to the point where it can be merged.
 
 
 = Integration Projects =
-
-== Better Bugzilla Integration ==
-
-Bugzilla is a web-based bug-tracking application used by companies such as
-Mozilla, Red Hat, GNOME, KDE, the Apache Project, and NASA (among others).
-
-Bugzilla currently ships with a built-in code review tool called "Splinter"
-that, while mostly functional, leaves much to be desired.
-
-We would like someone to design and develop a nice way to integrate a Bugzilla
-instance and a Review Board instance.
-
-This is a large, somewhat exploratory project, and will likely involve creating
-Bugzilla addons and Review Board addons.  We would want a detailed design for
-the workflow provided to us before any implementation would occur.
-
 
 = General Web UI Projects =
 

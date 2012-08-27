@@ -30,14 +30,17 @@ look up a matching FileAttachment and display an entry for that inline.
 
 A good addition would be to have a clean mechanism for registering a class that
 would know how to render a file attachment in the diff viewer. It would be keyed
-off by a mimetype. A built-in one could render images. The fallback would be to
-display a UI similar to that of the file attachments on the review request page.
+off by a mimetype. This mechanism should also be extensible so that extensions can
+register themselves to handle particular mimetypes. A built-in one could render images.
+The fallback would be to display a UI similar to that of the file attachments on the review
+request page.
 
 The web API would need to be updated to know how to filter, to take params for
 the source revision, and to be able to get a related FileAttachment from a
 FileDiff.
 
-This mechanism should also be extensible so that extensions can register themselves to handle particular binary file types.
+Once completed, we should replace the current screenshot review UI with the image attachment
+binary file handler.
 
 post-review would need to be updated to optionally upload binary files (under a
 certain size) using this API.
@@ -80,7 +83,27 @@ likely a bit out of date.  We would like someone to take over this project, and
 drive it through to the point where it can be merged.
 
 
-= Integration Projects =
+= Hosting Service Projects =
+
+== Repository Auto-Configuration ==
+
+We should update the repository management tool to support auto-configuration from a hosting service.
+
+For example, the user should be able to register their GitHub account as a hosting service, and then the
+management tool should list all of the repositories available to that account. The user should then be able
+to just check off the repositories that they'd like to add.
+
+There are workflow issues to solve here though, so this requires some investigation and research.
+
+== Better Bug Tracker Integration ==
+
+We'd like to allow the user to configure a bug tracker that could be associated with their repositories,
+and to extend our HostingService support to allow posting to the bug trackers via their APIs.
+
+== Automatic SSH Key Association ==
+
+It would greatly simplify configuration on new setups if we could automatically support associating an
+SSH key with a hosting service.
 
 = General Web UI Projects =
 
@@ -111,3 +134,12 @@ This is a bit of a general task, and we'd need to figure out the specifics.
   * {{{reviewboard/htdocs/media/rb/js}}}
   * {{{reviewboard/reviews}}}
   * {{{reviewboard/templates}}}
+
+= Tools Projects =
+
+== New Scripts for RBTools ==
+
+We've recently done some work that allows us to create simple yet powerful client scripts
+for manipulating a Review Board instance.
+
+Now that the foundation is in place, we need to write those scripts.

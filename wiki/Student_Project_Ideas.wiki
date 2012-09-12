@@ -70,6 +70,16 @@ More complicated UIs could allow reviewing Microsoft Word or PDF documents,
 diagrams, etc.
 
 
+== Automated Static Analysis ==
+
+Progress has been made to run static analysis tools automatically on code posted to
+review board. The system currently runs the PEP8 style checker on python code, but additional
+plugins must be written to support other tools.
+
+Other possible projects include improvements to the tool plugin API, the admin UI, and
+a system for tools to be triggered manually using the web UI.
+
+
 = Web API Projects =
 
 == Polish and Land Python Web Client Tools ==

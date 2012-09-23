@@ -79,6 +79,31 @@ plugins must be written to support other tools.
 Other possible projects include improvements to the tool plugin API, the admin UI, and
 a system for tools to be triggered manually using the web UI.
 
+*Create a new static analysis plugin for Review Bot*
+  * Pick a static analysis tool (jslint, pylint, Buildbot "try",  etc.) and write the plugin
+  * Difficulty: easy - moderate (depending on the complexity of the tool)
+  * Code Coverage: Parsing, Review Bot's Tool API.
+
+*Implement manual triggering of Review Bot Tools*
+  * Currently tools are only run automatically on each diff posted, this project involves creating an interface on review requests to manually trigger reviews from specific tools.
+  * Difficulty: moderate - difficult (depending on familiarity with technologies)
+  * Code Coverage: Review Board extensions, Web API, HTML, CSS, js, Celery
+
+*Implement logging of tool execution*
+  * Currently Review Bot fires off requests for the tool execution, but does not keep track of this. If a review isn't posted it's impossible to know if an attempt to execute a tool was made without checking the logs of every worker. Creating a record in the database of which tools were executed, and if they succeeded could be useful for administration.
+  * Difficulty: moderate
+  * Cover Coverage: Review Board extensions, Web API, Celery.
+
+*Improve the Review Bot tool API*
+  * Currently tools only posses a simple API for basic reviews of diffs. This could involve adding functionality for working with file attachments and screenshots, or other improvements
+  * Difficulty: easy - moderate
+  * Code Coverage: Review Bot's Tool API, Web API, Review Board extensions.
+
+*Improve Review Bot's Configuration options*
+  * The global review bot configuration options were quickly thought up. It might be worth rethinking them, figuring out what would be best to have. It would also be nice to figure out a way to make it easy for tools to obey the settings.
+  * Difficulty: easy - moderate
+  * Code Coverage: Review Board extensions, Review Bot's admin UI and Tool API.
+
 
 = Web API Projects =
 

@@ -61,14 +61,15 @@ certain size) using this API.
 
 == Pluggable Review UIs ==
 
-We'd like to allow extensions to provide UIs for reviewing file types other than
-diffs. The most basic of these would provide a review UI for plain text files
-(which would satisfy a long-running feature request to allow reviewing only the
-current version of a file instead of a diff to it).
+We now have the ability to add new review UIs for different file types via
+extensions. We'd like to add more handlers for different mimetypes. These
+can range anywhere from plain text to diagrams to Microsoft Word or PDF
+documents.
 
-More complicated UIs could allow reviewing Microsoft Word or PDF documents,
-diagrams, etc.
+== Admin Widgets ==
 
+The admin site has a bunch of "widgets" that show information and allow the
+user to configure the site. We'd like extensions to be able to add them.
 
 == Automated Static Analysis ==
 
@@ -83,11 +84,6 @@ a system for tools to be triggered manually using the web UI.
   * Pick a static analysis tool (jslint, pylint, Buildbot "try",  etc.) and write the plugin
   * Difficulty: easy - moderate (depending on the complexity of the tool)
   * Code Coverage: Parsing, Review Bot's Tool API.
-
-*Implement manual triggering of Review Bot Tools*
-  * Currently tools are only run automatically on each diff posted, this project involves creating an interface on review requests to manually trigger reviews from specific tools.
-  * Difficulty: moderate - difficult (depending on familiarity with technologies)
-  * Code Coverage: Review Board extensions, Web API, HTML, CSS, js, Celery
 
 *Implement logging of tool execution*
   * Currently Review Bot fires off requests for the tool execution, but does not keep track of this. If a review isn't posted it's impossible to know if an attempt to execute a tool was made without checking the logs of every worker. Creating a record in the database of which tools were executed, and if they succeeded could be useful for administration.
@@ -113,8 +109,8 @@ There's been an ongoing effort to replace the useful, yet convoluted post-review
 tool with a set of smaller tools and scripts that operate with the Review Board
 Web API.
 
-A lot of the foundational work has already been completed, and now we need to start
-writing the smaller tools and scripts.
+We need to polish up the work that's been done so far, as well as write new scripts
+for new functionality.
 
 = Hosting Service Projects =
 
@@ -132,11 +128,6 @@ There are workflow issues to solve here though, so this requires some investigat
 
 We'd like to allow the user to configure a bug tracker that could be associated with their repositories,
 and to extend our HostingService support to allow posting to the bug trackers via their APIs.
-
-== Automatic SSH Key Association ==
-
-It would greatly simplify configuration on new setups if we could automatically support associating an
-SSH key with a hosting service.
 
 = General Web UI Projects =
 
@@ -166,4 +157,15 @@ This is a bit of a general task, and we'd need to figure out the specifics.
 
   * {{{reviewboard/htdocs/media/rb/js}}}
   * {{{reviewboard/reviews}}}
+  * {{{reviewboard/templates}}}
+
+== Admin Site Configurability ==
+
+Right now, the admin site has a bunch of widgets, but they're always all visible
+and in a hard-coded order. We'd like admins to be able to add and remove
+widgets and drag them around to customize their view.
+
+*Code coverage:*
+
+  * {{{reviewboard/admin}}}
   * {{{reviewboard/templates}}}

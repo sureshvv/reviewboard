@@ -108,11 +108,11 @@ A checklist extension would help here.
 
 === General Requirements / Specifications ===
 
-* Allows teams and projects to have shared checklists
-* Allows individual users to add custom items to their lists
-* The list should be light-weight in operation, and minimal in appearance so as to keep focus on the code being reviewed.
-* Remember checked items per review (if I save a review draft, and log-in from another computer to continue, my checklist should remember what items I've already checked off)
-* Remind the user if they try to publish a review with unchecked items on their list, in case they want to keep reviewing.
+  * Allows teams and projects to have shared checklists
+  * Allows individual users to add custom items to their lists
+  * The list should be light-weight in operation, and minimal in appearance so as to keep focus on the code being reviewed.
+  * Remember checked items per review (if I save a review draft, and log-in from another computer to continue, my checklist should remember what items I've already checked off)
+  * Remind the user if they try to publish a review with unchecked items on their list, in case they want to keep reviewing.
 
 
 = Web API Projects =
